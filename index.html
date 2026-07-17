@@ -185,6 +185,10 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 }
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
 </style>
+<script>
+// apply saved theme before first paint to avoid a flash of the wrong theme
+try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
+</script>
 </head>
 <body>
 
@@ -373,13 +377,17 @@ addEventListener('scroll',onScroll,{passive:true});onScroll();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>{if(reduce){el.classList.add('in')}else{io.observe(el)}});
 
-// theme toggle (brand = default; on the live site we'll persist choice with localStorage)
+// theme toggle (brand = default; choice persisted in localStorage)
 const tBtn=document.getElementById('themeBtn');
+function themeLabel(){tBtn.textContent=document.documentElement.getAttribute('data-theme')==='coastal'?'Theme: Brand':'Theme: Coastal'}
+themeLabel();
 tBtn.addEventListener('click',()=>{
   const root=document.documentElement;
   const coastal=root.getAttribute('data-theme')==='coastal';
-  if(coastal){root.removeAttribute('data-theme');tBtn.textContent='Theme: Coastal';}
-  else{root.setAttribute('data-theme','coastal');tBtn.textContent='Theme: Brand';}
+  if(coastal){root.removeAttribute('data-theme')}
+  else{root.setAttribute('data-theme','coastal')}
+  try{localStorage.setItem('br-theme',coastal?'brand':'coastal')}catch(e){}
+  themeLabel();
 });
 
 // mobile menu
