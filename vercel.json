@@ -1,0 +1,14 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/pages/about-batroun-race", "destination": "/about", "permanent": true },
+    { "source": "/pages/contact", "destination": "/contact", "permanent": true },
+    { "source": "/pages/pages-sponsors-partners", "destination": "/sponsors", "permanent": true },
+    { "source": "/pages/batroun-race-sponsors", "destination": "/sponsor-packages", "permanent": true },
+    { "source": "/pages/batroun-race-2025-winners-official-podium-result", "destination": "/results-2025", "permanent": true },
+    { "source": "/pages/entry-list-batrounrace2025", "destination": "/results-2025", "permanent": true },
+    { "source": "/collections/all", "destination": "https://register.batrounrace.com/", "permanent": true },
+    { "source": "/pages/:slug*", "destination": "/", "permanent": true }
+  ]
+}
