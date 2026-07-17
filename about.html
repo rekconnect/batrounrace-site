@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Batroun Race — Lebanon's Coastal Running Event</title>
-<meta name="description" content="Join the Batroun Race — Lebanon's premier coastal running event promoting health, tourism, and community. 5KM & 10KM along the Batroun seaside.">
+<title>About Batroun Race | Lebanon's Leading Sports &amp; Adventure Event</title>
+<meta name="description" content="Learn about Batroun Race — Lebanon's premier sports and adventure event uniting athletes, nature lovers, and the community through passion, fitness, and fun.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -135,16 +135,6 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 8px}
 .flow-step p{color:var(--text-inv-dim);font-size:.9rem}
 
-/* results */
-.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-@media(max-width:720px){.res-grid{grid-template-columns:1fr}}
-.res-card{border:1px solid var(--line);border-radius:16px;padding:34px 30px;background:var(--white);text-decoration:none;display:block;transition:transform .2s ease-out,box-shadow .2s ease-out}
-.res-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
-.res-card .yr{font-family:var(--mono);font-size:2.6rem;font-weight:500;color:var(--sea);line-height:1}
-.res-card h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:14px 0 8px}
-.res-card p{color:var(--text-dim);font-size:.92rem}
-.res-card .go{margin-top:18px;color:var(--coral);font-weight:600;font-size:.9rem}
-
 /* sponsors */
 .spon-sec{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .spon-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
@@ -176,12 +166,29 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot .cols{display:flex;gap:40px;flex-wrap:wrap}
 .foot ul{list-style:none;display:grid;gap:8px}
 
+/* ---------- about page ---------- */
+.story-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.story-cards{grid-template-columns:1fr}}
+.story-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.story-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
+.story-card img{width:100%;height:180px;object-fit:cover}
+.story-card .body{padding:26px}
+.story-card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
+.story-card h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:12px 0 10px}
+.story-card p{color:var(--text-dim);font-size:.95rem}
+.cards.two{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.cards.two{grid-template-columns:1fr}}
+.card ul{margin-top:12px;padding-left:18px;color:var(--text-dim);font-size:.95rem;display:grid;gap:6px}
+.vision-note{margin-top:36px;padding:26px 30px;border-left:3px solid var(--coral);background:var(--white);border-radius:0 16px 16px 0;color:var(--text-dim);max-width:720px}
+.vision-note b{color:var(--text)}
+.teaser-list{margin-top:8px;padding-left:18px;color:var(--text-dim);display:grid;gap:8px}
+
 /* reveal on scroll */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease-out,transform .5s ease-out}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .card,.res-card,.bib,.btn{transition:none}
+  .card,.res-card,.bib,.btn,.story-card{transition:none}
 }
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
 </style>
@@ -209,134 +216,180 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </header>
 
-<!-- KM 0 · START -->
+<!-- KM 0 · WHO WE ARE -->
 <section class="hero" style="padding:0">
   <div class="wrap">
-    <span class="km">KM 0 · Start line</span>
-    <h1>Run the<br>Batroun <span class="accent">coast.</span></h1>
-    <p class="hero-sub">Lebanon's coastal running event — 5KM &amp; 10KM along the sea, through a town that turns race day into a festival.</p>
+    <span class="km">KM 0 · About</span>
+    <h1>Who we <span class="accent">are.</span></h1>
+    <p class="hero-sub">Created by people who love Batroun and its community — athletes, engineers, and marketing specialists building a meaningful, high-quality running event. Rooted in Batroun, open to all of Lebanon, and growing stronger every year.</p>
     <div class="hero-meta">
+      <div><b>500+</b>Runners (2025)</div>
+      <div><b>1.5M+</b>Exposure</div>
       <div><b>5K · 10K</b>Two distances</div>
-      <div><b>Batroun</b>Seaside route</div>
-      <div><b>500+</b>Runners, first edition</div>
-      <div><b>2 editions</b>2025 · 2026</div>
     </div>
     <div class="hero-ctas">
       <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
+      <a class="btn btn-ghost" href="contact.html">Talk to the team</a>
     </div>
     <div class="hero-photo">
-      <span class="ph">[ hero photo — images/hero-race-crowd.jpg ]</span>
-      <img src="images/hero-race-crowd.jpg" alt="Runners and spectators at the Batroun Race start" onerror="this.style.display='none'">
+      <span class="ph">[ photo — images/start_line_2.jpg ]</span>
+      <img src="images/start_line_2.jpg" alt="Runners lined up at the Batroun Race start line" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · WHY -->
+<!-- KM 1 · MISSION -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · More than a race</span>
-      <h2>Built by belief, rooted in Batroun.</h2>
-      <p>Created by athletes, engineers, and creatives who love this town — a race with meaning, quality, and community at its core. Open to all of Lebanon.</p>
+      <span class="km">KM 1 · Mission &amp; vision</span>
+      <h2>Why we run this race.</h2>
     </div>
     <div class="cards">
       <div class="card reveal">
-        <span class="tag">Community</span>
-        <h3>Everyone runs</h3>
-        <p>Beginners, casual joggers, and elite athletes — teenagers to seniors, locals and runners from across Lebanon.</p>
+        <span class="tag">Mission</span>
+        <h3>A healthier community</h3>
+        <p>Build a healthier, more connected community through running and public celebration.</p>
       </div>
       <div class="card reveal">
-        <span class="tag">Cause</span>
-        <h3>Sport with a message</h3>
-        <p>Special editions support charity, community programs, and unity — sport as humanity in motion.</p>
+        <span class="tag">Vision</span>
+        <h3>A coastal reference</h3>
+        <p>Make Batroun a reference for coastal sport tourism and positive youth energy.</p>
       </div>
       <div class="card reveal">
-        <span class="tag">Coast</span>
-        <h3>The Batroun way</h3>
-        <p>Seaside roads, the old souks, and a Mediterranean finish. After the race, many stay to swim, eat, and celebrate.</p>
+        <span class="tag">Promise</span>
+        <h3>Quality, every edition</h3>
+        <p>Safe routes, great organization, unforgettable vibes.</p>
       </div>
     </div>
-    <a class="more-link reveal" href="about.html">Read our full story →</a>
   </div>
 </section>
 
-<!-- KM 2.5 · RACE DAY -->
+<!-- KM 2 · THE STORY -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km">KM 2 · The story</span>
+      <h2>Built by belief.</h2>
+      <p>A team of athletes, engineers, and marketing minds creating a meaningful running experience — rooted in Batroun and open to all of Lebanon.</p>
+    </div>
+    <div class="story-cards">
+      <div class="story-card reveal">
+        <img src="images/run_for_a_cause.jpg" alt="Runners at the Run for a Cause 2025 special edition" onerror="this.style.display='none'">
+        <div class="body">
+          <span class="tag">Special edition</span>
+          <h3>Run for a Cause 2025</h3>
+          <p>A special edition supporting charity, community programs, rehabilitation, and unity — where sport becomes a message of humanity.</p>
+        </div>
+      </div>
+      <div class="story-card reveal">
+        <img src="images/race_day.jpg" alt="Race day crowd on the Batroun coastal route" onerror="this.style.display='none'">
+        <div class="body">
+          <span class="tag">Our message</span>
+          <h3>Sport is humanity in motion</h3>
+          <p>Through running, we share unity, respect, and purpose — because sport is more than movement, it is a message.</p>
+        </div>
+      </div>
+      <div class="story-card reveal">
+        <img src="images/finish_line.jpg" alt="Runners crossing the Batroun Race finish line" onerror="this.style.display='none'">
+        <div class="body">
+          <span class="tag">Our vision</span>
+          <h3>From Batroun to Lebanon</h3>
+          <p>Rooted locally, driven nationally. A race that carries the spirit of Batroun and connects communities across the country.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vision-note reveal">
+      <b>More than a race — our purpose.</b> We are not chasing titles or records. We are building something we believe in — growing, learning, and improving with every edition.
+    </div>
+  </div>
+</section>
+
+<!-- KM 3 · COMMUNITY -->
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2.5 · Race day</span>
-      <h2>A town-wide celebration.</h2>
-      <p>Streets filled with runners instead of cars. Music on the route, families at the finish.</p>
+      <span class="km">KM 3 · The community</span>
+      <h2>Who is part of it.</h2>
+      <p>A shared experience that brings together runners, families, volunteers, and local supporters — built by professional athletes, engineers, and creatives who believe in sport as a way to connect people.</p>
     </div>
     <div class="flow">
-      <div class="flow-step reveal"><span class="t">Start</span><h3>Start energy</h3><p>Bibs on, music up, the whole town at the line.</p></div>
-      <div class="flow-step reveal"><span class="t">Route</span><h3>Coastal push</h3><p>Sea on one side, Batroun stone on the other.</p></div>
-      <div class="flow-step reveal"><span class="t">Support</span><h3>Cheering points</h3><p>Volunteers, water stations, and crowds that carry you.</p></div>
-      <div class="flow-step reveal"><span class="t">Finish</span><h3>Festival finish</h3><p>Podiums, food, swimming, and a full day by the sea.</p></div>
+      <div class="flow-step reveal"><span class="t">Runners</span><h3>All levels, all ages</h3><p>Beginners, casual joggers, and athletes — teenagers to seniors, locals from Batroun and participants from across Lebanon. Running for fitness, fun, personal challenge, and community spirit.</p></div>
+      <div class="flow-step reveal"><span class="t">Volunteers</span><h3>The backbone</h3><p>Local youth, sports clubs, and community members — registration &amp; bib distribution, water stations, route safety, crowd support.</p></div>
+      <div class="flow-step reveal"><span class="t">Businesses</span><h3>Local partners</h3><p>Cafés, restaurants, gyms, sports brands, beach resorts, and touristic spots collaborate — turning race day into a town-wide celebration.</p></div>
+      <div class="flow-step reveal"><span class="t">The town</span><h3>Race day = festival</h3><p>Streets filled with runners instead of cars, music along the route, families and social moments after the race — then swimming, food, and a full day by the sea.</p></div>
     </div>
   </div>
 </section>
 
-<!-- KM 4 · RESULTS -->
+<!-- KM 4 · VALUES -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 4 · Results</span>
-      <h2>Two editions in the books.</h2>
+      <span class="km">KM 4 · Values</span>
+      <h2>What we stand for.</h2>
     </div>
-    <div class="res-grid">
-      <a class="res-card reveal" href="https://register.batrounrace.com/results">
-        <div class="yr">2026</div>
-        <h3>Second edition — full results</h3>
-        <p>Live timing and complete results for every runner and category.</p>
-        <div class="go">View 2026 results →</div>
-      </a>
-      <a class="res-card reveal" href="results-2025.html">
-        <div class="yr">2025</div>
-        <h3>First edition — podium winners</h3>
-        <p>Where it all started: 500+ runners, July 2025. Official podium by category.</p>
-        <div class="go">View 2025 podium →</div>
-      </a>
+    <div class="cards two">
+      <div class="card reveal">
+        <span class="tag">Health &amp; wellness</span>
+        <h3>An active lifestyle</h3>
+        <p>Encouraging running as an accessible sport for everyone — from first-time joggers to seasoned athletes.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Love for Batroun</span>
+        <h3>The coast on show</h3>
+        <p>Highlighting the seaside, old souks, and coastal roads — promoting Batroun as a sports and tourism destination.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Unity &amp; positivity</span>
+        <h3>Together beyond differences</h3>
+        <p>Runners cheer for strangers, families wait at the finish line, and the town celebrates together.</p>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Safety &amp; responsibility</span>
+        <h3>A respectful experience</h3>
+        <p>Clear route guidance and support points, volunteer coordination and crowd flow, clean streets and responsible celebration.</p>
+      </div>
+    </div>
+    <div class="vision-note reveal">
+      <b>Why the community matters.</b> It builds positive youth role models, encourages tourism through sports, creates safe and healthy public events, and strengthens Batroun's image as a lively, active city. Long-term: grow participation while keeping quality and safety, support more community collaborations, and make Batroun a must-visit sport weekend destination.
     </div>
   </div>
 </section>
 
-<!-- SPONSORS -->
+<!-- SPONSORS TEASER -->
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km">Partners</span>
-      <h2>Powered by brands that show up.</h2>
-      <p>Real visibility, real trust — on the route, at the finish, and in every photo after.</p>
+      <h2>Brands gain real visibility + real trust.</h2>
+      <p>Your brand is seen on race day, in content, and across community moments — not just a one-time logo.</p>
     </div>
-    <div class="spon-row reveal">
-      <span class="spon-chip">Aquafina</span>
-      <span class="spon-chip">Gatorade</span>
-      <span class="spon-chip">Whish Money</span>
-      <span class="spon-chip">Footlab</span>
-      <span class="spon-chip">+ partners</span>
-    </div>
+    <ul class="teaser-list reveal">
+      <li>On-site visibility: finish zone, route, and community moments</li>
+      <li>Digital exposure: photos, reels, stories, and post-event content</li>
+      <li>Trust: your brand becomes part of a positive city experience</li>
+    </ul>
     <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
-      <a class="btn btn-line" href="contact.html">Talk to the team</a>
+      <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
+      <a class="btn btn-line" href="sponsors.html">View sponsors page</a>
     </div>
   </div>
 </section>
 
-<!-- FINISH · REGISTER -->
+<!-- FINISH · JOIN -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Your turn</span>
-    <h2 class="reveal">The coast is waiting.</h2>
+    <span class="km">Finish line · Join the movement</span>
+    <h2 class="reveal">Want to join the movement?</h2>
     <a class="bib reveal" href="https://register.batrounrace.com/">
       <span class="small">Batroun Race · Official entry</span>
       <div class="num">RUN</div>
       <span class="small">5KM · 10KM · All levels</span>
       <div class="cta-line">Register now →</div>
     </a>
-    <p class="note">Registration, payment &amp; results at register.batrounrace.com</p>
+    <p class="note">Volunteering, partnerships &amp; sponsorships → <a href="contact.html" style="color:var(--text-inv)">contact the team</a></p>
   </div>
 </section>
 
