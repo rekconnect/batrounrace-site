@@ -1,6 +1,7 @@
 // Batroun Race CMS hydration — loads content/site.json and fills the page.
 // Elements opt in via data-cms (text/HTML), data-cms-href (link), or
 // data-cms-list="type:path" (container re-rendered from a JSON array).
+// With ?edit=1 (inside the /admin visual editor) js/editor.js is loaded too.
 (function () {
   function get(obj, path) {
     return path.split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, obj);
@@ -103,24 +104,43 @@
     }
   };
 
+  function apply(data) {
+    C = data;
+    document.querySelectorAll('[data-cms]').forEach(function (el) {
+      var v = get(C, el.getAttribute('data-cms'));
+      if (typeof v === 'string') el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-cms-href]').forEach(function (el) {
+      var v = get(C, el.getAttribute('data-cms-href'));
+      if (typeof v === 'string' && v) el.setAttribute('href', v);
+    });
+    document.querySelectorAll('[data-cms-list]').forEach(function (el) {
+      var spec = el.getAttribute('data-cms-list').split(':');
+      var fn = renderers[spec[0]];
+      var items = get(C, spec[1]);
+      if (fn && Array.isArray(items)) el.innerHTML = fn(items);
+    });
+  }
+
+  // shared handle for the visual editor
+  window.__CMS = {
+    get: get,
+    apply: apply,
+    renderers: renderers,
+    content: function () { return C; }
+  };
+
+  var EDIT = /[?&]edit=1/.test(location.search);
+
   fetch('/content/site.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (data) {
-      C = data;
-      document.querySelectorAll('[data-cms]').forEach(function (el) {
-        var v = get(C, el.getAttribute('data-cms'));
-        if (typeof v === 'string') el.innerHTML = v;
-      });
-      document.querySelectorAll('[data-cms-href]').forEach(function (el) {
-        var v = get(C, el.getAttribute('data-cms-href'));
-        if (typeof v === 'string' && v) el.setAttribute('href', v);
-      });
-      document.querySelectorAll('[data-cms-list]').forEach(function (el) {
-        var spec = el.getAttribute('data-cms-list').split(':');
-        var fn = renderers[spec[0]];
-        var items = get(C, spec[1]);
-        if (fn && Array.isArray(items)) el.innerHTML = fn(items);
-      });
+      apply(data);
+      if (EDIT) {
+        var s = document.createElement('script');
+        s.src = '/js/editor.js';
+        document.head.appendChild(s);
+      }
     })
     .catch(function (e) {
       // JSON missing or invalid: the baked-in HTML stays as-is.
