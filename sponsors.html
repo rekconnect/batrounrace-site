@@ -162,6 +162,16 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot ul{list-style:none;display:grid;gap:8px}
 
 /* ---------- sponsors page ---------- */
+.logo-wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:860px){.logo-wall{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.logo-wall{grid-template-columns:1fr}}
+.logo-tile{background:var(--white);border:1px solid var(--line);border-radius:16px;min-height:110px;display:flex;align-items:center;justify-content:center;padding:22px;text-decoration:none;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.logo-tile:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
+.logo-tile img{max-height:52px;max-width:80%;object-fit:contain;filter:grayscale(1);opacity:.85;transition:filter .2s ease-out,opacity .2s ease-out}
+.logo-tile:hover img{filter:none;opacity:1}
+.logo-tile .name{display:none;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--text-dim);text-align:center}
+.logo-tile.nologo img{display:none}
+.logo-tile.nologo .name{display:block}
 .deliv{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:860px){.deliv{grid-template-columns:1fr}}
 .photo-band{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
@@ -230,14 +240,24 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <h2>Brands that showed up.</h2>
       <p>Clean social proof and quick trust — the partners who powered the race on the route, at the stations, and at the finish.</p>
     </div>
-    <div class="spon-row reveal">
-      <a class="spon-chip" href="https://www.aquafina.com">Aquafina · Hydration</a>
-      <a class="spon-chip" href="https://www.gatorade.com">Gatorade · Electrolyte</a>
-      <a class="spon-chip" href="https://whishmoneylebanon.com">Whish Money · Payments</a>
-      <span class="spon-chip">Footlab</span>
-      <span class="spon-chip">+ brand partners</span>
+    <div class="logo-wall reveal">
+      <a class="logo-tile" href="https://www.aquafina.com">
+        <img src="images/sponsors/aquafina.png" alt="Aquafina — Hydration Partner" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Aquafina · Hydration</span>
+      </a>
+      <a class="logo-tile" href="https://www.gatorade.com">
+        <img src="images/sponsors/gatorade.png" alt="Gatorade — Electrolyte Partner" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Gatorade · Electrolyte</span>
+      </a>
+      <a class="logo-tile" href="https://whishmoneylebanon.com">
+        <img src="images/sponsors/whish-money.png" alt="Whish Money — Payments Partner" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Whish Money · Payments</span>
+      </a>
+      <div class="logo-tile">
+        <img src="images/sponsors/footlab.png" alt="Footlab" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Footlab</span>
+      </div>
     </div>
-    <p class="logo-note reveal">Sponsor logo wall coming soon.</p>
     <div class="spon-cta reveal">
       <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
     </div>
