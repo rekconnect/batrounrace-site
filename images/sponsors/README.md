@@ -7,6 +7,13 @@ on the sponsors page (no HTML changes needed):
 - `gatorade.png`
 - `whish-money.png`
 - `footlab.png`
+- `hang-loose.png`
+- `routes.png`
+- `mood.png`
+- `studio-jammal.png`
+- `xxl-energy.png`
+- `tropical-energy.png`
+- `caritas-lebanon.png`
 
 Guidelines: PNG (or SVG — then update the extension in sponsors.html),
 transparent background, at least ~400px wide. Logos render at max 52px tall,
