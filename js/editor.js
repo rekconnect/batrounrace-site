@@ -114,12 +114,19 @@
     container.innerHTML = CMS.renderers[spec.type](get(C(), spec.path));
     send({ type: 'cms-list', path: spec.path, value: get(C(), spec.path) });
   }
+  var hideTimer = null;
+  function scheduleHide() { clearTimeout(hideTimer); hideTimer = setTimeout(hideBar, 400); }
+  function cancelHide() { clearTimeout(hideTimer); }
+
   function showBar(forEl) {
     var container = forEl.closest('[data-cms-list]');
     if (!container) return;
     var item = forEl === container ? null : forEl;
     while (item && item.parentElement !== container) item = item.parentElement;
     var index = item ? Array.prototype.indexOf.call(container.children, item) : null;
+    cancelHide();
+    // same target → keep the existing bar (no flicker while moving inside the item)
+    if (barTarget && barTarget.container === container && barTarget.index === index && bar.style.display !== 'none') return;
     barTarget = { container: container, index: index };
     var arr = get(C(), listSpec(container).path);
     bar.innerHTML = '';
@@ -143,14 +150,15 @@
     });
     var anchor = (item || container).getBoundingClientRect();
     bar.style.display = 'flex';
-    bar.style.left = Math.max(6, anchor.left + window.scrollX) + 'px';
-    bar.style.top = Math.max(6, anchor.top + window.scrollY - 32) + 'px';
+    // overlap the item's top edge so the mouse never crosses a gap to reach it
+    bar.style.left = Math.max(6, anchor.left + window.scrollX + 6) + 'px';
+    bar.style.top = Math.max(6, anchor.top + window.scrollY - 13) + 'px';
   }
-  function hideBar() { bar.style.display = 'none'; barTarget = null; }
+  function hideBar() { clearTimeout(hideTimer); bar.style.display = 'none'; barTarget = null; }
 
   document.addEventListener('mouseover', function (e) {
-    if (e.target.closest('.cms-bar')) return;
+    if (e.target.closest('.cms-bar')) { cancelHide(); return; }
     var inList = e.target.closest('[data-cms-list]');
-    if (inList) showBar(e.target); else hideBar();
+    if (inList) showBar(e.target); else scheduleHide();
   });
 })();
