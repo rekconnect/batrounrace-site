@@ -16,6 +16,7 @@ on the sponsors page (no HTML changes needed):
 - `batrouniyat.png`
 - `hang-loose.png`
 - `batroun-municipality.png`
+- `blubay.png`
 
 Guidelines: PNG (or SVG — then update the extension in sponsors.html),
 transparent background, at least ~400px wide. Logos render at max 52px tall,
