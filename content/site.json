@@ -1,0 +1,450 @@
+{
+  "global": {
+    "email": "Batrounrace@gmail.com",
+    "phone_display": "+961 81 300 625",
+    "phone_tel": "+96181300625",
+    "whatsapp_url": "https://wa.me/message/IJ45O3ILIUGMF1",
+    "whatsapp_number_url": "https://wa.me/96181300625",
+    "instagram_url": "https://www.instagram.com/batrounrace",
+    "register_url": "https://register.batrounrace.com/",
+    "results2026_url": "https://register.batrounrace.com/results",
+    "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
+    "copyright": "© 2026 Batroun Race · Batroun, Lebanon"
+  },
+  "home": {
+    "hero": {
+      "kicker": "KM 0 · Start line",
+      "h1": "Run the<br>Batroun <span class=\"accent\">coast.</span>",
+      "sub": "Lebanon's coastal running event — 5KM &amp; 10KM along the sea, through a town that turns race day into a festival.",
+      "meta": [
+        { "b": "5K · 10K", "label": "Two distances" },
+        { "b": "Batroun", "label": "Seaside route" },
+        { "b": "500+", "label": "Runners, first edition" },
+        { "b": "2 editions", "label": "2025 · 2026" }
+      ],
+      "cta_primary": "Register to run",
+      "cta_secondary": "2026 results"
+    },
+    "why": {
+      "kicker": "KM 1 · More than a race",
+      "h2": "Built by belief, rooted in Batroun.",
+      "p": "Created by athletes, engineers, and creatives who love this town — a race with meaning, quality, and community at its core. Open to all of Lebanon.",
+      "cards": [
+        { "tag": "Community", "h3": "Everyone runs", "p": "Beginners, casual joggers, and elite athletes — teenagers to seniors, locals and runners from across Lebanon." },
+        { "tag": "Cause", "h3": "Sport with a message", "p": "Special editions support charity, community programs, and unity — sport as humanity in motion." },
+        { "tag": "Coast", "h3": "The Batroun way", "p": "Seaside roads, the old souks, and a Mediterranean finish. After the race, many stay to swim, eat, and celebrate." }
+      ],
+      "more": "Read our full story →"
+    },
+    "raceday": {
+      "kicker": "KM 2.5 · Race day",
+      "h2": "A town-wide celebration.",
+      "p": "Streets filled with runners instead of cars. Music on the route, families at the finish.",
+      "steps": [
+        { "t": "Start", "h3": "Start energy", "p": "Bibs on, music up, the whole town at the line." },
+        { "t": "Route", "h3": "Coastal push", "p": "Sea on one side, Batroun stone on the other." },
+        { "t": "Support", "h3": "Cheering points", "p": "Volunteers, water stations, and crowds that carry you." },
+        { "t": "Finish", "h3": "Festival finish", "p": "Podiums, food, swimming, and a full day by the sea." }
+      ]
+    },
+    "results": {
+      "kicker": "KM 4 · Results",
+      "h2": "Two editions in the books.",
+      "cards": [
+        { "yr": "2026", "h3": "Second edition — full results", "p": "Live timing and complete results for every runner and category.", "go": "View 2026 results →", "href": "https://register.batrounrace.com/results" },
+        { "yr": "2025", "h3": "First edition — podium winners", "p": "Where it all started: 500+ runners, July 2025. Official podium by category.", "go": "View 2025 podium →", "href": "results-2025.html" }
+      ]
+    },
+    "sponsors": {
+      "kicker": "Partners",
+      "h2": "Powered by brands that show up.",
+      "p": "Real visibility, real trust — on the route, at the finish, and in every photo after.",
+      "chips": ["Mike Sport", "Sports Experts", "Aquafina", "Gatorade", "Whish Money", "+ partners"],
+      "cta_primary": "Become a sponsor",
+      "cta_secondary": "Talk to the team"
+    },
+    "finish": {
+      "kicker": "Finish line · Your turn",
+      "h2": "The coast is waiting.",
+      "bib_top": "Batroun Race · Official entry",
+      "bib_num": "RUN",
+      "bib_bottom": "5KM · 10KM · All levels",
+      "bib_cta": "Register now →",
+      "note": "Registration, payment &amp; results at register.batrounrace.com"
+    }
+  },
+  "about": {
+    "hero": {
+      "kicker": "KM 0 · About",
+      "h1": "Who we <span class=\"accent\">are.</span>",
+      "sub": "Created by people who love Batroun and its community — athletes, engineers, and marketing specialists building a meaningful, high-quality running event. Rooted in Batroun, open to all of Lebanon, and growing stronger every year.",
+      "meta": [
+        { "b": "500+", "label": "Runners (2025)" },
+        { "b": "1.5M+", "label": "Exposure" },
+        { "b": "5K · 10K", "label": "Two distances" }
+      ],
+      "cta_primary": "Register to run",
+      "cta_secondary": "Talk to the team"
+    },
+    "mission": {
+      "kicker": "KM 1 · Mission &amp; vision",
+      "h2": "Why we run this race.",
+      "cards": [
+        { "tag": "Mission", "h3": "A healthier community", "p": "Build a healthier, more connected community through running and public celebration." },
+        { "tag": "Vision", "h3": "A coastal reference", "p": "Make Batroun a reference for coastal sport tourism and positive youth energy." },
+        { "tag": "Promise", "h3": "Quality, every edition", "p": "Safe routes, great organization, unforgettable vibes." }
+      ]
+    },
+    "story": {
+      "kicker": "KM 2 · The story",
+      "h2": "Built by belief.",
+      "p": "A team of athletes, engineers, and marketing minds creating a meaningful running experience — rooted in Batroun and open to all of Lebanon.",
+      "cards": [
+        { "img": "images/run_for_a_cause.jpg", "alt": "Runners at the Run for a Cause 2025 special edition", "tag": "Special edition", "h3": "Run for a Cause 2025", "p": "A special edition supporting charity, community programs, rehabilitation, and unity — where sport becomes a message of humanity." },
+        { "img": "images/race_day.jpg", "alt": "Race day crowd on the Batroun coastal route", "tag": "Our message", "h3": "Sport is humanity in motion", "p": "Through running, we share unity, respect, and purpose — because sport is more than movement, it is a message." },
+        { "img": "images/finish_line.jpg", "alt": "Runners crossing the Batroun Race finish line", "tag": "Our vision", "h3": "From Batroun to Lebanon", "p": "Rooted locally, driven nationally. A race that carries the spirit of Batroun and connects communities across the country." }
+      ],
+      "note": "<b>More than a race — our purpose.</b> We are not chasing titles or records. We are building something we believe in — growing, learning, and improving with every edition."
+    },
+    "community": {
+      "kicker": "KM 3 · The community",
+      "h2": "Who is part of it.",
+      "p": "A shared experience that brings together runners, families, volunteers, and local supporters — built by professional athletes, engineers, and creatives who believe in sport as a way to connect people.",
+      "steps": [
+        { "t": "Runners", "h3": "All levels, all ages", "p": "Beginners, casual joggers, and athletes — teenagers to seniors, locals from Batroun and participants from across Lebanon. Running for fitness, fun, personal challenge, and community spirit." },
+        { "t": "Volunteers", "h3": "The backbone", "p": "Local youth, sports clubs, and community members — registration &amp; bib distribution, water stations, route safety, crowd support." },
+        { "t": "Businesses", "h3": "Local partners", "p": "Cafés, restaurants, gyms, sports brands, beach resorts, and touristic spots collaborate — turning race day into a town-wide celebration." },
+        { "t": "The town", "h3": "Race day = festival", "p": "Streets filled with runners instead of cars, music along the route, families and social moments after the race — then swimming, food, and a full day by the sea." }
+      ]
+    },
+    "values": {
+      "kicker": "KM 4 · Values",
+      "h2": "What we stand for.",
+      "cards": [
+        { "tag": "Health &amp; wellness", "h3": "An active lifestyle", "p": "Encouraging running as an accessible sport for everyone — from first-time joggers to seasoned athletes." },
+        { "tag": "Love for Batroun", "h3": "The coast on show", "p": "Highlighting the seaside, old souks, and coastal roads — promoting Batroun as a sports and tourism destination." },
+        { "tag": "Unity &amp; positivity", "h3": "Together beyond differences", "p": "Runners cheer for strangers, families wait at the finish line, and the town celebrates together." },
+        { "tag": "Safety &amp; responsibility", "h3": "A respectful experience", "p": "Clear route guidance and support points, volunteer coordination and crowd flow, clean streets and responsible celebration." }
+      ],
+      "note": "<b>Why the community matters.</b> It builds positive youth role models, encourages tourism through sports, creates safe and healthy public events, and strengthens Batroun's image as a lively, active city. Long-term: grow participation while keeping quality and safety, support more community collaborations, and make Batroun a must-visit sport weekend destination."
+    },
+    "teaser": {
+      "kicker": "Partners",
+      "h2": "Brands gain real visibility + real trust.",
+      "p": "Your brand is seen on race day, in content, and across community moments — not just a one-time logo.",
+      "items": [
+        "On-site visibility: finish zone, route, and community moments",
+        "Digital exposure: photos, reels, stories, and post-event content",
+        "Trust: your brand becomes part of a positive city experience"
+      ],
+      "cta_primary": "Become a sponsor",
+      "cta_secondary": "View sponsors page"
+    },
+    "finish": {
+      "kicker": "Finish line · Join the movement",
+      "h2": "Want to join the movement?",
+      "bib_top": "Batroun Race · Official entry",
+      "bib_num": "RUN",
+      "bib_bottom": "5KM · 10KM · All levels",
+      "bib_cta": "Register now →",
+      "note": "Volunteering, partnerships &amp; sponsorships → <a href=\"contact.html\" style=\"color:var(--text-inv)\">contact the team</a>"
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "KM 0 · Contact · Sponsorships · Volunteering",
+      "h1": "Build <span class=\"accent\">with us.</span>",
+      "sub": "For sponsorships, volunteering, media, and general inquiries. Our team responds quickly — WhatsApp available.",
+      "tags": ["Sponsorships", "Volunteering", "Media", "General"],
+      "cta_primary": "Message us on WhatsApp",
+      "cta_secondary": "Email the team"
+    },
+    "channels": {
+      "kicker": "KM 1 · Direct channels",
+      "h2": "Reach us anywhere.",
+      "p": "We reply within 24 hours — faster during race week.",
+      "cards": [
+        { "tag": "WhatsApp", "h3": "Fastest reply", "val": "Official WhatsApp chat", "go": "Open WhatsApp →", "href": "https://wa.me/message/IJ45O3ILIUGMF1" },
+        { "tag": "Email", "h3": "Anything in writing", "val": "Batrounrace@gmail.com", "go": "Write to us →", "href": "mailto:Batrounrace@gmail.com" },
+        { "tag": "Phone", "h3": "Call the team", "val": "+961 81 300 625", "go": "Call now →", "href": "tel:+96181300625" },
+        { "tag": "Instagram", "h3": "Follow the race", "val": "@batrounrace", "go": "See the latest →", "href": "https://www.instagram.com/batrounrace" }
+      ]
+    },
+    "who": {
+      "kicker": "KM 2 · What do you need?",
+      "h2": "Tell us who you are.",
+      "cards": [
+        { "tag": "General", "h3": "Talk to the team", "p": "Professional support for event registration, travel, accommodation, and schedules." },
+        { "tag": "Partnerships", "h3": "Sponsorship", "p": "Route features, jersey placements, hospitality zones, creator reels, measurable reporting." },
+        { "tag": "Volunteers", "h3": "Join the crew", "p": "Course marshals, aid stations, media runners, hospitality. We train and brief everyone." }
+      ]
+    },
+    "faq": {
+      "kicker": "KM 3 · FAQ",
+      "h2": "Quick answers.",
+      "items": [
+        { "q": "When will I get a reply?", "a": "Within 24 hours. Sponsorship &amp; media requests are prioritized around race week." },
+        { "q": "How do I become a sponsor?", "a": "Email us your goals &amp; budget. We'll propose tiered options — route features, jersey placement, on-site sampling, and digital exposure — with measurable reporting." },
+        { "q": "Where is the race?", "a": "Batroun, Lebanon. Start and route maps are shared by email and social." }
+      ]
+    },
+    "venue": {
+      "kicker": "The venue",
+      "h2": "Batroun, Lebanon.",
+      "p": "A coastal town an hour north of Beirut — old souks, sea walls, and the race route along the Mediterranean."
+    },
+    "finish": {
+      "kicker": "Finish line · Say hello",
+      "h2": "Our team responds quickly.",
+      "cta_primary": "Message us on WhatsApp",
+      "cta_secondary": "Batrounrace@gmail.com",
+      "note": "We reply within 24h — faster during race week."
+    }
+  },
+  "sponsors": {
+    "hero": {
+      "kicker": "KM 0 · Batroun Race 2026 · Sponsorship",
+      "h1": "Exposure. Impact. <span class=\"accent\">Results.</span>",
+      "sub": "A seaside running event in Batroun delivering measurable brand impact and strategic marketing results.",
+      "meta": [
+        { "b": "1000+", "label": "Attendees" },
+        { "b": "1.5M+", "label": "Impressions" },
+        { "b": "3000", "label": "Flyers" }
+      ],
+      "cta_primary": "Request sponsorship deck",
+      "cta_secondary": "View packages &amp; pricing"
+    },
+    "partners": {
+      "kicker": "KM 1 · 2026 partners",
+      "h2": "Brands that showed up.",
+      "p": "Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.",
+      "wall": [
+        { "name": "Mike Sport", "slug": "mike-sport", "link": "" },
+        { "name": "Sports Experts", "slug": "sports-experts", "link": "" },
+        { "name": "Aquafina", "slug": "aquafina", "link": "https://www.aquafina.com" },
+        { "name": "Gatorade", "slug": "gatorade", "link": "https://www.gatorade.com" },
+        { "name": "Joseph E Saba", "slug": "joseph-e-saba", "link": "" },
+        { "name": "Saint Bernard", "slug": "saint-bernard", "link": "" },
+        { "name": "TAQA", "slug": "taqa", "link": "" },
+        { "name": "San Stephano Resort", "slug": "san-stephano-resort", "link": "" },
+        { "name": "Whish Money", "slug": "whish-money", "link": "https://whishmoneylebanon.com" },
+        { "name": "Marsati", "slug": "marsati", "link": "" },
+        { "name": "Batrouniyat", "slug": "batrouniyat", "link": "" },
+        { "name": "Hang Loose", "slug": "hang-loose", "link": "" },
+        { "name": "Batroun Municipality", "slug": "batroun-municipality", "link": "" },
+        { "name": "BluBay", "slug": "blubay", "link": "" }
+      ],
+      "organizers_note": "Organized with Selaata Sporting Club &amp; the Lebanese Athletics Federation.",
+      "past_kicker": "Past editions",
+      "past": ["XXL Energy", "Caritas Lebanon"],
+      "past_note": "Partners of the 2025 first edition — see <a href=\"results-2025.html\" style=\"color:var(--sea)\">the 2025 results page</a>.",
+      "cta": "Become a sponsor"
+    },
+    "roi": {
+      "kicker": "KM 2 · ROI framework",
+      "h2": "How sponsor value is created.",
+      "p": "Five drivers used by CMOs and finance teams to evaluate event sponsorship.",
+      "steps": [
+        { "t": "01 · Reach", "h3": "Reach &amp; dwell time", "p": "Start/finish + stations = hours of real attention, not seconds." },
+        { "t": "02 · Frequency", "h3": "Repeated placements", "p": "Placements along the route build recall kilometer after kilometer." },
+        { "t": "03 · Integration", "h3": "Functional roles", "p": "Useful integrations build trust — hydration, energy, payments." },
+        { "t": "04 · Content", "h3": "Content value", "p": "Reels, photos, and recaps keep working weeks after race day." },
+        { "t": "05 · Attribution", "h3": "QR + UTM reporting", "p": "Trackable exposure with a report delivered within 7 days." }
+      ]
+    },
+    "deliverables": {
+      "kicker": "KM 3 · Deliverables",
+      "h2": "What sponsors receive.",
+      "cards": [
+        { "tag": "On runners", "h3": "Jerseys &amp; bibs", "p": "Jersey placement where applicable, plus start/finish visibility." },
+        { "tag": "On the route", "h3": "Route branding", "p": "KM markers, route flags, and hydration zones." },
+        { "tag": "In every photo", "h3": "Backdrops &amp; walls", "p": "Photo backdrops and finish-line walls." },
+        { "tag": "Online", "h3": "Digital content", "p": "Reels, stories, recap edits, and photography." },
+        { "tag": "Measured", "h3": "Tracking", "p": "QR codes, UTM links, and engagement metrics." },
+        { "tag": "Delivered", "h3": "ROI report", "p": "ROI snapshot within 7 days of race day." }
+      ]
+    },
+    "pitch": {
+      "kicker": "The pitch",
+      "h2": "Visibility with accountability.",
+      "p": "Partnerships built on social proof, storytelling, metrics, and professional execution.",
+      "whatsapp_label": "WhatsApp +961 81 300 625"
+    },
+    "finish": {
+      "kicker": "Finish line · Your move",
+      "h2": "Pick your lane.",
+      "cta_primary": "Packages &amp; pricing",
+      "cta_secondary": "Request the deck",
+      "note": "Kiosk · Bronze · Silver · Gold · Platinum"
+    }
+  },
+  "packages": {
+    "hero": {
+      "kicker": "KM 0 · Sponsorship packages",
+      "h1": "Impact you can <span class=\"accent\">measure.</span>",
+      "sub": "Track your brand impact with QR &amp; UTM links, receive a post-event report within 7 days, and leverage a results-focused marketing strategy by Al Khachan Marketing Agency.",
+      "meta": [
+        { "b": "1,500+", "label": "Runners" },
+        { "b": "1,500+", "label": "Jerseys" },
+        { "b": "3,000+", "label": "Flyers" },
+        { "b": "1.5M", "label": "Digital reach" }
+      ],
+      "cta_primary": "Request the deck",
+      "cta_secondary": "Contact the team"
+    },
+    "phases": {
+      "kicker": "KM 1 · How it works",
+      "h2": "Three phases of exposure.",
+      "p": "Your brand works before, during, and after race day.",
+      "steps": [
+        { "t": "Phase 1 · Pre-event", "h3": "The build-up", "p": "Website exposure, social announcements, flyer distribution, partner mentions." },
+        { "t": "Phase 2 · Race day", "h3": "The main event", "p": "Start/finish branding, route exposure, hydration &amp; checkpoints, photo wall moments." },
+        { "t": "Phase 3 · Post-event", "h3": "The long tail", "p": "Recap edits, brand tags, content reuse, performance reporting." }
+      ]
+    },
+    "measure": {
+      "kicker": "KM 2 · What we measure",
+      "h2": "100% trackable exposure.",
+      "p": "Unique sponsor QR codes + UTM-tagged URLs + a post-event ROI report.",
+      "cards": [
+        { "tag": "Exposure", "h3": "Seen", "p": "Placements delivered, audience size, frequency." },
+        { "tag": "Engagement", "h3": "Felt", "p": "Content views, engagement rate, on-site interactions." },
+        { "tag": "Attribution", "h3": "Tracked", "p": "QR scans, UTM clicks, click-through rate." },
+        { "tag": "Conversion", "h3": "Proven", "p": "Leads, redemptions, signups — with an ROI report within 7 days." }
+      ]
+    },
+    "pricing": {
+      "kicker": "KM 3 · Packages",
+      "h2": "Pick your level.",
+      "items": [
+        { "name": "Kiosk", "price": "$250–300", "tagline": "Same-day sales", "highlight": false, "badge": "", "features": ["On-site visibility + QR offer/menu", "200–500 direct interactions", "Best for food kiosks, vendors, micro-businesses"], "cta": "Choose Kiosk", "mailto_subject": "Kiosk Sponsorship" },
+        { "name": "Bronze", "price": "$500", "tagline": "Awareness &amp; trust", "highlight": false, "badge": "", "features": ["Logo on flyer + website", "1 social mention + thank-you graphic", "Post-event email blast inclusion"], "cta": "Choose Bronze", "mailto_subject": "Bronze Sponsorship" },
+        { "name": "Silver", "price": "$1,000", "tagline": "Traffic + attribution", "highlight": false, "badge": "", "features": ["Everything in Bronze", "Route banner/flag placement + sponsor board", "2 tagged social posts + 1 influencer mention"], "cta": "Choose Silver", "mailto_subject": "Silver Sponsorship" },
+        { "name": "Gold", "price": "$3,000", "tagline": "Performance + credibility", "highlight": false, "badge": "", "features": ["Everything in Silver", "Logo on participant bibs", "Start/finish branding", "Feature in recap video + press mention"], "cta": "Choose Gold", "mailto_subject": "Gold Sponsorship" },
+        { "name": "Platinum", "price": "$5,000", "tagline": "Own the race", "highlight": true, "badge": "Leadership", "features": ["Event naming rights + premium jersey placement", "Largest start/finish branding + hero placement", "Major announcements + custom content collaboration"], "cta": "Choose Platinum", "mailto_subject": "Platinum Sponsorship" }
+      ]
+    },
+    "decide": {
+      "kicker": "KM 4 · Not sure?",
+      "h2": "Match your goal.",
+      "rows": [
+        { "goal": "Brand awareness", "pkg": "→ Bronze" },
+        { "goal": "Traffic &amp; visits", "pkg": "→ Silver" },
+        { "goal": "Performance &amp; leads", "pkg": "→ Gold" },
+        { "goal": "Category leadership", "pkg": "→ Platinum" },
+        { "goal": "Same-day sales", "pkg": "→ Kiosk" }
+      ],
+      "note": "<b>Every sponsor receives:</b> the full deck (PDF), a custom activation plan, KPI/ROI projections, and a deliverables timeline."
+    },
+    "finish": {
+      "kicker": "Finish line · Let's talk",
+      "h2": "Ready to be seen?",
+      "cta_primary": "Request the deck",
+      "cta_secondary": "Talk to the team",
+      "note": "Batrounrace@gmail.com · Response within 24h"
+    }
+  },
+  "results2025": {
+    "hero": {
+      "kicker": "KM 0 · First edition · July 2025",
+      "h1": "2025 <span class=\"accent\">results.</span>",
+      "sub": "The first edition of Batroun Race took place in July 2025, marking the start of a new coastal running journey. What began as an idea came to life with the energy, commitment, and passion of the running community.",
+      "meta": [
+        { "b": "500+", "label": "Runners" },
+        { "b": "July 2025", "label": "First edition" },
+        { "b": "10", "label": "Podium categories" }
+      ],
+      "cta_primary": "Jump to podium",
+      "cta_secondary": "2026 full results"
+    },
+    "team": {
+      "kicker": "KM 1 · How it came together",
+      "h2": "When different minds meet.",
+      "p": "Batroun Race was made possible when professional athletes, engineers, marketers, and producers came together with one shared belief: to build a running event with meaning, quality, and community at its core.",
+      "steps": [
+        { "t": "Athletes", "h3": "The experience", "p": "Shaped the race experience and course spirit." },
+        { "t": "Engineers", "h3": "The execution", "p": "Ensured planning, safety, and technical execution." },
+        { "t": "Producers", "h3": "The flow", "p": "Managed logistics and race-day flow." },
+        { "t": "Marketers", "h3": "The voice", "p": "Gave the event its identity and voice." }
+      ],
+      "result_note": "The result: a first edition welcoming <b style=\"color:var(--foam)\">500+ runners</b> from across Lebanon — turning Batroun into a shared moment of movement and unity."
+    },
+    "partners": {
+      "kicker": "KM 2 · Featured partners",
+      "h2": "Powered along the route.",
+      "chips": [
+        { "label": "Aquafina · Hydration Partner", "href": "https://www.aquafina.com" },
+        { "label": "Gatorade · Electrolyte Partner", "href": "https://www.gatorade.com" },
+        { "label": "Whish Money · Payments Partner", "href": "https://whishmoneylebanon.com" },
+        { "label": "Footlab", "href": "" },
+        { "label": "+ brand partners", "href": "" }
+      ],
+      "cta": "Become a sponsor"
+    },
+    "podium": {
+      "kicker": "KM 3 · Podium winners",
+      "h2": "The final list.",
+      "p": "Official podium by age category — name, age, and club.",
+      "categories": [
+        { "cat": "Women · 20–34", "img": "images/podium_women_20_34.jpg", "rows": [
+          { "pos": "1", "name": "Serena Hayek", "meta": "24 · Inter Lebanon" },
+          { "pos": "2", "name": "Crystelle Abou Jneid", "meta": "27 · Let's Run" },
+          { "pos": "3", "name": "Aya Wehbe", "meta": "27 · The Crew" }
+        ] },
+        { "cat": "Men · 20–34", "img": "", "rows": [
+          { "pos": "1", "name": "Ali Kenaan", "meta": "22 · Army" },
+          { "pos": "2", "name": "Zayd Al Sayed", "meta": "23 · Let's Run" },
+          { "pos": "3", "name": "Charbel Sejjaam", "meta": "24 · Interlebanon" }
+        ] },
+        { "cat": "Girls · 14–16", "img": "images/podium_women_14_16.jpg", "rows": [
+          { "pos": "1", "name": "Carine Al Bawab", "meta": "14 · Inter Lebanon" },
+          { "pos": "2", "name": "Farah McElray", "meta": "15 · Club Antonins" },
+          { "pos": "3", "name": "Yara Bassil", "meta": "14" }
+        ] },
+        { "cat": "Boys · 14–16", "img": "images/podium_man_14_16.jpg", "rows": [
+          { "pos": "1", "name": "Marlon Soudid", "meta": "14 · Batroun Starts" },
+          { "pos": "2", "name": "Charbel Hanna", "meta": "15 · Team Tony" },
+          { "pos": "3", "name": "Amer El Bawab", "meta": "14 · Inter Lebanon" }
+        ] },
+        { "cat": "Women · 17–19", "img": "images/podium_women_17_19.jpg", "rows": [
+          { "pos": "1", "name": "Rhea Bassil", "meta": "19" },
+          { "pos": "2", "name": "Gaelle Lefebure", "meta": "18" },
+          { "pos": "3", "name": "Rhea Haddad", "meta": "18" }
+        ] },
+        { "cat": "Men · 40–44", "img": "images/podium_man_40_44.jpg", "rows": [
+          { "pos": "1", "name": "Tony Hanna", "meta": "40 · Team Hanna" },
+          { "pos": "2", "name": "Charbel Bader", "meta": "40 · Elite Running Club" },
+          { "pos": "3", "name": "Charbel Sammour", "meta": "41 · Batroun Starts" }
+        ] },
+        { "cat": "Women · 45–49", "img": "images/podium_women_45_49.jpg", "rows": [
+          { "pos": "1", "name": "Jessy Haddad", "meta": "46 · Let's Run" },
+          { "pos": "2", "name": "Nissrine Khoury", "meta": "46 · Fortis Tigris" },
+          { "pos": "3", "name": "Cosette Atallah", "meta": "45 · Antonines" }
+        ] },
+        { "cat": "Men · 55–59", "img": "images/podium_man_55_59.jpg", "rows": [
+          { "pos": "1", "name": "Mario Saradar", "meta": "57 · Let's Run" },
+          { "pos": "2", "name": "Raymond Semaan", "meta": "59 · Elite Running Club" },
+          { "pos": "3", "name": "Nassib Haddad", "meta": "55 · Fortis Tigris" }
+        ] },
+        { "cat": "Women · 60–64", "img": "images/podium_women_60_64.jpg", "rows": [
+          { "pos": "1", "name": "Rafca Mahfouz", "meta": "62 · Forties Tigris" },
+          { "pos": "2", "name": "Jiana Saad", "meta": "60 · Fortis Tigris" },
+          { "pos": "3", "name": "Myrna Khayat", "meta": "61 · Elite" }
+        ] },
+        { "cat": "Men · 70–74", "img": "", "rows": [
+          { "pos": "1", "name": "Antoine Al Khazen", "meta": "73 · Interlebanon" }
+        ] }
+      ],
+      "note": "Looking for the second edition? Full 2026 results with live timing → <a href=\"https://register.batrounrace.com/results\" style=\"color:var(--sea)\">register.batrounrace.com/results</a>"
+    },
+    "finish": {
+      "kicker": "Finish line · Your name here",
+      "h2": "Next podium could be yours.",
+      "bib_top": "Batroun Race · Official entry",
+      "bib_num": "RUN",
+      "bib_bottom": "5KM · 10KM · All levels",
+      "bib_cta": "Register now →",
+      "note": "Registration, payment &amp; results at register.batrounrace.com"
+    }
+  }
+}

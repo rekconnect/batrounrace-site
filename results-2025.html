@@ -187,6 +187,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 // apply saved theme before first paint to avoid a flash of the wrong theme
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
+<script src="js/cms.js" defer></script>
 </head>
 <body>
 
@@ -210,17 +211,17 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · 2025 RESULTS -->
 <section class="hero" style="padding:0">
   <div class="wrap">
-    <span class="km">KM 0 · First edition · July 2025</span>
-    <h1>2025 <span class="accent">results.</span></h1>
-    <p class="hero-sub">The first edition of Batroun Race took place in July 2025, marking the start of a new coastal running journey. What began as an idea came to life with the energy, commitment, and passion of the running community.</p>
-    <div class="hero-meta">
+    <span class="km" data-cms="results2025.hero.kicker">KM 0 · First edition · July 2025</span>
+    <h1 data-cms="results2025.hero.h1">2025 <span class="accent">results.</span></h1>
+    <p class="hero-sub" data-cms="results2025.hero.sub">The first edition of Batroun Race took place in July 2025, marking the start of a new coastal running journey. What began as an idea came to life with the energy, commitment, and passion of the running community.</p>
+    <div class="hero-meta" data-cms-list="meta:results2025.hero.meta">
       <div><b>500+</b>Runners</div>
       <div><b>July 2025</b>First edition</div>
       <div><b>10</b>Podium categories</div>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-coral" href="#podium">Jump to podium</a>
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 full results</a>
+      <a class="btn btn-coral" href="#podium" data-cms="results2025.hero.cta_primary">Jump to podium</a>
+      <a class="btn btn-ghost" href="https://register.batrounrace.com/results" data-cms="results2025.hero.cta_secondary" data-cms-href="global.results2026_url">2026 full results</a>
     </div>
     <div class="hero-photo">
       <span class="ph">[ photo — images/podium.jpg ]</span>
@@ -234,17 +235,17 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · How it came together</span>
-      <h2>When different minds meet.</h2>
-      <p>Batroun Race was made possible when professional athletes, engineers, marketers, and producers came together with one shared belief: to build a running event with meaning, quality, and community at its core.</p>
+      <span class="km" data-cms="results2025.team.kicker">KM 1 · How it came together</span>
+      <h2 data-cms="results2025.team.h2">When different minds meet.</h2>
+      <p data-cms="results2025.team.p">Batroun Race was made possible when professional athletes, engineers, marketers, and producers came together with one shared belief: to build a running event with meaning, quality, and community at its core.</p>
     </div>
-    <div class="flow">
+    <div class="flow" data-cms-list="flow:results2025.team.steps">
       <div class="flow-step reveal"><span class="t">Athletes</span><h3>The experience</h3><p>Shaped the race experience and course spirit.</p></div>
       <div class="flow-step reveal"><span class="t">Engineers</span><h3>The execution</h3><p>Ensured planning, safety, and technical execution.</p></div>
       <div class="flow-step reveal"><span class="t">Producers</span><h3>The flow</h3><p>Managed logistics and race-day flow.</p></div>
       <div class="flow-step reveal"><span class="t">Marketers</span><h3>The voice</h3><p>Gave the event its identity and voice.</p></div>
     </div>
-    <p style="margin-top:34px;color:var(--text-inv-dim);max-width:640px" class="reveal">The result: a first edition welcoming <b style="color:var(--foam)">500+ runners</b> from across Lebanon — turning Batroun into a shared moment of movement and unity.</p>
+    <p style="margin-top:34px;color:var(--text-inv-dim);max-width:640px" class="reveal" data-cms="results2025.team.result_note">The result: a first edition welcoming <b style="color:var(--foam)">500+ runners</b> from across Lebanon — turning Batroun into a shared moment of movement and unity.</p>
   </div>
 </section>
 
@@ -252,10 +253,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2 · Featured partners</span>
-      <h2>Powered along the route.</h2>
+      <span class="km" data-cms="results2025.partners.kicker">KM 2 · Featured partners</span>
+      <h2 data-cms="results2025.partners.h2">Powered along the route.</h2>
     </div>
-    <div class="spon-row reveal">
+    <div class="spon-row reveal" data-cms-list="partnerchips:results2025.partners.chips">
       <a class="spon-chip" href="https://www.aquafina.com">Aquafina · Hydration Partner</a>
       <a class="spon-chip" href="https://www.gatorade.com">Gatorade · Electrolyte Partner</a>
       <a class="spon-chip" href="https://whishmoneylebanon.com">Whish Money · Payments Partner</a>
@@ -263,7 +264,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <span class="spon-chip">+ brand partners</span>
     </div>
     <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
+      <a class="btn btn-dark" href="sponsors.html" data-cms="results2025.partners.cta">Become a sponsor</a>
     </div>
   </div>
 </section>
@@ -272,11 +273,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section id="podium">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 3 · Podium winners</span>
-      <h2>The final list.</h2>
-      <p>Official podium by age category — name, age, and club.</p>
+      <span class="km" data-cms="results2025.podium.kicker">KM 3 · Podium winners</span>
+      <h2 data-cms="results2025.podium.h2">The final list.</h2>
+      <p data-cms="results2025.podium.p">Official podium by age category — name, age, and club.</p>
     </div>
-    <div class="pod-grid">
+    <div class="pod-grid" data-cms-list="podium:results2025.podium.categories">
 
       <div class="pod-card reveal">
         <img src="images/podium_women_20_34.jpg" alt="Women 20–34 podium winners, Batroun Race 2025" onerror="this.style.display='none'">
@@ -395,22 +396,22 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </div>
 
     </div>
-    <p class="results-note reveal">Looking for the second edition? Full 2026 results with live timing → <a href="https://register.batrounrace.com/results" style="color:var(--sea)">register.batrounrace.com/results</a></p>
+    <p class="results-note reveal" data-cms="results2025.podium.note">Looking for the second edition? Full 2026 results with live timing → <a href="https://register.batrounrace.com/results" style="color:var(--sea)">register.batrounrace.com/results</a></p>
   </div>
 </section>
 
 <!-- FINISH · REGISTER -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Your name here</span>
-    <h2 class="reveal">Next podium could be yours.</h2>
-    <a class="bib reveal" href="https://register.batrounrace.com/">
-      <span class="small">Batroun Race · Official entry</span>
-      <div class="num">RUN</div>
-      <span class="small">5KM · 10KM · All levels</span>
-      <div class="cta-line">Register now →</div>
+    <span class="km" data-cms="results2025.finish.kicker">Finish line · Your name here</span>
+    <h2 class="reveal" data-cms="results2025.finish.h2">Next podium could be yours.</h2>
+    <a class="bib reveal" href="https://register.batrounrace.com/" data-cms-href="global.register_url">
+      <span class="small" data-cms="results2025.finish.bib_top">Batroun Race · Official entry</span>
+      <div class="num" data-cms="results2025.finish.bib_num">RUN</div>
+      <span class="small" data-cms="results2025.finish.bib_bottom">5KM · 10KM · All levels</span>
+      <div class="cta-line" data-cms="results2025.finish.bib_cta">Register now →</div>
     </a>
-    <p class="note">Registration, payment &amp; results at register.batrounrace.com</p>
+    <p class="note" data-cms="results2025.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
   </div>
 </section>
 
@@ -418,7 +419,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap foot">
     <div>
       <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
-      <p style="margin-top:12px;max-width:280px">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
       <ul>
@@ -433,7 +434,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </ul>
     </div>
   </div>
-  <div class="wrap" style="margin-top:32px;font-size:.78rem">© 2026 Batroun Race · Batroun, Lebanon</div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
 
 <script>

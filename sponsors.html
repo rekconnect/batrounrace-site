@@ -193,6 +193,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 // apply saved theme before first paint to avoid a flash of the wrong theme
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
+<script src="js/cms.js" defer></script>
 </head>
 <body>
 
@@ -216,17 +217,17 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · SPONSORSHIP -->
 <section class="hero" style="padding:0">
   <div class="wrap" style="padding-bottom:84px">
-    <span class="km">KM 0 · Batroun Race 2026 · Sponsorship</span>
-    <h1>Exposure. Impact. <span class="accent">Results.</span></h1>
-    <p class="hero-sub">A seaside running event in Batroun delivering measurable brand impact and strategic marketing results.</p>
-    <div class="hero-meta">
+    <span class="km" data-cms="sponsors.hero.kicker">KM 0 · Batroun Race 2026 · Sponsorship</span>
+    <h1 data-cms="sponsors.hero.h1">Exposure. Impact. <span class="accent">Results.</span></h1>
+    <p class="hero-sub" data-cms="sponsors.hero.sub">A seaside running event in Batroun delivering measurable brand impact and strategic marketing results.</p>
+    <div class="hero-meta" data-cms-list="meta:sponsors.hero.meta">
       <div><b>1000+</b>Attendees</div>
       <div><b>1.5M+</b>Impressions</div>
       <div><b>3000</b>Flyers</div>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request">Request sponsorship deck</a>
-      <a class="btn btn-ghost" href="sponsor-packages.html">View packages &amp; pricing</a>
+      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request" data-cms="sponsors.hero.cta_primary">Request sponsorship deck</a>
+      <a class="btn btn-ghost" href="sponsor-packages.html" data-cms="sponsors.hero.cta_secondary">View packages &amp; pricing</a>
     </div>
   </div>
 </section>
@@ -236,11 +237,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · 2026 partners</span>
-      <h2>Brands that showed up.</h2>
-      <p>Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.</p>
+      <span class="km" data-cms="sponsors.partners.kicker">KM 1 · 2026 partners</span>
+      <h2 data-cms="sponsors.partners.h2">Brands that showed up.</h2>
+      <p data-cms="sponsors.partners.p">Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.</p>
     </div>
-    <div class="logo-wall reveal">
+    <div class="logo-wall reveal" data-cms-list="wall:sponsors.partners.wall">
       <div class="logo-tile">
         <img src="images/sponsors/mike-sport.png" alt="Mike Sport" onerror="this.parentElement.classList.add('nologo')">
         <span class="name">Mike Sport</span>
@@ -298,17 +299,17 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <span class="name">BluBay</span>
       </div>
     </div>
-    <p class="logo-note reveal">Organized with Selaata Sporting Club &amp; the Lebanese Athletics Federation.</p>
+    <p class="logo-note reveal" data-cms="sponsors.partners.organizers_note">Organized with Selaata Sporting Club &amp; the Lebanese Athletics Federation.</p>
     <div style="margin-top:56px" class="reveal">
-      <span class="km">Past editions</span>
-      <div class="spon-row">
+      <span class="km" data-cms="sponsors.partners.past_kicker">Past editions</span>
+      <div class="spon-row" data-cms-list="chips:sponsors.partners.past">
         <span class="spon-chip">XXL Energy</span>
         <span class="spon-chip">Caritas Lebanon</span>
       </div>
-      <p class="logo-note">Partners of the 2025 first edition — see <a href="results-2025.html" style="color:var(--sea)">the 2025 results page</a>.</p>
+      <p class="logo-note" data-cms="sponsors.partners.past_note">Partners of the 2025 first edition — see <a href="results-2025.html" style="color:var(--sea)">the 2025 results page</a>.</p>
     </div>
     <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
+      <a class="btn btn-dark" href="contact.html" data-cms="sponsors.partners.cta">Become a sponsor</a>
     </div>
   </div>
 </section>
@@ -317,11 +318,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2 · ROI framework</span>
-      <h2>How sponsor value is created.</h2>
-      <p>Five drivers used by CMOs and finance teams to evaluate event sponsorship.</p>
+      <span class="km" data-cms="sponsors.roi.kicker">KM 2 · ROI framework</span>
+      <h2 data-cms="sponsors.roi.h2">How sponsor value is created.</h2>
+      <p data-cms="sponsors.roi.p">Five drivers used by CMOs and finance teams to evaluate event sponsorship.</p>
     </div>
-    <div class="flow five">
+    <div class="flow five" data-cms-list="flow:sponsors.roi.steps">
       <div class="flow-step reveal"><span class="t">01 · Reach</span><h3>Reach &amp; dwell time</h3><p>Start/finish + stations = hours of real attention, not seconds.</p></div>
       <div class="flow-step reveal"><span class="t">02 · Frequency</span><h3>Repeated placements</h3><p>Placements along the route build recall kilometer after kilometer.</p></div>
       <div class="flow-step reveal"><span class="t">03 · Integration</span><h3>Functional roles</h3><p>Useful integrations build trust — hydration, energy, payments.</p></div>
@@ -335,10 +336,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 3 · Deliverables</span>
-      <h2>What sponsors receive.</h2>
+      <span class="km" data-cms="sponsors.deliverables.kicker">KM 3 · Deliverables</span>
+      <h2 data-cms="sponsors.deliverables.h2">What sponsors receive.</h2>
     </div>
-    <div class="deliv">
+    <div class="deliv" data-cms-list="cards:sponsors.deliverables.cards">
       <div class="card reveal">
         <span class="tag">On runners</span>
         <h3>Jerseys &amp; bibs</h3>
@@ -377,12 +378,12 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap photo-band">
     <div class="reveal">
-      <span class="km">The pitch</span>
-      <h2>Visibility with accountability.</h2>
-      <p style="margin-top:16px;color:var(--text-dim)">Partnerships built on social proof, storytelling, metrics, and professional execution.</p>
+      <span class="km" data-cms="sponsors.pitch.kicker">The pitch</span>
+      <h2 data-cms="sponsors.pitch.h2">Visibility with accountability.</h2>
+      <p style="margin-top:16px;color:var(--text-dim)" data-cms="sponsors.pitch.p">Partnerships built on social proof, storytelling, metrics, and professional execution.</p>
       <div class="spon-cta">
-        <a class="btn btn-dark" href="mailto:Batrounrace@gmail.com">Batrounrace@gmail.com</a>
-        <a class="btn btn-wa" href="https://wa.me/96181300625">WhatsApp +961 81 300 625</a>
+        <a class="btn btn-dark" href="mailto:Batrounrace@gmail.com" data-cms="global.email">Batrounrace@gmail.com</a>
+        <a class="btn btn-wa" href="https://wa.me/96181300625" data-cms="sponsors.pitch.whatsapp_label" data-cms-href="global.whatsapp_number_url">WhatsApp +961 81 300 625</a>
       </div>
     </div>
     <div class="pic reveal">
@@ -394,13 +395,13 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- FINISH · PACKAGES -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Your move</span>
-    <h2 class="reveal">Pick your lane.</h2>
+    <span class="km" data-cms="sponsors.finish.kicker">Finish line · Your move</span>
+    <h2 class="reveal" data-cms="sponsors.finish.h2">Pick your lane.</h2>
     <div class="finish-ctas reveal">
-      <a class="btn btn-coral" href="sponsor-packages.html">Packages &amp; pricing</a>
-      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request">Request the deck</a>
+      <a class="btn btn-coral" href="sponsor-packages.html" data-cms="sponsors.finish.cta_primary">Packages &amp; pricing</a>
+      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request" data-cms="sponsors.finish.cta_secondary">Request the deck</a>
     </div>
-    <p class="note">Kiosk · Bronze · Silver · Gold · Platinum</p>
+    <p class="note" data-cms="sponsors.finish.note">Kiosk · Bronze · Silver · Gold · Platinum</p>
   </div>
 </section>
 
@@ -408,7 +409,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap foot">
     <div>
       <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
-      <p style="margin-top:12px;max-width:280px">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
       <ul>
@@ -423,7 +424,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </ul>
     </div>
   </div>
-  <div class="wrap" style="margin-top:32px;font-size:.78rem">© 2026 Batroun Race · Batroun, Lebanon</div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
 
 <script>

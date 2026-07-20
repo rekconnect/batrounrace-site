@@ -198,6 +198,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 // apply saved theme before first paint to avoid a flash of the wrong theme
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
+<script src="js/cms.js" defer></script>
 </head>
 <body>
 
@@ -221,17 +222,17 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · WHO WE ARE -->
 <section class="hero" style="padding:0">
   <div class="wrap">
-    <span class="km">KM 0 · About</span>
-    <h1>Who we <span class="accent">are.</span></h1>
-    <p class="hero-sub">Created by people who love Batroun and its community — athletes, engineers, and marketing specialists building a meaningful, high-quality running event. Rooted in Batroun, open to all of Lebanon, and growing stronger every year.</p>
-    <div class="hero-meta">
+    <span class="km" data-cms="about.hero.kicker">KM 0 · About</span>
+    <h1 data-cms="about.hero.h1">Who we <span class="accent">are.</span></h1>
+    <p class="hero-sub" data-cms="about.hero.sub">Created by people who love Batroun and its community — athletes, engineers, and marketing specialists building a meaningful, high-quality running event. Rooted in Batroun, open to all of Lebanon, and growing stronger every year.</p>
+    <div class="hero-meta" data-cms-list="meta:about.hero.meta">
       <div><b>500+</b>Runners (2025)</div>
       <div><b>1.5M+</b>Exposure</div>
       <div><b>5K · 10K</b>Two distances</div>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
-      <a class="btn btn-ghost" href="contact.html">Talk to the team</a>
+      <a class="btn btn-coral" href="https://register.batrounrace.com/" data-cms="about.hero.cta_primary" data-cms-href="global.register_url">Register to run</a>
+      <a class="btn btn-ghost" href="contact.html" data-cms="about.hero.cta_secondary">Talk to the team</a>
     </div>
     <div class="hero-photo">
       <span class="ph">[ photo — images/start_line_2.jpg ]</span>
@@ -245,10 +246,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · Mission &amp; vision</span>
-      <h2>Why we run this race.</h2>
+      <span class="km" data-cms="about.mission.kicker">KM 1 · Mission &amp; vision</span>
+      <h2 data-cms="about.mission.h2">Why we run this race.</h2>
     </div>
-    <div class="cards">
+    <div class="cards" data-cms-list="cards:about.mission.cards">
       <div class="card reveal">
         <span class="tag">Mission</span>
         <h3>A healthier community</h3>
@@ -272,11 +273,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2 · The story</span>
-      <h2>Built by belief.</h2>
-      <p>A team of athletes, engineers, and marketing minds creating a meaningful running experience — rooted in Batroun and open to all of Lebanon.</p>
+      <span class="km" data-cms="about.story.kicker">KM 2 · The story</span>
+      <h2 data-cms="about.story.h2">Built by belief.</h2>
+      <p data-cms="about.story.p">A team of athletes, engineers, and marketing minds creating a meaningful running experience — rooted in Batroun and open to all of Lebanon.</p>
     </div>
-    <div class="story-cards">
+    <div class="story-cards" data-cms-list="storycards:about.story.cards">
       <div class="story-card reveal">
         <img src="images/run_for_a_cause.jpg" alt="Runners at the Run for a Cause 2025 special edition" onerror="this.style.display='none'">
         <div class="body">
@@ -302,7 +303,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         </div>
       </div>
     </div>
-    <div class="vision-note reveal">
+    <div class="vision-note reveal" data-cms="about.story.note">
       <b>More than a race — our purpose.</b> We are not chasing titles or records. We are building something we believe in — growing, learning, and improving with every edition.
     </div>
   </div>
@@ -312,11 +313,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 3 · The community</span>
-      <h2>Who is part of it.</h2>
-      <p>A shared experience that brings together runners, families, volunteers, and local supporters — built by professional athletes, engineers, and creatives who believe in sport as a way to connect people.</p>
+      <span class="km" data-cms="about.community.kicker">KM 3 · The community</span>
+      <h2 data-cms="about.community.h2">Who is part of it.</h2>
+      <p data-cms="about.community.p">A shared experience that brings together runners, families, volunteers, and local supporters — built by professional athletes, engineers, and creatives who believe in sport as a way to connect people.</p>
     </div>
-    <div class="flow">
+    <div class="flow" data-cms-list="flow:about.community.steps">
       <div class="flow-step reveal"><span class="t">Runners</span><h3>All levels, all ages</h3><p>Beginners, casual joggers, and athletes — teenagers to seniors, locals from Batroun and participants from across Lebanon. Running for fitness, fun, personal challenge, and community spirit.</p></div>
       <div class="flow-step reveal"><span class="t">Volunteers</span><h3>The backbone</h3><p>Local youth, sports clubs, and community members — registration &amp; bib distribution, water stations, route safety, crowd support.</p></div>
       <div class="flow-step reveal"><span class="t">Businesses</span><h3>Local partners</h3><p>Cafés, restaurants, gyms, sports brands, beach resorts, and touristic spots collaborate — turning race day into a town-wide celebration.</p></div>
@@ -329,10 +330,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 4 · Values</span>
-      <h2>What we stand for.</h2>
+      <span class="km" data-cms="about.values.kicker">KM 4 · Values</span>
+      <h2 data-cms="about.values.h2">What we stand for.</h2>
     </div>
-    <div class="cards two">
+    <div class="cards two" data-cms-list="cards:about.values.cards">
       <div class="card reveal">
         <span class="tag">Health &amp; wellness</span>
         <h3>An active lifestyle</h3>
@@ -354,7 +355,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <p>Clear route guidance and support points, volunteer coordination and crowd flow, clean streets and responsible celebration.</p>
       </div>
     </div>
-    <div class="vision-note reveal">
+    <div class="vision-note reveal" data-cms="about.values.note">
       <b>Why the community matters.</b> It builds positive youth role models, encourages tourism through sports, creates safe and healthy public events, and strengthens Batroun's image as a lively, active city. Long-term: grow participation while keeping quality and safety, support more community collaborations, and make Batroun a must-visit sport weekend destination.
     </div>
   </div>
@@ -364,18 +365,18 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">Partners</span>
-      <h2>Brands gain real visibility + real trust.</h2>
-      <p>Your brand is seen on race day, in content, and across community moments — not just a one-time logo.</p>
+      <span class="km" data-cms="about.teaser.kicker">Partners</span>
+      <h2 data-cms="about.teaser.h2">Brands gain real visibility + real trust.</h2>
+      <p data-cms="about.teaser.p">Your brand is seen on race day, in content, and across community moments — not just a one-time logo.</p>
     </div>
-    <ul class="teaser-list reveal">
+    <ul class="teaser-list reveal" data-cms-list="teaser:about.teaser.items">
       <li>On-site visibility: finish zone, route, and community moments</li>
       <li>Digital exposure: photos, reels, stories, and post-event content</li>
       <li>Trust: your brand becomes part of a positive city experience</li>
     </ul>
     <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
-      <a class="btn btn-line" href="sponsors.html">View sponsors page</a>
+      <a class="btn btn-dark" href="contact.html" data-cms="about.teaser.cta_primary">Become a sponsor</a>
+      <a class="btn btn-line" href="sponsors.html" data-cms="about.teaser.cta_secondary">View sponsors page</a>
     </div>
   </div>
 </section>
@@ -383,15 +384,15 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- FINISH · JOIN -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Join the movement</span>
-    <h2 class="reveal">Want to join the movement?</h2>
-    <a class="bib reveal" href="https://register.batrounrace.com/">
-      <span class="small">Batroun Race · Official entry</span>
-      <div class="num">RUN</div>
-      <span class="small">5KM · 10KM · All levels</span>
-      <div class="cta-line">Register now →</div>
+    <span class="km" data-cms="about.finish.kicker">Finish line · Join the movement</span>
+    <h2 class="reveal" data-cms="about.finish.h2">Want to join the movement?</h2>
+    <a class="bib reveal" href="https://register.batrounrace.com/" data-cms-href="global.register_url">
+      <span class="small" data-cms="about.finish.bib_top">Batroun Race · Official entry</span>
+      <div class="num" data-cms="about.finish.bib_num">RUN</div>
+      <span class="small" data-cms="about.finish.bib_bottom">5KM · 10KM · All levels</span>
+      <div class="cta-line" data-cms="about.finish.bib_cta">Register now →</div>
     </a>
-    <p class="note">Volunteering, partnerships &amp; sponsorships → <a href="contact.html" style="color:var(--text-inv)">contact the team</a></p>
+    <p class="note" data-cms="about.finish.note">Volunteering, partnerships &amp; sponsorships → <a href="contact.html" style="color:var(--text-inv)">contact the team</a></p>
   </div>
 </section>
 
@@ -399,7 +400,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap foot">
     <div>
       <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
-      <p style="margin-top:12px;max-width:280px">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
       <ul>
@@ -414,7 +415,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </ul>
     </div>
   </div>
-  <div class="wrap" style="margin-top:32px;font-size:.78rem">© 2026 Batroun Race · Batroun, Lebanon</div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
 
 <script>
