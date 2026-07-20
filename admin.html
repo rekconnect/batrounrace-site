@@ -62,6 +62,9 @@ textarea{min-height:74px;resize:vertical}
 .msg.err{background:#7b1d12}
 #raw textarea{min-height:420px;font-family:var(--mono);font-size:.8rem}
 .savebar{position:fixed;right:20px;bottom:20px;display:flex;gap:10px;z-index:30}
+#visual .vtools{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+#visual select{font:inherit;font-size:.88rem;border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--white)}
+#visual iframe{width:100%;height:calc(100vh - 250px);min-height:480px;border:1px solid var(--line);border-radius:12px;background:#fff}
 </style>
 </head>
 <body>
@@ -82,6 +85,20 @@ textarea{min-height:74px;resize:vertical}
   <main>
     <div class="tabs" id="tabs"></div>
     <p class="hint" id="hint">Edit the content below, then press <b>Save &amp; publish</b>. Changes go live on the website about a minute after saving. Every save is stored in history and can be undone by the developer.</p>
+    <div id="visual" style="display:none">
+      <div class="vtools">
+        <select id="vpage">
+          <option value="index.html">Homepage</option>
+          <option value="about.html">About</option>
+          <option value="contact.html">Contact</option>
+          <option value="sponsors.html">Sponsors</option>
+          <option value="sponsor-packages.html">Packages</option>
+          <option value="results-2025.html">Results 2025</option>
+        </select>
+        <span class="hint" style="margin:0">Click any text on the page to edit it. Hover a list (cards, sponsors, FAQ…) for add/remove buttons. Then <b>Save &amp; publish</b>.</span>
+      </div>
+      <iframe id="vframe" title="Visual editor"></iframe>
+    </div>
     <div id="editor"></div>
     <div id="logos" style="display:none">
       <p class="hint">Upload sponsor logos (PNG, transparent background preferred). They are published together with your next <b>Save &amp; publish</b>.</p>
@@ -121,6 +138,7 @@ textarea{min-height:74px;resize:vertical}
     bib_top:'Bib top line',bib_num:'Bib big word',bib_bottom:'Bib bottom line',bib_cta:'Bib button',
     tags:'Tags',meta_list:'Stats'};
   var TABS={global:'Contact & links',home:'Homepage',about:'About',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
+  var vframeLoaded=false;
 
   function lbl(k){return LABELS[k]||k.replace(/_/g,' ').replace(/^./,function(c){return c.toUpperCase()});}
   function get(o,p){return p.split('.').reduce(function(a,k){return a==null?a:a[k]},o);}
@@ -212,13 +230,34 @@ textarea{min-height:74px;resize:vertical}
   function renderTab(name){
     activeTab=name;
     document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.tab===name)});
-    var ed=document.getElementById('editor'),logos=document.getElementById('logos'),raw=document.getElementById('raw');
-    ed.style.display=logos.style.display=raw.style.display='none';
+    var ed=document.getElementById('editor'),logos=document.getElementById('logos'),raw=document.getElementById('raw'),vis=document.getElementById('visual');
+    ed.style.display=logos.style.display=raw.style.display=vis.style.display='none';
+    if(name==='visual'){
+      vis.style.display='block';
+      var fr=document.getElementById('vframe');
+      if(!vframeLoaded){fr.src='/'+document.getElementById('vpage').value+'?edit=1';vframeLoaded=true;}
+      else syncFrame();
+      return;
+    }
     if(name==='logos'){logos.style.display='block';renderLogos();return;}
     if(name==='raw'){raw.style.display='block';document.getElementById('rawTa').value=JSON.stringify(content,null,2);return;}
     ed.style.display='block';ed.innerHTML='';
     buildInto(ed,content[name],name);
   }
+
+  function syncFrame(){
+    var fr=document.getElementById('vframe');
+    if(fr.contentWindow)fr.contentWindow.postMessage({type:'cms-sync',content:content},'*');
+  }
+
+  window.addEventListener('message',function(e){
+    var d=e.data||{};
+    if(d.type==='cms-hello'){syncFrame();}
+    else if(d.type==='cms-edit'||d.type==='cms-list'){
+      set(content,d.path,d.value);
+      status('unsaved changes');
+    }
+  });
 
   function renderLogos(){
     var grid=document.getElementById('logoGrid');grid.innerHTML='';
@@ -241,6 +280,8 @@ textarea{min-height:74px;resize:vertical}
 
   function buildTabs(){
     var tabs=document.getElementById('tabs');tabs.innerHTML='';
+    var vb=document.createElement('button');vb.className='tab';vb.dataset.tab='visual';vb.textContent='✏ Visual editor';
+    vb.addEventListener('click',function(){renderTab('visual')});tabs.appendChild(vb);
     Object.keys(TABS).forEach(function(k){
       var b=document.createElement('button');b.className='tab';b.dataset.tab=k;b.textContent=TABS[k];
       b.addEventListener('click',function(){renderTab(k)});tabs.appendChild(b);
@@ -255,7 +296,7 @@ textarea{min-height:74px;resize:vertical}
     return fetch('/content/site.json',{cache:'no-cache'}).then(function(r){
       if(!r.ok)throw new Error('Could not load site content ('+r.status+')');
       return r.json();
-    }).then(function(j){content=j;pendingLogos={};buildTabs();renderTab('global');status('loaded');});
+    }).then(function(j){content=j;pendingLogos={};vframeLoaded=false;buildTabs();renderTab('visual');status('loaded');});
   }
 
   function save(){
@@ -283,7 +324,9 @@ textarea{min-height:74px;resize:vertical}
       body:JSON.stringify({password:pw,files:[]})})
       .then(function(r){
         if(r.status===401)throw new Error('Wrong password');
-        if(!r.ok)throw new Error('Server error — are the Vercel environment variables set?');
+        if(!r.ok)return r.json().catch(function(){return {}}).then(function(j){
+          throw new Error(j.error||('Server error ('+r.status+') — are the Vercel environment variables set?'));
+        });
         sessionStorage.setItem('br-admin-pw',pw);
         document.getElementById('login').style.display='none';
         document.getElementById('app').style.display='block';
@@ -292,6 +335,9 @@ textarea{min-height:74px;resize:vertical}
       .catch(function(e){show(e.message,true);});
   });
   document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click()});
+  document.getElementById('vpage').addEventListener('change',function(){
+    document.getElementById('vframe').src='/'+this.value+'?edit=1';
+  });
   document.getElementById('saveBtn').addEventListener('click',save);
   document.getElementById('reloadBtn').addEventListener('click',function(){if(confirm('Discard unsaved changes and reload?'))load().then(function(){renderTab(activeTab||'global')})});
   document.getElementById('applyRaw').addEventListener('click',function(){
