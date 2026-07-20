@@ -191,6 +191,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 // apply saved theme before first paint to avoid a flash of the wrong theme
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
+<script src="js/cms.js" defer></script>
 </head>
 <body>
 
@@ -214,18 +215,18 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · START -->
 <section class="hero" style="padding:0">
   <div class="wrap">
-    <span class="km">KM 0 · Start line</span>
-    <h1>Run the<br>Batroun <span class="accent">coast.</span></h1>
-    <p class="hero-sub">Lebanon's coastal running event — 5KM &amp; 10KM along the sea, through a town that turns race day into a festival.</p>
-    <div class="hero-meta">
+    <span class="km" data-cms="home.hero.kicker">KM 0 · Start line</span>
+    <h1 data-cms="home.hero.h1">Run the<br>Batroun <span class="accent">coast.</span></h1>
+    <p class="hero-sub" data-cms="home.hero.sub">Lebanon's coastal running event — 5KM &amp; 10KM along the sea, through a town that turns race day into a festival.</p>
+    <div class="hero-meta" data-cms-list="meta:home.hero.meta">
       <div><b>5K · 10K</b>Two distances</div>
       <div><b>Batroun</b>Seaside route</div>
       <div><b>500+</b>Runners, first edition</div>
       <div><b>2 editions</b>2025 · 2026</div>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
+      <a class="btn btn-coral" href="https://register.batrounrace.com/" data-cms="home.hero.cta_primary" data-cms-href="global.register_url">Register to run</a>
+      <a class="btn btn-ghost" href="https://register.batrounrace.com/results" data-cms="home.hero.cta_secondary" data-cms-href="global.results2026_url">2026 results</a>
     </div>
     <div class="hero-photo">
       <span class="ph">[ hero photo — images/hero-race-crowd.jpg ]</span>
@@ -239,11 +240,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · More than a race</span>
-      <h2>Built by belief, rooted in Batroun.</h2>
-      <p>Created by athletes, engineers, and creatives who love this town — a race with meaning, quality, and community at its core. Open to all of Lebanon.</p>
+      <span class="km" data-cms="home.why.kicker">KM 1 · More than a race</span>
+      <h2 data-cms="home.why.h2">Built by belief, rooted in Batroun.</h2>
+      <p data-cms="home.why.p">Created by athletes, engineers, and creatives who love this town — a race with meaning, quality, and community at its core. Open to all of Lebanon.</p>
     </div>
-    <div class="cards">
+    <div class="cards" data-cms-list="cards:home.why.cards">
       <div class="card reveal">
         <span class="tag">Community</span>
         <h3>Everyone runs</h3>
@@ -260,7 +261,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <p>Seaside roads, the old souks, and a Mediterranean finish. After the race, many stay to swim, eat, and celebrate.</p>
       </div>
     </div>
-    <a class="more-link reveal" href="about.html">Read our full story →</a>
+    <a class="more-link reveal" href="about.html" data-cms="home.why.more">Read our full story →</a>
   </div>
 </section>
 
@@ -268,11 +269,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2.5 · Race day</span>
-      <h2>A town-wide celebration.</h2>
-      <p>Streets filled with runners instead of cars. Music on the route, families at the finish.</p>
+      <span class="km" data-cms="home.raceday.kicker">KM 2.5 · Race day</span>
+      <h2 data-cms="home.raceday.h2">A town-wide celebration.</h2>
+      <p data-cms="home.raceday.p">Streets filled with runners instead of cars. Music on the route, families at the finish.</p>
     </div>
-    <div class="flow">
+    <div class="flow" data-cms-list="flow:home.raceday.steps">
       <div class="flow-step reveal"><span class="t">Start</span><h3>Start energy</h3><p>Bibs on, music up, the whole town at the line.</p></div>
       <div class="flow-step reveal"><span class="t">Route</span><h3>Coastal push</h3><p>Sea on one side, Batroun stone on the other.</p></div>
       <div class="flow-step reveal"><span class="t">Support</span><h3>Cheering points</h3><p>Volunteers, water stations, and crowds that carry you.</p></div>
@@ -285,10 +286,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 4 · Results</span>
-      <h2>Two editions in the books.</h2>
+      <span class="km" data-cms="home.results.kicker">KM 4 · Results</span>
+      <h2 data-cms="home.results.h2">Two editions in the books.</h2>
     </div>
-    <div class="res-grid">
+    <div class="res-grid" data-cms-list="rescards:home.results.cards">
       <a class="res-card reveal" href="https://register.batrounrace.com/results">
         <div class="yr">2026</div>
         <h3>Second edition — full results</h3>
@@ -309,11 +310,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">Partners</span>
-      <h2>Powered by brands that show up.</h2>
-      <p>Real visibility, real trust — on the route, at the finish, and in every photo after.</p>
+      <span class="km" data-cms="home.sponsors.kicker">Partners</span>
+      <h2 data-cms="home.sponsors.h2">Powered by brands that show up.</h2>
+      <p data-cms="home.sponsors.p">Real visibility, real trust — on the route, at the finish, and in every photo after.</p>
     </div>
-    <div class="spon-row reveal">
+    <div class="spon-row reveal" data-cms-list="chips:home.sponsors.chips">
       <span class="spon-chip">Mike Sport</span>
       <span class="spon-chip">Sports Experts</span>
       <span class="spon-chip">Aquafina</span>
@@ -322,8 +323,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <span class="spon-chip">+ partners</span>
     </div>
     <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
-      <a class="btn btn-line" href="contact.html">Talk to the team</a>
+      <a class="btn btn-dark" href="sponsors.html" data-cms="home.sponsors.cta_primary">Become a sponsor</a>
+      <a class="btn btn-line" href="contact.html" data-cms="home.sponsors.cta_secondary">Talk to the team</a>
     </div>
   </div>
 </section>
@@ -331,15 +332,15 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- FINISH · REGISTER -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Your turn</span>
-    <h2 class="reveal">The coast is waiting.</h2>
-    <a class="bib reveal" href="https://register.batrounrace.com/">
-      <span class="small">Batroun Race · Official entry</span>
-      <div class="num">RUN</div>
-      <span class="small">5KM · 10KM · All levels</span>
-      <div class="cta-line">Register now →</div>
+    <span class="km" data-cms="home.finish.kicker">Finish line · Your turn</span>
+    <h2 class="reveal" data-cms="home.finish.h2">The coast is waiting.</h2>
+    <a class="bib reveal" href="https://register.batrounrace.com/" data-cms-href="global.register_url">
+      <span class="small" data-cms="home.finish.bib_top">Batroun Race · Official entry</span>
+      <div class="num" data-cms="home.finish.bib_num">RUN</div>
+      <span class="small" data-cms="home.finish.bib_bottom">5KM · 10KM · All levels</span>
+      <div class="cta-line" data-cms="home.finish.bib_cta">Register now →</div>
     </a>
-    <p class="note">Registration, payment &amp; results at register.batrounrace.com</p>
+    <p class="note" data-cms="home.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
   </div>
 </section>
 
@@ -347,7 +348,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap foot">
     <div>
       <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
-      <p style="margin-top:12px;max-width:280px">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
       <ul>
@@ -362,7 +363,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </ul>
     </div>
   </div>
-  <div class="wrap" style="margin-top:32px;font-size:.78rem">© 2026 Batroun Race · Batroun, Lebanon</div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
 
 <script>

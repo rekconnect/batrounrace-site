@@ -171,6 +171,7 @@ a.card{display:block;text-decoration:none}
 // apply saved theme before first paint to avoid a flash of the wrong theme
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
+<script src="js/cms.js" defer></script>
 </head>
 <body>
 
@@ -194,18 +195,18 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · CONTACT -->
 <section class="hero" style="padding:0">
   <div class="wrap" style="padding-bottom:84px">
-    <span class="km">KM 0 · Contact · Sponsorships · Volunteering</span>
-    <h1>Build <span class="accent">with us.</span></h1>
-    <p class="hero-sub">For sponsorships, volunteering, media, and general inquiries. Our team responds quickly — WhatsApp available.</p>
-    <div class="hero-tags">
+    <span class="km" data-cms="contact.hero.kicker">KM 0 · Contact · Sponsorships · Volunteering</span>
+    <h1 data-cms="contact.hero.h1">Build <span class="accent">with us.</span></h1>
+    <p class="hero-sub" data-cms="contact.hero.sub">For sponsorships, volunteering, media, and general inquiries. Our team responds quickly — WhatsApp available.</p>
+    <div class="hero-tags" data-cms-list="tags:contact.hero.tags">
       <span>Sponsorships</span>
       <span>Volunteering</span>
       <span>Media</span>
       <span>General</span>
     </div>
     <div class="hero-ctas">
-      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1">Message us on WhatsApp</a>
-      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com">Email the team</a>
+      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1" data-cms="contact.hero.cta_primary" data-cms-href="global.whatsapp_url">Message us on WhatsApp</a>
+      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com" data-cms="contact.hero.cta_secondary">Email the team</a>
     </div>
   </div>
 </section>
@@ -215,11 +216,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 1 · Direct channels</span>
-      <h2>Reach us anywhere.</h2>
-      <p>We reply within 24 hours — faster during race week.</p>
+      <span class="km" data-cms="contact.channels.kicker">KM 1 · Direct channels</span>
+      <h2 data-cms="contact.channels.h2">Reach us anywhere.</h2>
+      <p data-cms="contact.channels.p">We reply within 24 hours — faster during race week.</p>
     </div>
-    <div class="chan-cards">
+    <div class="chan-cards" data-cms-list="chancards:contact.channels.cards">
       <a class="card reveal" href="https://wa.me/message/IJ45O3ILIUGMF1">
         <span class="tag">WhatsApp</span>
         <h3>Fastest reply</h3>
@@ -252,10 +253,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 2 · What do you need?</span>
-      <h2>Tell us who you are.</h2>
+      <span class="km" data-cms="contact.who.kicker">KM 2 · What do you need?</span>
+      <h2 data-cms="contact.who.h2">Tell us who you are.</h2>
     </div>
-    <div class="cards">
+    <div class="cards" data-cms-list="cards:contact.who.cards">
       <div class="card reveal">
         <span class="tag">General</span>
         <h3>Talk to the team</h3>
@@ -279,10 +280,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">KM 3 · FAQ</span>
-      <h2>Quick answers.</h2>
+      <span class="km" data-cms="contact.faq.kicker">KM 3 · FAQ</span>
+      <h2 data-cms="contact.faq.h2">Quick answers.</h2>
     </div>
-    <div class="faq">
+    <div class="faq" data-cms-list="faq:contact.faq.items">
       <div class="faq-item reveal">
         <h3>When will I get a reply?</h3>
         <p>Within 24 hours. Sponsorship &amp; media requests are prioritized around race week.</p>
@@ -303,9 +304,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km">The venue</span>
-      <h2>Batroun, Lebanon.</h2>
-      <p>A coastal town an hour north of Beirut — old souks, sea walls, and the race route along the Mediterranean.</p>
+      <span class="km" data-cms="contact.venue.kicker">The venue</span>
+      <h2 data-cms="contact.venue.h2">Batroun, Lebanon.</h2>
+      <p data-cms="contact.venue.p">A coastal town an hour north of Beirut — old souks, sea walls, and the race route along the Mediterranean.</p>
     </div>
     <div class="map-wrap reveal">
       <iframe src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" title="Map of Batroun, Lebanon" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
@@ -316,13 +317,13 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- FINISH · SAY HELLO -->
 <section class="finish">
   <div class="wrap">
-    <span class="km">Finish line · Say hello</span>
-    <h2 class="reveal">Our team responds quickly.</h2>
+    <span class="km" data-cms="contact.finish.kicker">Finish line · Say hello</span>
+    <h2 class="reveal" data-cms="contact.finish.h2">Our team responds quickly.</h2>
     <div class="finish-ctas reveal">
-      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1">Message us on WhatsApp</a>
-      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com">Batrounrace@gmail.com</a>
+      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1" data-cms="contact.finish.cta_primary" data-cms-href="global.whatsapp_url">Message us on WhatsApp</a>
+      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com" data-cms="contact.finish.cta_secondary">Batrounrace@gmail.com</a>
     </div>
-    <p class="note">We reply within 24h — faster during race week.</p>
+    <p class="note" data-cms="contact.finish.note">We reply within 24h — faster during race week.</p>
   </div>
 </section>
 
@@ -330,7 +331,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap foot">
     <div>
       <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
-      <p style="margin-top:12px;max-width:280px">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
       <ul>
@@ -345,7 +346,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </ul>
     </div>
   </div>
-  <div class="wrap" style="margin-top:32px;font-size:.78rem">© 2026 Batroun Race · Batroun, Lebanon</div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
 
 <script>
