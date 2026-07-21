@@ -23,12 +23,14 @@
     '.cms-bar button{border:none;border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer;background:#030F2B;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}' +
     '.cms-bar button:hover{background:#0668CD}' +
     '.cms-bar button.cms-del:hover{background:#c0392b}' +
-    '.cms-hint{position:fixed;left:12px;bottom:12px;z-index:9999;background:#030F2B;color:#F4F7FC;font:12px monospace;padding:8px 14px;border-radius:999px;opacity:.9;pointer-events:none}';
+    '.cms-hint{position:fixed;left:12px;bottom:12px;z-index:9999;background:#030F2B;color:#F4F7FC;font:12px monospace;padding:8px 14px;border-radius:999px;opacity:.9;pointer-events:none}' +
+    '.cms-linkbtn{position:absolute;z-index:9999;border:none;border-radius:6px;padding:4px 10px;font:12px monospace;cursor:pointer;background:#0668CD;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}' +
+    '.cms-linkbtn:hover{background:#030F2B}';
   document.head.appendChild(css);
 
   var hint = document.createElement('div');
   hint.className = 'cms-hint';
-  hint.textContent = 'EDIT MODE — click any text to change it';
+  hint.textContent = 'EDIT MODE — click text to change it · 🔗 to change links';
   document.body.appendChild(hint);
 
   // ---------- sync with parent admin ----------
@@ -38,12 +40,61 @@
   });
   send({ type: 'cms-hello', page: location.pathname });
 
+  // ---------- link editing ----------
+  var linkBtn = document.createElement('button');
+  linkBtn.type = 'button';
+  linkBtn.className = 'cms-linkbtn';
+  linkBtn.textContent = '🔗 Link';
+  linkBtn.style.display = 'none';
+  document.body.appendChild(linkBtn);
+  var linkTarget = null; // {path, a}
+
+  // where an element's link lives in the JSON, if anywhere
+  function linkPathFor(el) {
+    var a = el.closest('a');
+    if (!a) return null;
+    if (a.hasAttribute('data-cms-href')) return { path: a.getAttribute('data-cms-href'), a: a };
+    var container = a.closest('[data-cms-list]');
+    if (container) {
+      var spec = listSpec(container);
+      var field = { btns: 'href', chancards: 'href', rescards: 'href', partnerchips: 'href', wall: 'link' }[spec.type];
+      if (!field) return null;
+      var item = a;
+      while (item && item.parentElement !== container) item = item.parentElement;
+      var idx = item ? Array.prototype.indexOf.call(container.children, item) : -1;
+      if (idx < 0) return null;
+      return { path: spec.path + '.' + idx + '.' + field, a: a };
+    }
+    return null;
+  }
+  function showLinkBtn(el) {
+    linkTarget = linkPathFor(el);
+    if (!linkTarget) { linkBtn.style.display = 'none'; return; }
+    var r = el.getBoundingClientRect();
+    linkBtn.style.display = 'block';
+    linkBtn.style.left = (r.left + window.scrollX) + 'px';
+    linkBtn.style.top = (r.bottom + window.scrollY + 6) + 'px';
+  }
+  function hideLinkBtn() { linkBtn.style.display = 'none'; linkTarget = null; }
+  linkBtn.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
+  linkBtn.addEventListener('click', function (e) {
+    e.preventDefault(); e.stopPropagation();
+    if (!linkTarget) return;
+    var cur = get(C(), linkTarget.path) || '';
+    var v = prompt('Link URL:', cur);
+    if (v === null || v === cur) return;
+    set(linkTarget.path, v);
+    linkTarget.a.setAttribute('href', v);
+    send({ type: 'cms-edit', path: linkTarget.path, value: v });
+  });
+
   // ---------- inline text editing ----------
   var editing = null, original = '';
 
   function startEdit(el) {
     if (editing === el) return;
     stopEdit(true);
+    showLinkBtn(el);
     editing = el; original = el.innerHTML;
     el.classList.add('cms-editing');
     el.setAttribute('contenteditable', 'true');
@@ -58,6 +109,7 @@
     } catch (e) {}
   }
   function stopEdit(save) {
+    hideLinkBtn();
     if (!editing) return;
     var el = editing; editing = null;
     el.removeAttribute('contenteditable');
@@ -74,6 +126,7 @@
   });
   // clicking anywhere outside the edited element commits the edit
   document.addEventListener('mousedown', function (e) {
+    if (e.target.closest('.cms-linkbtn')) return;
     if (editing && !editing.contains(e.target)) stopEdit(true);
   }, true);
   // leaving the iframe (e.g. to press Save & publish) commits too
@@ -84,7 +137,7 @@
 
   // ---------- click routing ----------
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.cms-bar')) return;
+    if (e.target.closest('.cms-bar') || e.target.closest('.cms-linkbtn')) return;
     var ed = e.target.closest('[data-cms]');
     if (ed) { e.preventDefault(); e.stopPropagation(); startEdit(ed); return; }
     var a = e.target.closest('a');
