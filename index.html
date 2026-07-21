@@ -61,6 +61,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);flex:none}
+.logo .mark{height:30px;width:auto;flex:none}
 .nav-links{display:flex;gap:28px;align-items:center;list-style:none}
 .nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--text-dim);transition:color .2s}
 .nav-links a:hover,.nav-links a:focus-visible{color:var(--ink)}
@@ -199,7 +200,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="index.html"><span class="dot"></span>BATROUN RACE</a>
+    <a class="logo" href="index.html"><img class="mark" src="images/logo-mark.png" alt="">BATROUN RACE</a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About</a></li>
@@ -347,7 +348,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <footer>
   <div class="wrap foot">
     <div>
-      <a class="logo" href="index.html" style="color:var(--foam)"><span class="dot"></span>BATROUN RACE</a>
+      <a class="logo" href="index.html" style="color:var(--foam)"><img class="mark" src="images/logo-mark.png" alt="">BATROUN RACE</a>
       <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
     </div>
     <div class="cols">
