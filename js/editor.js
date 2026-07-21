@@ -40,14 +40,22 @@
   });
   send({ type: 'cms-hello', page: location.pathname });
 
-  // ---------- link editing ----------
+  // ---------- link editing / opening ----------
+  var linkWrap = document.createElement('div');
+  linkWrap.className = 'cms-linkbar';
+  linkWrap.style.cssText = 'position:absolute;z-index:9999;display:none;gap:4px';
   var linkBtn = document.createElement('button');
   linkBtn.type = 'button';
   linkBtn.className = 'cms-linkbtn';
   linkBtn.textContent = '🔗 Link';
-  linkBtn.style.display = 'none';
-  document.body.appendChild(linkBtn);
-  var linkTarget = null; // {path, a}
+  var openBtn = document.createElement('button');
+  openBtn.type = 'button';
+  openBtn.className = 'cms-linkbtn';
+  openBtn.textContent = '↗ Open';
+  linkWrap.appendChild(linkBtn);
+  linkWrap.appendChild(openBtn);
+  document.body.appendChild(linkWrap);
+  var linkTarget = null; // {path|null, a}
 
   // where an element's link lives in the JSON, if anywhere
   function linkPathFor(el) {
@@ -68,24 +76,41 @@
     return null;
   }
   function showLinkBtn(el) {
-    linkTarget = linkPathFor(el);
-    if (!linkTarget) { linkBtn.style.display = 'none'; return; }
+    var a = el.closest('a');
+    if (!a || !a.getAttribute('href')) { hideLinkBtn(); return; }
+    var found = linkPathFor(el);
+    linkTarget = found || { path: null, a: a };
+    linkBtn.style.display = found ? 'block' : 'none';
     var r = el.getBoundingClientRect();
-    linkBtn.style.display = 'block';
-    linkBtn.style.left = (r.left + window.scrollX) + 'px';
-    linkBtn.style.top = (r.bottom + window.scrollY + 6) + 'px';
+    linkWrap.style.display = 'flex';
+    linkWrap.style.left = (r.left + window.scrollX) + 'px';
+    linkWrap.style.top = (r.bottom + window.scrollY + 6) + 'px';
   }
-  function hideLinkBtn() { linkBtn.style.display = 'none'; linkTarget = null; }
-  linkBtn.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
+  function hideLinkBtn() { linkWrap.style.display = 'none'; linkTarget = null; }
+  linkWrap.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
   linkBtn.addEventListener('click', function (e) {
     e.preventDefault(); e.stopPropagation();
-    if (!linkTarget) return;
+    if (!linkTarget || !linkTarget.path) return;
     var cur = get(C(), linkTarget.path) || '';
     var v = prompt('Link URL:', cur);
     if (v === null || v === cur) return;
     set(linkTarget.path, v);
     linkTarget.a.setAttribute('href', v);
     send({ type: 'cms-edit', path: linkTarget.path, value: v });
+  });
+  openBtn.addEventListener('click', function (e) {
+    e.preventDefault(); e.stopPropagation();
+    if (!linkTarget) return;
+    var href = linkTarget.a.getAttribute('href') || '';
+    if (!href) return;
+    if (/^(https?:|mailto:|tel:)/.test(href)) {
+      window.open(href, '_blank');           // external → new tab
+    } else if (href.charAt(0) === '#') {
+      location.hash = href;                  // same-page anchor
+    } else {
+      location.href = href.split('#')[0] + '?edit=1';  // our page → stay in editor
+    }
+    hideLinkBtn();
   });
 
   // ---------- inline text editing ----------
@@ -126,7 +151,7 @@
   });
   // clicking anywhere outside the edited element commits the edit
   document.addEventListener('mousedown', function (e) {
-    if (e.target.closest('.cms-linkbtn')) return;
+    if (e.target.closest('.cms-linkbar')) return;
     if (editing && !editing.contains(e.target)) stopEdit(true);
   }, true);
   // leaving the iframe (e.g. to press Save & publish) commits too
@@ -137,7 +162,7 @@
 
   // ---------- click routing ----------
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.cms-bar') || e.target.closest('.cms-linkbtn')) return;
+    if (e.target.closest('.cms-bar') || e.target.closest('.cms-linkbar')) return;
     var ed = e.target.closest('[data-cms]');
     if (ed) { e.preventDefault(); e.stopPropagation(); startEdit(ed); return; }
     var a = e.target.closest('a');
