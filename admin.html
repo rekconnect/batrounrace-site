@@ -104,6 +104,11 @@ textarea{min-height:74px;resize:vertical}
       <p class="hint">Upload sponsor logos (PNG, transparent background preferred). They are published together with your next <b>Save &amp; publish</b>.</p>
       <div class="logos-grid" id="logoGrid"></div>
     </div>
+    <div id="photos" style="display:none">
+      <p class="hint">Photos in the homepage slider. Upload new photos below (JPG/PNG) — each becomes a slide automatically. Drag order matters top-to-bottom; remove with ✕. Then <b>Save &amp; publish</b>.</p>
+      <p><input type="file" id="slideUpload" accept="image/png,image/jpeg,image/webp" multiple></p>
+      <div class="logos-grid" id="slideGrid" style="margin-top:14px"></div>
+    </div>
     <div id="raw" style="display:none">
       <p class="hint">Advanced: the full site content as JSON. Edit carefully, then press <b>Apply JSON</b> before saving.</p>
       <textarea id="rawTa" spellcheck="false"></textarea>
@@ -232,6 +237,7 @@ textarea{min-height:74px;resize:vertical}
     document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.tab===name)});
     var ed=document.getElementById('editor'),logos=document.getElementById('logos'),raw=document.getElementById('raw'),vis=document.getElementById('visual');
     ed.style.display=logos.style.display=raw.style.display=vis.style.display='none';
+    document.getElementById('photos').style.display='none';
     if(name==='visual'){
       vis.style.display='block';
       var fr=document.getElementById('vframe');
@@ -240,6 +246,7 @@ textarea{min-height:74px;resize:vertical}
       return;
     }
     if(name==='logos'){logos.style.display='block';renderLogos();return;}
+    if(name==='photos'){document.getElementById('photos').style.display='block';renderSlides();return;}
     if(name==='raw'){raw.style.display='block';document.getElementById('rawTa').value=JSON.stringify(content,null,2);return;}
     ed.style.display='block';ed.innerHTML='';
     buildInto(ed,content[name],name);
@@ -278,6 +285,41 @@ textarea{min-height:74px;resize:vertical}
     });
   }
 
+  function slugifyFile(name){
+    var dot=name.lastIndexOf('.');
+    var ext=dot>-1?name.slice(dot+1).toLowerCase().replace('jpeg','jpg'):'jpg';
+    var base=(dot>-1?name.slice(0,dot):name).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'photo';
+    return base+'.'+ext;
+  }
+
+  function renderSlides(){
+    var grid=document.getElementById('slideGrid');grid.innerHTML='';
+    var slides=get(content,'home.hero.slides');
+    if(!Array.isArray(slides)){slides=[];set(content,'home.hero.slides',slides);}
+    slides.forEach(function(s,i){
+      var slot=document.createElement('div');slot.className='logo-slot';
+      var img=document.createElement('img');img.style.maxHeight='90px';
+      img.src=pendingLogos[s.img]?'data:image;base64,'+pendingLogos[s.img]:'/'+s.img;
+      img.onerror=function(){this.remove()};
+      slot.appendChild(img);
+      var f=document.createElement('div');f.className='file';f.textContent=(i+1)+' · '+s.img;slot.appendChild(f);
+      var alt=document.createElement('input');alt.type='text';alt.placeholder='Photo description (for accessibility)';alt.value=s.alt||'';
+      alt.style.marginBottom='8px';
+      alt.addEventListener('input',function(){s.alt=alt.value;status('unsaved changes');});
+      slot.appendChild(alt);
+      var tools=document.createElement('div');tools.style.display='flex';tools.style.gap='6px';
+      [['↑',function(){if(i>0){slides.splice(i-1,0,slides.splice(i,1)[0]);renderSlides();status('unsaved changes');}}],
+       ['↓',function(){if(i<slides.length-1){slides.splice(i+1,0,slides.splice(i,1)[0]);renderSlides();status('unsaved changes');}}],
+       ['✕ Remove',function(){if(confirm('Remove this photo from the slider?')){slides.splice(i,1);renderSlides();status('unsaved changes');}}]]
+      .forEach(function(bd){
+        var b=document.createElement('button');b.type='button';b.className='mini'+(bd[0].indexOf('✕')>-1?' del':'');b.textContent=bd[0];
+        b.addEventListener('click',bd[1]);tools.appendChild(b);
+      });
+      slot.appendChild(tools);
+      grid.appendChild(slot);
+    });
+  }
+
   function buildTabs(){
     var tabs=document.getElementById('tabs');tabs.innerHTML='';
     var vb=document.createElement('button');vb.className='tab';vb.dataset.tab='visual';vb.textContent='✏ Visual editor';
@@ -286,7 +328,7 @@ textarea{min-height:74px;resize:vertical}
       var b=document.createElement('button');b.className='tab';b.dataset.tab=k;b.textContent=TABS[k];
       b.addEventListener('click',function(){renderTab(k)});tabs.appendChild(b);
     });
-    [['logos','Sponsor logos'],['raw','Raw JSON']].forEach(function(x){
+    [['photos','Slider photos'],['logos','Sponsor logos'],['raw','Raw JSON']].forEach(function(x){
       var b=document.createElement('button');b.className='tab';b.dataset.tab=x[0];b.textContent=x[1];
       b.addEventListener('click',function(){renderTab(x[0])});tabs.appendChild(b);
     });
@@ -337,6 +379,23 @@ textarea{min-height:74px;resize:vertical}
   document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click()});
   document.getElementById('vpage').addEventListener('change',function(){
     document.getElementById('vframe').src='/'+this.value+'?edit=1';
+  });
+  document.getElementById('slideUpload').addEventListener('change',function(){
+    var files=Array.prototype.slice.call(this.files);
+    var input=this;
+    var slides=get(content,'home.hero.slides');
+    if(!Array.isArray(slides)){slides=[];set(content,'home.hero.slides',slides);}
+    var left=files.length;
+    files.forEach(function(f){
+      var rd=new FileReader();
+      rd.onload=function(){
+        var path='images/slides/'+slugifyFile(f.name);
+        pendingLogos[path]=rd.result.split(',')[1];
+        if(!slides.some(function(s){return s.img===path})) slides.push({img:path,alt:''});
+        if(--left===0){input.value='';renderSlides();status('unsaved changes');show(files.length+' photo(s) added — press Save & publish to put them live.');}
+      };
+      rd.readAsDataURL(f);
+    });
   });
   document.getElementById('saveBtn').addEventListener('click',save);
   document.getElementById('reloadBtn').addEventListener('click',function(){if(confirm('Discard unsaved changes and reload?'))load().then(function(){renderTab(activeTab||'global')})});

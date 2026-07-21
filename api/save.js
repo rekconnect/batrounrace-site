@@ -12,7 +12,8 @@ const API = 'https://api.github.com';
 // Only these paths can ever be written, even with a valid password.
 function pathAllowed(p) {
   if (p === 'content/site.json') return true;
-  return /^images\/sponsors\/[a-z0-9-]+\.png$/.test(p);
+  if (/^images\/sponsors\/[a-z0-9-]+\.png$/.test(p)) return true;
+  return /^images\/slides\/[a-z0-9._-]+\.(png|jpe?g|webp)$/.test(p);
 }
 
 function safeEqual(a, b) {

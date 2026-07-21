@@ -106,6 +106,19 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-photo{margin-top:64px;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(145deg,var(--sea),var(--ink-soft));min-height:300px;position:relative}
 .hero-photo img{width:100%;height:420px;object-fit:cover;position:relative;z-index:1}
 .hero-photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;color:var(--text-inv-dim);letter-spacing:.1em}
+/* hero slider */
+.hero-slider{position:relative;height:420px}
+.hero-slider .slide{position:absolute;inset:0;opacity:0;transition:opacity .6s ease-out;pointer-events:none}
+.hero-slider .slide.on{opacity:1;pointer-events:auto}
+.hero-slider .slide img{width:100%;height:420px;object-fit:cover}
+.sl-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:42px;height:42px;border-radius:50%;border:none;background:rgba(3,15,43,.55);color:#fff;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.sl-btn:hover{background:var(--coral)}
+.sl-btn.prev{left:14px}
+.sl-btn.next{right:14px}
+.sl-dots{position:absolute;bottom:14px;left:0;right:0;z-index:3;display:flex;gap:8px;justify-content:center}
+.sl-dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.sl-dots button.on{background:var(--coral);transform:scale(1.25)}
+@media (prefers-reduced-motion:reduce){.hero-slider .slide{transition:none}}
 .btn-wa{background:#25D366;color:#fff}
 .btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
@@ -232,8 +245,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
     </div>
     <div class="hero-photo">
-      <span class="ph">[ hero photo — images/hero-race-crowd.jpg ]</span>
-      <img src="images/hero-race-crowd.jpg" alt="Runners and spectators at the Batroun Race start" onerror="this.style.display='none'">
+      <div class="hero-slider" data-cms-list="slides:home.hero.slides">
+        <div class="slide on"><img src="images/hero-race-crowd.jpg" alt="Runners and spectators at the Batroun Race start" onerror="this.style.display='none'"></div>
+      </div>
     </div>
   </div>
 </section>
