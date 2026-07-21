@@ -50,6 +50,24 @@
           "href": "results-2025.html",
           "style": "ghost"
         }
+      ],
+      "slides": [
+        {
+          "img": "images/hero-race-crowd.jpg",
+          "alt": "Runners and spectators at the Batroun Race start"
+        },
+        {
+          "img": "images/start_line_2.jpg",
+          "alt": "Runners lined up at the Batroun Race start line"
+        },
+        {
+          "img": "images/race_day.jpg",
+          "alt": "Race day crowd on the Batroun coastal route"
+        },
+        {
+          "img": "images/finish_line.jpg",
+          "alt": "Runners crossing the Batroun Race finish line"
+        }
       ]
     },
     "why": {
