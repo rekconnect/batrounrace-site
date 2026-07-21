@@ -118,7 +118,11 @@
   panel.className = 'cms-linkpanel';
   panel.style.display = 'none';
   document.body.appendChild(panel);
-  panel.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+  panel.addEventListener('mousedown', function (e) {
+    e.stopPropagation();
+    // keep focus where it is for buttons; the input needs focus to type
+    if (e.target.tagName !== 'INPUT') e.preventDefault();
+  });
 
   function applyLink(v) {
     if (!linkTarget || !linkTarget.path) return;
@@ -195,7 +199,6 @@
     } catch (e) {}
   }
   function stopEdit(save) {
-    hideLinkBtn();
     if (!editing) return;
     var el = editing; editing = null;
     el.removeAttribute('contenteditable');
@@ -214,11 +217,16 @@
   document.addEventListener('mousedown', function (e) {
     if (e.target.closest('.cms-linkbar') || e.target.closest('.cms-linkpanel')) return;
     if (editing && !editing.contains(e.target)) stopEdit(true);
+    // clicking outside any link UI and outside a link closes the link UI
+    if (!e.target.closest('a')) hideLinkBtn();
   }, true);
   // leaving the iframe (e.g. to press Save & publish) commits too
   window.addEventListener('blur', function () { stopEdit(true); });
   document.addEventListener('keydown', function (e) {
-    if (editing && e.key === 'Escape') { e.preventDefault(); stopEdit(false); }
+    if (e.key === 'Escape') {
+      if (editing) { e.preventDefault(); stopEdit(false); }
+      hideLinkBtn();
+    }
   });
 
   // ---------- click routing ----------
