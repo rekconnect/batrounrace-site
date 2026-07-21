@@ -144,11 +144,16 @@
     if (a) {
       e.preventDefault();
       var href = a.getAttribute('href') || '';
-      // navigate between our own pages inside the editor; block external links
-      if (href && !/^(https?:|mailto:|tel:|#)/.test(href)) {
+      // only the header menu navigates inside the editor; content links
+      // never navigate — they offer link editing instead
+      if (a.closest('header') && href && !/^(https?:|mailto:|tel:|#)/.test(href)) {
         location.href = href.split('#')[0] + '?edit=1';
+      } else {
+        showLinkBtn(a);
       }
+      return;
     }
+    hideLinkBtn();
   }, true);
 
   // ---------- list controls ----------
