@@ -1,7 +1,9 @@
 // Batroun Race CMS hydration — loads content/site.json and fills the page.
 // Elements opt in via data-cms (text/HTML), data-cms-href (link), or
 // data-cms-list="type:path" (container re-rendered from a JSON array).
-// With ?edit=1 (inside the /admin visual editor) js/editor.js is loaded too.
+// Rendered list items carry indexed data-cms paths so the visual editor
+// can edit their text in place too.
+// With ?edit=1 (inside the /admin visual editor) js/editor.js is loaded.
 (function () {
   function get(obj, path) {
     return path.split('.').reduce(function (o, k) { return o == null ? o : o[k]; }, obj);
@@ -9,103 +11,114 @@
 
   var C; // site content
 
-  function mailtoHref(subject) {
-    return 'mailto:' + get(C, 'global.email') + (subject ? '?subject=' + encodeURIComponent(subject) : '');
-  }
-
   var renderers = {
-    meta: function (items) {
-      return items.map(function (m) {
-        return '<div><b>' + m.b + '</b>' + m.label + '</div>';
+    btns: function (items, p) {
+      return items.map(function (b, i) {
+        return '<a class="btn btn-' + (b.style || 'coral') + '" href="' + b.href + '" data-cms="' + p + '.' + i + '.label">' + b.label + '</a>';
       }).join('');
     },
-    cards: function (items) {
-      return items.map(function (c) {
-        return '<div class="card reveal in"><span class="tag">' + c.tag + '</span><h3>' + c.h3 + '</h3><p>' + c.p + '</p></div>';
+    meta: function (items, p) {
+      return items.map(function (m, i) {
+        return '<div><b data-cms="' + p + '.' + i + '.b">' + m.b + '</b><span data-cms="' + p + '.' + i + '.label">' + m.label + '</span></div>';
       }).join('');
     },
-    flow: function (items) {
-      return items.map(function (s) {
-        return '<div class="flow-step reveal in"><span class="t">' + s.t + '</span><h3>' + s.h3 + '</h3><p>' + s.p + '</p></div>';
+    cards: function (items, p) {
+      return items.map(function (c, i) {
+        return '<div class="card reveal in"><span class="tag" data-cms="' + p + '.' + i + '.tag">' + c.tag + '</span><h3 data-cms="' + p + '.' + i + '.h3">' + c.h3 + '</h3><p data-cms="' + p + '.' + i + '.p">' + c.p + '</p></div>';
       }).join('');
     },
-    rescards: function (items) {
-      return items.map(function (c) {
-        return '<a class="res-card reveal in" href="' + c.href + '"><div class="yr">' + c.yr + '</div><h3>' + c.h3 + '</h3><p>' + c.p + '</p><div class="go">' + c.go + '</div></a>';
+    flow: function (items, p) {
+      return items.map(function (s, i) {
+        return '<div class="flow-step reveal in"><span class="t" data-cms="' + p + '.' + i + '.t">' + s.t + '</span><h3 data-cms="' + p + '.' + i + '.h3">' + s.h3 + '</h3><p data-cms="' + p + '.' + i + '.p">' + s.p + '</p></div>';
       }).join('');
     },
-    chips: function (items) {
-      return items.map(function (t) {
-        return '<span class="spon-chip">' + t + '</span>';
+    rescards: function (items, p) {
+      return items.map(function (c, i) {
+        return '<a class="res-card reveal in" href="' + c.href + '"><div class="yr" data-cms="' + p + '.' + i + '.yr">' + c.yr + '</div><h3 data-cms="' + p + '.' + i + '.h3">' + c.h3 + '</h3><p data-cms="' + p + '.' + i + '.p">' + c.p + '</p><div class="go" data-cms="' + p + '.' + i + '.go">' + c.go + '</div></a>';
       }).join('');
     },
-    partnerchips: function (items) {
-      return items.map(function (c) {
+    chips: function (items, p) {
+      return items.map(function (t, i) {
+        return '<span class="spon-chip" data-cms="' + p + '.' + i + '">' + t + '</span>';
+      }).join('');
+    },
+    partnerchips: function (items, p) {
+      return items.map(function (c, i) {
+        var inner = '<span data-cms="' + p + '.' + i + '.label">' + c.label + '</span>';
         return c.href
-          ? '<a class="spon-chip" href="' + c.href + '">' + c.label + '</a>'
-          : '<span class="spon-chip">' + c.label + '</span>';
+          ? '<a class="spon-chip" href="' + c.href + '">' + inner + '</a>'
+          : '<span class="spon-chip">' + inner + '</span>';
       }).join('');
     },
-    tags: function (items) {
-      return items.map(function (t) { return '<span>' + t + '</span>'; }).join('');
+    tags: function (items, p) {
+      return items.map(function (t, i) { return '<span data-cms="' + p + '.' + i + '">' + t + '</span>'; }).join('');
     },
-    teaser: function (items) {
-      return items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+    teaser: function (items, p) {
+      return items.map(function (t, i) { return '<li data-cms="' + p + '.' + i + '">' + t + '</li>'; }).join('');
     },
-    chancards: function (items) {
-      return items.map(function (c) {
-        return '<a class="card reveal in" href="' + c.href + '"><span class="tag">' + c.tag + '</span><h3>' + c.h3 + '</h3><p class="val">' + c.val + '</p><div class="go">' + c.go + '</div></a>';
+    chancards: function (items, p) {
+      return items.map(function (c, i) {
+        return '<a class="card reveal in" href="' + c.href + '"><span class="tag" data-cms="' + p + '.' + i + '.tag">' + c.tag + '</span><h3 data-cms="' + p + '.' + i + '.h3">' + c.h3 + '</h3><p class="val" data-cms="' + p + '.' + i + '.val">' + c.val + '</p><div class="go" data-cms="' + p + '.' + i + '.go">' + c.go + '</div></a>';
       }).join('');
     },
-    faq: function (items) {
-      return items.map(function (f) {
-        return '<div class="faq-item reveal in"><h3>' + f.q + '</h3><p>' + f.a + '</p></div>';
+    faq: function (items, p) {
+      return items.map(function (f, i) {
+        return '<div class="faq-item reveal in"><h3 data-cms="' + p + '.' + i + '.q">' + f.q + '</h3><p data-cms="' + p + '.' + i + '.a">' + f.a + '</p></div>';
       }).join('');
     },
-    wall: function (items) {
-      return items.map(function (s) {
+    wall: function (items, p) {
+      return items.map(function (s, i) {
         var img = '<img src="images/sponsors/' + s.slug + '.png" alt="' + s.name + '" onerror="this.parentElement.classList.add(\'nologo\')">' +
-                  '<span class="name">' + s.name + '</span>';
+                  '<span class="name" data-cms="' + p + '.' + i + '.name">' + s.name + '</span>';
         return s.link
           ? '<a class="logo-tile" href="' + s.link + '">' + img + '</a>'
           : '<div class="logo-tile">' + img + '</div>';
       }).join('');
     },
-    pkg: function (items) {
-      return items.map(function (p) {
-        var badge = p.highlight && p.badge ? '<span class="pkg-badge">' + p.badge + '</span>' : '';
-        return '<div class="pkg reveal in' + (p.highlight ? ' hot' : '') + '">' + badge +
-          '<div class="name">' + p.name + '</div>' +
-          '<div class="price">' + p.price + '</div>' +
-          '<div class="for">' + p.tagline + '</div>' +
-          '<ul>' + p.features.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>' +
-          '<a class="pick" href="' + mailtoHref(p.mailto_subject) + '">' + p.cta + '</a></div>';
+    pkg: function (items, p) {
+      return items.map(function (pk, i) {
+        var badge = pk.highlight && pk.badge ? '<span class="pkg-badge" data-cms="' + p + '.' + i + '.badge">' + pk.badge + '</span>' : '';
+        return '<div class="pkg reveal in' + (pk.highlight ? ' hot' : '') + '">' + badge +
+          '<div class="name" data-cms="' + p + '.' + i + '.name">' + pk.name + '</div>' +
+          '<div class="price" data-cms="' + p + '.' + i + '.price">' + pk.price + '</div>' +
+          '<div class="for" data-cms="' + p + '.' + i + '.tagline">' + pk.tagline + '</div>' +
+          '<ul>' + pk.features.map(function (f, j) { return '<li data-cms="' + p + '.' + i + '.features.' + j + '">' + f + '</li>'; }).join('') + '</ul>' +
+          '<a class="pick" href="mailto:' + get(C, 'global.email') + '?subject=' + encodeURIComponent(pk.mailto_subject || '') + '" data-cms="' + p + '.' + i + '.cta">' + pk.cta + '</a></div>';
       }).join('');
     },
-    decide: function (items) {
-      return items.map(function (r) {
-        return '<div class="decide-row"><span class="goal">' + r.goal + '</span><span class="pkg-name">' + r.pkg + '</span></div>';
+    decide: function (items, p) {
+      return items.map(function (r, i) {
+        return '<div class="decide-row"><span class="goal" data-cms="' + p + '.' + i + '.goal">' + r.goal + '</span><span class="pkg-name" data-cms="' + p + '.' + i + '.pkg">' + r.pkg + '</span></div>';
       }).join('');
     },
-    podium: function (items) {
-      return items.map(function (c) {
+    podium: function (items, p) {
+      return items.map(function (c, i) {
         var img = c.img ? '<img src="' + c.img + '" alt="' + c.cat + ' podium winners, Batroun Race 2025" onerror="this.style.display=\'none\'">' : '';
-        var rows = c.rows.map(function (r) {
-          return '<li><span class="pos">' + r.pos + '</span><span class="nm">' + r.name + '</span><span class="meta">' + r.meta + '</span></li>';
+        var rows = c.rows.map(function (r, j) {
+          var rp = p + '.' + i + '.rows.' + j;
+          return '<li><span class="pos" data-cms="' + rp + '.pos">' + r.pos + '</span><span class="nm" data-cms="' + rp + '.name">' + r.name + '</span><span class="meta" data-cms="' + rp + '.meta">' + r.meta + '</span></li>';
         }).join('');
-        return '<div class="pod-card reveal in">' + img + '<div class="body"><div class="cat">' + c.cat + '</div><ol>' + rows + '</ol></div></div>';
+        return '<div class="pod-card reveal in">' + img + '<div class="body"><div class="cat" data-cms="' + p + '.' + i + '.cat">' + c.cat + '</div><ol>' + rows + '</ol></div></div>';
       }).join('');
     },
-    storycards: function (items) {
-      return items.map(function (c) {
+    storycards: function (items, p) {
+      return items.map(function (c, i) {
         return '<div class="story-card reveal in"><img src="' + c.img + '" alt="' + c.alt + '" onerror="this.style.display=\'none\'">' +
-          '<div class="body"><span class="tag">' + c.tag + '</span><h3>' + c.h3 + '</h3><p>' + c.p + '</p></div></div>';
+          '<div class="body"><span class="tag" data-cms="' + p + '.' + i + '.tag">' + c.tag + '</span><h3 data-cms="' + p + '.' + i + '.h3">' + c.h3 + '</h3><p data-cms="' + p + '.' + i + '.p">' + c.p + '</p></div></div>';
       }).join('');
     }
   };
 
   function apply(data) {
     C = data;
+    // lists first, so the indexed data-cms nodes they generate get skipped
+    // cleanly by the pass below (their values are already fresh)
+    document.querySelectorAll('[data-cms-list]').forEach(function (el) {
+      var spec = el.getAttribute('data-cms-list').split(':');
+      var fn = renderers[spec[0]];
+      var items = get(C, spec[1]);
+      if (fn && Array.isArray(items)) el.innerHTML = fn(items, spec[1]);
+    });
     document.querySelectorAll('[data-cms]').forEach(function (el) {
       var v = get(C, el.getAttribute('data-cms'));
       if (typeof v === 'string') el.innerHTML = v;
@@ -113,12 +126,6 @@
     document.querySelectorAll('[data-cms-href]').forEach(function (el) {
       var v = get(C, el.getAttribute('data-cms-href'));
       if (typeof v === 'string' && v) el.setAttribute('href', v);
-    });
-    document.querySelectorAll('[data-cms-list]').forEach(function (el) {
-      var spec = el.getAttribute('data-cms-list').split(':');
-      var fn = renderers[spec[0]];
-      var items = get(C, spec[1]);
-      if (fn && Array.isArray(items)) el.innerHTML = fn(items);
     });
   }
 

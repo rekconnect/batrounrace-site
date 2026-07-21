@@ -103,6 +103,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .btn-coral:hover{background:var(--coral-deep)}
 .btn-ghost{border:1px solid var(--line-light);color:var(--foam)}
 .btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
 
 /* ---------- sections ---------- */
@@ -226,9 +228,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>3,000+</b>Flyers</div>
       <div><b>1.5M</b>Digital reach</div>
     </div>
-    <div class="hero-ctas">
-      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request" data-cms="packages.hero.cta_primary">Request the deck</a>
-      <a class="btn btn-ghost" href="contact.html" data-cms="packages.hero.cta_secondary">Contact the team</a>
+    <div class="hero-ctas" data-cms-list="btns:packages.hero.ctas">
+      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request">Request the deck</a>
+      <a class="btn btn-ghost" href="contact.html">Contact the team</a>
     </div>
   </div>
 </section>
@@ -377,9 +379,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap">
     <span class="km" data-cms="packages.finish.kicker">Finish line · Let's talk</span>
     <h2 class="reveal" data-cms="packages.finish.h2">Ready to be seen?</h2>
-    <div class="finish-ctas reveal">
-      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request" data-cms="packages.finish.cta_primary">Request the deck</a>
-      <a class="btn btn-ghost" href="contact.html" data-cms="packages.finish.cta_secondary">Talk to the team</a>
+    <div class="finish-ctas reveal" data-cms-list="btns:packages.finish.ctas">
+      <a class="btn btn-coral" href="mailto:Batrounrace@gmail.com?subject=Sponsorship%20Deck%20Request">Request the deck</a>
+      <a class="btn btn-ghost" href="contact.html">Talk to the team</a>
     </div>
     <p class="note" data-cms="packages.finish.note">Batrounrace@gmail.com · Response within 24h</p>
   </div>

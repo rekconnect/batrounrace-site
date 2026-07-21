@@ -106,6 +106,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-photo{margin-top:64px;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(145deg,var(--sea),var(--ink-soft));min-height:300px;position:relative}
 .hero-photo img{width:100%;height:420px;object-fit:cover;position:relative;z-index:1}
 .hero-photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;color:var(--text-inv-dim);letter-spacing:.1em}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
 
 /* ---------- sections ---------- */
@@ -220,9 +222,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>July 2025</b>First edition</div>
       <div><b>10</b>Podium categories</div>
     </div>
-    <div class="hero-ctas">
-      <a class="btn btn-coral" href="#podium" data-cms="results2025.hero.cta_primary">Jump to podium</a>
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results" data-cms="results2025.hero.cta_secondary" data-cms-href="global.results2026_url">2026 full results</a>
+    <div class="hero-ctas" data-cms-list="btns:results2025.hero.ctas">
+      <a class="btn btn-coral" href="#podium">Jump to podium</a>
+      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 full results</a>
     </div>
     <div class="hero-photo">
       <span class="ph">[ photo — images/podium.jpg ]</span>
@@ -264,8 +266,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <span class="spon-chip">Footlab</span>
       <span class="spon-chip">+ brand partners</span>
     </div>
-    <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="sponsors.html" data-cms="results2025.partners.cta">Become a sponsor</a>
+    <div class="spon-cta reveal" data-cms-list="btns:results2025.partners.ctas">
+      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
     </div>
   </div>
 </section>

@@ -106,6 +106,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-photo{margin-top:64px;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(145deg,var(--sea),var(--ink-soft));min-height:300px;position:relative}
 .hero-photo img{width:100%;height:420px;object-fit:cover;position:relative;z-index:1}
 .hero-photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;color:var(--text-inv-dim);letter-spacing:.1em}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
 
 /* ---------- sections ---------- */
@@ -225,9 +227,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>500+</b>Runners, first edition</div>
       <div><b>2 editions</b>2025 · 2026</div>
     </div>
-    <div class="hero-ctas">
-      <a class="btn btn-coral" href="https://register.batrounrace.com/" data-cms="home.hero.cta_primary" data-cms-href="global.register_url">Register to run</a>
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results" data-cms="home.hero.cta_secondary" data-cms-href="global.results2026_url">2026 results</a>
+    <div class="hero-ctas" data-cms-list="btns:home.hero.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
+      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
     </div>
     <div class="hero-photo">
       <span class="ph">[ hero photo — images/hero-race-crowd.jpg ]</span>
@@ -323,9 +325,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <span class="spon-chip">Whish Money</span>
       <span class="spon-chip">+ partners</span>
     </div>
-    <div class="spon-cta reveal">
-      <a class="btn btn-dark" href="sponsors.html" data-cms="home.sponsors.cta_primary">Become a sponsor</a>
-      <a class="btn btn-line" href="contact.html" data-cms="home.sponsors.cta_secondary">Talk to the team</a>
+    <div class="spon-cta reveal" data-cms-list="btns:home.sponsors.ctas">
+      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
+      <a class="btn btn-line" href="contact.html">Talk to the team</a>
     </div>
   </div>
 </section>
