@@ -44,6 +44,11 @@
           "label": "2026 results",
           "href": "https://register.batrounrace.com/results",
           "style": "ghost"
+        },
+        {
+          "label": "2025 results",
+          "href": "https://register.batrounrace.com/results",
+          "style": "ghost"
         }
       ]
     },
