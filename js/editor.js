@@ -24,8 +24,16 @@
     '.cms-bar button:hover{background:#0668CD}' +
     '.cms-bar button.cms-del:hover{background:#c0392b}' +
     '.cms-hint{position:fixed;left:12px;bottom:12px;z-index:9999;background:#030F2B;color:#F4F7FC;font:12px monospace;padding:8px 14px;border-radius:999px;opacity:.9;pointer-events:none}' +
-    '.cms-linkbtn{position:absolute;z-index:9999;border:none;border-radius:6px;padding:4px 10px;font:12px monospace;cursor:pointer;background:#0668CD;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}' +
-    '.cms-linkbtn:hover{background:#030F2B}';
+    '.cms-linkbtn{border:none;border-radius:6px;padding:4px 10px;font:12px monospace;cursor:pointer;background:#0668CD;color:#fff;box-shadow:0 4px 12px rgba(0,0,0,.3)}' +
+    '.cms-linkbtn:hover{background:#030F2B}' +
+    '.cms-linkpanel{position:absolute;z-index:10000;background:#030F2B;color:#F4F7FC;border-radius:10px;padding:10px;box-shadow:0 12px 32px rgba(0,0,0,.4);font:12px monospace;width:230px}' +
+    '.cms-linkpanel .ttl{font-size:10px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;margin:6px 0 4px}' +
+    '.cms-linkpanel button{display:block;width:100%;text-align:left;border:none;background:none;color:#F4F7FC;font:inherit;padding:5px 8px;border-radius:6px;cursor:pointer}' +
+    '.cms-linkpanel button:hover{background:#0668CD}' +
+    '.cms-linkpanel button.cur{background:rgba(6,104,205,.45)}' +
+    '.cms-linkpanel input{width:100%;border:none;border-radius:6px;padding:6px 8px;font:inherit;margin-top:4px;box-sizing:border-box}' +
+    '.cms-linkpanel .apply{background:#F7A00A;color:#fff;text-align:center;margin-top:6px}' +
+    '.cms-linkpanel .apply:hover{background:#DE8E05}';
   document.head.appendChild(css);
 
   var hint = document.createElement('div');
@@ -86,17 +94,70 @@
     linkWrap.style.left = (r.left + window.scrollX) + 'px';
     linkWrap.style.top = (r.bottom + window.scrollY + 6) + 'px';
   }
-  function hideLinkBtn() { linkWrap.style.display = 'none'; linkTarget = null; }
+  function hideLinkBtn() {
+    linkWrap.style.display = 'none';
+    linkTarget = null;
+    var p = document.querySelector('.cms-linkpanel');
+    if (p) p.style.display = 'none';
+  }
   linkWrap.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
-  linkBtn.addEventListener('click', function (e) {
-    e.preventDefault(); e.stopPropagation();
+
+  // page picker panel for the Link chip
+  var PAGES = [
+    ['Homepage', 'index.html'], ['About', 'about.html'], ['Contact', 'contact.html'],
+    ['Sponsors', 'sponsors.html'], ['Packages & pricing', 'sponsor-packages.html'],
+    ['Results 2025', 'results-2025.html']
+  ];
+  var COMMON = [
+    ['Registration site', 'https://register.batrounrace.com/'],
+    ['2026 results', 'https://register.batrounrace.com/results'],
+    ['WhatsApp', 'https://wa.me/96181300625'],
+    ['Email', 'mailto:Batrounrace@gmail.com']
+  ];
+  var panel = document.createElement('div');
+  panel.className = 'cms-linkpanel';
+  panel.style.display = 'none';
+  document.body.appendChild(panel);
+  panel.addEventListener('mousedown', function (e) { e.stopPropagation(); });
+
+  function applyLink(v) {
     if (!linkTarget || !linkTarget.path) return;
-    var cur = get(C(), linkTarget.path) || '';
-    var v = prompt('Link URL:', cur);
-    if (v === null || v === cur) return;
     set(linkTarget.path, v);
     linkTarget.a.setAttribute('href', v);
     send({ type: 'cms-edit', path: linkTarget.path, value: v });
+    panel.style.display = 'none';
+  }
+  function openPanel() {
+    if (!linkTarget || !linkTarget.path) return;
+    var cur = get(C(), linkTarget.path) || '';
+    panel.innerHTML = '';
+    function group(title, items) {
+      var t = document.createElement('div'); t.className = 'ttl'; t.textContent = title; panel.appendChild(t);
+      items.forEach(function (it) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.textContent = it[0];
+        if (it[1] === cur) b.className = 'cur';
+        b.addEventListener('click', function (e) { e.stopPropagation(); applyLink(it[1]); });
+        panel.appendChild(b);
+      });
+    }
+    group('Pages', PAGES);
+    group('Common', COMMON);
+    var t = document.createElement('div'); t.className = 'ttl'; t.textContent = 'Custom URL'; panel.appendChild(t);
+    var inp = document.createElement('input'); inp.value = cur; panel.appendChild(inp);
+    var ok = document.createElement('button'); ok.type = 'button'; ok.className = 'apply'; ok.textContent = 'Set link';
+    ok.addEventListener('click', function (e) { e.stopPropagation(); applyLink(inp.value.trim()); });
+    inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') applyLink(inp.value.trim()); });
+    panel.appendChild(ok);
+    var r = linkWrap.getBoundingClientRect();
+    panel.style.display = 'block';
+    panel.style.left = (r.left + window.scrollX) + 'px';
+    panel.style.top = (r.bottom + window.scrollY + 4) + 'px';
+  }
+  linkBtn.addEventListener('click', function (e) {
+    e.preventDefault(); e.stopPropagation();
+    if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
+    openPanel();
   });
   openBtn.addEventListener('click', function (e) {
     e.preventDefault(); e.stopPropagation();
@@ -151,7 +212,7 @@
   });
   // clicking anywhere outside the edited element commits the edit
   document.addEventListener('mousedown', function (e) {
-    if (e.target.closest('.cms-linkbar')) return;
+    if (e.target.closest('.cms-linkbar') || e.target.closest('.cms-linkpanel')) return;
     if (editing && !editing.contains(e.target)) stopEdit(true);
   }, true);
   // leaving the iframe (e.g. to press Save & publish) commits too
@@ -162,7 +223,7 @@
 
   // ---------- click routing ----------
   document.addEventListener('click', function (e) {
-    if (e.target.closest('.cms-bar') || e.target.closest('.cms-linkbar')) return;
+    if (e.target.closest('.cms-bar') || e.target.closest('.cms-linkbar') || e.target.closest('.cms-linkpanel')) return;
     var ed = e.target.closest('[data-cms]');
     if (ed) { e.preventDefault(); e.stopPropagation(); startEdit(ed); return; }
     var a = e.target.closest('a');
