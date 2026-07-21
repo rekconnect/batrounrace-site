@@ -103,7 +103,9 @@
     },
     slides: function (items, p) {
       return items.map(function (s, i) {
-        return '<div class="slide' + (i === 0 ? ' on' : '') + '"><img src="' + s.img + '" alt="' + (s.alt || '') + '" onerror="this.style.display=\'none\'"></div>';
+        return '<div class="slide' + (i === 0 ? ' on' : '') + '">' +
+          '<img class="bg" src="' + s.img + '" alt="" aria-hidden="true" onerror="this.style.display=\'none\'">' +
+          '<img class="fg" src="' + s.img + '" alt="' + (s.alt || '') + '" onerror="this.style.display=\'none\'" onload="if(this.naturalWidth/this.naturalHeight>1.35)this.classList.add(\'wide\')"></div>';
       }).join('');
     },
     storycards: function (items, p) {
