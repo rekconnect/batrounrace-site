@@ -111,7 +111,7 @@
   }
   function rerender(container) {
     var spec = listSpec(container);
-    container.innerHTML = CMS.renderers[spec.type](get(C(), spec.path));
+    container.innerHTML = CMS.renderers[spec.type](get(C(), spec.path), spec.path);
     send({ type: 'cms-list', path: spec.path, value: get(C(), spec.path) });
   }
   var hideTimer = null;
