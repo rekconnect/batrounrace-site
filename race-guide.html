@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Batroun Race | Support, Registration &amp; Partnerships</title>
-<meta name="description" content="Contact the Batroun Race team for registration support, sponsorship inquiries, or general information about Lebanon's premier running event.">
+<title>Race Guide | Batroun Race — Distances, Route &amp; Race-Day Info</title>
+<meta name="description" content="Everything runners need for the Batroun Race: 5KM &amp; 10KM distances, coastal route, registration steps, kit pickup, and race-day answers.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Batroun Race">
-<meta property="og:title" content="Contact Batroun Race | Support, Registration &amp; Partnerships">
-<meta property="og:description" content="Contact the Batroun Race team for registration support, sponsorship inquiries, or general information about Lebanon's premier running event.">
-<meta property="og:url" content="https://batrounrace.com/contact">
+<meta property="og:title" content="Race Guide | Batroun Race — Distances, Route &amp; Race-Day Info">
+<meta property="og:description" content="Everything runners need for the Batroun Race: 5KM &amp; 10KM distances, coastal route, registration steps, kit pickup, and race-day answers.">
+<meta property="og:url" content="https://batrounrace.com/race-guide">
 <meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -129,6 +129,29 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .card h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:12px 0 10px}
 .card p{color:var(--text-dim);font-size:.95rem}
 
+/* route flow */
+.flow-sec{background:var(--ink);color:var(--foam)}
+.flow-sec h2{color:var(--foam)}
+.flow-sec .sec-head p{color:var(--text-inv-dim)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
+@media(max-width:860px){.flow{grid-template-columns:1fr}}
+.flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
+@media(min-width:861px){.flow-step{border-bottom:none;border-right:1px solid var(--line-light);padding:34px 26px}}
+.flow-step:last-child{border-right:none}
+.flow-step .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--coral);text-transform:uppercase}
+.flow-step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 8px}
+.flow-step p{color:var(--text-inv-dim);font-size:.9rem}
+
+/* accordion */
+.acc{max-width:760px}
+.acc details{border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:10px;overflow:hidden}
+.acc summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:var(--display);font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-family:var(--mono);color:var(--coral);font-size:1.2rem;flex:none}
+.acc details[open] summary::after{content:"–"}
+.acc .a{padding:0 22px 18px;color:var(--text-dim);font-size:.95rem}
+.acc .a a{color:var(--sea)}
+
 /* sponsors band (reused for map) */
 .spon-sec{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .spon-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
@@ -207,138 +230,55 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </header>
 
-<!-- KM 0 · CONTACT -->
+<!-- KM 0 · GUIDE -->
 <section class="hero" style="padding:0">
   <div class="wrap" style="padding-bottom:84px">
-    <span class="km" data-cms="contact.hero.kicker">KM 0 · Contact · Sponsorships · Volunteering</span>
-    <h1 data-cms="contact.hero.h1">Build <span class="accent">with us.</span></h1>
-    <p class="hero-sub" data-cms="contact.hero.sub">For sponsorships, volunteering, media, and general inquiries. Our team responds quickly — WhatsApp available.</p>
-    <div class="hero-tags" data-cms-list="tags:contact.hero.tags">
-      <span>Sponsorships</span>
-      <span>Volunteering</span>
-      <span>Media</span>
-      <span>General</span>
-    </div>
-    <div class="hero-ctas" data-cms-list="btns:contact.hero.ctas">
-      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1">Message us on WhatsApp</a>
-      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com">Email the team</a>
+    <span class="km" data-cms="guide.hero.kicker">KM 0 · Race guide</span>
+    <h1 data-cms="guide.hero.h1">Everything you <span class="accent">need.</span></h1>
+    <p class="hero-sub" data-cms="guide.hero.sub">Distances, route, registration, and race-day answers — all in one place.</p>
+    <div class="hero-ctas" data-cms-list="btns:guide.hero.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
     </div>
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · CHANNELS -->
+<!-- KM 1 · ROUTE -->
+<section class="flow-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km" data-cms="guide.route.kicker">KM 1 · The route</span>
+      <h2 data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
+      <p data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
+    </div>
+    <div class="flow" data-cms-list="flow:guide.route.kms"></div>
+    <div class="map-wrap reveal" style="margin-top:44px">
+      <iframe src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Batroun Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- KM 2 · FAQ -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="contact.channels.kicker">KM 1 · Direct channels</span>
-      <h2 data-cms="contact.channels.h2">Reach us anywhere.</h2>
-      <p data-cms="contact.channels.p">We reply within 24 hours — faster during race week.</p>
+      <span class="km" data-cms="guide.faq.kicker">KM 2 · Questions</span>
+      <h2 data-cms="guide.faq.h2">Quick answers.</h2>
+      <p data-cms="guide.faq.p">Tap a question to open it.</p>
     </div>
-    <div class="chan-cards" data-cms-list="chancards:contact.channels.cards">
-      <a class="card reveal" href="https://wa.me/message/IJ45O3ILIUGMF1">
-        <span class="tag">WhatsApp</span>
-        <h3>Fastest reply</h3>
-        <p class="val">Official WhatsApp chat</p>
-        <div class="go">Open WhatsApp →</div>
-      </a>
-      <a class="card reveal" href="mailto:Batrounrace@gmail.com">
-        <span class="tag">Email</span>
-        <h3>Anything in writing</h3>
-        <p class="val">Batrounrace@gmail.com</p>
-        <div class="go">Write to us →</div>
-      </a>
-      <a class="card reveal" href="tel:+96181300625">
-        <span class="tag">Phone</span>
-        <h3>Call the team</h3>
-        <p class="val">+961 81 300 625</p>
-        <div class="go">Call now →</div>
-      </a>
-      <a class="card reveal" href="https://www.instagram.com/batrounrace">
-        <span class="tag">Instagram</span>
-        <h3>Follow the race</h3>
-        <p class="val">@batrounrace</p>
-        <div class="go">See the latest →</div>
-      </a>
-    </div>
+    <div class="acc" data-cms-list="accordion:guide.faq.items"></div>
   </div>
 </section>
 
-<!-- KM 2 · WHAT YOU NEED -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="contact.who.kicker">KM 2 · What do you need?</span>
-      <h2 data-cms="contact.who.h2">Tell us who you are.</h2>
-    </div>
-    <div class="cards" data-cms-list="cards:contact.who.cards">
-      <div class="card reveal">
-        <span class="tag">General</span>
-        <h3>Talk to the team</h3>
-        <p>Professional support for event registration, travel, accommodation, and schedules.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Partnerships</span>
-        <h3>Sponsorship</h3>
-        <p>Route features, jersey placements, hospitality zones, creator reels, measurable reporting.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Volunteers</span>
-        <h3>Join the crew</h3>
-        <p>Course marshals, aid stations, media runners, hospitality. We train and brief everyone.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- KM 3 · FAQ -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="contact.faq.kicker">KM 3 · FAQ</span>
-      <h2 data-cms="contact.faq.h2">Quick answers.</h2>
-    </div>
-    <div class="faq" data-cms-list="faq:contact.faq.items">
-      <div class="faq-item reveal">
-        <h3>When will I get a reply?</h3>
-        <p>Within 24 hours. Sponsorship &amp; media requests are prioritized around race week.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3>How do I become a sponsor?</h3>
-        <p>Email us your goals &amp; budget. We'll propose tiered options — route features, jersey placement, on-site sampling, and digital exposure — with measurable reporting.</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3>Where is the race?</h3>
-        <p>Batroun, Lebanon. Start and route maps are shared by email and social.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MAP -->
-<section class="spon-sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="contact.venue.kicker">The venue</span>
-      <h2 data-cms="contact.venue.h2">Batroun, Lebanon.</h2>
-      <p data-cms="contact.venue.p">A coastal town an hour north of Beirut — old souks, sea walls, and the race route along the Mediterranean.</p>
-    </div>
-    <div class="map-wrap reveal">
-      <iframe src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" title="Map of Batroun, Lebanon" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
-<!-- FINISH · SAY HELLO -->
+<!-- FINISH · READY -->
 <section class="finish">
   <div class="wrap">
-    <span class="km" data-cms="contact.finish.kicker">Finish line · Say hello</span>
-    <h2 class="reveal" data-cms="contact.finish.h2">Our team responds quickly.</h2>
-    <div class="finish-ctas reveal" data-cms-list="btns:contact.finish.ctas">
-      <a class="btn btn-wa" href="https://wa.me/message/IJ45O3ILIUGMF1">Message us on WhatsApp</a>
-      <a class="btn btn-ghost" href="mailto:Batrounrace@gmail.com">Batrounrace@gmail.com</a>
+    <span class="km" data-cms="guide.finish.kicker">Finish line · Ready?</span>
+    <h2 class="reveal" data-cms="guide.finish.h2">See you at the start line.</h2>
+    <div class="finish-ctas reveal" data-cms-list="btns:guide.finish.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
     </div>
-    <p class="note" data-cms="contact.finish.note">We reply within 24h — faster during race week.</p>
+    <p class="note" data-cms="guide.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
   </div>
 </section>
 

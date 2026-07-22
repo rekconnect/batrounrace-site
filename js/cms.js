@@ -101,6 +101,11 @@
         return '<div class="pod-card reveal in">' + img + '<div class="body"><div class="cat" data-cms="' + p + '.' + i + '.cat">' + c.cat + '</div><ol>' + rows + '</ol></div></div>';
       }).join('');
     },
+    accordion: function (items, p) {
+      return items.map(function (f, i) {
+        return '<details class="reveal in"' + (i === 0 ? ' open' : '') + '><summary data-cms="' + p + '.' + i + '.q">' + f.q + '</summary><div class="a" data-cms="' + p + '.' + i + '.a">' + f.a + '</div></details>';
+      }).join('');
+    },
     slides: function (items, p) {
       return items.map(function (s, i) {
         return '<div class="slide' + (i === 0 ? ' on' : '') + '">' +
@@ -133,6 +138,10 @@
     document.querySelectorAll('[data-cms-href]').forEach(function (el) {
       var v = get(C, el.getAttribute('data-cms-href'));
       if (typeof v === 'string' && v) el.setAttribute('href', v);
+    });
+    document.querySelectorAll('[data-cms-src]').forEach(function (el) {
+      var v = get(C, el.getAttribute('data-cms-src'));
+      if (typeof v === 'string' && v && el.getAttribute('src') !== v) el.setAttribute('src', v);
     });
     initSliders();
     initCountdown();
