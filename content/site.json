@@ -1362,5 +1362,41 @@
       ],
       "note": "Registration, payment &amp; results at register.batrounrace.com"
     }
+  },
+  "gallery": {
+    "hero": {
+      "kicker": "KM 0 · Gallery",
+      "h1": "Race day <span class=\"accent\">moments.</span>",
+      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Photos are managed in the admin's Slider photos tab.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "Follow @batrounrace",
+          "href": "https://www.instagram.com/batrounrace",
+          "style": "ghost"
+        }
+      ]
+    },
+    "finish": {
+      "kicker": "Finish line · Be in the next photo",
+      "h2": "Your race, your story.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "See 2025 results",
+          "href": "results-2025.html",
+          "style": "ghost"
+        }
+      ],
+      "note": "Tag @batrounrace to be featured"
+    }
   }
 }

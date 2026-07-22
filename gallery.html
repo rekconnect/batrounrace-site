@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Gallery | Batroun Race — Race Day Moments</title>
+<meta name="description" content="Photos from the Batroun Race — the start line, the coastal route, podiums, and the town-wide celebration by the Mediterranean.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Batroun Race">
+<meta property="og:title" content="Photo Gallery | Batroun Race — Race Day Moments">
+<meta property="og:description" content="Photos from the Batroun Race — the start line, the coastal route, podiums, and the town-wide celebration by the Mediterranean.">
+<meta property="og:url" content="https://batrounrace.com/gallery">
+<meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ===== BRAND theme (Batroun Race logo colors) — default ===== */
+  --ink:#030F2B;            /* deep navy from logo background */
+  --ink-soft:#0A1E45;
+  --sea:#0668CD;            /* royal blue from the R */
+  --azure:#0491D8;          /* bright azure from the R */
+  --foam:#F4F7FC;
+  --white:#FFFFFF;
+  --coral:#F7A00A;          /* the sun — main accent */
+  --coral-deep:#DE8E05;
+  --line:rgba(3,15,43,.14);
+  --line-light:rgba(255,255,255,.16);
+  --text:#0E2247;
+  --text-dim:rgba(14,34,71,.66);
+  --text-inv:rgba(244,247,252,.88);
+  --text-inv-dim:rgba(244,247,252,.55);
+  --display:'Bricolage Grotesque',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --maxw:1180px;
+}
+/* ===== COASTAL theme (seafoam & petrol alternative) ===== */
+[data-theme="coastal"]{
+  --ink:#082A2E;
+  --ink-soft:#0F3A3F;
+  --sea:#17666B;
+  --azure:#17666B;
+  --foam:#F2F7F6;
+  --coral:#FF4D2E;
+  --coral-deep:#E03A1D;
+  --line:rgba(8,42,46,.14);
+  --text:#12393D;
+  --text-dim:rgba(18,57,61,.68);
+  --text-inv:rgba(242,247,246,.86);
+  --text-inv-dim:rgba(242,247,246,.55);
+}
+[data-theme]{transition:background .3s ease-out,color .3s ease-out}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{font-family:var(--body);color:var(--text);background:var(--foam);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo .dot{width:10px;height:10px;border-radius:50%;background:var(--coral);flex:none}
+.logo .mark{height:30px;width:auto;flex:none}
+.nav-links{display:flex;gap:28px;align-items:center;list-style:none}
+.nav-links a{text-decoration:none;font-size:.9rem;font-weight:500;color:var(--text-dim);transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--foam)!important;padding:9px 18px;border-radius:999px;font-weight:600}
+.nav-cta:hover{background:var(--sea)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
+@media(max-width:860px){
+  .nav-links{position:fixed;inset:64px 0 auto 0;background:var(--foam);flex-direction:column;padding:20px 24px 28px;gap:18px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .25s ease-out;align-items:flex-start}
+  .nav-links.open{transform:translateY(0)}
+  .menu-btn{display:block}
+}
+
+/* ---------- route line ---------- */
+.route{position:fixed;left:max(12px,calc((100vw - var(--maxw))/2 - 40px));top:0;bottom:0;width:2px;z-index:5;pointer-events:none}
+.route .track{position:absolute;inset:0;background:var(--line)}
+.route .fill{position:absolute;top:0;left:0;width:100%;height:0%;background:var(--coral);transition:height .1s linear}
+@media(max-width:1320px){.route{display:none}}
+.km{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
+.km::before{content:"";width:26px;height:2px;background:var(--coral)}
+
+/* ---------- hero ---------- */
+.hero{background:var(--ink);color:var(--foam);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:120px;background:linear-gradient(transparent,rgba(0,0,0,.25))}
+.hero .wrap{position:relative;z-index:2;padding-top:84px;padding-bottom:0}
+.hero .km{color:var(--foam);opacity:.85}
+.hero .km::before{background:var(--coral)}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(3rem,9.5vw,7.5rem);line-height:.95;letter-spacing:-.02em;text-transform:uppercase}
+.hero h1 .accent{color:var(--coral);background:linear-gradient(120deg,var(--azure),var(--sea));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+[data-theme="coastal"] .hero h1 .accent{background:none;-webkit-text-fill-color:var(--coral);color:var(--coral)}
+.theme-btn{background:none;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:inherit;font-size:.8rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:border-color .2s,color .2s}
+.theme-btn:hover{border-color:var(--sea);color:var(--ink)}
+.hero-sub{margin-top:22px;max-width:520px;font-size:1.05rem;color:var(--text-inv)}
+.hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim)}
+.hero-meta b{display:block;color:var(--foam);font-size:1.05rem;font-weight:500}
+.hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 26px;transition:transform .2s ease-out,background .2s,color .2s}
+.btn:active{transform:scale(.97)}
+.btn-coral{background:var(--coral);color:#fff}
+.btn-coral:hover{background:var(--coral-deep)}
+.btn-ghost{border:1px solid var(--line-light);color:var(--foam)}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-wa{background:#25D366;color:#fff}
+.btn-wa:hover{background:#1DA851}
+.startline{border-top:3px dashed var(--coral);opacity:.9}
+
+/* ---------- sections ---------- */
+section{padding:96px 0}
+.sec-head{max-width:640px;margin-bottom:48px}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1.05;letter-spacing:-.015em}
+.sec-head p{margin-top:16px;color:var(--text-dim);font-size:1.02rem}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.cards{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
+.card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
+.card h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:12px 0 10px}
+.card p{color:var(--text-dim);font-size:.95rem}
+
+/* route flow */
+.flow-sec{background:var(--ink);color:var(--foam)}
+.flow-sec h2{color:var(--foam)}
+.flow-sec .sec-head p{color:var(--text-inv-dim)}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
+@media(max-width:860px){.flow{grid-template-columns:1fr}}
+.flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
+@media(min-width:861px){.flow-step{border-bottom:none;border-right:1px solid var(--line-light);padding:34px 26px}}
+.flow-step:last-child{border-right:none}
+.flow-step .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--coral);text-transform:uppercase}
+.flow-step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 8px}
+.flow-step p{color:var(--text-inv-dim);font-size:.9rem}
+
+/* gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.gallery-grid{grid-template-columns:1fr}}
+.g-item{margin:0;border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line);cursor:zoom-in;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.g-item:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.12)}
+.g-item img{width:100%;height:260px;object-fit:cover;display:block}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,15,43,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px}
+.lightbox .lb-tools{display:flex;gap:12px}
+.lightbox button{border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;background:rgba(255,255,255,.15);color:#fff}
+.lightbox button:hover{background:var(--coral)}
+
+/* accordion */
+.acc{max-width:760px}
+.acc details{border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:10px;overflow:hidden}
+.acc summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:var(--display);font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-family:var(--mono);color:var(--coral);font-size:1.2rem;flex:none}
+.acc details[open] summary::after{content:"–"}
+.acc .a{padding:0 22px 18px;color:var(--text-dim);font-size:.95rem}
+.acc .a a{color:var(--sea)}
+
+/* sponsors band (reused for map) */
+.spon-sec{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spon-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
+.btn-dark{background:var(--ink);color:var(--foam)}
+.btn-dark:hover{background:var(--sea)}
+.btn-line{border:1px solid var(--line);color:var(--ink)}
+.btn-line:hover{border-color:var(--ink)}
+
+/* finish */
+.finish{background:var(--ink);color:var(--foam);text-align:center;position:relative;overflow:hidden}
+.finish .km{justify-content:center;width:100%}
+.finish p.note{margin-top:26px;font-family:var(--mono);font-size:.78rem;color:var(--text-inv-dim)}
+
+/* footer */
+footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(--line-light);padding:44px 0}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:.88rem}
+.foot a{color:var(--text-inv);text-decoration:none}
+.foot a:hover{color:var(--coral)}
+.foot .cols{display:flex;gap:40px;flex-wrap:wrap}
+.foot ul{list-style:none;display:grid;gap:8px}
+
+/* ---------- contact page ---------- */
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero-tags span{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;border:1px solid var(--line-light);border-radius:999px;padding:8px 16px;color:var(--text-inv)}
+.chan-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:720px){.chan-cards{grid-template-columns:1fr}}
+a.card{display:block;text-decoration:none}
+.card .val{font-family:var(--mono);font-size:.95rem;color:var(--text);margin-top:4px;word-break:break-word}
+.card .go{margin-top:14px;color:var(--coral);font-weight:600;font-size:.9rem}
+.faq{border-top:1px solid var(--line);max-width:760px}
+.faq-item{padding:28px 0;border-bottom:1px solid var(--line)}
+.faq-item h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:8px}
+.faq-item p{color:var(--text-dim);font-size:.95rem}
+.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--foam)}
+.map-wrap iframe{width:100%;height:400px;border:0;display:block}
+.finish-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
+
+.mobile-register{display:none}
+@media(max-width:720px){
+  .mobile-register{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--coral);color:#fff;font-weight:700;justify-content:center;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  footer{padding-bottom:92px}
+}
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease-out,transform .5s ease-out}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .card,.btn{transition:none}
+}
+:focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
+</style>
+<script>
+// apply saved theme before first paint to avoid a flash of the wrong theme
+try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
+</script>
+<script src="js/cms.js" defer></script>
+</head>
+<body>
+
+<div class="route" aria-hidden="true"><div class="track"></div><div class="fill" id="routeFill"></div></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="index.html"><img class="mark" src="images/logo-mark.png" alt="">BATROUN RACE</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="about.html">About</a></li>
+      <li><a href="race-guide.html">Race Guide</a></li>
+      <li><a href="results-2025.html">Results</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="sponsors.html">Sponsors</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><button class="theme-btn" id="themeBtn" aria-label="Switch color theme">Theme: Coastal</button></li>
+      <li><a class="nav-cta" href="https://register.batrounrace.com/">Register</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- KM 0 · GUIDE -->
+<section class="hero" style="padding:0">
+  <div class="wrap" style="padding-bottom:84px">
+    <span class="km" data-cms="gallery.hero.kicker">KM 0 · Gallery</span>
+    <h1 data-cms="gallery.hero.h1">Race day <span class="accent">moments.</span></h1>
+    <p class="hero-sub" data-cms="gallery.hero.sub">Distances, route, registration, and race-day answers — all in one place.</p>
+    <div class="hero-ctas" data-cms-list="btns:gallery.hero.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
+    </div>
+  </div>
+</section>
+<div class="startline" aria-hidden="true"></div>
+
+<!-- KM 1 · PHOTOS -->
+<section style="padding-top:72px">
+  <div class="wrap">
+    <div class="gallery-grid" data-cms-list="gallery:home.hero.slides"></div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
+  <img alt="">
+  <div class="lb-tools">
+    <button type="button" data-lb="prev" aria-label="Previous photo">‹</button>
+    <button type="button" data-lb="close" aria-label="Close">✕</button>
+    <button type="button" data-lb="next" aria-label="Next photo">›</button>
+  </div>
+</div>
+
+<!-- FINISH · READY -->
+<section class="finish">
+  <div class="wrap">
+    <span class="km" data-cms="gallery.finish.kicker">Finish line · Ready?</span>
+    <h2 class="reveal" data-cms="gallery.finish.h2">See you at the start line.</h2>
+    <div class="finish-ctas reveal" data-cms-list="btns:gallery.finish.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
+    </div>
+    <p class="note" data-cms="gallery.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
+  </div>
+</section>
+
+<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.register_url">Register now →</a>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="logo" href="index.html" style="color:var(--foam)"><img class="mark" src="images/logo-mark.png" alt="">BATROUN RACE</a>
+      <p style="margin-top:12px;max-width:280px" data-cms="global.footer_tagline">Lebanon's coastal running event. Health, tourism, and community — by the sea.</p>
+    </div>
+    <div class="cols">
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="race-guide.html">Race Guide</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="results-2025.html">Results 2025</a></li>
+        <li><a href="https://register.batrounrace.com/results">Results 2026</a></li>
+      </ul>
+      <ul>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="https://www.instagram.com/batrounrace">Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
+</footer>
+
+<script>
+// route line fill on scroll
+const fill=document.getElementById('routeFill');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function onScroll(){
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  if(fill)fill.style.height=p+'%';
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>{if(reduce){el.classList.add('in')}else{io.observe(el)}});
+
+// theme toggle (brand = default; choice persisted in localStorage)
+const tBtn=document.getElementById('themeBtn');
+function themeLabel(){tBtn.textContent=document.documentElement.getAttribute('data-theme')==='coastal'?'Theme: Brand':'Theme: Coastal'}
+themeLabel();
+tBtn.addEventListener('click',()=>{
+  const root=document.documentElement;
+  const coastal=root.getAttribute('data-theme')==='coastal';
+  if(coastal){root.removeAttribute('data-theme')}
+  else{root.setAttribute('data-theme','coastal')}
+  try{localStorage.setItem('br-theme',coastal?'brand':'coastal')}catch(e){}
+  themeLabel();
+});
+
+// mobile menu
+const btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+btn.addEventListener('click',()=>{const o=links.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>
