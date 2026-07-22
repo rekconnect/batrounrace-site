@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Batroun Race — Lebanon's Coastal Running Event</title>
 <meta name="description" content="Join the Batroun Race — Lebanon's premier coastal running event promoting health, tourism, and community. 5KM & 10KM along the Batroun seaside.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Batroun Race">
+<meta property="og:title" content="Batroun Race — Lebanon's Coastal Running Event">
+<meta property="og:description" content="Join the Batroun Race — Lebanon's premier coastal running event promoting health, tourism, and community. 5KM & 10KM along the Batroun seaside.">
+<meta property="og:url" content="https://batrounrace.com/">
+<meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -97,6 +104,14 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim)}
 .hero-meta b{display:block;color:var(--foam);font-size:1.05rem;font-weight:500}
 .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;align-items:center}
+/* next-race countdown */
+.race-next{margin-top:34px;border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;font-family:var(--mono)}
+.race-next .rn-what{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+.race-next .rn-when{font-size:.85rem;color:var(--text-inv)}
+.race-next .rn-boxes{display:flex;gap:14px}
+.race-next .rn-box{text-align:center;min-width:44px}
+.race-next .rn-box b{display:block;font-size:1.5rem;font-weight:500;color:var(--foam)}
+.race-next .rn-box span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-inv-dim)}
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 26px;transition:transform .2s ease-out,background .2s,color .2s}
 .btn:active{transform:scale(.97)}
 .btn-coral{background:var(--coral);color:#fff}
@@ -196,6 +211,11 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot .cols{display:flex;gap:40px;flex-wrap:wrap}
 .foot ul{list-style:none;display:grid;gap:8px}
 
+.mobile-register{display:none}
+@media(max-width:720px){
+  .mobile-register{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--coral);color:#fff;font-weight:700;justify-content:center;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  footer{padding-bottom:92px}
+}
 /* reveal on scroll */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease-out,transform .5s ease-out}
 .reveal.in{opacity:1;transform:none}
@@ -242,6 +262,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>500+</b>Runners, first edition</div>
       <div><b>2 editions</b>2025 · 2026</div>
     </div>
+    <div class="race-next" id="raceNext" hidden></div>
     <div class="hero-ctas" data-cms-list="btns:home.hero.ctas">
       <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
       <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
@@ -362,6 +383,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <p class="note" data-cms="home.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
   </div>
 </section>
+
+<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.register_url">Register now →</a>
 
 <footer>
   <div class="wrap foot">

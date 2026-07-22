@@ -9,7 +9,15 @@
     "register_url": "https://register.batrounrace.com/",
     "results2026_url": "https://register.batrounrace.com/results",
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
-    "copyright": "© 2026 Batroun Race · Batroun, Lebanon"
+    "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
+    "race": {
+      "edition_label": "Next edition",
+      "date": "",
+      "time": "",
+      "location": "Batroun, Lebanon",
+      "tba_text": "Date announcement coming soon — follow @batrounrace"
+    },
+    "register_bar_label": "Register now →"
   },
   "home": {
     "hero": {

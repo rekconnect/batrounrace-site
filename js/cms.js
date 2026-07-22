@@ -135,6 +135,58 @@
       if (typeof v === 'string' && v) el.setAttribute('href', v);
     });
     initSliders();
+    initCountdown();
+  }
+
+  function initCountdown() {
+    var el = document.getElementById('raceNext');
+    if (!el) return;
+    var race = get(C, 'global.race') || {};
+    if (el._timer) clearInterval(el._timer);
+    var when = race.date ? new Date(race.date + (race.time ? 'T' + race.time : 'T07:00')) : null;
+    if (!when || isNaN(when) || when < new Date()) {
+      if (race.tba_text) {
+        el.hidden = false;
+        el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
+          '<span class="rn-when">' + race.tba_text + '</span>';
+      } else {
+        el.hidden = true;
+      }
+      return;
+    }
+    var dateStr = when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    el.hidden = false;
+    el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
+      '<span class="rn-when">' + dateStr + (race.time ? ' · ' + race.time : '') + (race.location ? ' · ' + race.location : '') + '</span>' +
+      '<div class="rn-boxes">' + ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
+        return '<div class="rn-box"><b>–</b><span>' + l + '</span></div>';
+      }).join('') + '</div>';
+    var boxes = el.querySelectorAll('.rn-box b');
+    function tick() {
+      var ms = when - new Date();
+      if (ms < 0) { clearInterval(el._timer); return; }
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+      [d, h, m, s].forEach(function (v, i) { boxes[i].textContent = v; });
+    }
+    tick();
+    el._timer = setInterval(tick, 1000);
+    // structured data for Google (event rich results)
+    var old = document.getElementById('event-jsonld');
+    if (old) old.remove();
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'event-jsonld';
+    s.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SportsEvent',
+      name: 'Batroun Race',
+      sport: 'Running',
+      startDate: race.date + (race.time ? 'T' + race.time : ''),
+      location: { '@type': 'Place', name: race.location || 'Batroun, Lebanon', address: 'Batroun, Lebanon' },
+      url: 'https://batrounrace.com/',
+      organizer: { '@type': 'Organization', name: 'Batroun Race', url: 'https://batrounrace.com/' }
+    });
+    document.head.appendChild(s);
   }
 
   function initSliders() {
