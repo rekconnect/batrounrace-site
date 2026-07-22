@@ -42,3 +42,18 @@ After adding both variables, **redeploy** once (Vercel → Deployments →
   first); the JSON is the live source of truth once the page loads.
 - Don't commit real secrets to this file or anywhere in the repo — the two
   values above live only in Vercel.
+
+## AI chat assistant (optional)
+
+The floating chat bubble on the site is powered by Claude and answers only
+from the website's own content (it reads `content/site.json`, so it stays
+current with admin edits). To enable it:
+
+1. Create an API key at https://console.anthropic.com → API Keys.
+2. Vercel → batrounrace-site → Settings → Environment Variables →
+   add `ANTHROPIC_API_KEY` with that key → redeploy once.
+
+Until the key is set, the chat replies with a WhatsApp handoff message.
+Cost: it uses the small Haiku model with short answers — typical traffic
+costs are a few dollars per month at most; you can see usage in the
+Anthropic console and cap spending there.
