@@ -101,6 +101,16 @@
         return '<div class="pod-card reveal in">' + img + '<div class="body"><div class="cat" data-cms="' + p + '.' + i + '.cat">' + c.cat + '</div><ol>' + rows + '</ol></div></div>';
       }).join('');
     },
+    gallery: function (items, p) {
+      return items.map(function (s, i) {
+        return '<figure class="g-item reveal in"><img src="' + s.img + '" alt="' + (s.alt || 'Batroun Race photo') + '" loading="lazy" onerror="this.parentElement.remove()"></figure>';
+      }).join('');
+    },
+    accordion: function (items, p) {
+      return items.map(function (f, i) {
+        return '<details class="reveal in"' + (i === 0 ? ' open' : '') + '><summary data-cms="' + p + '.' + i + '.q">' + f.q + '</summary><div class="a" data-cms="' + p + '.' + i + '.a">' + f.a + '</div></details>';
+      }).join('');
+    },
     slides: function (items, p) {
       return items.map(function (s, i) {
         return '<div class="slide' + (i === 0 ? ' on' : '') + '">' +
@@ -134,7 +144,103 @@
       var v = get(C, el.getAttribute('data-cms-href'));
       if (typeof v === 'string' && v) el.setAttribute('href', v);
     });
+    document.querySelectorAll('[data-cms-src]').forEach(function (el) {
+      var v = get(C, el.getAttribute('data-cms-src'));
+      if (typeof v === 'string' && v && el.getAttribute('src') !== v) el.setAttribute('src', v);
+    });
     initSliders();
+    initCountdown();
+    initLightbox();
+  }
+
+  function initLightbox() {
+    var lb = document.getElementById('lightbox');
+    var grid = document.querySelector('.gallery-grid');
+    if (!lb || !grid || /[?&]edit=1/.test(location.search)) return;
+    var img = lb.querySelector('img');
+    var cur = 0;
+    function imgs() { return Array.prototype.map.call(grid.querySelectorAll('.g-item img'), function (im) { return im.getAttribute('src'); }); }
+    function open(i) {
+      var list = imgs();
+      cur = (i + list.length) % list.length;
+      img.src = list[cur];
+      lb.classList.add('open');
+    }
+    if (!grid._lbBound) {
+      grid._lbBound = true;
+      grid.addEventListener('click', function (e) {
+        var item = e.target.closest('.g-item');
+        if (!item) return;
+        open(Array.prototype.indexOf.call(grid.children, item));
+      });
+      lb.addEventListener('click', function (e) {
+        var b = e.target.closest('button');
+        if (b) {
+          var a = b.getAttribute('data-lb');
+          if (a === 'close') lb.classList.remove('open');
+          else open(cur + (a === 'next' ? 1 : -1));
+        } else if (e.target === lb) {
+          lb.classList.remove('open');
+        }
+      });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') lb.classList.remove('open');
+        if (e.key === 'ArrowRight') open(cur + 1);
+        if (e.key === 'ArrowLeft') open(cur - 1);
+      });
+    }
+  }
+
+  function initCountdown() {
+    var el = document.getElementById('raceNext');
+    if (!el) return;
+    var race = get(C, 'global.race') || {};
+    if (el._timer) clearInterval(el._timer);
+    var when = race.date ? new Date(race.date + (race.time ? 'T' + race.time : 'T07:00')) : null;
+    if (!when || isNaN(when) || when < new Date()) {
+      if (race.tba_text) {
+        el.hidden = false;
+        el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
+          '<span class="rn-when">' + race.tba_text + '</span>';
+      } else {
+        el.hidden = true;
+      }
+      return;
+    }
+    var dateStr = when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    el.hidden = false;
+    el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
+      '<span class="rn-when">' + dateStr + (race.time ? ' · ' + race.time : '') + (race.location ? ' · ' + race.location : '') + '</span>' +
+      '<div class="rn-boxes">' + ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
+        return '<div class="rn-box"><b>–</b><span>' + l + '</span></div>';
+      }).join('') + '</div>';
+    var boxes = el.querySelectorAll('.rn-box b');
+    function tick() {
+      var ms = when - new Date();
+      if (ms < 0) { clearInterval(el._timer); return; }
+      var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
+      [d, h, m, s].forEach(function (v, i) { boxes[i].textContent = v; });
+    }
+    tick();
+    el._timer = setInterval(tick, 1000);
+    // structured data for Google (event rich results)
+    var old = document.getElementById('event-jsonld');
+    if (old) old.remove();
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'event-jsonld';
+    s.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'SportsEvent',
+      name: 'Batroun Race',
+      sport: 'Running',
+      startDate: race.date + (race.time ? 'T' + race.time : ''),
+      location: { '@type': 'Place', name: race.location || 'Batroun, Lebanon', address: 'Batroun, Lebanon' },
+      url: 'https://batrounrace.com/',
+      organizer: { '@type': 'Organization', name: 'Batroun Race', url: 'https://batrounrace.com/' }
+    });
+    document.head.appendChild(s);
   }
 
   function initSliders() {

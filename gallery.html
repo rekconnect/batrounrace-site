@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Batroun Race | Lebanon's Leading Sports &amp; Adventure Event</title>
-<meta name="description" content="Learn about Batroun Race — Lebanon's premier sports and adventure event uniting athletes, nature lovers, and the community through passion, fitness, and fun.">
+<title>Photo Gallery | Batroun Race — Race Day Moments</title>
+<meta name="description" content="Photos from the Batroun Race — the start line, the coastal route, podiums, and the town-wide celebration by the Mediterranean.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Batroun Race">
-<meta property="og:title" content="About Batroun Race | Lebanon's Leading Sports &amp; Adventure Event">
-<meta property="og:description" content="Learn about Batroun Race — Lebanon's premier sports and adventure event uniting athletes, nature lovers, and the community through passion, fitness, and fun.">
-<meta property="og:url" content="https://batrounrace.com/about">
+<meta property="og:title" content="Photo Gallery | Batroun Race — Race Day Moments">
+<meta property="og:description" content="Photos from the Batroun Race — the start line, the coastal route, podiums, and the town-wide celebration by the Mediterranean.">
+<meta property="og:url" content="https://batrounrace.com/gallery">
 <meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -110,9 +110,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .btn-coral:hover{background:var(--coral-deep)}
 .btn-ghost{border:1px solid var(--line-light);color:var(--foam)}
 .btn-ghost:hover{background:rgba(255,255,255,.08)}
-.hero-photo{margin-top:64px;border-radius:16px 16px 0 0;overflow:hidden;background:linear-gradient(145deg,var(--sea),var(--ink-soft));min-height:300px;position:relative}
-.hero-photo img{width:100%;height:420px;object-fit:cover;position:relative;z-index:1}
-.hero-photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.8rem;color:var(--text-inv-dim);letter-spacing:.1em}
 .btn-wa{background:#25D366;color:#fff}
 .btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
@@ -123,7 +120,7 @@ section{padding:96px 0}
 h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1.05;letter-spacing:-.015em}
 .sec-head p{margin-top:16px;color:var(--text-dim);font-size:1.02rem}
 
-/* about cards */
+/* cards */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:860px){.cards{grid-template-columns:1fr}}
 .card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;transition:transform .2s ease-out,box-shadow .2s ease-out}
@@ -131,10 +128,8 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
 .card h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:12px 0 10px}
 .card p{color:var(--text-dim);font-size:.95rem}
-.more-link{display:inline-flex;align-items:center;gap:8px;margin-top:36px;font-weight:600;text-decoration:none;color:var(--sea)}
-.more-link:hover{color:var(--coral)}
 
-/* race day flow */
+/* route flow */
 .flow-sec{background:var(--ink);color:var(--foam)}
 .flow-sec h2{color:var(--foam)}
 .flow-sec .sec-head p{color:var(--text-inv-dim)}
@@ -147,27 +142,41 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 8px}
 .flow-step p{color:var(--text-inv-dim);font-size:.9rem}
 
-/* sponsors */
+/* gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.gallery-grid{grid-template-columns:1fr}}
+.g-item{margin:0;border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line);cursor:zoom-in;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.g-item:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.12)}
+.g-item img{width:100%;height:260px;object-fit:cover;display:block}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,15,43,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px}
+.lightbox .lb-tools{display:flex;gap:12px}
+.lightbox button{border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;background:rgba(255,255,255,.15);color:#fff}
+.lightbox button:hover{background:var(--coral)}
+
+/* accordion */
+.acc{max-width:760px}
+.acc details{border:1px solid var(--line);border-radius:12px;background:var(--white);margin-bottom:10px;overflow:hidden}
+.acc summary{cursor:pointer;list-style:none;padding:18px 22px;font-family:var(--display);font-weight:600;font-size:1.05rem;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary::after{content:"+";font-family:var(--mono);color:var(--coral);font-size:1.2rem;flex:none}
+.acc details[open] summary::after{content:"–"}
+.acc .a{padding:0 22px 18px;color:var(--text-dim);font-size:.95rem}
+.acc .a a{color:var(--sea)}
+
+/* sponsors band (reused for map) */
 .spon-sec{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.spon-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
-.spon-chip{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;border:1px solid var(--line);border-radius:999px;padding:10px 20px;color:var(--text-dim)}
 .spon-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
 .btn-dark{background:var(--ink);color:var(--foam)}
 .btn-dark:hover{background:var(--sea)}
 .btn-line{border:1px solid var(--line);color:var(--ink)}
 .btn-line:hover{border-color:var(--ink)}
 
-/* finish / bib */
+/* finish */
 .finish{background:var(--ink);color:var(--foam);text-align:center;position:relative;overflow:hidden}
 .finish .km{justify-content:center;width:100%}
-.bib{margin:38px auto 0;max-width:420px;background:var(--foam);color:var(--ink);border-radius:18px;padding:34px 30px 30px;position:relative;text-decoration:none;display:block;transform:rotate(-1.5deg);transition:transform .25s ease-out;box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.bib:hover{transform:rotate(0deg) scale(1.02)}
-.bib::before,.bib::after{content:"";position:absolute;top:16px;width:14px;height:14px;border-radius:50%;background:var(--ink)}
-.bib::before{left:22px}
-.bib::after{right:22px}
-.bib .small{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sea)}
-.bib .num{font-family:var(--display);font-weight:800;font-size:4.6rem;line-height:1;letter-spacing:-.02em;margin:10px 0 6px}
-.bib .cta-line{background:var(--coral);color:#fff;border-radius:999px;padding:12px;font-weight:600;margin-top:16px}
 .finish p.note{margin-top:26px;font-family:var(--mono);font-size:.78rem;color:var(--text-inv-dim)}
 
 /* footer */
@@ -178,22 +187,21 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot .cols{display:flex;gap:40px;flex-wrap:wrap}
 .foot ul{list-style:none;display:grid;gap:8px}
 
-/* ---------- about page ---------- */
-.story-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media(max-width:860px){.story-cards{grid-template-columns:1fr}}
-.story-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:transform .2s ease-out,box-shadow .2s ease-out}
-.story-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
-.story-card img{width:100%;height:180px;object-fit:cover}
-.story-card .body{padding:26px}
-.story-card .tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sea)}
-.story-card h3{font-family:var(--display);font-weight:600;font-size:1.25rem;margin:12px 0 10px}
-.story-card p{color:var(--text-dim);font-size:.95rem}
-.cards.two{grid-template-columns:repeat(2,1fr)}
-@media(max-width:860px){.cards.two{grid-template-columns:1fr}}
-.card ul{margin-top:12px;padding-left:18px;color:var(--text-dim);font-size:.95rem;display:grid;gap:6px}
-.vision-note{margin-top:36px;padding:26px 30px;border-left:3px solid var(--coral);background:var(--white);border-radius:0 16px 16px 0;color:var(--text-dim);max-width:720px}
-.vision-note b{color:var(--text)}
-.teaser-list{margin-top:8px;padding-left:18px;color:var(--text-dim);display:grid;gap:8px}
+/* ---------- contact page ---------- */
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.hero-tags span{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;border:1px solid var(--line-light);border-radius:999px;padding:8px 16px;color:var(--text-inv)}
+.chan-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:720px){.chan-cards{grid-template-columns:1fr}}
+a.card{display:block;text-decoration:none}
+.card .val{font-family:var(--mono);font-size:.95rem;color:var(--text);margin-top:4px;word-break:break-word}
+.card .go{margin-top:14px;color:var(--coral);font-weight:600;font-size:.9rem}
+.faq{border-top:1px solid var(--line);max-width:760px}
+.faq-item{padding:28px 0;border-bottom:1px solid var(--line)}
+.faq-item h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:8px}
+.faq-item p{color:var(--text-dim);font-size:.95rem}
+.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--foam)}
+.map-wrap iframe{width:100%;height:400px;border:0;display:block}
+.finish-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
 
 .mobile-register{display:none}
 @media(max-width:720px){
@@ -205,7 +213,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .card,.res-card,.bib,.btn,.story-card{transition:none}
+  .card,.btn{transition:none}
 }
 :focus-visible{outline:2px solid var(--coral);outline-offset:3px;border-radius:4px}
 </style>
@@ -237,180 +245,44 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </header>
 
-<!-- KM 0 · WHO WE ARE -->
+<!-- KM 0 · GUIDE -->
 <section class="hero" style="padding:0">
-  <div class="wrap">
-    <span class="km" data-cms="about.hero.kicker">KM 0 · About</span>
-    <h1 data-cms="about.hero.h1">Who we <span class="accent">are.</span></h1>
-    <p class="hero-sub" data-cms="about.hero.sub">Created by people who love Batroun and its community — athletes, engineers, and marketing specialists building a meaningful, high-quality running event. Rooted in Batroun, open to all of Lebanon, and growing stronger every year.</p>
-    <div class="hero-meta" data-cms-list="meta:about.hero.meta">
-      <div><b>500+</b>Runners (2025)</div>
-      <div><b>1.5M+</b>Exposure</div>
-      <div><b>5K · 10K</b>Two distances</div>
-    </div>
-    <div class="hero-ctas" data-cms-list="btns:about.hero.ctas">
+  <div class="wrap" style="padding-bottom:84px">
+    <span class="km" data-cms="gallery.hero.kicker">KM 0 · Gallery</span>
+    <h1 data-cms="gallery.hero.h1">Race day <span class="accent">moments.</span></h1>
+    <p class="hero-sub" data-cms="gallery.hero.sub">Distances, route, registration, and race-day answers — all in one place.</p>
+    <div class="hero-ctas" data-cms-list="btns:gallery.hero.ctas">
       <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
-      <a class="btn btn-ghost" href="contact.html">Talk to the team</a>
-    </div>
-    <div class="hero-photo">
-      <span class="ph">[ photo — images/start_line_2.jpg ]</span>
-      <img src="images/start_line_2.jpg" alt="Runners lined up at the Batroun Race start line" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · MISSION -->
-<section>
+<!-- KM 1 · PHOTOS -->
+<section style="padding-top:72px">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="about.mission.kicker">KM 1 · Mission &amp; vision</span>
-      <h2 data-cms="about.mission.h2">Why we run this race.</h2>
-    </div>
-    <div class="cards" data-cms-list="cards:about.mission.cards">
-      <div class="card reveal">
-        <span class="tag">Mission</span>
-        <h3>A healthier community</h3>
-        <p>Build a healthier, more connected community through running and public celebration.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Vision</span>
-        <h3>A coastal reference</h3>
-        <p>Make Batroun a reference for coastal sport tourism and positive youth energy.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Promise</span>
-        <h3>Quality, every edition</h3>
-        <p>Safe routes, great organization, unforgettable vibes.</p>
-      </div>
-    </div>
+    <div class="gallery-grid" data-cms-list="gallery:home.hero.slides"></div>
   </div>
 </section>
 
-<!-- KM 2 · THE STORY -->
-<section style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="about.story.kicker">KM 2 · The story</span>
-      <h2 data-cms="about.story.h2">Built by belief.</h2>
-      <p data-cms="about.story.p">A team of athletes, engineers, and marketing minds creating a meaningful running experience — rooted in Batroun and open to all of Lebanon.</p>
-    </div>
-    <div class="story-cards" data-cms-list="storycards:about.story.cards">
-      <div class="story-card reveal">
-        <img src="images/run_for_a_cause.jpg" alt="Runners at the Run for a Cause 2025 special edition" onerror="this.style.display='none'">
-        <div class="body">
-          <span class="tag">Special edition</span>
-          <h3>Run for a Cause 2025</h3>
-          <p>A special edition supporting charity, community programs, rehabilitation, and unity — where sport becomes a message of humanity.</p>
-        </div>
-      </div>
-      <div class="story-card reveal">
-        <img src="images/race_day.jpg" alt="Race day crowd on the Batroun coastal route" onerror="this.style.display='none'">
-        <div class="body">
-          <span class="tag">Our message</span>
-          <h3>Sport is humanity in motion</h3>
-          <p>Through running, we share unity, respect, and purpose — because sport is more than movement, it is a message.</p>
-        </div>
-      </div>
-      <div class="story-card reveal">
-        <img src="images/finish_line.jpg" alt="Runners crossing the Batroun Race finish line" onerror="this.style.display='none'">
-        <div class="body">
-          <span class="tag">Our vision</span>
-          <h3>From Batroun to Lebanon</h3>
-          <p>Rooted locally, driven nationally. A race that carries the spirit of Batroun and connects communities across the country.</p>
-        </div>
-      </div>
-    </div>
-    <div class="vision-note reveal" data-cms="about.story.note">
-      <b>More than a race — our purpose.</b> We are not chasing titles or records. We are building something we believe in — growing, learning, and improving with every edition.
-    </div>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
+  <img alt="">
+  <div class="lb-tools">
+    <button type="button" data-lb="prev" aria-label="Previous photo">‹</button>
+    <button type="button" data-lb="close" aria-label="Close">✕</button>
+    <button type="button" data-lb="next" aria-label="Next photo">›</button>
   </div>
-</section>
+</div>
 
-<!-- KM 3 · COMMUNITY -->
-<section class="flow-sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="about.community.kicker">KM 3 · The community</span>
-      <h2 data-cms="about.community.h2">Who is part of it.</h2>
-      <p data-cms="about.community.p">A shared experience that brings together runners, families, volunteers, and local supporters — built by professional athletes, engineers, and creatives who believe in sport as a way to connect people.</p>
-    </div>
-    <div class="flow" data-cms-list="flow:about.community.steps">
-      <div class="flow-step reveal"><span class="t">Runners</span><h3>All levels, all ages</h3><p>Beginners, casual joggers, and athletes — teenagers to seniors, locals from Batroun and participants from across Lebanon. Running for fitness, fun, personal challenge, and community spirit.</p></div>
-      <div class="flow-step reveal"><span class="t">Volunteers</span><h3>The backbone</h3><p>Local youth, sports clubs, and community members — registration &amp; bib distribution, water stations, route safety, crowd support.</p></div>
-      <div class="flow-step reveal"><span class="t">Businesses</span><h3>Local partners</h3><p>Cafés, restaurants, gyms, sports brands, beach resorts, and touristic spots collaborate — turning race day into a town-wide celebration.</p></div>
-      <div class="flow-step reveal"><span class="t">The town</span><h3>Race day = festival</h3><p>Streets filled with runners instead of cars, music along the route, families and social moments after the race — then swimming, food, and a full day by the sea.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- KM 4 · VALUES -->
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="about.values.kicker">KM 4 · Values</span>
-      <h2 data-cms="about.values.h2">What we stand for.</h2>
-    </div>
-    <div class="cards two" data-cms-list="cards:about.values.cards">
-      <div class="card reveal">
-        <span class="tag">Health &amp; wellness</span>
-        <h3>An active lifestyle</h3>
-        <p>Encouraging running as an accessible sport for everyone — from first-time joggers to seasoned athletes.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Love for Batroun</span>
-        <h3>The coast on show</h3>
-        <p>Highlighting the seaside, old souks, and coastal roads — promoting Batroun as a sports and tourism destination.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Unity &amp; positivity</span>
-        <h3>Together beyond differences</h3>
-        <p>Runners cheer for strangers, families wait at the finish line, and the town celebrates together.</p>
-      </div>
-      <div class="card reveal">
-        <span class="tag">Safety &amp; responsibility</span>
-        <h3>A respectful experience</h3>
-        <p>Clear route guidance and support points, volunteer coordination and crowd flow, clean streets and responsible celebration.</p>
-      </div>
-    </div>
-    <div class="vision-note reveal" data-cms="about.values.note">
-      <b>Why the community matters.</b> It builds positive youth role models, encourages tourism through sports, creates safe and healthy public events, and strengthens Batroun's image as a lively, active city. Long-term: grow participation while keeping quality and safety, support more community collaborations, and make Batroun a must-visit sport weekend destination.
-    </div>
-  </div>
-</section>
-
-<!-- SPONSORS TEASER -->
-<section class="spon-sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="about.teaser.kicker">Partners</span>
-      <h2 data-cms="about.teaser.h2">Brands gain real visibility + real trust.</h2>
-      <p data-cms="about.teaser.p">Your brand is seen on race day, in content, and across community moments — not just a one-time logo.</p>
-    </div>
-    <ul class="teaser-list reveal" data-cms-list="teaser:about.teaser.items">
-      <li>On-site visibility: finish zone, route, and community moments</li>
-      <li>Digital exposure: photos, reels, stories, and post-event content</li>
-      <li>Trust: your brand becomes part of a positive city experience</li>
-    </ul>
-    <div class="spon-cta reveal" data-cms-list="btns:about.teaser.ctas">
-      <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
-      <a class="btn btn-line" href="sponsors.html">View sponsors page</a>
-    </div>
-  </div>
-</section>
-
-<!-- FINISH · JOIN -->
+<!-- FINISH · READY -->
 <section class="finish">
   <div class="wrap">
-    <span class="km" data-cms="about.finish.kicker">Finish line · Join the movement</span>
-    <h2 class="reveal" data-cms="about.finish.h2">Want to join the movement?</h2>
-    <a class="bib reveal" href="https://register.batrounrace.com/" data-cms-href="global.register_url">
-      <span class="small" data-cms="about.finish.bib_top">Batroun Race · Official entry</span>
-      <div class="num" data-cms="about.finish.bib_num">RUN</div>
-      <span class="small" data-cms="about.finish.bib_bottom">5KM · 10KM · All levels</span>
-      <div class="cta-line" data-cms="about.finish.bib_cta">Register now →</div>
-    </a>
-    <p class="note" data-cms="about.finish.note">Volunteering, partnerships &amp; sponsorships → <a href="contact.html" style="color:var(--text-inv)">contact the team</a></p>
+    <span class="km" data-cms="gallery.finish.kicker">Finish line · Ready?</span>
+    <h2 class="reveal" data-cms="gallery.finish.h2">See you at the start line.</h2>
+    <div class="finish-ctas reveal" data-cms-list="btns:gallery.finish.ctas">
+      <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
+    </div>
+    <p class="note" data-cms="gallery.finish.note">Registration, payment &amp; results at register.batrounrace.com</p>
   </div>
 </section>
 

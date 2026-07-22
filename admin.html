@@ -90,6 +90,8 @@ textarea{min-height:74px;resize:vertical}
         <select id="vpage">
           <option value="index.html">Homepage</option>
           <option value="about.html">About</option>
+          <option value="race-guide.html">Race Guide</option>
+          <option value="gallery.html">Gallery</option>
           <option value="contact.html">Contact</option>
           <option value="sponsors.html">Sponsors</option>
           <option value="sponsor-packages.html">Packages</option>
@@ -141,8 +143,11 @@ textarea{min-height:74px;resize:vertical}
     copyright:'Copyright line',organizers_note:'Organizers note',past_kicker:'Past-partners label',
     past_note:'Past-partners note (HTML allowed)',whatsapp_label:'WhatsApp button text',result_note:'Result note (HTML allowed)',
     bib_top:'Bib top line',bib_num:'Bib big word',bib_bottom:'Bib bottom line',bib_cta:'Bib button',
-    tags:'Tags',meta_list:'Stats',ctas:'Buttons',style:'Style: coral / ghost / dark / line / wa (green)'};
-  var TABS={global:'Contact & links',home:'Homepage',about:'About',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
+    tags:'Tags',meta_list:'Stats',ctas:'Buttons',style:'Style: coral / ghost / dark / line / wa (green)',
+    race:'Next race (countdown)',date:'Race date (YYYY-MM-DD, empty = not announced)',time:'Start time (HH:MM, 24h)',
+    location:'Location',tba_text:'Text shown while no date is set',edition_label:'Countdown label',
+    register_bar_label:'Mobile register button text',map_url:'Map embed URL',kms:'Route highlights',route:'Route section'};
+  var TABS={global:'Contact & links',home:'Homepage',about:'About',guide:'Race guide',gallery:'Gallery',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
   var vframeLoaded=false;
 
   function lbl(k){return LABELS[k]||k.replace(/_/g,' ').replace(/^./,function(c){return c.toUpperCase()});}

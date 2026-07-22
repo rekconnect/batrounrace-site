@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Batroun Race | Support, Registration &amp; Partnerships</title>
 <meta name="description" content="Contact the Batroun Race team for registration support, sponsorship inquiries, or general information about Lebanon's premier running event.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Batroun Race">
+<meta property="og:title" content="Contact Batroun Race | Support, Registration &amp; Partnerships">
+<meta property="og:description" content="Contact the Batroun Race team for registration support, sponsorship inquiries, or general information about Lebanon's premier running event.">
+<meta property="og:url" content="https://batrounrace.com/contact">
+<meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -159,6 +166,11 @@ a.card{display:block;text-decoration:none}
 .map-wrap iframe{width:100%;height:400px;border:0;display:block}
 .finish-ctas{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center}
 
+.mobile-register{display:none}
+@media(max-width:720px){
+  .mobile-register{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--coral);color:#fff;font-weight:700;justify-content:center;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  footer{padding-bottom:92px}
+}
 /* reveal on scroll */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease-out,transform .5s ease-out}
 .reveal.in{opacity:1;transform:none}
@@ -173,6 +185,7 @@ a.card{display:block;text-decoration:none}
 try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.setAttribute('data-theme','coastal')}catch(e){}
 </script>
 <script src="js/cms.js" defer></script>
+<script src="js/chat.js" defer></script>
 </head>
 <body>
 
@@ -184,7 +197,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About</a></li>
+      <li><a href="race-guide.html">Race Guide</a></li>
       <li><a href="results-2025.html">Results</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
       <li><a href="sponsors.html">Sponsors</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><button class="theme-btn" id="themeBtn" aria-label="Switch color theme">Theme: Coastal</button></li>
@@ -328,6 +343,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 
+<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.register_url">Register now →</a>
+
 <footer>
   <div class="wrap foot">
     <div>
@@ -337,6 +354,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="cols">
       <ul>
         <li><a href="about.html">About</a></li>
+        <li><a href="race-guide.html">Race Guide</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="results-2025.html">Results 2025</a></li>
         <li><a href="https://register.batrounrace.com/results">Results 2026</a></li>
       </ul>

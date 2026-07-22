@@ -9,7 +9,15 @@
     "register_url": "https://register.batrounrace.com/",
     "results2026_url": "https://register.batrounrace.com/results",
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
-    "copyright": "© 2026 Batroun Race · Batroun, Lebanon"
+    "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
+    "race": {
+      "edition_label": "Next edition",
+      "date": "",
+      "time": "",
+      "location": "Batroun, Lebanon",
+      "tba_text": "Date announcement coming soon — follow @batrounrace"
+    },
+    "register_bar_label": "Register now →"
   },
   "home": {
     "hero": {
@@ -1250,6 +1258,145 @@
       "bib_bottom": "5KM · 10KM · All levels",
       "bib_cta": "Register now →",
       "note": "Registration, payment &amp; results at register.batrounrace.com"
+    }
+  },
+  "guide": {
+    "hero": {
+      "kicker": "KM 0 · Race guide",
+      "h1": "Everything you <span class=\"accent\">need.</span>",
+      "sub": "Distances, route, registration, and race-day answers — all in one place. Can't find something? WhatsApp us and a human replies fast.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "Ask on WhatsApp",
+          "href": "https://wa.me/message/IJ45O3ILIUGMF1",
+          "style": "wa"
+        }
+      ]
+    },
+    "route": {
+      "kicker": "KM 1 · The route",
+      "h2": "Sea on one side, Batroun stone on the other.",
+      "p": "5KM and 10KM along the Batroun coast — seaside roads, the old souks, and a Mediterranean finish.",
+      "map_url": "https://www.google.com/maps?q=Batroun,+Lebanon&output=embed",
+      "kms": [
+        {
+          "t": "Start",
+          "h3": "Seaside start",
+          "p": "Bibs on, music up, the whole town at the line."
+        },
+        {
+          "t": "Route",
+          "h3": "Coastal push",
+          "p": "Sea on one side, Batroun stone on the other."
+        },
+        {
+          "t": "Support",
+          "h3": "Cheering points",
+          "p": "Volunteers, water stations, and crowds that carry you."
+        },
+        {
+          "t": "Finish",
+          "h3": "Mediterranean finish",
+          "p": "Podiums, food, swimming, and a full day by the sea."
+        }
+      ]
+    },
+    "faq": {
+      "kicker": "KM 2 · Questions",
+      "h2": "Quick answers.",
+      "p": "Tap a question to open it.",
+      "items": [
+        {
+          "q": "What distances can I run?",
+          "a": "Two distances: 5KM and 10KM, both along the Batroun coast. All levels are welcome — beginners, casual joggers, and elite athletes."
+        },
+        {
+          "q": "How do I register?",
+          "a": "Registration and payment are online at <a href=\"https://register.batrounrace.com/\">register.batrounrace.com</a>. Your spot is confirmed once payment completes."
+        },
+        {
+          "q": "When is the next race?",
+          "a": "The next race date is announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a> — check the countdown on the homepage."
+        },
+        {
+          "q": "Where does the race start?",
+          "a": "In Batroun, on the coastal road — about an hour north of Beirut. The exact start point and maps are shared with registered runners before race day."
+        },
+        {
+          "q": "Where do I get my bib and race kit?",
+          "a": "Kit pickup details (place and times) are sent to registered runners before race day. Questions? Message us on WhatsApp and we'll sort you out."
+        },
+        {
+          "q": "Is there parking and bag drop?",
+          "a": "Race-day logistics — parking, bag drop, and facilities — are shared with registered runners before the race. WhatsApp us if you need help planning your arrival."
+        },
+        {
+          "q": "Where can I see results?",
+          "a": "Full 2026 results with live timing are at <a href=\"https://register.batrounrace.com/results\">register.batrounrace.com/results</a>. The 2025 first-edition podium is on our <a href=\"results-2025.html\">Results 2025</a> page."
+        },
+        {
+          "q": "How can I volunteer?",
+          "a": "We'd love the help — course marshals, aid stations, media, hospitality. Message us on <a href=\"https://wa.me/message/IJ45O3ILIUGMF1\">WhatsApp</a> or email <a href=\"mailto:Batrounrace@gmail.com\">Batrounrace@gmail.com</a>."
+        }
+      ]
+    },
+    "finish": {
+      "kicker": "Finish line · Ready?",
+      "h2": "See you at the start line.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "Message us on WhatsApp",
+          "href": "https://wa.me/message/IJ45O3ILIUGMF1",
+          "style": "wa"
+        }
+      ],
+      "note": "Registration, payment &amp; results at register.batrounrace.com"
+    }
+  },
+  "gallery": {
+    "hero": {
+      "kicker": "KM 0 · Gallery",
+      "h1": "Race day <span class=\"accent\">moments.</span>",
+      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Photos are managed in the admin's Slider photos tab.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "Follow @batrounrace",
+          "href": "https://www.instagram.com/batrounrace",
+          "style": "ghost"
+        }
+      ]
+    },
+    "finish": {
+      "kicker": "Finish line · Be in the next photo",
+      "h2": "Your race, your story.",
+      "ctas": [
+        {
+          "label": "Register to run",
+          "href": "https://register.batrounrace.com/",
+          "style": "coral"
+        },
+        {
+          "label": "See 2025 results",
+          "href": "results-2025.html",
+          "style": "ghost"
+        }
+      ],
+      "note": "Tag @batrounrace to be featured"
     }
   }
 }

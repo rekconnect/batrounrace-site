@@ -104,7 +104,8 @@
 
   // page picker panel for the Link chip
   var PAGES = [
-    ['Homepage', 'index.html'], ['About', 'about.html'], ['Contact', 'contact.html'],
+    ['Homepage', 'index.html'], ['About', 'about.html'], ['Race Guide', 'race-guide.html'],
+    ['Gallery', 'gallery.html'], ['Contact', 'contact.html'],
     ['Sponsors', 'sponsors.html'], ['Packages & pricing', 'sponsor-packages.html'],
     ['Results 2025', 'results-2025.html']
   ];
