@@ -6,6 +6,11 @@
 const MODEL = 'claude-haiku-4-5-20251001';
 
 module.exports = async (req, res) => {
+  if (req.method === 'GET') {
+    // diagnostics: visit /api/chat in a browser to check configuration
+    res.status(200).json({ ok: true, configured: !!process.env.ANTHROPIC_API_KEY });
+    return;
+  }
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -43,7 +48,8 @@ module.exports = async (req, res) => {
       'RULES:\n' +
       '- Answer ONLY from the SITE CONTENT below. If the answer is not there, say you are not sure and ' +
       'point the visitor to WhatsApp (https://wa.me/message/IJ45O3ILIUGMF1) or email Batrounrace@gmail.com. Never invent dates, prices, or race details.\n' +
-      '- Registration and payment always happen at https://register.batrounrace.com/ — send runners there to sign up.\n' +
+      '- Registration and payment happen at https://register.batrounrace.com/ when registration is open. ' +
+      'If the site content indicates registration has not opened yet, tell visitors how to get notified instead (WhatsApp or Instagram @batrounrace) and do not promise dates.\n' +
       '- Reply in the same language the visitor writes (English, Arabic, or French).\n' +
       '- Keep answers short and warm — 1 to 3 sentences unless more is truly needed. Include a relevant link when useful.\n' +
       '- Stay on topic: the race, registration, route, results, sponsorship, volunteering, and Batroun. ' +
