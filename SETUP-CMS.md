@@ -43,17 +43,19 @@ After adding both variables, **redeploy** once (Vercel → Deployments →
 - Don't commit real secrets to this file or anywhere in the repo — the two
   values above live only in Vercel.
 
-## AI chat assistant (optional)
+## Chat assistant
 
-The floating chat bubble on the site is powered by Claude and answers only
-from the website's own content (it reads `content/site.json`, so it stays
-current with admin edits). To enable it:
+The floating chat bubble works in two modes, detected automatically:
 
-1. Create an API key at https://console.anthropic.com → API Keys.
-2. Vercel → batrounrace-site → Settings → Environment Variables →
-   add `ANTHROPIC_API_KEY` with that key → redeploy once.
+**FAQ mode (free, the default).** Visitors get tap-to-answer question chips
+and simple keyword matching. Answers come from the Race Guide FAQ — edit
+those questions/answers in /admin (Race guide tab) and the bot updates
+instantly. Anything it can't match hands off to WhatsApp.
 
-Until the key is set, the chat replies with a WhatsApp handoff message.
-Cost: it uses the small Haiku model with short answers — typical traffic
-costs are a few dollars per month at most; you can see usage in the
-Anthropic console and cap spending there.
+**AI mode (optional, paid).** Add an `ANTHROPIC_API_KEY` environment
+variable in Vercel (key from https://console.anthropic.com, then redeploy)
+and the same bubble upgrades itself to a Claude-powered assistant that
+answers free-form questions in English/Arabic/French from the whole site's
+content. Roughly a cent per question on the Haiku model; a spending cap can
+be set in the Anthropic console. Remove the variable to fall back to free
+FAQ mode.
