@@ -17,7 +17,9 @@
       "location": "Batroun, Lebanon",
       "tba_text": "Date announcement coming soon — follow @batrounrace"
     },
-    "register_bar_label": "Register now →"
+    "register_bar_label": "🔔 Get notified — registration soon",
+    "nav_cta_label": "Get notified",
+    "nav_cta_url": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83"
   },
   "home": {
     "hero": {
@@ -44,8 +46,8 @@
       ],
       "ctas": [
         {
-          "label": "Loading",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
@@ -220,11 +222,11 @@
     "finish": {
       "kicker": "Finish line · Your turn",
       "h2": "The coast is waiting.",
-      "bib_top": "Batroun Race · Official entry",
-      "bib_num": "RUN",
+      "bib_top": "Batroun Race · Next edition",
+      "bib_num": "SOON",
       "bib_bottom": "5KM · 10KM · All levels",
-      "bib_cta": "Register now →",
-      "note": "Registration, payment &amp; results at register.batrounrace.com"
+      "bib_cta": "Get notified →",
+      "note": "Registration opens soon — get notified on WhatsApp or follow @batrounrace"
     }
   },
   "about": {
@@ -248,8 +250,8 @@
       ],
       "ctas": [
         {
-          "label": "Register to run",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
@@ -388,11 +390,11 @@
     "finish": {
       "kicker": "Finish line · Join the movement",
       "h2": "Want to join the movement?",
-      "bib_top": "Batroun Race · Official entry",
-      "bib_num": "RUN",
+      "bib_top": "Batroun Race · Next edition",
+      "bib_num": "SOON",
       "bib_bottom": "5KM · 10KM · All levels",
-      "bib_cta": "Register now →",
-      "note": "Volunteering, partnerships &amp; sponsorships → <a href=\"contact.html\" style=\"color:var(--text-inv)\">contact the team</a>"
+      "bib_cta": "Get notified →",
+      "note": "Registration opens soon — get notified on WhatsApp or follow @batrounrace"
     }
   },
   "contact": {
@@ -1253,11 +1255,11 @@
     "finish": {
       "kicker": "Finish line · Your name here",
       "h2": "Next podium could be yours.",
-      "bib_top": "Batroun Race · Official entry",
-      "bib_num": "RUN",
+      "bib_top": "Batroun Race · Next edition",
+      "bib_num": "SOON",
       "bib_bottom": "5KM · 10KM · All levels",
-      "bib_cta": "Register now →",
-      "note": "Registration, payment &amp; results at register.batrounrace.com"
+      "bib_cta": "Get notified →",
+      "note": "Registration opens soon — get notified on WhatsApp or follow @batrounrace"
     }
   },
   "guide": {
@@ -1267,8 +1269,8 @@
       "sub": "Distances, route, registration, and race-day answers — all in one place. Can't find something? WhatsApp us and a human replies fast.",
       "ctas": [
         {
-          "label": "Register to run",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
@@ -1317,7 +1319,7 @@
         },
         {
           "q": "How do I register?",
-          "a": "Registration and payment are online at <a href=\"https://register.batrounrace.com/\">register.batrounrace.com</a>. Your spot is confirmed once payment completes."
+          "a": "Registration for the next edition hasn't opened yet. When it does, it will be online at <a href=\"https://register.batrounrace.com/\">register.batrounrace.com</a>. Want a heads-up? <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> or follow <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>."
         },
         {
           "q": "When is the next race?",
@@ -1350,8 +1352,8 @@
       "h2": "See you at the start line.",
       "ctas": [
         {
-          "label": "Register to run",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
@@ -1370,8 +1372,8 @@
       "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Photos are managed in the admin's Slider photos tab.",
       "ctas": [
         {
-          "label": "Register to run",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
@@ -1386,8 +1388,8 @@
       "h2": "Your race, your story.",
       "ctas": [
         {
-          "label": "Register to run",
-          "href": "https://register.batrounrace.com/",
+          "label": "🔔 Get notified — registration soon",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
           "style": "coral"
         },
         {
