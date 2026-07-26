@@ -180,6 +180,20 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .res-card p{color:var(--text-dim);font-size:.92rem}
 .res-card .go{margin-top:18px;color:var(--coral);font-weight:600;font-size:.9rem}
 
+/* races / events */
+.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.ev-grid{grid-template-columns:1fr}}
+.ev-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.ev-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
+.ev-card.hot{border:2px solid var(--coral)}
+.ev-badge{align-self:flex-start;font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:4px 12px;background:var(--foam);border:1px solid var(--line);color:var(--text-dim)}
+.ev-card.hot .ev-badge{background:var(--coral);color:#fff;border-color:var(--coral)}
+.ev-card h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:14px 0 6px}
+.ev-meta{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--sea);margin-bottom:10px}
+.ev-card p{color:var(--text-dim);font-size:.95rem}
+.ev-card .go{margin-top:auto;padding-top:16px;color:var(--coral);font-weight:600;font-size:.9rem;text-decoration:none}
+.ev-card .go:hover{color:var(--coral-deep)}
+
 /* sponsors */
 .spon-sec{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .spon-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px}
@@ -325,27 +339,15 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 
-<!-- KM 4 · RESULTS -->
+<!-- KM 4 · OUR RACES -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="home.results.kicker">KM 4 · Results</span>
-      <h2 data-cms="home.results.h2">Two editions in the books.</h2>
+      <span class="km" data-cms="home.races.kicker">KM 4 · Our races</span>
+      <h2 data-cms="home.races.h2">One community, many races.</h2>
+      <p data-cms="home.races.p">Every race has its own town, its own route, and the same spirit.</p>
     </div>
-    <div class="res-grid" data-cms-list="rescards:home.results.cards">
-      <a class="res-card reveal" href="https://register.batrounrace.com/results">
-        <div class="yr">2026</div>
-        <h3>Second edition — full results</h3>
-        <p>Live timing and complete results for every runner and category.</p>
-        <div class="go">View 2026 results →</div>
-      </a>
-      <a class="res-card reveal" href="results-2025.html">
-        <div class="yr">2025</div>
-        <h3>First edition — podium winners</h3>
-        <p>Where it all started: 500+ runners, July 2025. Official podium by category.</p>
-        <div class="go">View 2025 podium →</div>
-      </a>
-    </div>
+    <div class="ev-grid" data-cms-list="events:home.races.items"></div>
   </div>
 </section>
 

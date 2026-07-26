@@ -11,11 +11,11 @@
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
-      "edition_label": "Next edition",
+      "edition_label": "Next race · Tannourine",
       "date": "",
       "time": "",
-      "location": "Batroun, Lebanon",
-      "tba_text": "Date announcement coming soon — follow @batrounrace"
+      "location": "Tannourine, Lebanon",
+      "tba_text": "Expected September 2026 — stay tuned 📣"
     },
     "register_bar_label": "🔔 Get notified — registration soon",
     "nav_cta_label": "Get notified",
@@ -24,24 +24,24 @@
   "home": {
     "hero": {
       "kicker": "KM 0 · Start line",
-      "h1": "Run the<br>Batroun <span class=\"accent\">coast.</span>",
-      "sub": "Lebanon's coastal running event — 5KM &amp; 10KM along the sea, through a town that turns race day into a festival.",
+      "h1": "Run Lebanon's<br>beautiful <span class=\"accent\">towns.</span>",
+      "sub": "Batroun Race organizes running events across Lebanon — from the Batroun coast to the Tannourine mountains. Community, meaning, and a festival at every finish line.",
       "meta": [
         {
           "b": "5K · 10K",
-          "label": "Two distances"
+          "label": "Distances"
         },
         {
           "b": "Batroun",
-          "label": "Seaside route"
+          "label": "Coastal race"
+        },
+        {
+          "b": "Tannourine",
+          "label": "Next stop"
         },
         {
           "b": "500+",
           "label": "Runners, first edition"
-        },
-        {
-          "b": "2 editions",
-          "label": "2025 · 2026"
         }
       ],
       "ctas": [
@@ -174,26 +174,6 @@
         }
       ]
     },
-    "results": {
-      "kicker": "KM 4 · Results",
-      "h2": "Two editions in the books.",
-      "cards": [
-        {
-          "yr": "2026",
-          "h3": "Second edition — full results",
-          "p": "Live timing and complete results for every runner and category.",
-          "go": "View 2026 results →",
-          "href": "https://register.batrounrace.com/results"
-        },
-        {
-          "yr": "2025",
-          "h3": "First edition — podium winners",
-          "p": "Where it all started: 500+ runners, July 2025. Official podium by category.",
-          "go": "View 2025 podium →",
-          "href": "results-2025.html"
-        }
-      ]
-    },
     "sponsors": {
       "kicker": "Partners",
       "h2": "Powered by brands that show up.",
@@ -227,6 +207,40 @@
       "bib_bottom": "5KM · 10KM · All levels",
       "bib_cta": "Get notified →",
       "note": "Registration opens soon — get notified on WhatsApp or follow @batrounrace"
+    },
+    "races": {
+      "kicker": "KM 4 · Our races",
+      "h2": "One community, many races.",
+      "p": "Every race has its own town, its own route, and the same spirit.",
+      "items": [
+        {
+          "upcoming": true,
+          "status": "Coming soon",
+          "name": "Tannourine Race",
+          "meta": "Tannourine · September 2026 · date TBA",
+          "p": "The next stop: Lebanon's mountains. Distances, route, and registration will be announced soon — stay tuned.",
+          "label": "🔔 Get notified →",
+          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83"
+        },
+        {
+          "upcoming": false,
+          "status": "Completed",
+          "name": "Batroun Race 2026",
+          "meta": "Batroun · July 2026 · 2nd edition",
+          "p": "The coastal classic — full results and live timing for every runner and category.",
+          "label": "View 2026 results →",
+          "href": "https://register.batrounrace.com/results"
+        },
+        {
+          "upcoming": false,
+          "status": "Completed",
+          "name": "Batroun Race 2025",
+          "meta": "Batroun · July 2025 · 1st edition",
+          "p": "Where it all started: 500+ runners and the first official podium by category.",
+          "label": "View 2025 podium →",
+          "href": "results-2025.html"
+        }
+      ]
     }
   },
   "about": {
@@ -1323,11 +1337,11 @@
         },
         {
           "q": "When is the next race?",
-          "a": "The next race date is announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a> — check the countdown on the homepage."
+          "a": "The next race is planned in <b>Tannourine</b>, expected <b>September 2026</b> — the exact date will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
         },
         {
           "q": "Where does the race start?",
-          "a": "In Batroun, on the coastal road — about an hour north of Beirut. The exact start point and maps are shared with registered runners before race day."
+          "a": "Each race has its own town: the coastal race starts in Batroun, and the upcoming race is planned in Tannourine. Exact start points and maps are shared with registered runners before race day."
         },
         {
           "q": "Where do I get my bib and race kit?",

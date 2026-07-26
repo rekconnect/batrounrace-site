@@ -73,7 +73,7 @@
     var container = a.closest('[data-cms-list]');
     if (container) {
       var spec = listSpec(container);
-      var field = { btns: 'href', chancards: 'href', rescards: 'href', partnerchips: 'href', wall: 'link' }[spec.type];
+      var field = { btns: 'href', chancards: 'href', rescards: 'href', partnerchips: 'href', wall: 'link', events: 'href' }[spec.type];
       if (!field) return null;
       var item = a;
       while (item && item.parentElement !== container) item = item.parentElement;
