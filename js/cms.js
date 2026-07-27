@@ -101,6 +101,16 @@
         return '<div class="pod-card reveal in">' + img + '<div class="body"><div class="cat" data-cms="' + p + '.' + i + '.cat">' + c.cat + '</div><ol>' + rows + '</ol></div></div>';
       }).join('');
     },
+    events: function (items, p) {
+      return items.map(function (e, i) {
+        return '<div class="ev-card reveal in' + (e.upcoming ? ' hot' : '') + '">' +
+          '<span class="ev-badge" data-cms="' + p + '.' + i + '.status">' + e.status + '</span>' +
+          '<h3 data-cms="' + p + '.' + i + '.name">' + e.name + '</h3>' +
+          '<div class="ev-meta" data-cms="' + p + '.' + i + '.meta">' + e.meta + '</div>' +
+          '<p data-cms="' + p + '.' + i + '.p">' + e.p + '</p>' +
+          '<a class="go" href="' + e.href + '" data-cms="' + p + '.' + i + '.label">' + e.label + '</a></div>';
+      }).join('');
+    },
     gallery: function (items, p) {
       return items.map(function (s, i) {
         return '<figure class="g-item reveal in"><img src="' + s.img + '" alt="' + (s.alt || 'Batroun Race photo') + '" loading="lazy" onerror="this.parentElement.remove()"></figure>';
