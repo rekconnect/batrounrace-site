@@ -124,6 +124,12 @@
         }
       ]
     },
+    "promo": {
+      "img": "",
+      "alt": "Upcoming event poster",
+      "href": "",
+      "label": ""
+    },
     "why": {
       "kicker": "KM 1 · More than a race",
       "h2": "Built by belief, rooted in Batroun.",
