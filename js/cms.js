@@ -158,9 +158,26 @@
       var v = get(C, el.getAttribute('data-cms-src'));
       if (typeof v === 'string' && v && el.getAttribute('src') !== v) el.setAttribute('src', v);
     });
+    initPromo();
     initSliders();
     initCountdown();
     initLightbox();
+  }
+
+  function initPromo() {
+    var sec = document.getElementById('promoSec');
+    if (!sec) return;
+    var promo = get(C, 'home.promo') || {};
+    var editing = /[?&]edit=1/.test(location.search);
+    sec.classList.toggle('has-promo', !!promo.img || editing);
+    sec.classList.toggle('edit-empty', editing && !promo.img);
+    var img = sec.querySelector('img');
+    if (img) {
+      if (promo.alt) img.setAttribute('alt', promo.alt);
+      img.style.display = promo.img ? '' : 'none';
+    }
+    var a = sec.querySelector('a.promo');
+    if (a && !promo.href) a.removeAttribute('href');
   }
 
   function initLightbox() {

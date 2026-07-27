@@ -140,6 +140,18 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .btn-wa:hover{background:#1DA851}
 .startline{border-top:3px dashed var(--coral);opacity:.9}
 
+/* ---------- event promo banner (poster set in /admin) ---------- */
+.promo-sec{display:none;padding:64px 0 0}
+.promo-sec.has-promo{display:block}
+.promo{display:block;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 34px rgba(3,15,43,.14);transition:transform .2s ease-out,box-shadow .2s ease-out}
+a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22)}
+.promo img{display:block;width:100%;height:auto}
+.promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
+.promo-label:empty{display:none}
+.promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
+.promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}
+@media (prefers-reduced-motion:reduce){a.promo:hover{transform:none}}
+
 /* ---------- sections ---------- */
 section{padding:96px 0}
 .sec-head{max-width:640px;margin-bottom:48px}
@@ -292,6 +304,16 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
+
+<!-- EVENT PROMO BANNER — appears only when a poster is uploaded in /admin (Photos tab) -->
+<section class="promo-sec" id="promoSec">
+  <div class="wrap">
+    <a class="promo reveal in" href="#" data-cms-href="home.promo.href">
+      <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
+      <span class="promo-label" data-cms="home.promo.label"></span>
+    </a>
+  </div>
+</section>
 
 <!-- KM 1 · WHY -->
 <section>

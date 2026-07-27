@@ -107,6 +107,11 @@ textarea{min-height:74px;resize:vertical}
       <div class="logos-grid" id="logoGrid"></div>
     </div>
     <div id="photos" style="display:none">
+      <div style="margin-bottom:26px;padding-bottom:24px;border-bottom:1px solid #e3e9f4">
+        <p class="hint"><b>Event banner</b> — a big poster shown on the homepage under the hero, to advertise an event (next race, registration opening…). Upload a wide image; remove it to hide the banner. The click-link and badge text are below.</p>
+        <p><input type="file" id="bannerUpload" accept="image/png,image/jpeg,image/webp"></p>
+        <div id="bannerBox" style="margin-top:12px"></div>
+      </div>
       <p class="hint">Photos in the homepage slider. Upload new photos below (JPG/PNG) — each becomes a slide automatically. Drag order matters top-to-bottom; remove with ✕. Then <b>Save &amp; publish</b>.</p>
       <p><input type="file" id="slideUpload" accept="image/png,image/jpeg,image/webp" multiple></p>
       <div class="logos-grid" id="slideGrid" style="margin-top:14px"></div>
@@ -146,7 +151,8 @@ textarea{min-height:74px;resize:vertical}
     tags:'Tags',meta_list:'Stats',ctas:'Buttons',style:'Style: coral / ghost / dark / line / wa (green)',
     race:'Next race (countdown)',date:'Race date (YYYY-MM-DD, empty = not announced)',time:'Start time (HH:MM, 24h)',
     location:'Location',tba_text:'Text shown while no date is set',edition_label:'Countdown label',
-    register_bar_label:'Mobile bottom-bar button text',nav_cta_label:'Menu button text (top right)',nav_cta_url:'Menu button link',map_url:'Map embed URL',kms:'Route highlights',route:'Route section',races:'Our races',items:'Items',status:'Status badge (e.g. Coming soon / Completed)',upcoming:'Upcoming race (highlighted)'};
+    register_bar_label:'Mobile bottom-bar button text',nav_cta_label:'Menu button text (top right)',nav_cta_url:'Menu button link',map_url:'Map embed URL',kms:'Route highlights',route:'Route section',races:'Our races',items:'Items',status:'Status badge (e.g. Coming soon / Completed)',upcoming:'Upcoming race (highlighted)',
+    promo:'Event banner (poster under the hero — upload in Photos & banner tab)'};
   var TABS={global:'Contact & links',home:'Homepage',about:'About',guide:'Race guide',gallery:'Gallery',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
   var vframeLoaded=false;
 
@@ -251,7 +257,7 @@ textarea{min-height:74px;resize:vertical}
       return;
     }
     if(name==='logos'){logos.style.display='block';renderLogos();return;}
-    if(name==='photos'){document.getElementById('photos').style.display='block';renderSlides();return;}
+    if(name==='photos'){document.getElementById('photos').style.display='block';renderBanner();renderSlides();return;}
     if(name==='raw'){raw.style.display='block';document.getElementById('rawTa').value=JSON.stringify(content,null,2);return;}
     ed.style.display='block';ed.innerHTML='';
     buildInto(ed,content[name],name);
@@ -297,6 +303,44 @@ textarea{min-height:74px;resize:vertical}
     return base+'.'+ext;
   }
 
+  function getPromo(){
+    var promo=get(content,'home.promo');
+    if(!promo||typeof promo!=='object'){promo={img:'',alt:'Upcoming event poster',href:'',label:''};set(content,'home.promo',promo);}
+    return promo;
+  }
+
+  function renderBanner(){
+    var box=document.getElementById('bannerBox');box.innerHTML='';
+    var promo=getPromo();
+    if(!promo.img){
+      var p=document.createElement('p');p.className='hint';p.textContent='No banner right now — the homepage banner section is hidden.';
+      box.appendChild(p);return;
+    }
+    var slot=document.createElement('div');slot.className='logo-slot';slot.style.maxWidth='460px';
+    var img=document.createElement('img');img.style.maxHeight='150px';
+    img.src=pendingLogos[promo.img]?'data:image;base64,'+pendingLogos[promo.img]:'/'+promo.img;
+    img.onerror=function(){this.remove()};
+    slot.appendChild(img);
+    var f=document.createElement('div');f.className='file';f.textContent=promo.img;slot.appendChild(f);
+    if(pendingLogos[promo.img]){var q=document.createElement('div');q.className='queued';q.textContent='New banner queued ✓';slot.appendChild(q);}
+    [['Click-link (where the banner leads, e.g. '+'https://register.batrounrace.com/ — empty = not clickable)','href'],
+     ['Badge text on the poster (e.g. Tannourine Race · Sep 2026 — empty = no badge)','label'],
+     ['Image description (for accessibility)','alt']].forEach(function(fld){
+      var inp=document.createElement('input');inp.type='text';inp.placeholder=fld[0];inp.value=promo[fld[1]]||'';
+      inp.style.marginBottom='8px';
+      inp.addEventListener('input',function(){promo[fld[1]]=inp.value;status('unsaved changes');});
+      slot.appendChild(inp);
+    });
+    var b=document.createElement('button');b.type='button';b.className='mini del';b.textContent='✕ Remove banner';
+    b.addEventListener('click',function(){
+      if(confirm('Remove the event banner? The homepage section hides again.')){
+        delete pendingLogos[promo.img];promo.img='';renderBanner();status('unsaved changes');
+      }
+    });
+    slot.appendChild(b);
+    box.appendChild(slot);
+  }
+
   function renderSlides(){
     var grid=document.getElementById('slideGrid');grid.innerHTML='';
     var slides=get(content,'home.hero.slides');
@@ -333,7 +377,7 @@ textarea{min-height:74px;resize:vertical}
       var b=document.createElement('button');b.className='tab';b.dataset.tab=k;b.textContent=TABS[k];
       b.addEventListener('click',function(){renderTab(k)});tabs.appendChild(b);
     });
-    [['photos','Slider photos'],['logos','Sponsor logos'],['raw','Raw JSON']].forEach(function(x){
+    [['photos','Photos & banner'],['logos','Sponsor logos'],['raw','Raw JSON']].forEach(function(x){
       var b=document.createElement('button');b.className='tab';b.dataset.tab=x[0];b.textContent=x[1];
       b.addEventListener('click',function(){renderTab(x[0])});tabs.appendChild(b);
     });
@@ -384,6 +428,21 @@ textarea{min-height:74px;resize:vertical}
   document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click()});
   document.getElementById('vpage').addEventListener('change',function(){
     document.getElementById('vframe').src='/'+this.value+'?edit=1';
+  });
+  document.getElementById('bannerUpload').addEventListener('change',function(){
+    var f=this.files[0];var input=this;
+    if(!f)return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      var promo=getPromo();
+      if(promo.img&&pendingLogos[promo.img])delete pendingLogos[promo.img];
+      var path='images/banners/'+slugifyFile(f.name);
+      pendingLogos[path]=rd.result.split(',')[1];
+      promo.img=path;
+      input.value='';renderBanner();status('unsaved changes');
+      show('Banner queued — press Save & publish to put it live.');
+    };
+    rd.readAsDataURL(f);
   });
   document.getElementById('slideUpload').addEventListener('change',function(){
     var files=Array.prototype.slice.call(this.files);
