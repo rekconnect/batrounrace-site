@@ -154,6 +154,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* ---------- event promo banner (poster set in /admin) ---------- */
 .promo-sec{display:none;padding:64px 0 0}
 .promo-sec.has-promo{display:block}
+.promo-top{padding:0}
+.promo-top .promo{border-radius:0;box-shadow:none}
+.promo-top a.promo:hover{transform:none;box-shadow:none;filter:brightness(1.05)}
+.promo-top.edit-empty .promo{border-radius:0}
 .promo{display:block;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 34px rgba(3,15,43,.14);transition:transform .2s ease-out,box-shadow .2s ease-out}
 a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22)}
 .promo img{display:block;width:100%;height:auto}
@@ -296,6 +300,14 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </header>
 
+<!-- EVENT PROMO BANNER — full-width at the top, appears only when a poster is set in /admin (Photos tab) -->
+<section class="promo-sec promo-top" id="promoSec">
+  <a class="promo" href="#" data-cms-href="home.promo.href">
+    <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
+    <span class="promo-label" data-cms="home.promo.label"></span>
+  </a>
+</section>
+
 <!-- KM 0 · START -->
 <section class="hero" style="padding:0">
   <div class="wrap">
@@ -321,16 +333,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
-
-<!-- EVENT PROMO BANNER — appears only when a poster is uploaded in /admin (Photos tab) -->
-<section class="promo-sec" id="promoSec">
-  <div class="wrap">
-    <a class="promo reveal in" href="#" data-cms-href="home.promo.href">
-      <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
-      <span class="promo-label" data-cms="home.promo.label"></span>
-    </a>
-  </div>
-</section>
 
 <!-- KM 1 · WHY -->
 <section>
