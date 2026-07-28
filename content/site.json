@@ -40,8 +40,8 @@
           "label": "Next stop"
         },
         {
-          "b": "500+",
-          "label": "Runners, first edition"
+          "b": "600+",
+          "label": "Runners in 2026"
         }
       ],
       "ctas": [
@@ -233,7 +233,7 @@
           "status": "Completed",
           "name": "Batroun Race 2026",
           "meta": "Batroun · July 2026 · 2nd edition",
-          "p": "The coastal classic — full results and live timing for every runner and category.",
+          "p": "The coastal classic grew to 600+ runners — full results and live timing for every runner and category.",
           "label": "View 2026 results →",
           "href": "https://register.batrounrace.com/results"
         },
@@ -258,6 +258,10 @@
         {
           "b": "500+",
           "label": "Runners (2025)"
+        },
+        {
+          "b": "600+",
+          "label": "Runners (2026)"
         },
         {
           "b": "1.5M+",
