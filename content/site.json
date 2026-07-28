@@ -12,7 +12,7 @@
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
       "edition_label": "Next race · Tannourine",
-      "date": "",
+      "date": "2026-09-13",
       "time": "",
       "location": "Tannourine, Lebanon",
       "tba_text": "Expected September 2026 — stay tuned 📣"
@@ -223,7 +223,7 @@
           "upcoming": true,
           "status": "Coming soon",
           "name": "Tannourine Race",
-          "meta": "Tannourine · September 2026 · date TBA",
+          "meta": "Tannourine · 13 September 2026",
           "p": "The next stop: up the mountain to Tannourine. Distances, route, and registration will be announced soon — stay tuned.",
           "label": "🔔 Get notified →",
           "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83"
@@ -1356,7 +1356,7 @@
         },
         {
           "q": "When is the next race?",
-          "a": "The next race is planned in <b>Tannourine</b>, expected <b>September 2026</b> — the exact date will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
+          "a": "The next race is in <b>Tannourine</b> on <b>13 September 2026</b>. Registration details will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
         },
         {
           "q": "Where does the race start?",
