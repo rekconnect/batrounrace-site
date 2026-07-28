@@ -335,6 +335,23 @@
     content: function () { return C; }
   };
 
+  // Results dropdown in the nav (desktop: click to open; mobile: always expanded)
+  document.querySelectorAll('.nav-drop').forEach(function (drop) {
+    var btn = drop.querySelector('.nav-drop-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = drop.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function (e) {
+      if (!drop.contains(e.target)) {
+        drop.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
   var EDIT = /[?&]edit=1/.test(location.search);
 
   fetch('/content/site.json', { cache: 'no-cache' })
