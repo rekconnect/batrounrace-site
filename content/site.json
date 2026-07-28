@@ -143,7 +143,7 @@
         {
           "tag": "Cause",
           "h3": "Sport with a message",
-          "p": "Special editions support charity, community programs, and unity — sport as humanity in motion."
+          "p": "Special editions support charity and community — like our Christmas race, organized to raise donations for communities in need and personal cases."
         },
         {
           "tag": "Coast",
@@ -217,7 +217,7 @@
     "races": {
       "kicker": "KM 4 · Our races",
       "h2": "One community, many races.",
-      "p": "Every race has its own town, its own route, and the same spirit.",
+      "p": "Races and community events — each with its own town, its own route, and the same spirit.",
       "items": [
         {
           "upcoming": true,
@@ -236,6 +236,15 @@
           "p": "The coastal classic grew to 600+ runners — full results and live timing for every runner and category.",
           "label": "View 2026 results →",
           "href": "https://register.batrounrace.com/results"
+        },
+        {
+          "upcoming": false,
+          "status": "Charity edition",
+          "name": "Christmas Race 2025",
+          "meta": "December 2025 · for a cause",
+          "p": "A special Christmas edition with one purpose: donations for communities in need and personal cases — sport giving back.",
+          "label": "See the moments →",
+          "href": "https://www.instagram.com/batrounrace"
         },
         {
           "upcoming": false,
