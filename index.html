@@ -193,7 +193,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .res-card .go{margin-top:18px;color:var(--coral);font-weight:600;font-size:.9rem}
 
 /* races / events */
-.ev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 @media(max-width:860px){.ev-grid{grid-template-columns:1fr}}
 .ev-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:30px 26px;display:flex;flex-direction:column;transition:transform .2s ease-out,box-shadow .2s ease-out}
 .ev-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
@@ -332,7 +332,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div class="card reveal">
         <span class="tag">Cause</span>
         <h3>Sport with a message</h3>
-        <p>Special editions support charity, community programs, and unity — sport as humanity in motion.</p>
+        <p>Special editions support charity and community — like our Christmas race, organized to raise donations for communities in need and personal cases.</p>
       </div>
       <div class="card reveal">
         <span class="tag">Coast</span>
@@ -367,7 +367,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="sec-head reveal">
       <span class="km" data-cms="home.races.kicker">KM 4 · Our races</span>
       <h2 data-cms="home.races.h2">One community, many races.</h2>
-      <p data-cms="home.races.p">Every race has its own town, its own route, and the same spirit.</p>
+      <p data-cms="home.races.p">Races and community events — each with its own town, its own route, and the same spirit.</p>
     </div>
     <div class="ev-grid" data-cms-list="events:home.races.items"></div>
   </div>
