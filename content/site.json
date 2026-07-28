@@ -46,11 +46,6 @@
       ],
       "ctas": [
         {
-          "label": "🔔 Get notified — registration soon",
-          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83",
-          "style": "coral"
-        },
-        {
           "label": "2026 results",
           "href": "https://register.batrounrace.com/results",
           "style": "ghost"
