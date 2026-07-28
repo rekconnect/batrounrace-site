@@ -115,8 +115,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim)}
 .hero-meta b{display:block;color:var(--foam);font-size:1.05rem;font-weight:500}
 .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;align-items:center}
-/* next-race countdown */
-.race-next{margin-top:34px;border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;font-family:var(--mono)}
+/* next-race countdown — strip under the banner */
+.count-strip{background:var(--ink)}
+.count-strip .wrap{display:flex;justify-content:center;padding-top:26px}
+.race-next{border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:var(--mono)}
 .race-next .rn-what{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
 .race-next .rn-when{font-size:.85rem;color:var(--text-inv)}
 .race-next .rn-boxes{display:flex;gap:14px}
@@ -308,6 +310,13 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </a>
 </section>
 
+<!-- NEXT-RACE COUNTDOWN — directly under the banner -->
+<div class="count-strip">
+  <div class="wrap">
+    <div class="race-next" id="raceNext" hidden></div>
+  </div>
+</div>
+
 <!-- KM 0 · START -->
 <section class="hero" style="padding:0">
   <div class="wrap">
@@ -320,7 +329,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>600+</b>Runners in 2026</div>
       <div><b>2 editions</b>2025 · 2026</div>
     </div>
-    <div class="race-next" id="raceNext" hidden></div>
     <div class="hero-ctas" data-cms-list="btns:home.hero.ctas">
       <a class="btn btn-coral" href="https://register.batrounrace.com/">Register to run</a>
       <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
