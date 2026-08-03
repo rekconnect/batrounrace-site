@@ -178,6 +178,8 @@
     }
     var a = sec.querySelector('a.promo');
     if (a && !promo.href) a.removeAttribute('href');
+    var btn = sec.querySelector('.promo-btn');
+    if (btn) btn.style.display = (promo.href && promo.label) ? '' : 'none';
   }
 
   function initLightbox() {
