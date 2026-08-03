@@ -323,8 +323,8 @@ textarea{min-height:74px;resize:vertical}
     slot.appendChild(img);
     var f=document.createElement('div');f.className='file';f.textContent=promo.img;slot.appendChild(f);
     if(pendingLogos[promo.img]){var q=document.createElement('div');q.className='queued';q.textContent='New banner queued ✓';slot.appendChild(q);}
-    [['Click-link (where the banner leads, e.g. '+'https://register.batrounrace.com/ — empty = not clickable)','href'],
-     ['Badge text on the poster (e.g. Tannourine Race · Sep 2026 — empty = no badge)','label'],
+    [['Button link (e.g. '+'https://register.batrounrace.com/ — empty = no button)','href'],
+     ['Button text on the poster (e.g. Click to register 🏃 — empty = no button)','label'],
      ['Image description (for accessibility)','alt']].forEach(function(fld){
       var inp=document.createElement('input');inp.type='text';inp.placeholder=fld[0];inp.value=promo[fld[1]]||'';
       inp.style.marginBottom='8px';

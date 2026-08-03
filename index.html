@@ -171,6 +171,10 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
+.promo-btn{position:absolute;left:56%;bottom:9%;transform:translateX(-50%);background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.8rem,1.6vw,1.15rem);padding:.7em 1.9em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+.promo-btn:hover,.promo-btn:focus-visible{transform:translateX(-50%) translateY(-3px);background:var(--coral-deep)}
+.promo-btn:empty{display:none}
+@media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:translateX(-50%)}}
 .promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
 .promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}
 @media (prefers-reduced-motion:reduce){a.promo:hover{transform:none}}
@@ -310,10 +314,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 
 <!-- EVENT PROMO BANNER — full-width at the top, appears only when a poster is set in /admin (Photos tab) -->
 <section class="promo-sec promo-top" id="promoSec">
-  <a class="promo" href="#" data-cms-href="home.promo.href">
+  <div class="promo">
     <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
-    <span class="promo-label" data-cms="home.promo.label"></span>
-  </a>
+    <a class="promo-btn" href="https://register.batrounrace.com/" data-cms="home.promo.label" data-cms-href="home.promo.href">Click to register</a>
+  </div>
 </section>
 
 <!-- NEXT-RACE COUNTDOWN — directly under the banner -->
