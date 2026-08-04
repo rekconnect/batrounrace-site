@@ -13,9 +13,10 @@
     "race": {
       "edition_label": "Next race · Highland Tannourine Trail",
       "date": "2026-09-13",
-      "time": "",
+      "time": "08:00",
       "location": "Tannourine, Lebanon",
-      "tba_text": "Expected September 2026 — stay tuned 📣"
+      "tba_text": "Expected September 2026 — stay tuned 📣",
+      "info": "🚧 Roads close 7:30 AM &nbsp;·&nbsp; 🎤 Briefing 7:40 AM &nbsp;·&nbsp; 🏁 Race start 8:00 AM"
     },
     "register_bar_label": "🔔 Get notified — registration soon",
     "nav_cta_label": "Get notified",
@@ -123,7 +124,7 @@
       "img": "images/banners/highland-tannourine-trail-2026.jpg",
       "alt": "Highland Tannourine Trail 2026 — 13 September 2026, 5 KM, registration opening soon",
       "href": "https://register.batrounrace.com/",
-      "label": "Click to register 🏃"
+      "label": ""
     },
     "why": {
       "kicker": "KM 1 · More than a race",

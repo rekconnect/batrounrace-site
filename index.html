@@ -124,6 +124,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .count-strip .rn-boxes{gap:34px}
 .count-strip .rn-box b{font-size:2.2rem}
 .count-strip .rn-box span{font-size:.72rem}
+.race-info{text-align:center;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim);padding:14px 24px 0;letter-spacing:.02em}
+.race-info:empty{display:none}
 .race-next{border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:var(--mono)}
 .race-next .rn-what{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
 .race-next .rn-when{font-size:.85rem;color:var(--text-inv)}
@@ -325,6 +327,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap">
     <div class="race-next" id="raceNext" hidden></div>
   </div>
+  <p class="race-info" data-cms="global.race.info"></p>
 </div>
 
 <!-- KM 0 · START -->
