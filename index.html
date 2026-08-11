@@ -145,9 +145,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* the screen wears its own race banner — blurred into a backdrop so the photo
    carries over from the poster without its text competing with the countdown */
 /* ---------- countdown, written into the banner itself ---------- */
-/* the whole block is one overlay pinned over the artwork: the race line sits
-   under the 5 KM pill, the clock lands in the empty middle. It fades in on the
-   first scroll instead of the page moving to a second screen. */
+/* One overlay pinned over the artwork. The banner already says the date, the
+   town and the race name in its own first three lines, so all this adds is the
+   clock and the race-day pills. It fades in on the first scroll instead of the
+   page moving to a second screen. */
 .cd-in{position:absolute;inset:0;pointer-events:none;font-family:var(--mono);
   opacity:0;transform:translateY(14px);transition:opacity .7s ease-out,transform .7s ease-out}
 .promo-top.cd-on .cd-in{opacity:1;transform:none}
@@ -155,12 +156,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .cd-in a{pointer-events:auto}
 .race-next{position:absolute;inset:0}
 .race-next[hidden]{display:none}
-/* race line — under the 5 KM pill, on the banner's shaded left */
-.race-next .rn-what,.race-next .rn-when{position:absolute;left:5.6%;max-width:38%;
-  text-shadow:0 2px 16px rgba(0,0,0,.75)}
-.race-next .rn-what{top:55%;font-size:clamp(.6rem,.85vw,.78rem);letter-spacing:.16em;
-  text-transform:uppercase;color:var(--coral)}
-.race-next .rn-when{top:calc(55% + 22px);font-size:clamp(.78rem,1.1vw,.98rem);color:#fff;line-height:1.35}
 /* the clock — the open middle of the artwork, clear of the title column */
 .race-next .rn-boxes{position:absolute;left:57%;top:50%;transform:translate(-50%,-50%);
   display:flex;gap:clamp(14px,2.6vw,38px);text-align:center;
@@ -171,6 +166,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   font-size:clamp(1.9rem,3.6vw,3.1rem);text-shadow:0 3px 20px rgba(0,0,0,.6)}
 .race-next .rn-box span{font-size:clamp(.55rem,.72vw,.68rem);letter-spacing:.14em;
   text-transform:uppercase;color:rgba(255,255,255,.72)}
+/* no date announced yet: the clock's spot carries the "coming soon" line instead */
+.race-next .rn-what,.race-next .rn-when{position:absolute;left:57%;transform:translateX(-50%);
+  width:min(80%,620px);text-align:center;text-shadow:0 2px 16px rgba(0,0,0,.75)}
+.race-next .rn-what{top:47%;font-size:clamp(.6rem,.85vw,.78rem);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral)}
+.race-next .rn-when{top:calc(47% + 24px);font-size:clamp(.9rem,1.4vw,1.2rem);color:#fff;line-height:1.35}
 /* race-day pills — just under the clock, on every screen */
 .race-info{position:absolute;left:57%;top:calc(50% + clamp(66px,7vw,96px));transform:translateX(-50%);
   display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px;width:min(80%,720px);
@@ -180,19 +181,33 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .race-info a{color:inherit;text-decoration:none;transition:border-color .2s ease-out,color .2s ease-out}
 .race-info a:hover{border-color:var(--coral);color:#fff}
 .race-info:empty{display:none}
-/* Small screens read as one centred column — race line under the 5 KM pill,
-   then clock, pills, button — so nothing has to share a band with anything. */
+/* Small screens: clock, pills and button read as one centred column, sitting
+   below the artwork's own title block. */
 @media(max-width:900px){
-  .race-next .rn-what,.race-next .rn-when{left:6.5%;max-width:76%}  /* clear of the social rail */
-  .race-next .rn-what{top:30%}
-  .race-next .rn-when{top:calc(30% + 20px)}
-  .race-next .rn-boxes{left:50%;top:46%;gap:clamp(12px,3.4vw,26px);padding:16px 16px}
-  .race-info{left:50%;top:calc(46% + clamp(58px,8vw,76px));width:min(78%,330px);
+  .race-next .rn-boxes,.race-next .rn-what,.race-next .rn-when,.race-info{left:50%}
+  .race-next .rn-boxes{top:52%;gap:clamp(12px,3.4vw,26px);padding:16px 16px}
+  .race-next .rn-what{top:49%}
+  .race-next .rn-when{top:calc(49% + 22px)}
+  .race-info{top:calc(52% + clamp(58px,8vw,76px));width:min(78%,330px);
     font-size:.7rem;gap:6px 8px}
   .race-info span,.race-info a{padding:4px 11px}
 }
+/* tall portrait banner: lift the column so the pills clear the button */
+@media (max-width:768px) and (orientation:portrait){
+  .race-next .rn-boxes{top:40%}
+  .race-next .rn-what{top:37%}
+  .race-next .rn-when{top:calc(37% + 22px)}
+  .race-info{top:calc(40% + 58px)}
+}
+/* tablets: the banner keeps the artwork's own ratio, so it is short — the
+   clock and a single tight row of pills is all that fits under the title */
 @media(max-width:900px) and (min-width:769px){
-  .race-info{width:min(86%,560px)}
+  .race-next .rn-boxes{top:45%;padding:12px 14px}
+  .race-next .rn-box b{font-size:clamp(1.6rem,3vw,2.2rem)}
+  .race-next .rn-what{top:42%}
+  .race-next .rn-when{top:calc(42% + 20px)}
+  .race-info{top:calc(45% + 64px);width:min(94%,620px);font-size:.62rem;gap:5px 7px}
+  .race-info span,.race-info a{padding:3px 9px}
 }
 /* landscape phones have no vertical room: drop the pills, tighten the rest */
 @media(max-height:520px){
@@ -238,10 +253,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .promo-top{padding:0;position:relative;z-index:0}
 .cd-runway{height:min(52vh,400px)}   /* scroll room while the banner holds */
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:min(calc(100vh - 64px),45.9vw);height:min(calc(100svh - 64px),45.9vw)}
-/* tablets: a taller banner so the countdown column has room to breathe */
-@media(max-width:900px) and (min-width:769px){
-  .promo-top .promo{height:min(calc(100vh - 64px),70vw);height:min(calc(100svh - 64px),70vw)}
-}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo{height:calc(100vh - 64px);height:calc(100svh - 64px)}}
 .promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}
@@ -256,11 +267,13 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-.promo-btn{position:absolute;left:50%;bottom:11%;transform:translateX(-50%);background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
-.promo-btn:hover,.promo-btn:focus-visible{transform:translateX(-50%) translateY(-3px);background:var(--coral-deep)}
+/* mirrors the BATROUN RACE lockup baked into the artwork's bottom-right,
+   so the two sit level on opposite sides instead of colliding */
+.promo-btn{position:absolute;left:5.6%;bottom:8.5%;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+.promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
-@media (max-width:768px){.promo-btn{left:50%;bottom:15%;font-size:.95rem;padding:.7em 1.7em}}
-@media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:translateX(-50%)}}
+@media (max-width:768px){.promo-btn{left:6.5%;bottom:15.5%;font-size:.95rem;padding:.7em 1.7em}}
+@media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
 .promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
 .promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}
 @media (prefers-reduced-motion:reduce){a.promo:hover{transform:none}}

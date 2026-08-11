@@ -307,9 +307,9 @@
     }
     var dateStr = when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     el.hidden = false;
-    el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
-      '<span class="rn-when">' + dateStr + (race.time ? ' · ' + race.time : '') + (race.location ? ' · ' + race.location : '') + '</span>' +
-      '<div class="rn-boxes">' + ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
+    // the banner artwork already carries the date, town and race name, so the
+    // overlay adds only the clock — no second copy of the same three lines
+    el.innerHTML = '<div class="rn-boxes">' + ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
         return '<div class="rn-box"><b>–</b><span>' + l + '</span></div>';
       }).join('') + '</div>';
     var boxes = el.querySelectorAll('.rn-box b');
