@@ -56,6 +56,25 @@ instantly. Anything it can't match hands off to WhatsApp.
 variable in Vercel (key from https://console.anthropic.com, then redeploy)
 and the same bubble upgrades itself to a Claude-powered assistant that
 answers free-form questions in English/Arabic/French from the whole site's
-content. Roughly a cent per question on the Haiku model; a spending cap can
-be set in the Anthropic console. Remove the variable to fall back to free
-FAQ mode.
+content. A spending cap can be set in the Anthropic console. Remove the
+variable to fall back to free FAQ mode.
+
+To check which mode is live, open **batrounrace.com/api/chat** in a browser:
+`{"configured":true}` means AI mode is on, `false` means it's running the
+free FAQ mode.
+
+What the assistant knows, and how it behaves:
+
+- Every answer is grounded in `content/site.json`, so editing a page in
+  /admin changes what the bot says within a minute.
+- Before each answer the server computes a small fact sheet — today's date,
+  which race is next, how many days away, whether registration is open — and
+  tells the model to trust it over anything older in the content. This is
+  what stops it from answering with last season's race.
+- It answers in the visitor's language, keeps to 1–3 sentences, can use bold,
+  bullets and links, and offers up to three follow-up questions as tap-able
+  chips.
+- If the API is down, over quota, or the key is removed, the bubble silently
+  drops back to FAQ answers, then to WhatsApp — a visitor never hits a dead
+  end.
+- Each visitor is limited to 25 questions per 10 minutes per server instance.
