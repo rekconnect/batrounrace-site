@@ -108,7 +108,7 @@ textarea{min-height:74px;resize:vertical}
     </div>
     <div id="photos" style="display:none">
       <div style="margin-bottom:26px;padding-bottom:24px;border-bottom:1px solid #e3e9f4">
-        <p class="hint"><b>Race banners</b> — each upcoming race gets its own full-screen banner on the homepage <b>plus its own countdown and info pills</b> right below it. They stack in the order shown here: first race on top. Add a wide image for desktop and, ideally, a tall one for phones.</p>
+        <p class="hint"><b>Race banners</b> — each upcoming race gets its own full-screen banner on the homepage, <b>with its own countdown written over the artwork</b> as the visitor scrolls. They stack in the order shown here: first race on top. Add a wide image for desktop and, ideally, a tall one for phones.</p>
         <div id="bannerBox" style="margin-top:12px"></div>
       </div>
       <p class="hint">Photos in the homepage slider. Upload new photos below (JPG/PNG) — each becomes a slide automatically. Drag order matters top-to-bottom; remove with ✕. Then <b>Save &amp; publish</b>.</p>
@@ -150,7 +150,7 @@ textarea{min-height:74px;resize:vertical}
     tags:'Tags',meta_list:'Stats',ctas:'Buttons',style:'Style: coral / ghost / dark / line / wa (green)',
     race:'Next race (countdown)',date:'Race date (YYYY-MM-DD, empty = not announced)',time:'Start time (HH:MM, 24h)',
     location:'Location',tba_text:'Text shown while no date is set',edition_label:'Countdown label',
-    info:'Race-day info line under the countdown (HTML allowed, empty = hidden)',
+    info:'Race-day info pills shown under the countdown (HTML allowed, empty = hidden)',
     register_bar_label:'Mobile bottom-bar button text',nav_cta_label:'Menu button text (top right)',nav_cta_url:'Menu button link',map_url:'Map embed URL',kms:'Route highlights',route:'Route section',races:'Our races',items:'Items',status:'Status badge (e.g. Coming soon / Completed)',upcoming:'Upcoming race (highlighted)',
     promos:'Race banners (upload in Photos & banners tab)'};
   var TABS={global:'Contact & links',home:'Homepage',about:'About',guide:'Race guide',gallery:'Gallery',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
@@ -344,10 +344,6 @@ textarea{min-height:74px;resize:vertical}
       upP.style.marginBottom='8px';
       upP.addEventListener('change',function(){queueBanner(this,promo,'img_portrait');});
       slot.appendChild(labelled('Tall banner for phones'+(promo.img_portrait?' ✓ '+promo.img_portrait:' (optional)'),upP));
-      var upB=document.createElement('input');upB.type='file';upB.accept='image/png,image/jpeg,image/webp';
-      upB.style.marginBottom='8px';
-      upB.addEventListener('change',function(){queueBanner(this,promo,'bg');});
-      slot.appendChild(labelled('Photo behind the countdown screen — use a clean photo with no text'+(promo.bg?' ✓ '+promo.bg:' (optional)'),upB));
       [['Button link (empty = no button)','href'],
        ['Button text on the poster (empty = no button)','label'],
        ['Image description (for accessibility)','alt']].forEach(function(fld){
