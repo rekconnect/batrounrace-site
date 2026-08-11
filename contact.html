@@ -102,6 +102,22 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .logo{font-size:0;gap:0}
 }
 
+/* ---------- fixed social rail (right edge, every page) ---------- */
+.social-rail{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:70;display:flex;flex-direction:column;gap:8px;
+  background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:8px;
+  box-shadow:0 10px 30px rgba(3,15,43,.16)}
+.social-rail a{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--text-dim);
+  transition:background .2s ease-out,color .2s ease-out,transform .2s ease-out}
+.social-rail a svg{width:19px;height:19px;fill:currentColor;display:block}
+.social-rail a:hover,.social-rail a:focus-visible{background:var(--ink);color:var(--foam);transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.social-rail a:hover{transform:none}}
+@media(max-width:768px){
+  .social-rail{right:8px;gap:5px;padding:5px;border-radius:12px}
+  .social-rail a{width:32px;height:32px;border-radius:9px}
+  .social-rail a svg{width:16px;height:16px}
+}
+@media(max-height:520px){.social-rail{display:none}}
+
 /* ---------- route line ---------- */
 .route{position:fixed;left:max(12px,calc((100vw - var(--maxw))/2 - 40px));top:0;bottom:0;width:2px;z-index:5;pointer-events:none}
 .route .track{position:absolute;inset:0;background:var(--line)}
@@ -429,5 +445,21 @@ const btn=document.getElementById('menuBtn'),links=document.getElementById('navL
 btn.addEventListener('click',()=>{const o=links.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
 </script>
+<!-- FIXED SOCIAL RAIL — same on every page -->
+<nav class="social-rail" aria-label="Contact and social links">
+  <a href="https://www.instagram.com/batrounrace" data-cms-href="global.instagram_url" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63 19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+  </a>
+  <a href="https://www.facebook.com/profile.php?id=61573060961107" data-cms-href="global.facebook_url" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.09 24 18.1 24 12.07z"/></svg>
+  </a>
+  <a href="https://wa.me/message/IJ45O3ILIUGMF1" data-cms-href="global.whatsapp_url" target="_blank" rel="noopener" title="WhatsApp" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35z"/><path d="M12.04 0C5.46 0 .1 5.36.1 11.94c0 2.1.55 4.16 1.6 5.97L0 24l6.24-1.64a11.9 11.9 0 0 0 5.79 1.48h.01c6.58 0 11.94-5.36 11.94-11.94C23.98 5.36 18.62 0 12.04 0zm0 21.79h-.01a9.9 9.9 0 0 1-5.05-1.38l-.36-.22-3.75.98 1-3.66-.24-.38a9.86 9.86 0 0 1-1.51-5.26c0-5.46 4.45-9.91 9.92-9.91 2.65 0 5.14 1.03 7.01 2.91a9.84 9.84 0 0 1 2.9 7.01c0 5.47-4.45 9.91-9.91 9.91z"/></svg>
+  </a>
+  <a href="mailto:Batrounrace@gmail.com" data-cms-href="global.email_href" title="Email" aria-label="Email">
+    <svg viewBox="0 0 24 24"><path d="M22 4H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-.4 2L12 12.06 2.4 6h19.2zM2 18V7.24l9.47 5.98a1 1 0 0 0 1.06 0L22 7.24V18H2z"/></svg>
+  </a>
+</nav>
+
 </body>
 </html>
