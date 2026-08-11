@@ -108,8 +108,7 @@ textarea{min-height:74px;resize:vertical}
     </div>
     <div id="photos" style="display:none">
       <div style="margin-bottom:26px;padding-bottom:24px;border-bottom:1px solid #e3e9f4">
-        <p class="hint"><b>Event banner</b> — a big poster shown on the homepage under the hero, to advertise an event (next race, registration opening…). Upload a wide image; remove it to hide the banner. The click-link and badge text are below.</p>
-        <p><input type="file" id="bannerUpload" accept="image/png,image/jpeg,image/webp"></p>
+        <p class="hint"><b>Race banners</b> — each upcoming race gets its own full-screen banner on the homepage <b>plus its own countdown and info pills</b> right below it. They stack in the order shown here: first race on top. Add a wide image for desktop and, ideally, a tall one for phones.</p>
         <div id="bannerBox" style="margin-top:12px"></div>
       </div>
       <p class="hint">Photos in the homepage slider. Upload new photos below (JPG/PNG) — each becomes a slide automatically. Drag order matters top-to-bottom; remove with ✕. Then <b>Save &amp; publish</b>.</p>
@@ -153,7 +152,7 @@ textarea{min-height:74px;resize:vertical}
     location:'Location',tba_text:'Text shown while no date is set',edition_label:'Countdown label',
     info:'Race-day info line under the countdown (HTML allowed, empty = hidden)',
     register_bar_label:'Mobile bottom-bar button text',nav_cta_label:'Menu button text (top right)',nav_cta_url:'Menu button link',map_url:'Map embed URL',kms:'Route highlights',route:'Route section',races:'Our races',items:'Items',status:'Status badge (e.g. Coming soon / Completed)',upcoming:'Upcoming race (highlighted)',
-    promo:'Event banner (poster under the hero — upload in Photos & banner tab)'};
+    promos:'Race banners (upload in Photos & banners tab)'};
   var TABS={global:'Contact & links',home:'Homepage',about:'About',guide:'Race guide',gallery:'Gallery',contact:'Contact page',sponsors:'Sponsors',packages:'Packages',results2025:'Results 2025'};
   var vframeLoaded=false;
 
@@ -304,42 +303,102 @@ textarea{min-height:74px;resize:vertical}
     return base+'.'+ext;
   }
 
-  function getPromo(){
-    var promo=get(content,'home.promo');
-    if(!promo||typeof promo!=='object'){promo={img:'',alt:'Upcoming event poster',href:'',label:''};set(content,'home.promo',promo);}
-    return promo;
+  /* One entry per upcoming race: banner images + that race's own countdown. */
+  function getPromos(){
+    var list=get(content,'home.promos');
+    if(!Array.isArray(list)){
+      var old=get(content,'home.promo');
+      list=(old&&typeof old==='object')?[old]:[];
+      set(content,'home.promos',list);
+    }
+    return list;
   }
+  function blankRace(){return {edition_label:'',date:'',time:'08:00',location:'',tba_text:'',info:''};}
 
   function renderBanner(){
     var box=document.getElementById('bannerBox');box.innerHTML='';
-    var promo=getPromo();
-    if(!promo.img){
+    var promos=getPromos();
+    if(!promos.length){
       var p=document.createElement('p');p.className='hint';p.textContent='No banner right now — the homepage banner section is hidden.';
-      box.appendChild(p);return;
+      box.appendChild(p);
     }
-    var slot=document.createElement('div');slot.className='logo-slot';slot.style.maxWidth='460px';
-    var img=document.createElement('img');img.style.maxHeight='150px';
-    img.src=pendingLogos[promo.img]?'data:image;base64,'+pendingLogos[promo.img]:'/'+promo.img;
-    img.onerror=function(){this.remove()};
-    slot.appendChild(img);
-    var f=document.createElement('div');f.className='file';f.textContent=promo.img;slot.appendChild(f);
-    if(pendingLogos[promo.img]){var q=document.createElement('div');q.className='queued';q.textContent='New banner queued ✓';slot.appendChild(q);}
-    [['Button link (e.g. '+'https://register.batrounrace.com/ — empty = no button)','href'],
-     ['Button text on the poster (e.g. Click to register 🏃 — empty = no button)','label'],
-     ['Image description (for accessibility)','alt']].forEach(function(fld){
-      var inp=document.createElement('input');inp.type='text';inp.placeholder=fld[0];inp.value=promo[fld[1]]||'';
-      inp.style.marginBottom='8px';
-      inp.addEventListener('input',function(){promo[fld[1]]=inp.value;status('unsaved changes');});
-      slot.appendChild(inp);
-    });
-    var b=document.createElement('button');b.type='button';b.className='mini del';b.textContent='✕ Remove banner';
-    b.addEventListener('click',function(){
-      if(confirm('Remove the event banner? The homepage section hides again.')){
-        delete pendingLogos[promo.img];promo.img='';renderBanner();status('unsaved changes');
+    promos.forEach(function(promo,idx){
+      if(!promo.race||typeof promo.race!=='object')promo.race=blankRace();
+      var slot=document.createElement('div');slot.className='logo-slot';slot.style.maxWidth='560px';slot.style.marginBottom='18px';
+      var head=document.createElement('div');head.className='file';
+      head.textContent='Race '+(idx+1)+(promos.length>1?' of '+promos.length:'');
+      head.style.fontWeight='700';slot.appendChild(head);
+      if(promo.img){
+        var img=document.createElement('img');img.style.maxHeight='130px';
+        img.src=pendingLogos[promo.img]?'data:image;base64,'+pendingLogos[promo.img]:'/'+promo.img;
+        img.onerror=function(){this.remove()};
+        slot.appendChild(img);
+        var f=document.createElement('div');f.className='file';f.textContent=promo.img;slot.appendChild(f);
+        if(pendingLogos[promo.img]){var q=document.createElement('div');q.className='queued';q.textContent='New banner queued ✓';slot.appendChild(q);}
       }
+      var up=document.createElement('input');up.type='file';up.accept='image/png,image/jpeg,image/webp';
+      up.style.marginBottom='8px';
+      up.addEventListener('change',function(){queueBanner(this,promo,'img');});
+      slot.appendChild(labelled(promo.img?'Replace wide banner (desktop)':'Upload wide banner (desktop)',up));
+      var upP=document.createElement('input');upP.type='file';upP.accept='image/png,image/jpeg,image/webp';
+      upP.style.marginBottom='8px';
+      upP.addEventListener('change',function(){queueBanner(this,promo,'img_portrait');});
+      slot.appendChild(labelled('Tall banner for phones'+(promo.img_portrait?' ✓ '+promo.img_portrait:' (optional)'),upP));
+      [['Button link (empty = no button)','href'],
+       ['Button text on the poster (empty = no button)','label'],
+       ['Image description (for accessibility)','alt']].forEach(function(fld){
+        slot.appendChild(field(fld[0],promo,fld[1]));
+      });
+      var rh=document.createElement('div');rh.className='file';rh.style.marginTop='10px';rh.style.fontWeight='700';
+      rh.textContent='Countdown & info pills for this race';slot.appendChild(rh);
+      [['Countdown title (e.g. Next race · Lebanon Cedar Race)','edition_label'],
+       ['Race date — YYYY-MM-DD','date'],
+       ['Start time — HH:MM','time'],
+       ['Location (e.g. Tannourine, Lebanon)','location'],
+       ['Text shown if no date is set yet','tba_text'],
+       ['Info pills — HTML, e.g. <span>🏁 Start 8:00 AM</span>','info']].forEach(function(fld){
+        slot.appendChild(field(fld[0],promo.race,fld[1]));
+      });
+      var b=document.createElement('button');b.type='button';b.className='mini del';b.textContent='✕ Remove this race banner';
+      b.addEventListener('click',function(){
+        if(confirm('Remove this banner and its countdown?')){
+          if(promo.img)delete pendingLogos[promo.img];
+          promos.splice(idx,1);renderBanner();status('unsaved changes');
+        }
+      });
+      slot.appendChild(b);
+      box.appendChild(slot);
     });
-    slot.appendChild(b);
-    box.appendChild(slot);
+    var add=document.createElement('button');add.type='button';add.className='mini';add.textContent='+ Add another race banner';
+    add.addEventListener('click',function(){
+      promos.push({img:'',img_portrait:'',alt:'',href:'',label:'',race:blankRace()});
+      renderBanner();status('unsaved changes');
+    });
+    box.appendChild(add);
+  }
+  function labelled(text,el){
+    var w=document.createElement('div');
+    var l=document.createElement('div');l.className='hint';l.style.margin='6px 0 2px';l.textContent=text;
+    w.appendChild(l);w.appendChild(el);return w;
+  }
+  function field(placeholder,obj,key){
+    var inp=document.createElement('input');inp.type='text';inp.placeholder=placeholder;inp.value=obj[key]||'';
+    inp.style.marginBottom='8px';
+    inp.addEventListener('input',function(){obj[key]=inp.value;status('unsaved changes');});
+    return inp;
+  }
+  function queueBanner(input,promo,key){
+    var f=input.files[0];if(!f)return;
+    var rd=new FileReader();
+    rd.onload=function(){
+      if(promo[key]&&pendingLogos[promo[key]])delete pendingLogos[promo[key]];
+      var path='images/banners/'+slugifyFile(f.name);
+      pendingLogos[path]=rd.result.split(',')[1];
+      promo[key]=path;
+      input.value='';renderBanner();status('unsaved changes');
+      show('Banner queued — press Save & publish to put it live.');
+    };
+    rd.readAsDataURL(f);
   }
 
   function renderSlides(){
@@ -429,21 +488,6 @@ textarea{min-height:74px;resize:vertical}
   document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click()});
   document.getElementById('vpage').addEventListener('change',function(){
     document.getElementById('vframe').src='/'+this.value+'?edit=1';
-  });
-  document.getElementById('bannerUpload').addEventListener('change',function(){
-    var f=this.files[0];var input=this;
-    if(!f)return;
-    var rd=new FileReader();
-    rd.onload=function(){
-      var promo=getPromo();
-      if(promo.img&&pendingLogos[promo.img])delete pendingLogos[promo.img];
-      var path='images/banners/'+slugifyFile(f.name);
-      pendingLogos[path]=rd.result.split(',')[1];
-      promo.img=path;
-      input.value='';renderBanner();status('unsaved changes');
-      show('Banner queued — press Save & publish to put it live.');
-    };
-    rd.readAsDataURL(f);
   });
   document.getElementById('slideUpload').addEventListener('change',function(){
     var files=Array.prototype.slice.call(this.files);

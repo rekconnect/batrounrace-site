@@ -23,6 +23,23 @@
     "nav_cta_url": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83"
   },
   "home": {
+    "promos": [
+      {
+        "img": "images/banners/lebanon-cedar-race-2026.jpg",
+        "img_portrait": "images/banners/lebanon-cedar-race-2026-portrait.jpg",
+        "alt": "Lebanon Cedar Race 2026 — 13 September 2026, 5 KM, registration opening soon",
+        "href": "https://register.batrounrace.com/",
+        "label": "",
+        "race": {
+          "edition_label": "Next race · Lebanon Cedar Race",
+          "date": "2026-09-13",
+          "time": "08:00",
+          "location": "Tannourine, Lebanon",
+          "tba_text": "Expected September 2026 — stay tuned 📣",
+          "info": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a>"
+        }
+      }
+    ],
     "hero": {
       "kicker": "KM 0 · Start line",
       "h1": "Run Batroun,<br>coast to <span class=\"accent\">mountain.</span>",
@@ -119,13 +136,6 @@
           "alt": ""
         }
       ]
-    },
-    "promo": {
-      "img": "images/banners/lebanon-cedar-race-2026.jpg",
-      "img_portrait": "images/banners/lebanon-cedar-race-2026-portrait.jpg",
-      "alt": "Lebanon Cedar Race 2026 — 13 September 2026, 5 KM, registration opening soon",
-      "href": "https://register.batrounrace.com/",
-      "label": ""
     },
     "why": {
       "kicker": "KM 1 · More than a race",
