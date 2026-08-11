@@ -195,7 +195,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .pod-card .meta{font-family:var(--mono);font-size:.78rem;color:var(--text-dim);margin-left:auto;text-align:right}
 .results-note{margin-top:36px;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.04em}
 
-.mobile-register{display:none}
+.mobile-register{display:none}.mobile-register:empty{display:none!important}
 @media(max-width:720px){
   .mobile-register{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--coral);color:#fff;font-weight:700;justify-content:center;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35)}
   footer{padding-bottom:92px}
@@ -450,7 +450,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 
-<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.nav_cta_url">Register now →</a>
+<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.nav_cta_url"></a>
 
 <footer>
   <div class="wrap foot">
