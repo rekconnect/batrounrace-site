@@ -207,12 +207,13 @@
       }
       var a = sec.querySelector('a.promo');
       if (a && !promo.href) a.removeAttribute('href');
-      var btn = sec.querySelector('.promo-btn');
-      if (btn) {
+      // the same call to action rides the banner and its countdown screen
+      [sec.querySelector('.promo-btn'), strip.querySelector('.cd-cta')].forEach(function (btn) {
+        if (!btn) return;
         if (promo.href) btn.setAttribute('href', promo.href);
-        if (promo.label) btn.innerHTML = promo.label;
+        btn.innerHTML = promo.label || '';
         btn.style.display = (promo.href && promo.label) ? '' : 'none';
-      }
+      });
       // the countdown screen wears this race's photo. A dedicated text-free
       // photo (promo.bg) shows sharp; falling back to the banner itself means
       // blurring hard so its baked-in text doesn't ghost behind the countdown.

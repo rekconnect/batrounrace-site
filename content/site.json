@@ -25,12 +25,12 @@
   "home": {
     "promos": [
       {
-        "img": "images/banners/lebanon-cedar-race-2026.jpg",
-        "img_portrait": "images/banners/lebanon-cedar-race-2026-portrait.jpg",
+        "img": "images/banners/lebanon-cedar-race-2026-open.jpg",
+        "img_portrait": "images/banners/lebanon-cedar-race-2026-open-portrait.jpg",
         "bg": "images/banners/lebanon-cedar-race-2026-bg.jpg",
-        "alt": "Lebanon Cedar Race 2026 — 13 September 2026, 5 KM, registration opening soon",
+        "alt": "Lebanon Cedar Race 2026 — 13 September 2026, Tannourine, 5 KM",
         "href": "https://register.batrounrace.com/",
-        "label": "",
+        "label": "Register now 🏃",
         "race": {
           "edition_label": "Next race · Lebanon Cedar Race",
           "date": "2026-09-13",
