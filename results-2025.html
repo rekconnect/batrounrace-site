@@ -81,15 +81,25 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav-drop.open .nav-drop-menu{display:flex}
 .nav-drop-menu a{padding:9px 12px;border-radius:8px;white-space:nowrap}
 .nav-drop-menu a:hover{background:rgba(6,104,205,.08)}
-@media(max-width:860px){
+@media(max-width:768px){
   .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
   .nav-drop-btn{pointer-events:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
-@media(max-width:860px){
+@media(max-width:768px){
   .nav-links{position:fixed;inset:64px 0 auto 0;background:var(--foam);flex-direction:column;padding:20px 24px 28px;gap:18px;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:transform .25s ease-out;align-items:flex-start}
   .nav-links.open{transform:translateY(0)}
   .menu-btn{display:block}
+}
+/* compressed one-row nav between 769px and 1080px so desktop always gets the full menu */
+@media(max-width:1080px) and (min-width:769px){
+  .nav-links{gap:13px}
+  .nav-links a,.nav-drop-btn{font-size:.8rem}
+  .nav-cta{padding:8px 13px}
+  .theme-btn{padding:7px 10px;font-size:.72rem}
+}
+@media(max-width:900px) and (min-width:769px){
+  .logo{font-size:0;gap:0}
 }
 
 /* ---------- route line ---------- */
@@ -195,7 +205,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .pod-card .meta{font-family:var(--mono);font-size:.78rem;color:var(--text-dim);margin-left:auto;text-align:right}
 .results-note{margin-top:36px;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.04em}
 
-.mobile-register{display:none}
+.mobile-register{display:none}.mobile-register:empty{display:none!important}
 @media(max-width:720px){
   .mobile-register{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--coral);color:#fff;font-weight:700;justify-content:center;padding:14px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.35)}
   footer{padding-bottom:92px}
@@ -450,7 +460,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 
-<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.nav_cta_url">Register now →</a>
+<a class="mobile-register" href="https://register.batrounrace.com/" data-cms="global.register_bar_label" data-cms-href="global.nav_cta_url"></a>
 
 <footer>
   <div class="wrap foot">
