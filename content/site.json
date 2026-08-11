@@ -185,8 +185,24 @@
         "Sports Experts",
         "Aquafina",
         "Gatorade",
+        "Joseph E Saba",
+        "Saint Bernard",
+        "TAQA",
+        "San Stephano Resort",
         "Whish Money",
-        "+ partners"
+        "Marsati",
+        "Batrouniyat",
+        "Hang Loose",
+        "Batroun Municipality",
+        "BluBay",
+        "XXL Energy",
+        "Tropical Energy",
+        "MOOD",
+        "Routes",
+        "Studio Jammal",
+        "Footlab",
+        "Ride Sports Events",
+        "Caritas Lebanon"
       ],
       "ctas": [
         {
@@ -580,7 +596,7 @@
       ]
     },
     "partners": {
-      "kicker": "KM 1 · 2026 partners",
+      "kicker": "KM 1 · Our partners",
       "h2": "Brands that showed up.",
       "p": "Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.",
       "wall": [
@@ -653,15 +669,49 @@
           "name": "BluBay",
           "slug": "blubay",
           "link": ""
+        },
+        {
+          "name": "XXL Energy",
+          "slug": "xxl-energy",
+          "link": ""
+        },
+        {
+          "name": "Tropical Energy",
+          "slug": "tropical-energy",
+          "link": ""
+        },
+        {
+          "name": "MOOD",
+          "slug": "mood",
+          "link": ""
+        },
+        {
+          "name": "Routes",
+          "slug": "routes",
+          "link": ""
+        },
+        {
+          "name": "Studio Jammal",
+          "slug": "studio-jammal",
+          "link": ""
+        },
+        {
+          "name": "Footlab",
+          "slug": "footlab",
+          "link": ""
+        },
+        {
+          "name": "Ride Sports Events",
+          "slug": "ride-sports-events",
+          "link": ""
+        },
+        {
+          "name": "Caritas Lebanon",
+          "slug": "caritas-lebanon",
+          "link": ""
         }
       ],
       "organizers_note": "Organized with Selaata Sporting Club &amp; the Lebanese Athletics Federation.",
-      "past_kicker": "Past editions",
-      "past": [
-        "XXL Energy",
-        "Caritas Lebanon"
-      ],
-      "past_note": "Partners of the 2025 first edition — see <a href=\"results-2025.html\" style=\"color:var(--sea)\">the 2025 results page</a>.",
       "ctas": [
         {
           "label": "Become a sponsor",
