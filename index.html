@@ -167,10 +167,16 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* ---------- event promo banner (poster set in /admin) ---------- */
 .promo-sec{display:none;padding:64px 0 0}
 .promo-sec.has-promo{display:block}
-.promo-top{padding:0}
-.promo-top .promo{border-radius:0;box-shadow:none}
+/* Sticky full-viewport hero: the banner fills the first screen (under the 64px
+   header), pins in place, and .page-body scrolls up over it. */
+.promo-top{padding:0;position:sticky;top:64px;z-index:0}
+.promo-top .promo{border-radius:0;box-shadow:none;height:calc(100vh - 64px);height:calc(100svh - 64px)}
+.promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
+@media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}
+.page-body{position:relative;z-index:1;background:var(--foam);box-shadow:0 -18px 44px rgba(3,15,43,.28)}
 .promo-top a.promo:hover{transform:none;box-shadow:none;filter:brightness(1.05)}
-.promo-top.edit-empty .promo{border-radius:0}
+.promo-top.edit-empty .promo{border-radius:0;height:auto}
+.promo-top.edit-empty .promo img{height:auto}
 .promo{display:block;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 34px rgba(3,15,43,.14);transition:transform .2s ease-out,box-shadow .2s ease-out}
 a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22)}
 .promo img{display:block;width:100%;height:auto}
@@ -317,14 +323,18 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </header>
 
-<!-- EVENT PROMO BANNER — full-width at the top, appears only when a poster is set in /admin (Photos tab) -->
+<!-- EVENT PROMO BANNER — full-viewport sticky hero; the page scrolls up over it -->
 <section class="promo-sec promo-top" id="promoSec">
   <div class="promo">
-    <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
+    <picture>
+      <source media="(max-width: 768px) and (orientation: portrait)" data-cms-srcset="home.promo.img_portrait">
+      <img data-cms-src="home.promo.img" src="" alt="Upcoming event announcement">
+    </picture>
     <a class="promo-btn" href="https://register.batrounrace.com/" data-cms="home.promo.label" data-cms-href="home.promo.href">Click to register</a>
   </div>
 </section>
 
+<div class="page-body">
 <!-- NEXT-RACE COUNTDOWN — directly under the banner -->
 <div class="count-strip">
   <div class="wrap">
@@ -495,6 +505,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
   <div class="wrap" style="margin-top:32px;font-size:.78rem" data-cms="global.copyright">© 2026 Batroun Race · Batroun, Lebanon</div>
 </footer>
+</div><!-- /.page-body -->
 
 <script>
 // route line fill on scroll

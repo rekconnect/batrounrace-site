@@ -158,6 +158,10 @@
       var v = get(C, el.getAttribute('data-cms-src'));
       if (typeof v === 'string' && v && el.getAttribute('src') !== v) el.setAttribute('src', v);
     });
+    document.querySelectorAll('[data-cms-srcset]').forEach(function (el) {
+      var v = get(C, el.getAttribute('data-cms-srcset'));
+      if (typeof v === 'string' && v && el.getAttribute('srcset') !== v) el.setAttribute('srcset', v);
+    });
     initPromo();
     initSliders();
     initCountdown();
