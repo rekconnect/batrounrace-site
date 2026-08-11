@@ -344,6 +344,10 @@ textarea{min-height:74px;resize:vertical}
       upP.style.marginBottom='8px';
       upP.addEventListener('change',function(){queueBanner(this,promo,'img_portrait');});
       slot.appendChild(labelled('Tall banner for phones'+(promo.img_portrait?' ✓ '+promo.img_portrait:' (optional)'),upP));
+      var upB=document.createElement('input');upB.type='file';upB.accept='image/png,image/jpeg,image/webp';
+      upB.style.marginBottom='8px';
+      upB.addEventListener('change',function(){queueBanner(this,promo,'bg');});
+      slot.appendChild(labelled('Photo behind the countdown screen — use a clean photo with no text'+(promo.bg?' ✓ '+promo.bg:' (optional)'),upB));
       [['Button link (empty = no button)','href'],
        ['Button text on the poster (empty = no button)','label'],
        ['Image description (for accessibility)','alt']].forEach(function(fld){

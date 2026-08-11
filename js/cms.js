@@ -213,6 +213,16 @@
         if (promo.label) btn.innerHTML = promo.label;
         btn.style.display = (promo.href && promo.label) ? '' : 'none';
       }
+      // the countdown screen wears this race's photo. A dedicated text-free
+      // photo (promo.bg) shows sharp; falling back to the banner itself means
+      // blurring hard so its baked-in text doesn't ghost behind the countdown.
+      if (promo.bg) {
+        strip.style.setProperty('--race-bg', 'url("' + promo.bg + '")');
+        strip.classList.add('has-photo');
+      } else if (promo.img) {
+        strip.style.setProperty('--race-bg', 'url("' + promo.img + '")');
+        if (promo.img_portrait) strip.style.setProperty('--race-bg-portrait', 'url("' + promo.img_portrait + '")');
+      }
       // each banner carries its own countdown + info pills
       var race = promo.race || (i === 0 ? get(C, 'global.race') : null) || {};
       var cd = strip.querySelector('.race-next');

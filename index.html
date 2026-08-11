@@ -126,8 +126,22 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .hero-meta b{display:block;color:var(--foam);font-size:1.05rem;font-weight:500}
 .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;align-items:center}
 /* next-race countdown — its own full screen between the banner and the site */
-.count-strip{background:var(--ink);min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);
+/* the screen wears its own race banner — blurred into a backdrop so the photo
+   carries over from the poster without its text competing with the countdown */
+.count-strip{background-color:var(--ink);position:relative;overflow:hidden;
+  min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:56px 0}
+.count-strip::before{content:"";position:absolute;inset:-70px;
+  background-image:linear-gradient(rgba(3,15,43,.62),rgba(3,15,43,.86)),var(--race-bg,none);
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  filter:blur(34px) saturate(1.15)}
+/* a dedicated text-free race photo can stay sharp */
+.count-strip.has-photo::before{inset:0;filter:none;
+  background-image:linear-gradient(rgba(3,15,43,.58),rgba(3,15,43,.84)),var(--race-bg,none)}
+.count-strip > *{position:relative;z-index:1}
+@media (max-width:768px) and (orientation:portrait){
+  .count-strip::before{background-image:linear-gradient(rgba(3,15,43,.52),rgba(3,15,43,.8)),var(--race-bg-portrait,var(--race-bg,none))}
+}
 .count-strip .wrap{display:flex;justify-content:center;padding-top:0}
 .count-strip .race-next:has(.rn-boxes){border:0;padding:0;flex-direction:column;gap:10px;text-align:center}
 .count-strip .race-next:has(.rn-boxes) .rn-what{font-size:.8rem;letter-spacing:.18em}
