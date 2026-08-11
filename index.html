@@ -125,7 +125,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .count-strip .rn-box b{font-size:2.2rem}
 .count-strip .rn-box span{font-size:.72rem}
 .race-info{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim);padding:16px 24px 0;letter-spacing:.02em}
-.race-info span{white-space:nowrap;border:1px solid var(--line-light);border-radius:999px;padding:6px 16px}
+.race-info span,.race-info a{white-space:nowrap;border:1px solid var(--line-light);border-radius:999px;padding:6px 16px}
+.race-info a{color:inherit;text-decoration:none;transition:border-color .2s ease-out,color .2s ease-out}
+.race-info a:hover{border-color:var(--coral);color:var(--text-inv)}
 .race-info:empty{display:none}
 .race-next{border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:var(--mono)}
 .race-next .rn-what{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
