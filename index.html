@@ -171,7 +171,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   font-size:clamp(1.9rem,3.6vw,3.1rem);text-shadow:0 3px 20px rgba(0,0,0,.6)}
 .race-next .rn-box span{font-size:clamp(.55rem,.72vw,.68rem);letter-spacing:.14em;
   text-transform:uppercase;color:rgba(255,255,255,.72)}
-/* race-day pills — just under the clock, desktop only */
+/* race-day pills — just under the clock, on every screen */
 .race-info{position:absolute;left:57%;top:calc(50% + clamp(66px,7vw,96px));transform:translateX(-50%);
   display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px;width:min(80%,720px);
   font-size:.76rem;color:rgba(255,255,255,.82);margin:0}
@@ -180,16 +180,27 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .race-info a{color:inherit;text-decoration:none;transition:border-color .2s ease-out,color .2s ease-out}
 .race-info a:hover{border-color:var(--coral);color:#fff}
 .race-info:empty{display:none}
-@media(max-width:900px){.race-info{display:none}}
+/* Small screens read as one centred column — race line under the 5 KM pill,
+   then clock, pills, button — so nothing has to share a band with anything. */
 @media(max-width:900px){
-  /* short banner: lift the clock so it clears the race line under the pill */
-  .race-next .rn-boxes{left:50%;top:36%}
-}
-@media (max-width:768px) and (orientation:portrait){
   .race-next .rn-what,.race-next .rn-when{left:6.5%;max-width:76%}  /* clear of the social rail */
-  .race-next .rn-what{top:34%}
-  .race-next .rn-when{top:calc(34% + 20px)}
-  .race-next .rn-boxes{top:56%;gap:12px;padding:16px 14px}
+  .race-next .rn-what{top:30%}
+  .race-next .rn-when{top:calc(30% + 20px)}
+  .race-next .rn-boxes{left:50%;top:46%;gap:clamp(12px,3.4vw,26px);padding:16px 16px}
+  .race-info{left:50%;top:calc(46% + clamp(58px,8vw,76px));width:min(78%,330px);
+    font-size:.7rem;gap:6px 8px}
+  .race-info span,.race-info a{padding:4px 11px}
+}
+@media(max-width:900px) and (min-width:769px){
+  .race-info{width:min(86%,560px)}
+}
+/* landscape phones have no vertical room: drop the pills, tighten the rest */
+@media(max-height:520px){
+  .race-info{display:none}
+  .race-next .rn-what{top:26%}
+  .race-next .rn-when{top:calc(26% + 20px)}
+  .race-next .rn-boxes{top:54%;padding:12px 14px}
+  .race-next .rn-box b{font-size:clamp(1.5rem,3vw,2.2rem)}
 }
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 26px;transition:transform .2s ease-out,background .2s,color .2s}
 .btn:active{transform:scale(.97)}
@@ -227,6 +238,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .promo-top{padding:0;position:relative;z-index:0}
 .cd-runway{height:min(52vh,400px)}   /* scroll room while the banner holds */
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:min(calc(100vh - 64px),45.9vw);height:min(calc(100svh - 64px),45.9vw)}
+/* tablets: a taller banner so the countdown column has room to breathe */
+@media(max-width:900px) and (min-width:769px){
+  .promo-top .promo{height:min(calc(100vh - 64px),70vw);height:min(calc(100svh - 64px),70vw)}
+}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo{height:calc(100vh - 64px);height:calc(100svh - 64px)}}
 .promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}

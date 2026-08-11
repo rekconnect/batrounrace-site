@@ -18,6 +18,8 @@
   css.textContent =
     '.brc-bubble{position:fixed;right:18px;bottom:18px;z-index:80;width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:var(--ink,#030F2B);color:#fff;font-size:1.45rem;box-shadow:0 12px 30px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;transition:transform .2s ease-out,background .2s}' +
     '.brc-bubble:hover{transform:translateY(-3px);background:var(--sea,#0668CD)}' +
+    '.brc-bubble{transition:transform .25s ease-out,background .2s,opacity .25s ease-out}' +
+    '.brc-bubble.brc-away{opacity:0;transform:translateY(14px) scale(.85);pointer-events:none}' +
     '@media(max-width:720px){.brc-bubble{bottom:78px}}' +
     '@media (prefers-reduced-motion:reduce){.brc-bubble:hover{transform:none}}' +
     '.brc-panel{position:fixed;right:18px;bottom:84px;z-index:90;width:min(370px,calc(100vw - 36px));height:min(520px,calc(100vh - 140px));background:#fff;border:1px solid rgba(3,15,43,.14);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.35);display:none;flex-direction:column;overflow:hidden;font-family:var(--body,sans-serif)}' +
@@ -327,6 +329,29 @@
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && panel.classList.contains('open')) close();
   });
+
+  /* The homepage opens on a full-bleed banner; a chat bubble parked on top of
+     it is just clutter over the poster. Hold it back until the visitor has
+     scrolled past the banner, then let it fade in. Other pages keep it always. */
+  function hideOverBanner() {
+    if (!document.getElementById('promoSec')) return;   // no banner on this page
+    var stage = null;
+    bubble.classList.add('brc-away');
+    function update() {
+      if (panel.classList.contains('open')) { bubble.classList.remove('brc-away'); return; }
+      stage = stage || document.querySelector('.promo-top');
+      if (!stage) { bubble.classList.remove('brc-away'); return; }
+      var past = stage.getBoundingClientRect().bottom <= window.innerHeight * 0.55;
+      bubble.classList.toggle('brc-away', !past);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    // the banner is rendered by cms.js, so re-check once it has landed
+    setTimeout(update, 300);
+    setTimeout(update, 1500);
+    update();
+  }
+  hideOverBanner();
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
