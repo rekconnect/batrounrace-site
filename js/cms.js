@@ -191,7 +191,6 @@
     races.forEach(function (promo, i) {
       var node = tpl.content.cloneNode(true);
       var sec = node.querySelector('.promo-sec');
-      var strip = node.querySelector('.count-strip');
       sec.classList.toggle('has-promo', !!promo.img || editing);
       sec.classList.toggle('edit-empty', editing && !promo.img);
       var img = sec.querySelector('img');
@@ -207,32 +206,49 @@
       }
       var a = sec.querySelector('a.promo');
       if (a && !promo.href) a.removeAttribute('href');
-      // the same call to action rides the banner and its countdown screen
-      [sec.querySelector('.promo-btn'), strip.querySelector('.cd-cta')].forEach(function (btn) {
-        if (!btn) return;
+      var btn = sec.querySelector('.promo-btn');
+      if (btn) {
         if (promo.href) btn.setAttribute('href', promo.href);
         btn.innerHTML = promo.label || '';
         btn.style.display = (promo.href && promo.label) ? '' : 'none';
-      });
-      // the countdown screen wears this race's photo. A dedicated text-free
-      // photo (promo.bg) shows sharp; falling back to the banner itself means
-      // blurring hard so its baked-in text doesn't ghost behind the countdown.
-      if (promo.bg) {
-        strip.style.setProperty('--race-bg', 'url("' + promo.bg + '")');
-        strip.classList.add('has-photo');
-      } else if (promo.img) {
-        strip.style.setProperty('--race-bg', 'url("' + promo.img + '")');
-        if (promo.img_portrait) strip.style.setProperty('--race-bg-portrait', 'url("' + promo.img_portrait + '")');
       }
-      // each banner carries its own countdown + info pills
+      // each banner carries its own countdown + info pills, written over the
+      // artwork itself: race line under the 5 KM pill, clock in the middle
       var race = promo.race || (i === 0 ? get(C, 'global.race') : null) || {};
-      var cd = strip.querySelector('.race-next');
-      var info = strip.querySelector('.race-info');
+      var cd = sec.querySelector('.race-next');
+      var info = sec.querySelector('.race-info');
       if (info) info.innerHTML = race.info || '';
       renderCountdown(cd, race, i === 0);
-      strip.style.display = (cd.hidden && !(race.info || '')) ? 'none' : '';
+      // the runway is the scroll room the sticky banner travels through while
+      // the countdown writes itself in — pointless without a banner
+      var runway = node.querySelector('.cd-runway');
+      if (runway) runway.style.display = (promo.img && !editing) ? '' : 'none';
       host.appendChild(node);
     });
+    revealCountdowns();
+  }
+
+  /* The countdown is not there when the banner first lands — it writes itself
+     into the empty middle on the visitor's first scroll, so the opening move
+     is the banner speaking rather than the page jumping to another screen. */
+  function revealCountdowns() {
+    var tops = [].slice.call(document.querySelectorAll('.promo-top'));
+    if (!tops.length) return;
+    var shown = false;
+    if (/[?&]edit=1/.test(location.search)) {   // in the editor, show it outright
+      tops.forEach(function (t) { t.classList.add('cd-on'); });
+      return;
+    }
+    function check() {
+      if (shown || window.scrollY < 40) return;
+      shown = true;
+      tops.forEach(function (t) { t.classList.add('cd-on'); });
+      window.removeEventListener('scroll', check);
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    // deep link / restored scroll position: don't make them scroll again
+    check();
+    setTimeout(check, 1200);
   }
 
   function initLightbox() {

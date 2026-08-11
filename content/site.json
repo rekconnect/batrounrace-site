@@ -29,7 +29,6 @@
       {
         "img": "images/banners/lebanon-cedar-race-2026-open.jpg",
         "img_portrait": "images/banners/lebanon-cedar-race-2026-open-portrait.jpg",
-        "bg": "images/banners/lebanon-cedar-race-2026-bg.jpg",
         "alt": "Lebanon Cedar Race 2026 — 13 September 2026, Tannourine, 5 KM",
         "href": "https://register.batrounrace.com/",
         "label": "Register now 🏃",
@@ -247,12 +246,12 @@
       "items": [
         {
           "upcoming": true,
-          "status": "Coming soon",
+          "status": "Registration open",
           "name": "Lebanon Cedar Race 2026",
           "meta": "Tannourine · 13 September 2026",
-          "p": "The next stop: up the mountain to Tannourine. Distances, route, and registration will be announced soon — stay tuned.",
-          "label": "🔔 Get notified →",
-          "href": "https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83"
+          "p": "The next stop: up the mountain to Tannourine for a 5KM through the cedars. Registration is open — secure your spot online.",
+          "label": "Register now →",
+          "href": "https://register.batrounrace.com/"
         },
         {
           "upcoming": false,
@@ -550,7 +549,7 @@
         },
         {
           "q": "Where is the race?",
-          "a": "Batroun, Lebanon. Start and route maps are shared by email and social."
+          "a": "Our races move between towns: the coastal race is in Batroun, and the next one — the Lebanon Cedar Race on 13 September 2026 — is in Tannourine. Start points and maps are shared by email and social."
         }
       ]
     },
@@ -1408,19 +1407,19 @@
       "items": [
         {
           "q": "What distances can I run?",
-          "a": "Two distances: 5KM and 10KM, both along the Batroun coast. All levels are welcome — beginners, casual joggers, and elite athletes."
+          "a": "The <strong>Lebanon Cedar Race</strong> on 13 September 2026 is a <strong>5KM</strong> in Tannourine. Our Batroun coastal races run <strong>5KM and 10KM</strong>. All levels are welcome — beginners, casual joggers, and elite athletes."
         },
         {
           "q": "How do I register?",
-          "a": "Registration for the next edition hasn't opened yet. When it does, it will be online at <a href=\"https://register.batrounrace.com/\">register.batrounrace.com</a>. Want a heads-up? <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> or follow <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>."
+          "a": "Registration and payment are online at <a href=\"https://register.batrounrace.com/\" target=\"_blank\" rel=\"noopener\">register.batrounrace.com</a> — pick your race, fill in your details, and you're in. Stuck? Message us on WhatsApp and we'll help."
         },
         {
           "q": "When is the next race?",
-          "a": "The next race is the <b>Lebanon Cedar Race 2026</b> in Tannourine on <b>13 September 2026</b>. Registration details will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
+          "a": "The next race is the <strong>Lebanon Cedar Race 2026</strong> in Tannourine on <strong>13 September 2026</strong>, starting at 8:00 AM. Sign up at <a href=\"https://register.batrounrace.com/\" target=\"_blank\" rel=\"noopener\">register.batrounrace.com</a>."
         },
         {
           "q": "Where does the race start?",
-          "a": "Each race has its own town: the coastal race starts in Batroun, and the upcoming race is planned in Tannourine. Exact start points and maps are shared with registered runners before race day."
+          "a": "Each race has its own town: the coastal race starts in Batroun, and the Lebanon Cedar Race starts in Tannourine — roads close 7:30 AM, briefing 7:40 AM, start 8:00 AM. Exact start point and maps are shared with registered runners before race day."
         },
         {
           "q": "Where do I get my bib and race kit?",

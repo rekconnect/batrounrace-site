@@ -144,46 +144,53 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* next-race countdown — its own full screen between the banner and the site */
 /* the screen wears its own race banner — blurred into a backdrop so the photo
    carries over from the poster without its text competing with the countdown */
-.count-strip{background-color:var(--ink);position:relative;overflow:hidden;
-  min-height:calc(100vh - 64px);min-height:calc(100svh - 64px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:56px 0}
-.count-strip::before{content:"";position:absolute;inset:-70px;
-  background-image:linear-gradient(rgba(3,15,43,.62),rgba(3,15,43,.86)),var(--race-bg,none);
-  background-size:cover;background-position:center;background-repeat:no-repeat;
-  filter:blur(34px) saturate(1.15)}
-/* a dedicated text-free race photo can stay sharp */
-.count-strip.has-photo::before{inset:0;filter:none;
-  background-image:linear-gradient(rgba(3,15,43,.58),rgba(3,15,43,.84)),var(--race-bg,none)}
-.count-strip > *{position:relative;z-index:1}
-@media (max-width:768px) and (orientation:portrait){
-  .count-strip::before{background-image:linear-gradient(rgba(3,15,43,.52),rgba(3,15,43,.8)),var(--race-bg-portrait,var(--race-bg,none))}
-}
-.count-strip .wrap{display:flex;justify-content:center;padding-top:0}
-.count-strip .race-next:has(.rn-boxes){border:0;padding:0;flex-direction:column;gap:10px;text-align:center}
-.count-strip .race-next:has(.rn-boxes) .rn-what{font-size:.8rem;letter-spacing:.18em}
-.count-strip .race-next:has(.rn-boxes) .rn-when{font-size:1.02rem;color:var(--text-inv)}
-.count-strip .rn-boxes{gap:clamp(18px,4vw,54px);margin-top:14px}
-.count-strip .rn-box b{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1}
-.count-strip .rn-box span{font-size:.74rem}
-.count-strip .cd-cta{margin-top:28px;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:1rem;padding:15px 38px;border-radius:999px;box-shadow:0 12px 34px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s}
-.count-strip .cd-cta:hover,.count-strip .cd-cta:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
-.count-strip .cd-cta:empty{display:none}
-@media (prefers-reduced-motion:reduce){.count-strip .cd-cta:hover{transform:none}}
-.count-strip .scroll-cue{margin-top:30px;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-inv-dim);animation:cue 2s ease-in-out infinite}
-@keyframes cue{0%,100%{transform:translateY(0);opacity:.55}50%{transform:translateY(6px);opacity:1}}
-@media (prefers-reduced-motion:reduce){.count-strip .scroll-cue{animation:none}}
-.race-info{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 14px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim);padding:16px 24px 0;letter-spacing:.02em}
-.race-info span,.race-info a{white-space:nowrap;border:1px solid var(--line-light);border-radius:999px;padding:6px 16px}
+/* ---------- countdown, written into the banner itself ---------- */
+/* the whole block is one overlay pinned over the artwork: the race line sits
+   under the 5 KM pill, the clock lands in the empty middle. It fades in on the
+   first scroll instead of the page moving to a second screen. */
+.cd-in{position:absolute;inset:0;pointer-events:none;font-family:var(--mono);
+  opacity:0;transform:translateY(14px);transition:opacity .7s ease-out,transform .7s ease-out}
+.promo-top.cd-on .cd-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.cd-in{transition:none;transform:none}}
+.cd-in a{pointer-events:auto}
+.race-next{position:absolute;inset:0}
+.race-next[hidden]{display:none}
+/* race line — under the 5 KM pill, on the banner's shaded left */
+.race-next .rn-what,.race-next .rn-when{position:absolute;left:5.6%;max-width:38%;
+  text-shadow:0 2px 16px rgba(0,0,0,.75)}
+.race-next .rn-what{top:55%;font-size:clamp(.6rem,.85vw,.78rem);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral)}
+.race-next .rn-when{top:calc(55% + 22px);font-size:clamp(.78rem,1.1vw,.98rem);color:#fff;line-height:1.35}
+/* the clock — the open middle of the artwork, clear of the title column */
+.race-next .rn-boxes{position:absolute;left:57%;top:50%;transform:translate(-50%,-50%);
+  display:flex;gap:clamp(14px,2.6vw,38px);text-align:center;
+  padding:18px clamp(18px,3vw,34px);border-radius:18px;
+  background:rgba(3,15,43,.34);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.14)}
+.race-next .rn-box{min-width:44px}
+.race-next .rn-box b{display:block;font-weight:500;color:#fff;line-height:1;
+  font-size:clamp(1.9rem,3.6vw,3.1rem);text-shadow:0 3px 20px rgba(0,0,0,.6)}
+.race-next .rn-box span{font-size:clamp(.55rem,.72vw,.68rem);letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(255,255,255,.72)}
+/* race-day pills — just under the clock, desktop only */
+.race-info{position:absolute;left:57%;top:calc(50% + clamp(66px,7vw,96px));transform:translateX(-50%);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px;width:min(80%,720px);
+  font-size:.76rem;color:rgba(255,255,255,.82);margin:0}
+.race-info span,.race-info a{white-space:nowrap;border:1px solid rgba(255,255,255,.28);
+  border-radius:999px;padding:5px 14px;background:rgba(3,15,43,.3);backdrop-filter:blur(3px)}
 .race-info a{color:inherit;text-decoration:none;transition:border-color .2s ease-out,color .2s ease-out}
-.race-info a:hover{border-color:var(--coral);color:var(--text-inv)}
+.race-info a:hover{border-color:var(--coral);color:#fff}
 .race-info:empty{display:none}
-.race-next{border:1px solid var(--line-light);border-radius:14px;padding:18px 22px;display:inline-flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:center;font-family:var(--mono)}
-.race-next .rn-what{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
-.race-next .rn-when{font-size:.85rem;color:var(--text-inv)}
-.race-next .rn-boxes{display:flex;gap:14px}
-.race-next .rn-box{text-align:center;min-width:44px}
-.race-next .rn-box b{display:block;font-size:1.5rem;font-weight:500;color:var(--foam)}
-.race-next .rn-box span{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-inv-dim)}
+@media(max-width:900px){.race-info{display:none}}
+@media(max-width:900px){
+  /* short banner: lift the clock so it clears the race line under the pill */
+  .race-next .rn-boxes{left:50%;top:36%}
+}
+@media (max-width:768px) and (orientation:portrait){
+  .race-next .rn-what,.race-next .rn-when{left:6.5%;max-width:76%}  /* clear of the social rail */
+  .race-next .rn-what{top:34%}
+  .race-next .rn-when{top:calc(34% + 20px)}
+  .race-next .rn-boxes{top:56%;gap:12px;padding:16px 14px}
+}
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 26px;transition:transform .2s ease-out,background .2s,color .2s}
 .btn:active{transform:scale(.97)}
 .btn-coral{background:var(--coral);color:#fff}
@@ -217,12 +224,13 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .promo-sec.has-promo{display:block}
 /* Sticky full-viewport hero: the banner fills the first screen (under the 64px
    header), pins in place, and .page-body scrolls up over it. */
-.promo-top{padding:0;position:sticky;top:64px;z-index:0}
-.promo-top .promo{border-radius:0;box-shadow:none;height:min(calc(100vh - 64px),45.9vw);height:min(calc(100svh - 64px),45.9vw)}
+.promo-top{padding:0;position:relative;z-index:0}
+.cd-runway{height:min(52vh,400px)}   /* scroll room while the banner holds */
+.promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:min(calc(100vh - 64px),45.9vw);height:min(calc(100svh - 64px),45.9vw)}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo{height:calc(100vh - 64px);height:calc(100svh - 64px)}}
 .promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}
-.page-body,.count-strip{position:relative;z-index:1;box-shadow:0 -18px 44px rgba(3,15,43,.28)}
+.page-body{position:relative;z-index:1;box-shadow:0 -18px 44px rgba(3,15,43,.28)}
 .page-body{background:var(--foam)}
 /* the event zone reads as full screens: banner, then countdown, then the site */
 .promo-top a.promo:hover{transform:none;box-shadow:none;filter:brightness(1.05)}
@@ -233,7 +241,7 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-.promo-btn{position:absolute;left:56%;bottom:9%;transform:translateX(-50%);background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+.promo-btn{position:absolute;left:50%;bottom:11%;transform:translateX(-50%);background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateX(-50%) translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
 @media (max-width:768px){.promo-btn{left:50%;bottom:15%;font-size:.95rem;padding:.7em 1.7em}}
@@ -384,17 +392,14 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <source media="(max-width: 768px) and (orientation: portrait)" srcset="">
         <img src="" alt="Upcoming event announcement">
       </picture>
+      <div class="cd-in">
+        <div class="race-next" hidden></div>
+        <p class="race-info"></p>
+      </div>
       <a class="promo-btn" href="https://register.batrounrace.com/">Click to register</a>
     </div>
+    <div class="cd-runway" aria-hidden="true"></div>
   </section>
-  <div class="count-strip">
-    <div class="wrap">
-      <div class="race-next" hidden></div>
-    </div>
-    <p class="race-info"></p>
-    <a class="cd-cta" href="https://register.batrounrace.com/">Register now</a>
-    <div class="scroll-cue">↓ Scroll</div>
-  </div>
 </template>
 <div id="promoSec"></div>
 
