@@ -164,26 +164,64 @@
     });
     initPromo();
     initSliders();
-    initCountdown();
     initLightbox();
   }
 
+  /* Banners: home.promos is a list, one entry per upcoming race, each carrying
+     its own banner images AND its own countdown/info. home.promo (singular) is
+     still honoured as the first entry so older content keeps working. */
+  function promoList() {
+    var list = get(C, 'home.promos');
+    if (Array.isArray(list) && list.length) return list;
+    var single = get(C, 'home.promo');
+    return single ? [single] : [];
+  }
+
   function initPromo() {
-    var sec = document.getElementById('promoSec');
-    if (!sec) return;
-    var promo = get(C, 'home.promo') || {};
+    var host = document.getElementById('promoSec');
+    if (!host) return;
+    var tpl = host.parentNode.querySelector('#promoTemplate');
+    if (!tpl) return;
     var editing = /[?&]edit=1/.test(location.search);
-    sec.classList.toggle('has-promo', !!promo.img || editing);
-    sec.classList.toggle('edit-empty', editing && !promo.img);
-    var img = sec.querySelector('img');
-    if (img) {
-      if (promo.alt) img.setAttribute('alt', promo.alt);
-      img.style.display = promo.img ? '' : 'none';
-    }
-    var a = sec.querySelector('a.promo');
-    if (a && !promo.href) a.removeAttribute('href');
-    var btn = sec.querySelector('.promo-btn');
-    if (btn) btn.style.display = (promo.href && promo.label) ? '' : 'none';
+    var races = promoList();
+    if (!races.length && !editing) { host.innerHTML = ''; return; }
+    if (!races.length) races = [{}];
+
+    host.innerHTML = '';
+    races.forEach(function (promo, i) {
+      var node = tpl.content.cloneNode(true);
+      var sec = node.querySelector('.promo-sec');
+      var strip = node.querySelector('.count-strip');
+      sec.classList.toggle('has-promo', !!promo.img || editing);
+      sec.classList.toggle('edit-empty', editing && !promo.img);
+      var img = sec.querySelector('img');
+      if (img) {
+        if (promo.img) img.setAttribute('src', promo.img);
+        if (promo.alt) img.setAttribute('alt', promo.alt);
+        img.style.display = promo.img ? '' : 'none';
+      }
+      var source = sec.querySelector('source');
+      if (source) {
+        if (promo.img_portrait) source.setAttribute('srcset', promo.img_portrait);
+        else source.remove();
+      }
+      var a = sec.querySelector('a.promo');
+      if (a && !promo.href) a.removeAttribute('href');
+      var btn = sec.querySelector('.promo-btn');
+      if (btn) {
+        if (promo.href) btn.setAttribute('href', promo.href);
+        if (promo.label) btn.innerHTML = promo.label;
+        btn.style.display = (promo.href && promo.label) ? '' : 'none';
+      }
+      // each banner carries its own countdown + info pills
+      var race = promo.race || (i === 0 ? get(C, 'global.race') : null) || {};
+      var cd = strip.querySelector('.race-next');
+      var info = strip.querySelector('.race-info');
+      if (info) info.innerHTML = race.info || '';
+      renderCountdown(cd, race, i === 0);
+      strip.style.display = (cd.hidden && !(race.info || '')) ? 'none' : '';
+      host.appendChild(node);
+    });
   }
 
   function initLightbox() {
@@ -225,10 +263,9 @@
     }
   }
 
-  function initCountdown() {
-    var el = document.getElementById('raceNext');
+  function renderCountdown(el, race, seo) {
     if (!el) return;
-    var race = get(C, 'global.race') || {};
+    race = race || {};
     if (el._timer) clearInterval(el._timer);
     var when = race.date ? new Date(race.date + (race.time ? 'T' + race.time : 'T07:00')) : null;
     if (!when || isNaN(when) || when < new Date()) {
@@ -257,7 +294,8 @@
     }
     tick();
     el._timer = setInterval(tick, 1000);
-    // structured data for Google (event rich results)
+    if (!seo) return;
+    // structured data for Google (event rich results) — first/next race only
     var old = document.getElementById('event-jsonld');
     if (old) old.remove();
     var s = document.createElement('script');
@@ -266,7 +304,7 @@
     s.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'SportsEvent',
-      name: 'Batroun Race',
+      name: (race.edition_label || 'Batroun Race').replace(/^Next race · /, ''),
       sport: 'Running',
       startDate: race.date + (race.time ? 'T' + race.time : ''),
       location: { '@type': 'Place', name: race.location || 'Batroun, Lebanon', address: 'Batroun, Lebanon' },
