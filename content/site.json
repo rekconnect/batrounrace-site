@@ -11,7 +11,7 @@
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
-      "edition_label": "Next race · Highland Tannourine Trail",
+      "edition_label": "Next race · Cedars Tannourine Trail",
       "date": "2026-09-13",
       "time": "08:00",
       "location": "Tannourine, Lebanon",
@@ -121,8 +121,8 @@
       ]
     },
     "promo": {
-      "img": "images/banners/highland-tannourine-trail-2026.jpg",
-      "alt": "Highland Tannourine Trail 2026 — 13 September 2026, 5 KM, registration opening soon",
+      "img": "images/banners/cedars-tannourine-trail-2026.jpg",
+      "alt": "Cedars Tannourine Trail 2026 — 13 September 2026, 5 KM, registration opening soon",
       "href": "https://register.batrounrace.com/",
       "label": ""
     },
@@ -218,7 +218,7 @@
         {
           "upcoming": true,
           "status": "Coming soon",
-          "name": "Highland Tannourine Trail 2026",
+          "name": "Cedars Tannourine Trail 2026",
           "meta": "Tannourine · 13 September 2026",
           "p": "The next stop: up the mountain to Tannourine. Distances, route, and registration will be announced soon — stay tuned.",
           "label": "🔔 Get notified →",
@@ -1352,7 +1352,7 @@
         },
         {
           "q": "When is the next race?",
-          "a": "The next race is the <b>Highland Tannourine Trail 2026</b> in Tannourine on <b>13 September 2026</b>. Registration details will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
+          "a": "The next race is the <b>Cedars Tannourine Trail 2026</b> in Tannourine on <b>13 September 2026</b>. Registration details will be announced on this website and on Instagram <a href=\"https://www.instagram.com/batrounrace\">@batrounrace</a>. <a href=\"https://wa.me/96181300625?text=Hi!%20Please%20notify%20me%20when%20Batroun%20Race%20registration%20opens%20%F0%9F%8F%83\">Message us on WhatsApp</a> to get notified."
         },
         {
           "q": "Where does the race start?",
