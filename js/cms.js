@@ -208,23 +208,15 @@
       a.setAttribute('aria-disabled', 'true');
       a.setAttribute('title', REG_NOTE);
     });
-    // a greyed button still saying "Register now" reads as broken, so the
-    // loudest one says what is actually going on
-    var btn = document.querySelector('.promo-btn.reg-locked');
-    if (btn && !btn.hasAttribute('data-reg-label')) {
-      btn.setAttribute('data-reg-label', btn.innerHTML);
-      btn.textContent = 'Registration opens soon';
-    }
+    // the label stays as it is. The clock right above it already says what is
+    // happening, and keeping the wording means nothing but the colour changes
+    // when it opens — the button the visitor was looking at simply lights up
     var ms = at - new Date();
     clearTimeout(initRegLock._t);
     if (ms > 0 && ms < 2147483647) initRegLock._t = setTimeout(unlockRegistration, ms + 500);
   }
 
   function unlockRegistration() {
-    document.querySelectorAll('.promo-btn[data-reg-label]').forEach(function (b) {
-      b.innerHTML = b.getAttribute('data-reg-label');
-      b.removeAttribute('data-reg-label');
-    });
     document.querySelectorAll('a[data-reg-href]').forEach(function (a) {
       a.setAttribute('href', a.getAttribute('data-reg-href'));
       a.removeAttribute('data-reg-href');
