@@ -254,10 +254,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
    header), pins in place, and .page-body scrolls up over it. */
 .promo-top{padding:0;position:relative;z-index:0}
 .cd-runway{height:var(--runway)}   /* scroll room while the banner holds */
-:root{--runway:min(18vh,140px)}   /* the page lifts over the held banner by
-   this much before they travel together — kept shorter than the empty photo
-   below the lockup, so nothing on the banner is ever sliced in half */
-@media(max-height:520px){:root{--runway:70px}}
+:root{--runway:calc(100vh - 64px);--runway:calc(100svh - 64px)}
+/* the runway equals one banner: the page climbs the held banner like a
+   curtain until it is fully covered, then the two travel together */
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:calc(100vh - 64px);height:calc(100svh - 64px)}
 .promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
 @media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}
