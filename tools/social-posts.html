@@ -11,8 +11,10 @@
     link   1200x630   · link previews, Facebook cover   -> images/social/
     wide   1920x1080  · the homepage banner             -> images/banners/
     tall   1080x1920  · the homepage banner on phones   -> images/banners/
-  The two banner sizes drop the call to action: the site puts a real,
-  clickable Register button over the artwork instead.
+  The two banner sizes drop the call to action, and are rendered with
+  &brand=0 so they drop the lockup too: the site puts a real, clickable
+  Register button and a real logo row over the artwork instead.
+  Add &cta=soon for the announcement wording on the social sizes.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,13 +35,17 @@ body{overflow:hidden;font-family:'Baloo 2',sans-serif;position:relative;backgrou
   box-shadow:0 12px 34px rgba(0,0,0,.45)}
 /* Send people to the site, not straight to the registration system: the
    homepage carries the countdown, the route and the Register button.
-   The url lines up with the WORDS in the button, not the button's edge. */
+   It sits centred around the middle of the frame, not down in the corner:
+   it is the one line the post is actually asking anyone to act on. */
+.cta{left:0;right:0;text-align:center}
 .cta .url{display:block;font-weight:700;color:#fff;letter-spacing:.02em;text-shadow:0 2px 14px rgba(0,0,0,.7);opacity:.95}
-/* organisers and partners: Batroun Race on top, the partner marks in one row
-   beneath it. Every mark is reversed to white on transparency, so the row sits
-   on the photo the way the wordmark does — no logo wearing its own coloured
-   box in the middle of the artwork. The bottom scrim is what they read against. */
-.brand{position:absolute;z-index:5;display:flex;flex-direction:column;gap:14px}
+/* organisers and partners: every mark on one line along the foot, with the call
+   to action centred above it — the same shape the homepage banner carries.
+   All of them are reversed to white on transparency, so the row sits on the
+   photo the way the wordmark does rather than each wearing its own coloured
+   box. The bottom scrim is what they read against. */
+.brand{position:absolute;left:0;right:0;z-index:5;display:flex;flex-direction:row;
+  align-items:center;justify-content:center;flex-wrap:wrap}
 .brand .row{display:flex;align-items:center;gap:12px}
 .brand img.mark{filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 .brand span{color:#fff;font-weight:800;letter-spacing:.02em;text-shadow:0 2px 14px rgba(0,0,0,.7)}
@@ -53,14 +59,14 @@ body.square .date{font-size:40px}
 body.square .l1{font-size:96px}
 body.square .l2{font-size:62px}
 body.square .dist{margin-top:18px;font-size:46px;padding:2px 36px}
-body.square .cta{left:64px;bottom:80px}
+body.square .cta{bottom:470px}
 body.square .cta .pill{font-size:42px;padding:10px 44px}
-body.square .cta .url{margin-top:16px;padding-left:44px;font-size:29px}
-body.square .brand{right:64px;bottom:78px;align-items:flex-end}
-body.square .brand img.mark{height:48px}
-body.square .brand span{font-size:28px}
-body.square .brand .partners{gap:22px}
-body.square .brand .partners img{height:62px}
+body.square .cta .url{margin-top:16px;font-size:29px}
+body.square .brand{bottom:64px;gap:40px;padding:0 48px}
+body.square .brand img.mark{height:62px}
+body.square .brand span{font-size:34px}
+body.square .brand .partners{gap:30px}
+body.square .brand .partners img{height:76px}
 
 /* ---- Story / WhatsApp status ---- */
 body.story{width:1080px;height:1920px}
@@ -70,14 +76,14 @@ body.story .date{font-size:40px}
 body.story .l1{font-size:98px}
 body.story .l2{font-size:62px}
 body.story .dist{margin-top:24px;font-size:46px;padding:2px 38px}
-body.story .cta{left:64px;bottom:540px}
+body.story .cta{bottom:880px}
 body.story .cta .pill{font-size:44px;padding:12px 48px}
-body.story .cta .url{margin-top:18px;padding-left:48px;font-size:30px}
-body.story .brand{left:64px;bottom:300px;align-items:flex-start}
-body.story .brand img.mark{height:50px}
-body.story .brand span{font-size:29px}
-body.story .brand .partners{gap:24px}
-body.story .brand .partners img{height:68px}
+body.story .cta .url{margin-top:18px;font-size:30px}
+body.story .brand{bottom:300px;gap:44px;padding:0 48px}
+body.story .brand img.mark{height:66px}
+body.story .brand span{font-size:36px}
+body.story .brand .partners{gap:32px}
+body.story .brand .partners img{height:80px}
 
 /* ---- Link preview / Facebook post ---- */
 body.link{width:1200px;height:630px}
@@ -87,14 +93,14 @@ body.link .date{font-size:28px}
 body.link .l1{font-size:70px}
 body.link .l2{font-size:44px}
 body.link .dist{margin-top:12px;font-size:32px;padding:2px 26px}
-body.link .cta{left:56px;bottom:46px}
+body.link .cta{bottom:238px}
 body.link .cta .pill{font-size:28px;padding:8px 30px}
-body.link .cta .url{margin-top:12px;padding-left:30px;font-size:21px}
-body.link .brand{right:56px;bottom:46px;align-items:flex-end;gap:10px}
-body.link .brand img.mark{height:36px}
-body.link .brand span{font-size:22px}
-body.link .brand .partners{gap:16px}
-body.link .brand .partners img{height:46px}
+body.link .cta .url{margin-top:12px;font-size:21px}
+body.link .brand{bottom:40px;gap:28px;padding:0 48px}
+body.link .brand img.mark{height:44px}
+body.link .brand span{font-size:25px}
+body.link .brand .partners{gap:22px}
+body.link .brand .partners img{height:54px}
 
 /* ---- homepage banner, wide (16:9 so it fills a landscape screen) ----
    The lockup sits near the bottom edge, where it belongs: the page now
@@ -107,11 +113,6 @@ body.wide .date{font-size:58px}
 body.wide .l1{font-size:138px}
 body.wide .l2{font-size:88px}
 body.wide .dist{margin-top:22px;font-size:56px;padding:2px 40px}
-body.wide .brand{right:96px;bottom:78px;align-items:flex-end;gap:16px}
-body.wide .brand img.mark{height:64px}
-body.wide .brand span{font-size:35px}
-body.wide .brand .partners{gap:26px}
-body.wide .brand .partners img{height:76px}
 
 /* ---- homepage banner, phones ---- */
 body.tall{width:1080px;height:1920px}
@@ -122,11 +123,6 @@ body.tall .date{font-size:40px}
 body.tall .l1{font-size:98px}
 body.tall .l2{font-size:62px}
 body.tall .dist{margin-top:26px;font-size:46px;padding:2px 38px}
-body.tall .brand{right:64px;bottom:150px;align-items:flex-end;gap:18px}
-body.tall .brand img.mark{height:74px}
-body.tall .brand span{font-size:40px}
-body.tall .brand .partners{gap:28px}
-body.tall .brand .partners img{height:86px}
 </style>
 </head>
 <body>
@@ -152,7 +148,24 @@ body.tall .brand .partners img{height:86px}
   </div>
 </div>
 <script>
-document.body.className = new URLSearchParams(location.search).get('s') || 'square';
+var q = new URLSearchParams(location.search);
+document.body.className = q.get('s') || 'square';
+/* &brand=0 renders the photo without the lockup. The two homepage banners use
+   it: the site draws BATROUN RACE and the partner logos as real elements over
+   the artwork, so they cannot be sliced off by the crop that fills the screen
+   and they stay level with the Register button. A social post is a flat image
+   with nothing to lay over it, so it keeps the lockup painted in. */
+if (q.get('brand') === '0') document.querySelector('.brand').remove();
+/* Two calls to action for the same artwork: the announcement posts that run
+   before registration opens, and the register posts that run after. Add
+   &cta=soon for the first — the site's clock is counting to the same moment. */
+if (q.get('cta') === 'soon') {
+  document.body.classList.add('soon');
+  document.querySelector('.cta .pill').textContent = 'REGISTRATION OPENING SOON';
+  // no date on the post: the site carries the clock, and a post cannot be
+  // edited once it is out — the countdown can
+  document.querySelector('.cta .url').textContent = 'www.batrounrace.com';
+}
 </script>
 </body>
 </html>

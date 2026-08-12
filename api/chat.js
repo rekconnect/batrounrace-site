@@ -92,7 +92,17 @@ function factSheet(c, now) {
   }
 
   const past = !!(race && race.date && new Date(race.date + 'T23:59:59+03:00') < now);
-  const open = !!(promo && promo.label && promo.href) && !past;
+  // registration has its own opening moment, ahead of the race: until it passes
+  // the site greys out every registration link, and so must the assistant
+  const regAt = race && race.reg_open ? new Date(race.reg_open) : null;
+  const waiting = !!(regAt && !isNaN(regAt) && regAt > now);
+  const open = !!(promo && promo.label && promo.href) && !past && !waiting;
+  if (waiting) {
+    lines.push('Registration has NOT opened yet. The homepage banner is counting down to the moment it does, ' +
+      'and every registration link on the site is greyed out until then. Do NOT send anyone to the ' +
+      'registration link and do not state the opening date — point them at the countdown on the homepage, ' +
+      'and offer WhatsApp or Instagram if they want to be told when it opens.');
+  }
   if (past) {
     lines.push('The site still shows a registration button, but it belongs to that finished race — ' +
       'tell visitors to check with the organisers before signing up.');
