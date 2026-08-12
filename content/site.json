@@ -1425,11 +1425,11 @@
         },
         {
           "q": "How do I register?",
-          "a": "Registration and payment are online at <a href=\"https://register.batrounrace.com/\" target=\"_blank\" rel=\"noopener\">register.batrounrace.com</a> — pick your race, fill in your details, and you're in. Stuck? Message us on WhatsApp and we'll help."
+          "a": "Registration and payment are online — use the <strong>Register</strong> button on the homepage. It is greyed out until registration opens, and the clock on the homepage is counting down to that moment. Stuck? Message us on WhatsApp and we'll help."
         },
         {
           "q": "When is the next race?",
-          "a": "The next race is the <strong>Lebanon Cedar Race 2026</strong> in Tannourine on <strong>13 September 2026</strong>, starting at 8:00 AM. Sign up at <a href=\"https://register.batrounrace.com/\" target=\"_blank\" rel=\"noopener\">register.batrounrace.com</a>."
+          "a": "The next race is the <strong>Lebanon Cedar Race 2026</strong> in Tannourine on <strong>13 September 2026</strong>, starting at 8:00 AM. Sign up with the <strong>Register</strong> button on the homepage once registration opens — the clock there is counting down to it."
         },
         {
           "q": "Where does the race start?",
@@ -1468,7 +1468,7 @@
           "style": "wa"
         }
       ],
-      "note": "Registration, payment &amp; results at register.batrounrace.com"
+      "note": "Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there"
     }
   },
   "gallery": {
