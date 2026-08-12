@@ -56,6 +56,9 @@ body.square .dist{margin-top:18px;font-size:46px;padding:2px 36px}
 body.square .cta{left:64px;bottom:80px}
 body.square .cta .pill{font-size:42px;padding:10px 44px}
 body.square .cta .url{margin-top:16px;padding-left:44px;font-size:29px}
+/* the announcement line is longer than REGISTER NOW, and on the square the
+   call to action and the lockup share one band — so it steps down to clear it */
+body.square.soon .cta .pill{font-size:34px}
 body.square .brand{right:64px;bottom:78px;align-items:flex-end}
 body.square .brand img.mark{height:48px}
 body.square .brand span{font-size:28px}
@@ -152,7 +155,18 @@ body.tall .brand .partners img{height:86px}
   </div>
 </div>
 <script>
-document.body.className = new URLSearchParams(location.search).get('s') || 'square';
+var q = new URLSearchParams(location.search);
+document.body.className = q.get('s') || 'square';
+/* Two calls to action for the same artwork: the announcement posts that run
+   before registration opens, and the register posts that run after. Add
+   &cta=soon for the first — the site's clock is counting to the same moment. */
+if (q.get('cta') === 'soon') {
+  document.body.classList.add('soon');
+  document.querySelector('.cta .pill').textContent = 'REGISTRATION OPENING SOON';
+  // no date on the post: the site carries the clock, and a post cannot be
+  // edited once it is out — the countdown can
+  document.querySelector('.cta .url').textContent = 'www.batrounrace.com';
+}
 </script>
 </body>
 </html>

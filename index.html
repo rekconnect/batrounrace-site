@@ -288,8 +288,11 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-/* mirrors the BATROUN RACE lockup baked into the artwork's bottom-right,
-   so the two sit level on opposite sides instead of colliding */
+/* Starting position only. The lockup is painted into the artwork and the
+   banner crops that artwork to fill the screen, so js/cms.js measures where
+   the lockup actually landed and sits the button level with it, inset the
+   same distance from its own edge. These values are what shows until it does,
+   and the fallback when the crop hides the lockup. */
 .promo-btn{position:absolute;left:5.6%;bottom:7.5%;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}

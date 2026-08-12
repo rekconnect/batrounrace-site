@@ -229,7 +229,63 @@
       host.appendChild(node);
     });
     revealCountdowns();
+    alignPromoBtns();
   }
+
+  /* Where the BATROUN RACE lockup lands on screen is not fixed: it is painted
+     into the artwork, and the banner crops that artwork to fill the viewport,
+     so every screen shape moves it. The Register button is a real element and
+     has to go and find it — otherwise the two drift apart, which is what a
+     percentage from the bottom edge was doing.
+     Both are then equally inset from their own side and level with each other.
+     The numbers are the lockup's own box in artwork pixels; they come straight
+     from tools/social-posts.html and must move with it. */
+  var LOCKUP = {
+    wide: { right: 96, bottom: 78, height: 64 + 16 + 76 },   // body.wide  1920x1080
+    tall: { right: 64, bottom: 150, height: 74 + 18 + 86 }   // body.tall  1080x1920
+  };
+
+  function alignPromoBtn(sec) {
+    var img = sec.querySelector('.promo img'), btn = sec.querySelector('.promo-btn');
+    if (!img || !btn || sec.classList.contains('edit-empty')) return;
+    var nw = img.naturalWidth, nh = img.naturalHeight, bw = img.clientWidth, bh = img.clientHeight;
+    if (!nw || !nh || !bw || !bh) return;
+    var a = nw >= nh ? LOCKUP.wide : LOCKUP.tall;
+    var s = Math.max(bw / nw, bh / nh);              // object-fit: cover
+    var drawnW = nw * s, drawnH = nh * s;
+    var pos = getComputedStyle(img).objectPosition.split(' ');
+    var ox = edge(pos[0], bw, drawnW), oy = edge(pos[1], bh, drawnH);
+    var lockRight = ox + (nw - a.right) * s;
+    var lockBottom = oy + (nh - a.bottom) * s;
+    var lockMid = lockBottom - a.height * s / 2;
+    // the crop can eat the lockup off the bottom edge; chasing what nobody can
+    // see would only drag the button out of the picture with it
+    if (lockBottom > bh + 2) { btn.style.left = btn.style.top = btn.style.bottom = ''; return; }
+    var top = Math.min(Math.max(lockMid - btn.offsetHeight / 2, 12), bh - btn.offsetHeight - 12);
+    btn.style.left = Math.max(bw - lockRight, 14) + 'px';
+    btn.style.top = top + 'px';
+    btn.style.bottom = 'auto';
+  }
+
+  function edge(v, box, drawn) {
+    // a percentage splits the overflow, a length is the offset from the edge
+    return /%$/.test(v) ? (box - drawn) * parseFloat(v) / 100 : (parseFloat(v) || 0);
+  }
+
+  function alignPromoBtns() {
+    var secs = [].slice.call(document.querySelectorAll('.promo-sec'));
+    secs.forEach(function (sec) {
+      alignPromoBtn(sec);
+      var img = sec.querySelector('.promo img');
+      if (img && !img.complete) img.addEventListener('load', function () { alignPromoBtn(sec); });
+    });
+  }
+
+  var alignTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(alignTimer);
+    alignTimer = setTimeout(alignPromoBtns, 120);
+  });
 
   /* The clock is the first thing the banner has to say, so it is on screen
      from the first paint — no scroll to earn it. It still fades up rather than
