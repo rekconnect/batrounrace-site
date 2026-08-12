@@ -165,6 +165,73 @@
     initPromo();
     initSliders();
     initLightbox();
+    initRegLock();
+  }
+
+  /* Registration is not open until race.reg_open, and until then no link on the
+     site should hand anyone to the registration system — it is still being set
+     up. Every link to it is greyed out and stops navigating; the moment the
+     clock runs out they all come back on their own, no reload and no deploy.
+     Results links are left alone: those belong to races already run. */
+  function regMoment() {
+    var promos = promoList();
+    var race = (promos[0] && promos[0].race) || get(C, 'global.race') || {};
+    var at = race.reg_open ? new Date(race.reg_open) : null;
+    return at && !isNaN(at) ? at : null;
+  }
+
+  function regLinks() {
+    return [].slice.call(document.querySelectorAll('a[href],a[data-reg-href]')).filter(function (a) {
+      var h = a.getAttribute('href') || a.getAttribute('data-reg-href') || '';
+      return h.indexOf('register.batrounrace.com') > -1 && h.indexOf('/results') === -1;
+    });
+  }
+
+  var REG_NOTE = 'Registration opens soon — the countdown is on the homepage';
+
+  function initRegLock() {
+    var at = regMoment();
+    if (!at || at <= new Date()) { unlockRegistration(); return; }
+    if (!document.getElementById('reg-lock-css')) {
+      var s = document.createElement('style');
+      s.id = 'reg-lock-css';
+      // grayscale rather than a fixed grey: works the same on the coral button,
+      // the ghost buttons and the bib card without hardcoding any of them
+      s.textContent = '.reg-locked{filter:grayscale(1);opacity:.6;cursor:not-allowed;box-shadow:none!important}' +
+        '.reg-locked:hover,.reg-locked:focus-visible{transform:none!important;filter:grayscale(1)}';
+      document.head.appendChild(s);
+    }
+    regLinks().forEach(function (a) {
+      if (a.hasAttribute('href')) a.setAttribute('data-reg-href', a.getAttribute('href'));
+      a.removeAttribute('href');            // an anchor with no href is not a link
+      a.classList.add('reg-locked');
+      a.setAttribute('aria-disabled', 'true');
+      a.setAttribute('title', REG_NOTE);
+    });
+    // a greyed button still saying "Register now" reads as broken, so the
+    // loudest one says what is actually going on
+    var btn = document.querySelector('.promo-btn.reg-locked');
+    if (btn && !btn.hasAttribute('data-reg-label')) {
+      btn.setAttribute('data-reg-label', btn.innerHTML);
+      btn.textContent = 'Registration opens soon';
+    }
+    var ms = at - new Date();
+    clearTimeout(initRegLock._t);
+    if (ms > 0 && ms < 2147483647) initRegLock._t = setTimeout(unlockRegistration, ms + 500);
+  }
+
+  function unlockRegistration() {
+    document.querySelectorAll('.promo-btn[data-reg-label]').forEach(function (b) {
+      b.innerHTML = b.getAttribute('data-reg-label');
+      b.removeAttribute('data-reg-label');
+    });
+    document.querySelectorAll('a[data-reg-href]').forEach(function (a) {
+      a.setAttribute('href', a.getAttribute('data-reg-href'));
+      a.removeAttribute('data-reg-href');
+      a.removeAttribute('aria-disabled');
+      if (a.getAttribute('title') === REG_NOTE) a.removeAttribute('title');
+      a.classList.remove('reg-locked');
+    });
   }
 
   /* Banners: home.promos is a list, one entry per upcoming race, each carrying
