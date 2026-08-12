@@ -147,8 +147,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* ---------- countdown, written into the banner itself ---------- */
 /* One overlay pinned over the artwork. The banner already says the date, the
    town and the race name in its own first three lines, so all this adds is the
-   clock and the race-day pills. It fades in on the first scroll instead of the
-   page moving to a second screen. */
+   clock and the race-day pills. It fades up on load — the clock is the first
+   thing the banner has to say, so it does not wait to be scrolled to. */
 .cd-in{position:absolute;inset:0;pointer-events:none;font-family:var(--mono);
   opacity:0;transform:translateY(14px);transition:opacity .7s ease-out,transform .7s ease-out}
 .promo-top.cd-on .cd-in{opacity:1;transform:none}
@@ -166,6 +166,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   font-size:clamp(1.9rem,3.6vw,3.1rem);text-shadow:0 3px 20px rgba(0,0,0,.6)}
 .race-next .rn-box span{font-size:clamp(.55rem,.72vw,.68rem);letter-spacing:.14em;
   text-transform:uppercase;color:rgba(255,255,255,.72)}
+/* what the clock is counting to, when it is not counting to race day — sits
+   just above the panel, so it follows the clock across every breakpoint */
+.race-next .rn-lead{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);
+  white-space:nowrap;font-size:clamp(.58rem,.8vw,.72rem);letter-spacing:.16em;
+  text-transform:uppercase;color:var(--coral);padding:5px 14px;border-radius:999px;
+  background:rgba(3,15,43,.42);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.14)}
 /* no date announced yet: the clock's spot carries the "coming soon" line instead */
 .race-next .rn-what,.race-next .rn-when{position:absolute;left:57%;transform:translateX(-50%);
   width:min(80%,620px);text-align:center;text-shadow:0 2px 16px rgba(0,0,0,.75)}
@@ -181,6 +187,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .race-info a{color:inherit;text-decoration:none;transition:border-color .2s ease-out,color .2s ease-out}
 .race-info a:hover{border-color:var(--coral);color:#fff}
 .race-info:empty{display:none}
+.race-info[hidden]{display:none}   /* held back while the clock is on registration */
 /* Small screens: clock, pills and button read as one centred column, sitting
    below the artwork's own title block. */
 @media(max-width:900px){
@@ -283,10 +290,10 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo-label:empty{display:none}
 /* mirrors the BATROUN RACE lockup baked into the artwork's bottom-right,
    so the two sit level on opposite sides instead of colliding */
-.promo-btn{position:absolute;left:5.6%;bottom:25%;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+.promo-btn{position:absolute;left:5.6%;bottom:7.5%;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
-@media (max-width:768px){.promo-btn{left:6.5%;bottom:24.5%;font-size:.95rem;padding:.7em 1.7em}}
+@media (max-width:768px){.promo-btn{left:6.5%;bottom:8.5%;font-size:.95rem;padding:.7em 1.7em}}
 @media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
 .promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
 .promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}

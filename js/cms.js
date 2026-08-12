@@ -231,27 +231,17 @@
     revealCountdowns();
   }
 
-  /* The countdown is not there when the banner first lands — it writes itself
-     into the empty middle on the visitor's first scroll, so the opening move
-     is the banner speaking rather than the page jumping to another screen. */
+  /* The clock is the first thing the banner has to say, so it is on screen
+     from the first paint — no scroll to earn it. It still fades up rather than
+     snapping in: one frame's delay is enough for the transition to run. */
   function revealCountdowns() {
     var tops = [].slice.call(document.querySelectorAll('.promo-top'));
     if (!tops.length) return;
-    var shown = false;
-    if (/[?&]edit=1/.test(location.search)) {   // in the editor, show it outright
-      tops.forEach(function (t) { t.classList.add('cd-on'); });
-      return;
-    }
-    function check() {
-      if (shown || window.scrollY < 40) return;
-      shown = true;
-      tops.forEach(function (t) { t.classList.add('cd-on'); });
-      window.removeEventListener('scroll', check);
-    }
-    window.addEventListener('scroll', check, { passive: true });
-    // deep link / restored scroll position: don't make them scroll again
-    check();
-    setTimeout(check, 1200);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        tops.forEach(function (t) { t.classList.add('cd-on'); });
+      });
+    });
   }
 
   function initLightbox() {
@@ -293,12 +283,26 @@
     }
   }
 
+  /* Two clocks share the one slot in the banner. While registration is still
+     shut the clock counts down to it opening and says so above itself, with the
+     race-day pills held back — they are about race morning, not sign-up. The
+     second that moment passes the same clock switches to race day and the pills
+     come back, without the visitor reloading anything. */
   function renderCountdown(el, race, seo) {
     if (!el) return;
     race = race || {};
     if (el._timer) clearInterval(el._timer);
-    var when = race.date ? new Date(race.date + (race.time ? 'T' + race.time : 'T07:00')) : null;
-    if (!when || isNaN(when) || when < new Date()) {
+    var pills = el.parentNode ? el.parentNode.querySelector('.race-info') : null;
+    var raceAt = race.date ? new Date(race.date + (race.time ? 'T' + race.time : 'T07:00')) : null;
+    if (raceAt && isNaN(raceAt)) raceAt = null;
+    // registration opening carries its own UTC offset (…+03:00), so it lands on
+    // the same instant for a runner in Batroun and one reading from abroad
+    var regAt = race.reg_open ? new Date(race.reg_open) : null;
+    if (regAt && isNaN(regAt)) regAt = null;
+    var waiting = !!(regAt && regAt > new Date());
+    var when = waiting ? regAt : raceAt;
+    if (pills) pills.hidden = waiting;
+    if (!when || when < new Date()) {
       if (race.tba_text) {
         el.hidden = false;
         el.innerHTML = '<span class="rn-what">' + (race.edition_label || 'Next edition') + '</span>' +
@@ -308,23 +312,29 @@
       }
       return;
     }
-    var dateStr = when.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
     el.hidden = false;
     // the banner artwork already carries the date, town and race name, so the
     // overlay adds only the clock — no second copy of the same three lines
-    el.innerHTML = '<div class="rn-boxes">' + ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
+    el.innerHTML = '<div class="rn-boxes">' +
+      (waiting ? '<span class="rn-lead">' + (race.reg_label || 'Registration opening soon') + '</span>' : '') +
+      ['Days', 'Hours', 'Min', 'Sec'].map(function (l) {
         return '<div class="rn-box"><b>–</b><span>' + l + '</span></div>';
       }).join('') + '</div>';
     var boxes = el.querySelectorAll('.rn-box b');
     function tick() {
       var ms = when - new Date();
-      if (ms < 0) { clearInterval(el._timer); return; }
+      if (ms < 0) {
+        clearInterval(el._timer);
+        // registration just opened: hand the slot over to the race-day clock
+        if (waiting) renderCountdown(el, race, seo);
+        return;
+      }
       var d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4), s = Math.floor(ms % 6e4 / 1e3);
       [d, h, m, s].forEach(function (v, i) { boxes[i].textContent = v; });
     }
     tick();
     el._timer = setInterval(tick, 1000);
-    if (!seo) return;
+    if (!seo || !race.date) return;
     // structured data for Google (event rich results) — first/next race only
     var old = document.getElementById('event-jsonld');
     if (old) old.remove();
