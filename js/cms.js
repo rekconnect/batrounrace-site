@@ -222,7 +222,10 @@
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
       var runway = node.querySelector('.cd-runway');
-      if (runway) runway.style.display = (promo.img && !editing) ? '' : 'none';
+      var holds = !!(promo.img && !editing);
+      if (runway) runway.style.display = holds ? '' : 'none';
+      // the page only rides over the banner when there is a banner to hold
+      if (holds) document.body.classList.add('has-banner');
       host.appendChild(node);
     });
     revealCountdowns();
