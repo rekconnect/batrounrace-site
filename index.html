@@ -289,39 +289,37 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo picture img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-/* The bottom band of the banner. The button and the organisers' lockup used to
-   be a percentage guess against a lockup painted into the artwork — and the
-   artwork is cropped to fill the screen, so the two drifted apart and on short
-   screens the crop ate the logos entirely. Both are real elements now, in one
-   flex row: level with each other and equally inset from their own edge, on
-   every screen, with nothing to slice off. */
-.promo-foot{position:absolute;left:0;right:0;bottom:clamp(18px,3.2vh,46px);z-index:2;
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:0 clamp(16px,3.4vw,56px);pointer-events:none}
+/* The bottom band of the banner: every logo in one row along the foot, with
+   the Register button centred above them. These used to be painted into the
+   artwork, and the artwork is cropped to fill the screen — so the crop ate the
+   logos on short screens and the button could only guess where they had gone.
+   As real elements they are centred on each other by construction, on every
+   screen, with nothing left to slice off. */
+.promo-foot{position:absolute;left:0;right:0;bottom:clamp(16px,2.6vh,40px);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:clamp(12px,1.8vh,22px);
+  padding:0 clamp(14px,3vw,48px);pointer-events:none}
 .promo-foot > *{pointer-events:auto}
 .promo-btn{background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
 @media (max-width:768px){.promo-btn{font-size:.95rem;padding:.7em 1.7em}}
 @media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
-/* organisers: Batroun Race over the partner marks, all reversed to white the
-   way they are on the poster artwork */
-/* margin-left keeps it on its own side even when there is no button to push
-   against — an announcement banner with no link still reads the same */
-.promo-lockup{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:clamp(6px,.9vw,13px);text-align:right}
-.promo-lockup .pl-row{display:flex;align-items:center;gap:clamp(7px,.8vw,12px)}
-.promo-lockup span{font-family:var(--display);font-weight:800;letter-spacing:.02em;color:#fff;
-  font-size:clamp(.82rem,1.7vw,1.7rem);line-height:1;text-shadow:0 2px 14px rgba(0,0,0,.7)}
-.promo-lockup .pl-mark{height:clamp(22px,2.8vw,44px);width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
-.promo-lockup .pl-partners{gap:clamp(12px,1.6vw,26px)}
-.promo-lockup .pl-partners img{height:clamp(28px,3.4vw,52px);width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.65))}
+/* organisers and partners on one line, all reversed to white the way they are
+   on the poster artwork. It wraps rather than overflowing on narrow screens. */
+.promo-lockup{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+  gap:clamp(13px,2.1vw,34px)}
+.promo-lockup .pl-brand{display:flex;align-items:center;gap:clamp(7px,.8vw,12px)}
+.promo-lockup .pl-brand span{font-family:var(--display);font-weight:800;letter-spacing:.02em;color:#fff;
+  font-size:clamp(.8rem,1.6vw,1.6rem);line-height:1;text-shadow:0 2px 14px rgba(0,0,0,.7);white-space:nowrap}
+.promo-lockup .pl-mark{height:clamp(22px,2.6vw,42px);width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.promo-lockup > img{height:clamp(26px,3.2vw,50px);width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.65))}
 /* landscape phones have no height to spare: the row shrinks rather than
    climbing into the clock */
 @media(max-height:520px){
-  .promo-lockup{gap:5px}
-  .promo-lockup span{font-size:.72rem}
+  .promo-lockup{gap:12px}
+  .promo-lockup .pl-brand span{font-size:.7rem}
   .promo-lockup .pl-mark{height:18px}
-  .promo-lockup .pl-partners img{height:22px}
+  .promo-lockup > img{height:22px}
 }
 .promo-sec.edit-empty .promo-foot{display:none}
 .promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
@@ -479,12 +477,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div class="promo-foot">
         <a class="promo-btn" href="https://register.batrounrace.com/">Click to register</a>
         <div class="promo-lockup">
-          <div class="pl-row"><img class="pl-mark" src="images/logo-mark.png" alt="" onerror="this.style.display='none'"><span>BATROUN RACE</span></div>
-          <div class="pl-row pl-partners">
-            <img src="images/partners/routes-white.png" alt="Routes" onerror="this.style.display='none'">
-            <img src="images/partners/tannourine-white.png" alt="Tannourine" onerror="this.style.display='none'">
-            <img src="images/partners/tannourine-emblem-white.png" alt="Tannourine" onerror="this.style.display='none'">
-          </div>
+          <span class="pl-brand"><img class="pl-mark" src="images/logo-mark.png" alt="" onerror="this.style.display='none'"><span>BATROUN RACE</span></span>
+          <img src="images/partners/routes-white.png" alt="Routes" onerror="this.style.display='none'">
+          <img src="images/partners/tannourine-white.png" alt="Tannourine" onerror="this.style.display='none'">
+          <img src="images/partners/tannourine-emblem-white.png" alt="Tannourine" onerror="this.style.display='none'">
         </div>
       </div>
     </div>
