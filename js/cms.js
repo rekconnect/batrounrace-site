@@ -231,27 +231,17 @@
     revealCountdowns();
   }
 
-  /* The countdown is not there when the banner first lands — it writes itself
-     into the empty middle on the visitor's first scroll, so the opening move
-     is the banner speaking rather than the page jumping to another screen. */
+  /* The clock is the first thing the banner has to say, so it is on screen
+     from the first paint — no scroll to earn it. It still fades up rather than
+     snapping in: one frame's delay is enough for the transition to run. */
   function revealCountdowns() {
     var tops = [].slice.call(document.querySelectorAll('.promo-top'));
     if (!tops.length) return;
-    var shown = false;
-    if (/[?&]edit=1/.test(location.search)) {   // in the editor, show it outright
-      tops.forEach(function (t) { t.classList.add('cd-on'); });
-      return;
-    }
-    function check() {
-      if (shown || window.scrollY < 40) return;
-      shown = true;
-      tops.forEach(function (t) { t.classList.add('cd-on'); });
-      window.removeEventListener('scroll', check);
-    }
-    window.addEventListener('scroll', check, { passive: true });
-    // deep link / restored scroll position: don't make them scroll again
-    check();
-    setTimeout(check, 1200);
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        tops.forEach(function (t) { t.classList.add('cd-on'); });
+      });
+    });
   }
 
   function initLightbox() {

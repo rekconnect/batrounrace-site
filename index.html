@@ -147,8 +147,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* ---------- countdown, written into the banner itself ---------- */
 /* One overlay pinned over the artwork. The banner already says the date, the
    town and the race name in its own first three lines, so all this adds is the
-   clock and the race-day pills. It fades in on the first scroll instead of the
-   page moving to a second screen. */
+   clock and the race-day pills. It fades up on load — the clock is the first
+   thing the banner has to say, so it does not wait to be scrolled to. */
 .cd-in{position:absolute;inset:0;pointer-events:none;font-family:var(--mono);
   opacity:0;transform:translateY(14px);transition:opacity .7s ease-out,transform .7s ease-out}
 .promo-top.cd-on .cd-in{opacity:1;transform:none}
