@@ -9,7 +9,7 @@
     square 1080x1080  · Instagram / Facebook post      -> images/social/
     story  1080x1920  · Instagram / Facebook story      -> images/social/
     link   1200x630   · link previews, Facebook cover   -> images/social/
-    wide   1920x880   · the homepage banner             -> images/banners/
+    wide   1920x1080  · the homepage banner             -> images/banners/
     tall   1080x1920  · the homepage banner on phones   -> images/banners/
   The two banner sizes drop the call to action: the site puts a real,
   clickable Register button over the artwork instead.
@@ -90,16 +90,19 @@ body.link .brand img.mark{height:36px}
 body.link .brand span{font-size:22px}
 body.link .brand img.routes{width:74px;height:74px}
 
-/* ---- homepage banner, wide ---- */
-body.wide{width:1920px;height:880px}
-body.wide #photo{object-position:center 78%}
+/* ---- homepage banner, wide (16:9 so it fills a landscape screen) ----
+   The lockup sits a quarter up from the bottom, not on it: the page slides
+   up over the banner as you scroll, and the bottom strip is what it eats
+   first. Anything that must stay readable lives above that. */
+body.wide{width:1920px;height:1080px}
+body.wide #photo{object-position:center 72%}
 body.wide .cta{display:none}
-body.wide .txt{left:112px;top:84px}
+body.wide .txt{left:112px;top:150px}
 body.wide .date{font-size:58px}
 body.wide .l1{font-size:138px}
 body.wide .l2{font-size:88px}
 body.wide .dist{margin-top:22px;font-size:56px;padding:2px 40px}
-body.wide .brand{right:96px;bottom:60px;align-items:flex-end;gap:16px}
+body.wide .brand{right:96px;bottom:270px;align-items:flex-end;gap:16px}
 body.wide .brand img.mark{height:64px}
 body.wide .brand span{font-size:35px}
 body.wide .brand img.routes{width:118px;height:118px}
@@ -113,7 +116,7 @@ body.tall .date{font-size:40px}
 body.tall .l1{font-size:98px}
 body.tall .l2{font-size:62px}
 body.tall .dist{margin-top:26px;font-size:46px;padding:2px 38px}
-body.tall .brand{right:64px;bottom:300px;align-items:flex-end;gap:18px}
+body.tall .brand{right:64px;bottom:470px;align-items:flex-end;gap:18px}
 body.tall .brand img.mark{height:74px}
 body.tall .brand span{font-size:40px}
 body.tall .brand img.routes{width:142px;height:142px}
