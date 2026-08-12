@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Lebanon Cedar Race 2026 — social post generator</title>
+<title>Lebanon Cedar Race 2026 — poster generator</title>
 <!--
   Renders the downloadable social posts. Open with ?s=square | story | link
   and screenshot at the matching size:
-    square 1080x1080  · Instagram / Facebook post
-    story  1080x1920  · Instagram / Facebook story, WhatsApp status
-    link   1200x630   · link previews, Facebook cover
-  Outputs live in images/social/.
+    square 1080x1080  · Instagram / Facebook post      -> images/social/
+    story  1080x1920  · Instagram / Facebook story      -> images/social/
+    link   1200x630   · link previews, Facebook cover   -> images/social/
+    wide   1920x880   · the homepage banner             -> images/banners/
+    tall   1080x1920  · the homepage banner on phones   -> images/banners/
+  The two banner sizes drop the call to action: the site puts a real,
+  clickable Register button over the artwork instead.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +87,34 @@ body.link .brand{right:56px;bottom:46px;align-items:flex-end;gap:10px}
 body.link .brand img.mark{height:36px}
 body.link .brand span{font-size:22px}
 body.link .brand img.routes{width:74px;height:74px}
+
+/* ---- homepage banner, wide ---- */
+body.wide{width:1920px;height:880px}
+body.wide #photo{object-position:center 78%}
+body.wide .cta{display:none}
+body.wide .txt{left:112px;top:84px}
+body.wide .date{font-size:58px}
+body.wide .l1{font-size:138px}
+body.wide .l2{font-size:88px}
+body.wide .dist{margin-top:22px;font-size:56px;padding:2px 40px}
+body.wide .brand{right:96px;bottom:60px;align-items:flex-end;gap:16px}
+body.wide .brand img.mark{height:64px}
+body.wide .brand span{font-size:35px}
+body.wide .brand img.routes{width:118px;height:118px}
+
+/* ---- homepage banner, phones ---- */
+body.tall{width:1080px;height:1920px}
+body.tall #photo{object-position:center 70%}
+body.tall .cta{display:none}
+body.tall .txt{left:64px;top:250px;right:64px}
+body.tall .date{font-size:40px}
+body.tall .l1{font-size:98px}
+body.tall .l2{font-size:62px}
+body.tall .dist{margin-top:26px;font-size:46px;padding:2px 38px}
+body.tall .brand{right:64px;bottom:300px;align-items:flex-end;gap:18px}
+body.tall .brand img.mark{height:74px}
+body.tall .brand span{font-size:40px}
+body.tall .brand img.routes{width:142px;height:142px}
 </style>
 </head>
 <body>
