@@ -207,16 +207,29 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot ul{list-style:none;display:grid;gap:8px}
 
 /* ---------- sponsors page ---------- */
-.logo-wall{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:860px){.logo-wall{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.logo-wall{grid-template-columns:1fr}}
-.logo-tile{background:var(--white);border:1px solid var(--line);border-radius:16px;min-height:110px;display:flex;align-items:center;justify-content:center;padding:22px;text-decoration:none;transition:transform .2s ease-out,box-shadow .2s ease-out}
-.logo-tile:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
-.logo-tile img{max-height:52px;max-width:80%;object-fit:contain;filter:grayscale(1);opacity:.85;transition:filter .2s ease-out,opacity .2s ease-out}
+/* one continuous wall — every partner on the same white field, shoulder to
+   shoulder, instead of two dozen separate boxes with air between them. Logos
+   are capped on both axes so a wide wordmark and a square crest read as the
+   same weight rather than the same height. */
+.logo-wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
+  gap:clamp(16px,2.6vw,40px) clamp(20px,3.4vw,52px);
+  background:var(--white);border:1px solid var(--line);border-radius:22px;
+  padding:clamp(24px,3.4vw,44px) clamp(18px,3vw,40px)}
+.logo-tile{display:flex;align-items:center;justify-content:center;height:56px;
+  text-decoration:none;transition:transform .2s ease-out}
+.logo-tile:hover{transform:translateY(-4px)}
+.logo-tile img{max-height:56px;max-width:150px;object-fit:contain;filter:grayscale(1);opacity:.82;transition:filter .2s ease-out,opacity .2s ease-out}
 .logo-tile:hover img{filter:none;opacity:1}
-.logo-tile .name{display:none;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--text-dim);text-align:center}
+.logo-tile .name{display:none;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--text-dim);text-align:center}
+/* a partner whose logo file has not arrived yet keeps its place as a name chip */
+.logo-tile.nologo{height:auto;border:1px dashed var(--line);border-radius:999px;padding:9px 18px}
 .logo-tile.nologo img{display:none}
 .logo-tile.nologo .name{display:block}
+@media(max-width:600px){
+  .logo-tile{height:42px}
+  .logo-tile img{max-height:42px;max-width:112px}
+}
+@media (prefers-reduced-motion:reduce){.logo-tile:hover{transform:none}}
 .deliv{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:860px){.deliv{grid-template-columns:1fr}}
 .photo-band{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
@@ -301,6 +314,14 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <p data-cms="sponsors.partners.p">Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.</p>
     </div>
     <div class="logo-wall reveal" data-cms-list="wall:sponsors.partners.wall">
+      <div class="logo-tile">
+        <img src="images/sponsors/tannourine.png" alt="Tannourine" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Tannourine</span>
+      </div>
+      <div class="logo-tile">
+        <img src="images/sponsors/tannourine-emblem.png" alt="Tannourine emblem" onerror="this.parentElement.classList.add('nologo')">
+        <span class="name">Tannourine emblem</span>
+      </div>
       <div class="logo-tile">
         <img src="images/sponsors/mike-sport.png" alt="Mike Sport" onerror="this.parentElement.classList.add('nologo')">
         <span class="name">Mike Sport</span>

@@ -618,6 +618,16 @@
       "p": "Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.",
       "wall": [
         {
+          "name": "Tannourine",
+          "slug": "tannourine",
+          "link": ""
+        },
+        {
+          "name": "Tannourine emblem",
+          "slug": "tannourine-emblem",
+          "link": ""
+        },
+        {
           "name": "Mike Sport",
           "slug": "mike-sport",
           "link": ""
