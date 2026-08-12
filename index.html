@@ -271,8 +271,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 :root{--runway:calc(var(--banner) + var(--hold))}
 @media(max-height:520px){:root{--hold:min(30vh,140px)}}
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:var(--banner)}
-.promo-top .promo img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
-@media (max-width:768px) and (orientation:portrait){.promo-top .promo img{object-position:center 30%}}
+.promo-top .promo picture img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
+@media (max-width:768px) and (orientation:portrait){.promo-top .promo picture img{object-position:center 30%}}
 .page-body{position:relative;z-index:1;box-shadow:0 -18px 44px rgba(3,15,43,.28)}
 /* The page starts where the banner ends and then rides up over it, so the
    banner never leaves a bare strip under itself and the content slides on
@@ -282,22 +282,48 @@ body.has-banner .page-body{margin-top:calc(-1 * var(--banner))}
 /* the event zone reads as full screens: banner, then countdown, then the site */
 .promo-top a.promo:hover{transform:none;box-shadow:none;filter:brightness(1.05)}
 .promo-top.edit-empty .promo{border-radius:0;height:auto}
-.promo-top.edit-empty .promo img{height:auto}
+.promo-top.edit-empty .promo picture img{height:auto}
 .promo{display:block;position:relative;border-radius:16px;overflow:hidden;box-shadow:0 10px 34px rgba(3,15,43,.14);transition:transform .2s ease-out,box-shadow .2s ease-out}
 a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22)}
-.promo img{display:block;width:100%;height:auto}
+/* the artwork only — the lockup's own logos sit inside .promo too */
+.promo picture img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-/* Starting position only. The lockup is painted into the artwork and the
-   banner crops that artwork to fill the screen, so js/cms.js measures where
-   the lockup actually landed and sits the button level with it, inset the
-   same distance from its own edge. These values are what shows until it does,
-   and the fallback when the crop hides the lockup. */
-.promo-btn{position:absolute;left:5.6%;bottom:7.5%;background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+/* The bottom band of the banner. The button and the organisers' lockup used to
+   be a percentage guess against a lockup painted into the artwork — and the
+   artwork is cropped to fill the screen, so the two drifted apart and on short
+   screens the crop ate the logos entirely. Both are real elements now, in one
+   flex row: level with each other and equally inset from their own edge, on
+   every screen, with nothing to slice off. */
+.promo-foot{position:absolute;left:0;right:0;bottom:clamp(18px,3.2vh,46px);z-index:2;
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:0 clamp(16px,3.4vw,56px);pointer-events:none}
+.promo-foot > *{pointer-events:auto}
+.promo-btn{background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
-@media (max-width:768px){.promo-btn{left:6.5%;bottom:8.5%;font-size:.95rem;padding:.7em 1.7em}}
+@media (max-width:768px){.promo-btn{font-size:.95rem;padding:.7em 1.7em}}
 @media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
+/* organisers: Batroun Race over the partner marks, all reversed to white the
+   way they are on the poster artwork */
+/* margin-left keeps it on its own side even when there is no button to push
+   against — an announcement banner with no link still reads the same */
+.promo-lockup{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:clamp(6px,.9vw,13px);text-align:right}
+.promo-lockup .pl-row{display:flex;align-items:center;gap:clamp(7px,.8vw,12px)}
+.promo-lockup span{font-family:var(--display);font-weight:800;letter-spacing:.02em;color:#fff;
+  font-size:clamp(.82rem,1.7vw,1.7rem);line-height:1;text-shadow:0 2px 14px rgba(0,0,0,.7)}
+.promo-lockup .pl-mark{height:clamp(22px,2.8vw,44px);width:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.promo-lockup .pl-partners{gap:clamp(12px,1.6vw,26px)}
+.promo-lockup .pl-partners img{height:clamp(28px,3.4vw,52px);width:auto;filter:drop-shadow(0 2px 12px rgba(0,0,0,.65))}
+/* landscape phones have no height to spare: the row shrinks rather than
+   climbing into the clock */
+@media(max-height:520px){
+  .promo-lockup{gap:5px}
+  .promo-lockup span{font-size:.72rem}
+  .promo-lockup .pl-mark{height:18px}
+  .promo-lockup .pl-partners img{height:22px}
+}
+.promo-sec.edit-empty .promo-foot{display:none}
 .promo-sec.edit-empty .promo{min-height:110px;border:2px dashed var(--line);box-shadow:none;background:var(--foam)}
 .promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}
 @media (prefers-reduced-motion:reduce){a.promo:hover{transform:none}}
@@ -448,7 +474,19 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <div class="race-next" hidden></div>
         <p class="race-info"></p>
       </div>
-      <a class="promo-btn" href="https://register.batrounrace.com/">Click to register</a>
+      <!-- The bottom band: the button and the organisers' lockup are one row,
+           so they are level and equally inset by construction, on any screen. -->
+      <div class="promo-foot">
+        <a class="promo-btn" href="https://register.batrounrace.com/">Click to register</a>
+        <div class="promo-lockup">
+          <div class="pl-row"><img class="pl-mark" src="images/logo-mark.png" alt="" onerror="this.style.display='none'"><span>BATROUN RACE</span></div>
+          <div class="pl-row pl-partners">
+            <img src="images/partners/routes-white.png" alt="Routes" onerror="this.style.display='none'">
+            <img src="images/partners/tannourine-white.png" alt="Tannourine" onerror="this.style.display='none'">
+            <img src="images/partners/tannourine-emblem-white.png" alt="Tannourine" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
     </div>
     <div class="cd-runway" aria-hidden="true"></div>
   </section>

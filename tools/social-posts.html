@@ -11,8 +11,10 @@
     link   1200x630   · link previews, Facebook cover   -> images/social/
     wide   1920x1080  · the homepage banner             -> images/banners/
     tall   1080x1920  · the homepage banner on phones   -> images/banners/
-  The two banner sizes drop the call to action: the site puts a real,
-  clickable Register button over the artwork instead.
+  The two banner sizes drop the call to action, and are rendered with
+  &brand=0 so they drop the lockup too: the site puts a real, clickable
+  Register button and a real logo row over the artwork instead.
+  Add &cta=soon for the announcement wording on the social sizes.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,6 +159,12 @@ body.tall .brand .partners img{height:86px}
 <script>
 var q = new URLSearchParams(location.search);
 document.body.className = q.get('s') || 'square';
+/* &brand=0 renders the photo without the lockup. The two homepage banners use
+   it: the site draws BATROUN RACE and the partner logos as real elements over
+   the artwork, so they cannot be sliced off by the crop that fills the screen
+   and they stay level with the Register button. A social post is a flat image
+   with nothing to lay over it, so it keeps the lockup painted in. */
+if (q.get('brand') === '0') document.querySelector('.brand').remove();
 /* Two calls to action for the same artwork: the announcement posts that run
    before registration opens, and the register posts that run after. Add
    &cta=soon for the first — the site's clock is counting to the same moment. */
