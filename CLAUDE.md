@@ -10,7 +10,13 @@ Registration/payments/results stay on the separate existing system:
 ## Stack & hosting
 - Static site: plain HTML + CSS + vanilla JS. No framework, no build step.
 - Hosting: Vercel, auto-deploy from this GitHub repo (main branch).
-- Domain batrounrace.com will point to Vercel at launch. Shopify stays live until then.
+- **LIVE.** batrounrace.com points at Vercel and this site has replaced Shopify.
+  Anything merged to main is in front of real visitors within a minute or two —
+  there is no staging step between a merge and the public site.
+- Analytics: Vercel Web Analytics, one script tag before `</body>` on each
+  visitor-facing page (not admin.html). Cookie-free, so no consent banner.
+  Numbers live in the Vercel dashboard → Analytics; it must be switched on
+  there for the project or the script 404s.
 
 ## Design system (already approved — do not change without asking)
 Reference implementation: `index.html` (homepage, finished and approved).
