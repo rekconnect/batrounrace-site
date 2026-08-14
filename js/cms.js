@@ -165,6 +165,7 @@
     initPromo();
     initSliders();
     initLightbox();
+    tagRegLinks();
     initRegLock();
   }
 
@@ -188,6 +189,32 @@
   }
 
   var REG_NOTE = 'Registration opens soon — the countdown is on the homepage';
+
+  /* Every registration link carries where it was clicked, so the registration
+     system can say which button actually produced a runner — and which one
+     produced somebody who then walked away from the form. Tagged before the
+     lock runs, so the tag is already on the href the lock stores away and
+     hands back when registration opens. */
+  function srcFor(a) {
+    if (a.classList.contains('promo-btn')) return 'banner';
+    if (a.classList.contains('mobile-register')) return 'mobile-bar';
+    if (a.classList.contains('nav-cta')) return 'nav';
+    if (a.classList.contains('bib')) return 'bib';
+    // anything else: the page it was on is the useful answer. The live site
+    // serves clean URLs, so the homepage is "" there and "index" locally —
+    // both mean the same thing and should read the same in the dashboard.
+    var page = location.pathname.replace(/\/$/, '').split('/').pop().replace(/\.html$/, '');
+    return (!page || page === 'index') ? 'home' : page;
+  }
+
+  function tagRegLinks() {
+    regLinks().forEach(function (a) {
+      var attr = a.hasAttribute('href') ? 'href' : 'data-reg-href';
+      var h = a.getAttribute(attr);
+      if (!h || /[?&]src=/.test(h)) return;
+      a.setAttribute(attr, h + (h.indexOf('?') > -1 ? '&' : '?') + 'src=' + encodeURIComponent(srcFor(a)));
+    });
+  }
 
   function initRegLock() {
     var at = regMoment();
