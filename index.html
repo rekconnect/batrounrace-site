@@ -338,10 +338,14 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
   display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3.6vh,46px);
   padding:0 clamp(14px,3vw,48px);pointer-events:none}
 .promo-foot > *{pointer-events:auto}
-.promo-btn{background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.68rem,1vw,.9rem);padding:.55em 1.5em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
+/* One size curve for every screen. It used to be clamp(.68rem,1vw,.9rem)
+   with a separate, larger fixed size under 768px — so a tablet fell into
+   the gap and got the floor, 10.9px, smaller than the phone above it and
+   the desktop below. The floor is now the phone size, and nothing is ever
+   smaller than that. */
+.promo-btn{background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.95rem,1.05vw,1.15rem);padding:.62em 1.7em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
 .promo-btn:empty{display:none}
-@media (max-width:768px){.promo-btn{font-size:.95rem;padding:.7em 1.7em}}
 @media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
 /* organisers and partners on one line, all reversed to white the way they are
    on the poster artwork. It wraps rather than overflowing on narrow screens. */
