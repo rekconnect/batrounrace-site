@@ -1469,7 +1469,75 @@
         }
       ],
       "note": "Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there"
-    }
+    },
+    "races": [
+      {
+        "id": "cedar",
+        "name": "Lebanon Cedar Race",
+        "town": "Tannourine",
+        "status": "Registration open",
+        "meta": "5KM · 13 September 2026 · Start 8:00 AM",
+        "h2": "Up in the cedars of Tannourine.",
+        "p": "One 5KM through Tannourine's cedar country — mountain air instead of sea salt, and a course that earns its views. Bring a layer for before the start: mornings up there are cooler than the coast.",
+        "map_url": "https://www.google.com/maps?q=Tannourine,+Lebanon&output=embed",
+        "day": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a>",
+        "kms": [
+          {
+            "t": "Start",
+            "h3": "Mountain start",
+            "p": "Roads close 7:30, briefing 7:40, gun at 8:00 sharp — be up early, the drive is part of the day."
+          },
+          {
+            "t": "Route",
+            "h3": "Through the cedars",
+            "p": "5KM on mountain road in cedar country. Expect real climbs — and the kind of views that make you forgive them."
+          },
+          {
+            "t": "Support",
+            "h3": "Marshals & water",
+            "p": "Marshalled turns and water on the course. Follow the marshals, not your GPS."
+          },
+          {
+            "t": "Finish",
+            "h3": "Finish in Tannourine",
+            "p": "Medals, photos and the town square to celebrate in. Stay a while — Tannourine deserves it."
+          }
+        ]
+      },
+      {
+        "id": "batroun",
+        "name": "Batroun Race",
+        "town": "Batroun",
+        "status": "Next edition TBA",
+        "meta": "5KM &amp; 10KM · Batroun coast · 2nd edition ran July 2026",
+        "h2": "Sea on one side, Batroun stone on the other.",
+        "p": "5KM and 10KM along the Batroun coast — seaside roads, the old souks, and a Mediterranean finish.",
+        "map_url": "https://www.google.com/maps?q=Batroun,+Lebanon&output=embed",
+        "day": "",
+        "kms": [
+          {
+            "t": "Start",
+            "h3": "Seaside start",
+            "p": "Bibs on, music up, the whole town at the line."
+          },
+          {
+            "t": "Route",
+            "h3": "Coastal push",
+            "p": "Sea on one side, Batroun stone on the other."
+          },
+          {
+            "t": "Support",
+            "h3": "Cheering points",
+            "p": "Volunteers, water stations, and crowds that carry you."
+          },
+          {
+            "t": "Finish",
+            "h3": "Mediterranean finish",
+            "p": "Podiums, food, swimming, and a full day by the sea."
+          }
+        ]
+      }
+    ]
   },
   "gallery": {
     "hero": {

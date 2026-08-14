@@ -170,6 +170,22 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-sec{background:var(--ink);color:var(--foam)}
 .flow-sec h2{color:var(--foam)}
 .flow-sec .sec-head p{color:var(--text-inv-dim)}
+/* the race switcher: every race as a pill, the picked one in coral. The rest
+   of the section reads from the picked race, so one page carries them all. */
+.race-switch{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 22px}
+.race-switch:empty{display:none}
+.race-switch button{font:inherit;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;cursor:pointer;
+  color:var(--text-inv);background:rgba(255,255,255,.06);border:1px solid var(--line-light);
+  border-radius:999px;padding:9px 18px;transition:border-color .2s ease-out,background .2s ease-out,color .2s}
+.race-switch button:hover{border-color:rgba(255,255,255,.4)}
+.race-switch button[aria-selected="true"]{background:var(--coral);border-color:var(--coral);color:#fff;font-weight:700}
+.race-switch button .tag{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-top:2px}
+.race-day-line{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
+.race-day-line:empty{display:none}
+.race-day-line span,.race-day-line a{white-space:nowrap;font-family:var(--mono);font-size:.74rem;color:var(--text-inv);
+  border:1px solid var(--line-light);border-radius:999px;padding:5px 13px;text-decoration:none}
+.race-day-line a:hover{border-color:var(--coral)}
+
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
 @media(max-width:860px){.flow{grid-template-columns:1fr}}
 .flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
@@ -287,17 +303,20 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · ROUTE -->
-<section class="flow-sec">
+<!-- KM 1 · ROUTES, one block per race -->
+<section class="flow-sec" id="routes">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km" data-cms="guide.route.kicker">KM 1 · The route</span>
-      <h2 data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
-      <p data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
+      <!-- every race in one row; the guide below follows the picked one -->
+      <div class="race-switch" id="raceSwitch" role="tablist" aria-label="Pick a race"></div>
+      <h2 id="rgH2" data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
+      <p id="rgP" data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
+      <p class="race-day-line" id="rgDay"></p>
     </div>
-    <div class="flow" data-cms-list="flow:guide.route.kms"></div>
+    <div class="flow" id="rgFlow" data-cms-list="flow:guide.route.kms"></div>
     <div class="map-wrap reveal" style="margin-top:44px">
-      <iframe src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Batroun Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <iframe id="rgMap" src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
