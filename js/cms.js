@@ -165,6 +165,7 @@
     initPromo();
     initSliders();
     initLightbox();
+    initGuideRaces();
     tagRegLinks();
     initRegLock();
   }
@@ -304,6 +305,10 @@
       var cd = sec.querySelector('.race-next');
       var info = sec.querySelector('.race-info');
       if (info) info.innerHTML = race.info || '';
+      // the same four facts, once as pills on the artwork and once as the
+      // panel that rises over it — one source, so they can never disagree
+      var panelList = sec.querySelector('.promo-info .pi-list');
+      if (panelList) panelList.innerHTML = race.info || '';
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
@@ -315,6 +320,96 @@
       host.appendChild(node);
     });
     revealCountdowns();
+    initBannerStages();
+  }
+
+  /* The race guide: one page, every race. guide.races carries a block per
+     race; the switcher pills pick one and the route section reads from it —
+     headline, description, race-day pills, the four route cards and the map.
+     Deep-linkable: /race-guide#cedar opens on that race, so the right guide
+     can be shared into a WhatsApp group directly. The data-cms paths are
+     re-pointed on every switch, so the visual editor edits the race that is
+     actually on screen. */
+  function initGuideRaces() {
+    var host = document.getElementById('raceSwitch');
+    if (!host) return;
+    var races = get(C, 'guide.races');
+    if (!Array.isArray(races) || !races.length) return;
+
+    function show(i) {
+      var r = races[i];
+      if (!r) return;
+      var base = 'guide.races.' + i;
+      var h2 = document.getElementById('rgH2');
+      var p = document.getElementById('rgP');
+      var day = document.getElementById('rgDay');
+      var flow = document.getElementById('rgFlow');
+      var map = document.getElementById('rgMap');
+      if (h2) { h2.innerHTML = r.h2 || ''; h2.setAttribute('data-cms', base + '.h2'); }
+      if (p) { p.innerHTML = r.p || ''; p.setAttribute('data-cms', base + '.p'); }
+      if (day) day.innerHTML = r.day || '';
+      if (flow) {
+        flow.setAttribute('data-cms-list', 'flow:' + base + '.kms');
+        flow.innerHTML = renderers.flow(r.kms || [], base + '.kms');
+      }
+      if (map && r.map_url && map.getAttribute('src') !== r.map_url) {
+        map.setAttribute('src', r.map_url);
+        map.setAttribute('data-cms-src', base + '.map_url');
+        map.setAttribute('title', (r.name || 'Race') + ' route area map');
+      }
+      host.querySelectorAll('button').forEach(function (b, j) {
+        b.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      });
+      // remember the pick in the URL without adding history entries
+      if (r.id) history.replaceState(null, '', '#' + r.id);
+    }
+
+    host.innerHTML = races.map(function (r, i) {
+      return '<button type="button" role="tab" aria-selected="false">' +
+        (r.name || 'Race ' + (i + 1)) + ' · ' + (r.town || '') +
+        (r.status ? '<span class="tag">' + r.status + '</span>' : '') + '</button>';
+    }).join('');
+    host.querySelectorAll('button').forEach(function (b, i) {
+      b.addEventListener('click', function () { show(i); });
+    });
+
+    // open on the deep-linked race, else the first one (the upcoming race
+    // leads the list in content)
+    var want = location.hash.replace('#', '');
+    var start = races.findIndex(function (r) { return r.id === want; });
+    show(start > -1 ? start : 0);
+  }
+
+  /* Stage 2 of the banner: the race-day panel is dealt up over the artwork as
+     you scroll, and back down if you scroll up. Tied to scroll position
+     rather than played as an animation, so it follows the finger instead of
+     running off on its own — and the stage lengths are measured off the
+     runway's own spacers, so CSS stays the single source of those numbers. */
+  function initBannerStages() {
+    var sec = document.querySelector('.promo-top');
+    if (!sec) return;
+    var panel = sec.querySelector('.promo-info');
+    var holdEl = sec.querySelector('.cd-stage-hold');
+    var infoEl = sec.querySelector('.cd-stage-info');
+    var cue = sec.querySelector('.promo-cue');
+    if (!panel || !holdEl || !infoEl) return;
+    if (/[?&]edit=1/.test(location.search)) return;   // the editor shows a still banner
+    var ticking = false;
+    function frame() {
+      ticking = false;
+      var scrolled = Math.max(0, -sec.getBoundingClientRect().top);
+      var p = (scrolled - holdEl.offsetHeight) / (infoEl.offsetHeight || 1);
+      p = p < 0 ? 0 : p > 1 ? 1 : p;
+      panel.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
+      panel.classList.toggle('on', p > 0.02);
+      panel.setAttribute('aria-hidden', p > 0.5 ? 'false' : 'true');
+      if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 4));
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(frame); }
+    }, { passive: true });
+    window.addEventListener('resize', frame);
+    frame();
   }
 
   /* The clock is the first thing the banner has to say, so it is on screen
