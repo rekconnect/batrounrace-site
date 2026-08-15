@@ -1433,11 +1433,15 @@
         },
         {
           "q": "Where does the race start?",
-          "a": "Each race has its own town: the coastal race starts in Batroun, and the Lebanon Cedar Race starts in Tannourine — roads close 7:30 AM, briefing 7:40 AM, start 8:00 AM. Exact start point and maps are shared with registered runners before race day."
+          "a": "Each race has its own town: the coastal race starts in Batroun, and the Lebanon Cedar Race starts in Tannourine — roads close 7:30 AM, briefing 7:40 AM, start 8:00 AM. The exact start point is on your <strong>race ticket</strong>: tap the 📍 location line and the map opens."
         },
         {
           "q": "Where do I get my bib and race kit?",
-          "a": "Kit pickup details (place and times) are sent to registered runners before race day. Questions? Message us on WhatsApp and we'll sort you out."
+          "a": "Everything is on your <strong>official race ticket</strong> — the link you receive with your payment confirmation. It carries the bib-pickup schedule, the race location map, and the QR code you show at pickup to collect your bib and kit. Can't find your ticket? Message us on WhatsApp and we'll resend it."
+        },
+        {
+          "q": "Is there a bus to Tannourine?",
+          "a": "We're arranging bus facilities for the Lebanon Cedar Race. The schedule and pickup points will be published right here with the race info as soon as they're confirmed — follow <a href=\"https://www.instagram.com/batrounrace\" target=\"_blank\" rel=\"noopener\">@batrounrace</a> so you don't miss it."
         },
         {
           "q": "Is there parking and bag drop?",
