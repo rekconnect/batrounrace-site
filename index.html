@@ -156,8 +156,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .cd-in a{pointer-events:auto}
 .race-next{position:absolute;inset:0}
 .race-next[hidden]{display:none}
-/* the clock — the open middle of the artwork, clear of the title column */
-.race-next .rn-boxes{position:absolute;left:57%;top:44%;transform:translate(-50%,-50%);
+/* the clock — centred in the open mountains band of the poster, below its
+   baked date ribbon and location line on every crop */
+.race-next .rn-boxes{position:absolute;left:50%;top:81%;transform:translate(-50%,-50%);
   display:flex;gap:clamp(14px,2.6vw,38px);text-align:center;
   padding:18px clamp(18px,3vw,34px);border-radius:18px;
   background:rgba(3,15,43,.34);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.14)}
@@ -173,7 +174,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   text-transform:uppercase;color:var(--coral);padding:5px 14px;border-radius:999px;
   background:rgba(3,15,43,.42);backdrop-filter:blur(3px);border:1px solid rgba(255,255,255,.14)}
 /* no date announced yet: the clock's spot carries the "coming soon" line instead */
-.race-next .rn-what,.race-next .rn-when{position:absolute;left:57%;transform:translateX(-50%);
+.race-next .rn-what,.race-next .rn-when{position:absolute;left:50%;transform:translateX(-50%);
   width:min(80%,620px);text-align:center;text-shadow:0 2px 16px rgba(0,0,0,.75)}
 .race-next .rn-what{top:47%;font-size:clamp(.6rem,.85vw,.78rem);letter-spacing:.16em;
   text-transform:uppercase;color:var(--coral)}
@@ -192,7 +193,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
    below the artwork's own title block. */
 @media(max-width:900px){
   .race-next .rn-boxes,.race-next .rn-what,.race-next .rn-when,.race-info{left:50%}
-  .race-next .rn-boxes{top:52%;gap:clamp(12px,3.4vw,26px);padding:16px 16px}
+  .race-next .rn-boxes{top:53%;gap:clamp(12px,3.4vw,26px);padding:16px 16px}
   .race-next .rn-what{top:49%}
   .race-next .rn-when{top:calc(49% + 22px)}
   .race-info{top:calc(44% + clamp(58px,8vw,76px));width:min(78%,330px);
@@ -201,7 +202,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 }
 /* tall portrait banner: lift the column so the pills clear the button */
 @media (max-width:768px) and (orientation:portrait){
-  .race-next .rn-boxes{top:42%}
+  .race-next .rn-boxes{top:53%}
   .race-next .rn-what{top:39%}
   .race-next .rn-when{top:calc(39% + 22px)}
   /* two pills per row: four stacked rows ran into the lockup in the artwork */
@@ -211,7 +212,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 /* tablets: the banner keeps the artwork's own ratio, so it is short — the
    clock and a single tight row of pills is all that fits under the title */
 @media(max-width:900px) and (min-width:769px){
-  .race-next .rn-boxes{top:44%;padding:12px 14px}
+  .race-next .rn-boxes{top:53%;padding:12px 14px}
   .race-next .rn-box b{font-size:clamp(1.6rem,3vw,2.2rem)}
   .race-next .rn-what{top:42%}
   .race-next .rn-when{top:calc(42% + 20px)}
@@ -223,7 +224,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .race-info{display:none}
   .race-next .rn-what{top:26%}
   .race-next .rn-when{top:calc(26% + 20px)}
-  .race-next .rn-boxes{top:54%;padding:12px 14px}
+  /* the wide artwork's ribbon and town line own the centre at this height —
+     the clock takes the open grass on the left instead */
+  .race-next .rn-boxes{top:74%;left:26%;padding:12px 14px}
   .race-next .rn-box b{font-size:clamp(1.5rem,3vw,2.2rem)}
 }
 .btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:.95rem;border-radius:999px;padding:14px 26px;transition:transform .2s ease-out,background .2s,color .2s}
@@ -277,7 +280,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .cd-stage-climb{height:var(--banner)}
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:var(--banner)}
 .promo-top .promo picture img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
-@media (max-width:768px) and (orientation:portrait){.promo-top .promo picture img{object-position:center 30%}}
+/* portrait crops favour the top: phones show the full height anyway, and on
+   tablets this keeps the logo row in frame (the bottom loses only grass) */
+@media (orientation:portrait){.promo-top .promo picture img{object-position:center 10%}}
 .page-body{position:relative;z-index:1;box-shadow:0 -18px 44px rgba(3,15,43,.28)}
 /* The page starts where the banner ends and then rides up over it, so the
    banner never leaves a bare strip under itself and the content slides on
@@ -317,15 +322,22 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
   .pi-list{gap:6px}
   .pi-list span,.pi-list a{padding:9px 14px;font-size:.78rem}
 }
-/* the invitation to scroll — sits in the foot column so it can never land on
-   the button or the logos, and bows out as the panel comes up */
-.promo-cue{width:32px;height:32px;border-radius:50%;flex:none;
+/* the invitation to scroll — says so in words, with the arrow beneath. Sits
+   in the foot column so it can never land on the button, and bows out as one
+   piece as the panel comes up */
+.promo-cue{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none;
+  transition:opacity .25s ease-out;pointer-events:none}
+.cue-text{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.75);white-space:nowrap}
+.cue-ring{width:32px;height:32px;border-radius:50%;
   border:1px solid rgba(255,255,255,.34);background:rgba(3,15,43,.34);backdrop-filter:blur(3px);
-  display:flex;align-items:center;justify-content:center;transition:opacity .25s ease-out}
-.promo-cue::after{content:"";width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;
-  transform:rotate(45deg);margin-top:-3px;animation:cue 1.9s ease-in-out infinite}
-@keyframes cue{0%,100%{opacity:.45;transform:rotate(45deg) translate(-2px,-2px)}50%{opacity:1;transform:rotate(45deg) translate(2px,2px)}}
-@media (prefers-reduced-motion:reduce){.promo-cue::after{animation:none;opacity:.8}}
+  display:flex;align-items:center;justify-content:center}
+/* points up: the panel rises from the bottom, and on a phone the gesture it
+   is asking for is a swipe up */
+.cue-ring::after{content:"";width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-135deg);margin-top:3px;animation:cue 1.9s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.45;transform:rotate(-135deg) translate(-2px,-2px)}50%{opacity:1;transform:rotate(-135deg) translate(2px,2px)}}
+@media (prefers-reduced-motion:reduce){.cue-ring::after{animation:none;opacity:.8}}
 @media(max-height:520px){.promo-cue{display:none}}
 
 /* The bottom band of the banner: every logo in one row along the foot, with
@@ -337,16 +349,27 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo-foot{position:absolute;left:0;right:0;bottom:clamp(16px,2.6vh,40px);z-index:2;
   display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3.6vh,46px);
   padding:0 clamp(14px,3vw,48px);pointer-events:none}
+@media (orientation:portrait){
+  .promo-foot{bottom:calc(clamp(18px,3.2vh,46px) + 3.6em)}   /* clears the centred button */
+}
 .promo-foot > *{pointer-events:auto}
-/* One size curve for every screen. It used to be clamp(.68rem,1vw,.9rem)
-   with a separate, larger fixed size under 768px — so a tablet fell into
-   the gap and got the floor, 10.9px, smaller than the phone above it and
-   the desktop below. The floor is now the phone size, and nothing is ever
-   smaller than that. */
-.promo-btn{background:var(--coral);color:#fff;text-decoration:none;font-weight:700;font-size:clamp(.95rem,1.05vw,1.15rem);padding:.62em 1.7em;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:transform .2s ease-out,background .2s;white-space:nowrap}
-.promo-btn:hover,.promo-btn:focus-visible{transform:translateY(-3px);background:var(--coral-deep)}
+/* The marathon-site look, per the Beirut Marathon reference: a sharp white
+   rectangle, bold black uppercase, at the middle right of the wide artwork.
+   One size curve for every screen (the floor is the phone size, so tablets
+   never fall between rules). On portrait screens the artwork has no free
+   right edge, so the button sits at the bottom centre instead. */
+.promo-btn{position:absolute;right:clamp(84px,7vw,124px);top:50%;transform:translateY(-50%);z-index:2;
+  background:#fff;color:#0b0b0b;text-decoration:none;font-weight:800;font-size:clamp(.78rem,1.3vw,1.25rem);
+  text-transform:uppercase;letter-spacing:.03em;
+  padding:.62em 1.15em;border-radius:0;box-shadow:0 10px 28px rgba(0,0,0,.35);
+  transition:transform .2s ease-out,background .2s;white-space:nowrap}
+.promo-btn:hover,.promo-btn:focus-visible{transform:translateY(calc(-50% - 3px));background:var(--foam)}
 .promo-btn:empty{display:none}
-@media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:none}}
+@media (orientation:portrait){
+  .promo-btn{right:auto;left:50%;top:auto;bottom:clamp(18px,3.2vh,46px);transform:translateX(-50%)}
+  .promo-btn:hover,.promo-btn:focus-visible{transform:translateX(-50%) translateY(-3px)}
+}
+@media (prefers-reduced-motion:reduce){.promo-btn:hover{transform:translateY(-50%)}}
 /* organisers and partners on one line, all reversed to white the way they are
    on the poster artwork. It wraps rather than overflowing on narrow screens. */
 .promo-lockup{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
@@ -515,7 +538,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </picture>
       <div class="cd-in">
         <div class="race-next" hidden></div>
-        <p class="race-info"></p>
       </div>
       <!-- Race day, one scroll up over the artwork. Filled from the same
            content as the pills — same four facts, room to read them. -->
@@ -527,15 +549,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       </div>
       <!-- The bottom band: the button and the organisers' lockup are one row,
            so they are level and equally inset by construction, on any screen. -->
+      <a class="promo-btn" href="/">Click to register</a>
       <div class="promo-foot">
-        <span class="promo-cue" aria-hidden="true"></span>
-        <a class="promo-btn" href="/">Click to register</a>
-        <div class="promo-lockup">
-          <span class="pl-brand"><img class="pl-mark" src="images/logo-mark.png" alt="" onerror="this.style.display='none'"><span>BATROUN RACE</span></span>
-          <img src="images/partners/routes-white.png" alt="Routes" onerror="this.style.display='none'">
-          <img src="images/partners/tannourine-white.png" alt="Tannourine" onerror="this.style.display='none'">
-          <img src="images/partners/tannourine-emblem-white.png" alt="Tannourine" onerror="this.style.display='none'">
-        </div>
+        <span class="promo-cue" aria-hidden="true"><span class="cue-text">Scroll for more info</span><span class="cue-ring"></span></span>
       </div>
     </div>
     <!-- The three scroll stages, as real height. js/cms.js measures these
