@@ -280,7 +280,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .cd-stage-climb{height:var(--banner)}
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:var(--banner)}
 .promo-top .promo picture img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
-@media (max-width:768px) and (orientation:portrait){.promo-top .promo picture img{object-position:center 30%}}
+/* portrait crops favour the top: phones show the full height anyway, and on
+   tablets this keeps the logo row in frame (the bottom loses only grass) */
+@media (orientation:portrait){.promo-top .promo picture img{object-position:center 10%}}
 .page-body{position:relative;z-index:1;box-shadow:0 -18px 44px rgba(3,15,43,.28)}
 /* The page starts where the banner ends and then rides up over it, so the
    banner never leaves a bare strip under itself and the content slides on
@@ -357,7 +359,7 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
    never fall between rules). On portrait screens the artwork has no free
    right edge, so the button sits at the bottom centre instead. */
 .promo-btn{position:absolute;right:clamp(84px,7vw,124px);top:50%;transform:translateY(-50%);z-index:2;
-  background:#fff;color:#0b0b0b;text-decoration:none;font-weight:800;font-size:clamp(.95rem,1.05vw,1.15rem);
+  background:#fff;color:#0b0b0b;text-decoration:none;font-weight:800;font-size:clamp(.78rem,1.3vw,1.25rem);
   text-transform:uppercase;letter-spacing:.03em;
   padding:.62em 1.15em;border-radius:0;box-shadow:0 10px 28px rgba(0,0,0,.35);
   transition:transform .2s ease-out,background .2s;white-space:nowrap}
