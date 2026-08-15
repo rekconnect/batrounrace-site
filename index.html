@@ -358,11 +358,14 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
    One size curve for every screen (the floor is the phone size, so tablets
    never fall between rules). On portrait screens the artwork has no free
    right edge, so the button sits at the bottom centre instead. */
-.promo-btn{position:absolute;right:clamp(84px,7vw,124px);top:50%;transform:translateY(-50%);z-index:2;
-  background:#fff;color:#0b0b0b;text-decoration:none;font-weight:800;font-size:clamp(.78rem,1.3vw,1.25rem);
+.promo-btn{position:absolute;right:clamp(20px,2.2vw,44px);top:29%;transform:translateY(-50%);z-index:2;
+  background:#fff;color:#0b0b0b;text-decoration:none;font-weight:800;font-size:clamp(.78rem,1.5vw,1.45rem);
   text-transform:uppercase;letter-spacing:.03em;
   padding:.62em 1.15em;border-radius:0;box-shadow:0 10px 28px rgba(0,0,0,.35);
   transition:transform .2s ease-out,background .2s;white-space:nowrap}
+/* landscape phones: the title spans nearly the full width at that height, so
+   the button keeps its old spot at the middle right instead */
+@media(max-height:520px){.promo-btn{top:50%;right:clamp(64px,7vw,124px)}}
 .promo-btn:hover,.promo-btn:focus-visible{transform:translateY(calc(-50% - 3px));background:var(--foam)}
 .promo-btn:empty{display:none}
 @media (orientation:portrait){
