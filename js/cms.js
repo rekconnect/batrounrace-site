@@ -404,6 +404,9 @@
       panel.classList.toggle('on', p > 0.02);
       panel.setAttribute('aria-hidden', p > 0.5 ? 'false' : 'true');
       if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 4));
+      // the social rail belongs to the site, not to the poster: it waits
+      // until the banner has had its say and the panel is fully up
+      document.body.classList.toggle('rail-off', p < 1);
     }
     window.addEventListener('scroll', function () {
       if (!ticking) { ticking = true; requestAnimationFrame(frame); }
