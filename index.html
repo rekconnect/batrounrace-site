@@ -318,15 +318,20 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
   .pi-list{gap:6px}
   .pi-list span,.pi-list a{padding:9px 14px;font-size:.78rem}
 }
-/* the invitation to scroll — sits in the foot column so it can never land on
-   the button or the logos, and bows out as the panel comes up */
-.promo-cue{width:32px;height:32px;border-radius:50%;flex:none;
+/* the invitation to scroll — says so in words, with the arrow beneath. Sits
+   in the foot column so it can never land on the button, and bows out as one
+   piece as the panel comes up */
+.promo-cue{display:flex;flex-direction:column;align-items:center;gap:8px;flex:none;
+  transition:opacity .25s ease-out;pointer-events:none}
+.cue-text{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+  color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.75);white-space:nowrap}
+.cue-ring{width:32px;height:32px;border-radius:50%;
   border:1px solid rgba(255,255,255,.34);background:rgba(3,15,43,.34);backdrop-filter:blur(3px);
-  display:flex;align-items:center;justify-content:center;transition:opacity .25s ease-out}
-.promo-cue::after{content:"";width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;
+  display:flex;align-items:center;justify-content:center}
+.cue-ring::after{content:"";width:8px;height:8px;border-right:2px solid #fff;border-bottom:2px solid #fff;
   transform:rotate(45deg);margin-top:-3px;animation:cue 1.9s ease-in-out infinite}
 @keyframes cue{0%,100%{opacity:.45;transform:rotate(45deg) translate(-2px,-2px)}50%{opacity:1;transform:rotate(45deg) translate(2px,2px)}}
-@media (prefers-reduced-motion:reduce){.promo-cue::after{animation:none;opacity:.8}}
+@media (prefers-reduced-motion:reduce){.cue-ring::after{animation:none;opacity:.8}}
 @media(max-height:520px){.promo-cue{display:none}}
 
 /* The bottom band of the banner: every logo in one row along the foot, with
@@ -528,7 +533,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <!-- The bottom band: the button and the organisers' lockup are one row,
            so they are level and equally inset by construction, on any screen. -->
       <div class="promo-foot">
-        <span class="promo-cue" aria-hidden="true"></span>
+        <span class="promo-cue" aria-hidden="true"><span class="cue-text">Scroll for more info</span><span class="cue-ring"></span></span>
         <a class="promo-btn" href="/">Click to register</a>
       </div>
     </div>
