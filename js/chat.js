@@ -332,7 +332,8 @@
 
   /* The homepage opens on a full-bleed banner; a chat bubble parked on top of
      it is just clutter over the poster. Hold it back until the visitor has
-     scrolled past the banner, then let it fade in. Other pages keep it always. */
+     the race-day panel to rise on the first scroll, then fades in with it.
+     Other pages keep the bubble from the start. */
   function hideOverBanner() {
     if (!document.getElementById('promoSec')) return;   // no banner on this page
     var stage = null;
@@ -341,8 +342,16 @@
       if (panel.classList.contains('open')) { bubble.classList.remove('brc-away'); return; }
       stage = stage || document.querySelector('.promo-top');
       if (!stage) { bubble.classList.remove('brc-away'); return; }
-      var past = stage.getBoundingClientRect().bottom <= window.innerHeight * 0.55;
-      bubble.classList.toggle('brc-away', !past);
+      // It arrives with the race-day panel on the first scroll, rather than
+      // once the banner is nearly gone. The panel's own .on class would be a
+      // race — two scroll handlers, no guaranteed order — so this measures
+      // the same thing cms.js does: past the hold stage, the panel is rising.
+      var hold = document.querySelector('.cd-stage-hold');
+      var scrolled = Math.max(0, -stage.getBoundingClientRect().top);
+      var shown = hold && hold.offsetHeight
+        ? scrolled > hold.offsetHeight
+        : stage.getBoundingClientRect().bottom <= window.innerHeight * 0.55;
+      bubble.classList.toggle('brc-away', !shown);
     }
     window.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
