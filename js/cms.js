@@ -286,6 +286,13 @@
         if (promo.alt) img.setAttribute('alt', promo.alt);
         img.style.display = promo.img ? '' : 'none';
       }
+      // the blurred fill behind the poster on portrait screens: the phone
+      // artwork when there is one, otherwise the wide one
+      var bg = sec.querySelector('.promo-bg');
+      if (bg) {
+        var bgSrc = promo.img_portrait || promo.img;
+        if (bgSrc) bg.setAttribute('src', bgSrc); else bg.remove();
+      }
       var source = sec.querySelector('source');
       if (source) {
         if (promo.img_portrait) source.setAttribute('srcset', promo.img_portrait);
