@@ -20,7 +20,7 @@
       "reg_label": "Registration opening soon",
       "location": "Tannourine, Lebanon",
       "tba_text": "Expected September 2026 — stay tuned 📣",
-      "info": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a>"
+      "info": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a><span>🎽 Bib pickup · Beirut by Bike — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routes LB Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span>"
     },
     "register_bar_label": "",
     "nav_cta_label": "Register",
@@ -42,7 +42,7 @@
           "reg_label": "Registration opening soon",
           "location": "Tannourine, Lebanon",
           "tba_text": "Expected September 2026 — stay tuned 📣",
-          "info": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a>"
+          "info": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a><span>🎽 Bib pickup · Beirut by Bike — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routes LB Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span>"
         }
       }
     ],
@@ -1437,7 +1437,7 @@
         },
         {
           "q": "Where do I get my bib and race kit?",
-          "a": "Everything is on your <strong>official race ticket</strong> — the link you receive with your payment confirmation. It carries the bib-pickup schedule, the race location map, and the QR code you show at pickup to collect your bib and kit. Can't find your ticket? Message us on WhatsApp and we'll resend it."
+          "a": "Pickup is before race day, at two places. <strong>Beirut by Bike</strong> — Sunday 6 to Tuesday 8 September, 8:00 AM to 2:00 PM. <strong>Routes LB Batroun</strong> — Wednesday 9 and Thursday 10 September, 9:00 AM to 7:00 PM. Bring the QR code on your race ticket (the link sent with your payment confirmation) — it is what we scan to hand over your bib and kit. Can't make either window? Message us on WhatsApp and we will sort it out."
         },
         {
           "q": "Is there a bus to Tannourine?",
@@ -1484,7 +1484,7 @@
         "h2": "Up in the cedars of Tannourine.",
         "p": "One 5KM through Tannourine's cedar country — mountain air instead of sea salt, and a course that earns its views. Bring a layer for before the start: mornings up there are cooler than the coast.",
         "map_url": "https://www.google.com/maps?q=Tannourine,+Lebanon&output=embed",
-        "day": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a>",
+        "day": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a><span>🎽 Bib pickup · Beirut by Bike — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routes LB Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span>",
         "kms": [
           {
             "t": "Start",
