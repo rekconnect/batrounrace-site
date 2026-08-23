@@ -206,6 +206,27 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
 .foot .cols{display:flex;gap:40px;flex-wrap:wrap}
 .foot ul{list-style:none;display:grid;gap:8px}
 
+
+/* ---------- one race's logo strips ---------- */
+.lg-group{margin-bottom:34px}
+.lg-label{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:16px}
+.lg-strip{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,42px);
+  background:var(--white);border:1px solid var(--line);border-radius:20px;
+  padding:clamp(20px,3vw,34px) clamp(16px,3vw,34px)}
+.lg-item{display:flex;align-items:center;justify-content:center;height:64px;text-decoration:none;
+  transition:transform .2s ease-out}
+.lg-item:hover{transform:translateY(-4px)}
+.lg-item img{max-height:64px;max-width:150px;object-fit:contain}
+.lg-item .name{display:none;font-family:var(--mono);font-size:.78rem;color:var(--text-dim)}
+.lg-item.nologo{height:auto;border:1px dashed var(--line);border-radius:999px;padding:9px 18px}
+.lg-item.nologo img{display:none}
+.lg-item.nologo .name{display:block}
+@media(max-width:600px){
+  .lg-item{height:46px}
+  .lg-item img{max-height:46px;max-width:112px}
+}
+@media (prefers-reduced-motion:reduce){.lg-item:hover{transform:none}}
 /* ---------- sponsors page ---------- */
 /* one continuous wall — every partner on the same white field, shoulder to
    shoulder, instead of two dozen separate boxes with air between them. Logos
@@ -309,10 +330,22 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="sponsors.partners.kicker">KM 1 · Our partners</span>
-      <h2 data-cms="sponsors.partners.h2">Brands that showed up.</h2>
-      <p data-cms="sponsors.partners.p">Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.</p>
+      <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>
+      <h2 data-cms="sponsors.race.h2">The people behind this race.</h2>
+      <p data-cms="sponsors.race.p">Every logo here is backing the 13 September race in Tannourine.</p>
     </div>
+    <!-- This race first: who is backing the Cedar Race, organisers then
+         sponsors, everyone at one size. The wall below stays the full roster
+         across every edition. -->
+    <div class="lg-group reveal">
+      <span class="lg-label" data-cms="sponsors.race.organised_label">Organised by</span>
+      <div class="lg-strip" data-cms-list="logos:sponsors.race.organised"></div>
+    </div>
+    <div class="lg-group reveal" style="margin-bottom:52px">
+      <span class="lg-label" data-cms="sponsors.race.sponsored_label">Sponsored by</span>
+      <div class="lg-strip" data-cms-list="logos:sponsors.race.sponsors"></div>
+    </div>
+    <span class="lg-label reveal" style="margin-bottom:16px">Every partner, all editions</span>
     <div class="logo-wall reveal" data-cms-list="wall:sponsors.partners.wall">
       <div class="logo-tile">
         <img src="images/sponsors/tannourine.png" alt="Tannourine" onerror="this.parentElement.classList.add('nologo')">

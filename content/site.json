@@ -848,6 +848,82 @@
           "style": "ghost"
         }
       ]
+    },
+    "race": {
+      "kicker": "Lebanon Cedar Race 2026",
+      "h2": "The people behind this race.",
+      "p": "Every logo here is backing the 13 September race in Tannourine.",
+      "dir": "images/sponsors/cedar-2026/",
+      "organised_label": "Organised by",
+      "organised": [
+        {
+          "name": "Batroun Race",
+          "slug": "batroun-race"
+        },
+        {
+          "name": "Routes",
+          "slug": "routes"
+        },
+        {
+          "name": "تنورين",
+          "slug": "tannourine-ar"
+        },
+        {
+          "name": "Tannourine",
+          "slug": "tannourine"
+        }
+      ],
+      "sponsored_label": "Sponsored by",
+      "sponsors": [
+        {
+          "name": "San Stephano Resort",
+          "slug": "san-stephano-resort"
+        },
+        {
+          "name": "XXL Energy",
+          "slug": "xxl-energy"
+        },
+        {
+          "name": "Colonel Craft Beer",
+          "slug": "colonel-craft-beer"
+        },
+        {
+          "name": "M I3",
+          "slug": "mi3"
+        },
+        {
+          "name": "Hilmi's",
+          "slug": "hilmis"
+        },
+        {
+          "name": "Merchak",
+          "slug": "merchak"
+        },
+        {
+          "name": "Tannourine Water",
+          "slug": "tannourine-water"
+        },
+        {
+          "name": "Moub's",
+          "slug": "moubs"
+        },
+        {
+          "name": "Lebanon by Bike",
+          "slug": "lebanon-by-bike"
+        },
+        {
+          "name": "Mal3ab El Batroun",
+          "slug": "mal3ab-el-batroun"
+        },
+        {
+          "name": "Nutritas",
+          "slug": "nutritas"
+        },
+        {
+          "name": "Dayscaperz",
+          "slug": "dayscaperz"
+        }
+      ]
     }
   },
   "packages": {

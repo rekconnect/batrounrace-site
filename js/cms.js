@@ -66,6 +66,20 @@
         return '<div class="faq-item reveal in"><h3 data-cms="' + p + '.' + i + '.q">' + f.q + '</h3><p data-cms="' + p + '.' + i + '.a">' + f.a + '</p></div>';
       }).join('');
     },
+    /* One race's logos, everyone the same size: no tiers, so nothing here
+       ranks anybody. The folder comes from the content, so next year's set
+       is a new folder and a new list, not a code change. */
+    logos: function (items, p) {
+      var dir = get(C, 'sponsors.race.dir') || 'images/sponsors/';
+      return items.map(function (s, i) {
+        var inner = '<img src="' + dir + s.slug + '.png" alt="' + s.name +
+                    '" loading="lazy" onerror="this.parentElement.classList.add(\'nologo\')">' +
+                    '<span class="name" data-cms="' + p + '.' + i + '.name">' + s.name + '</span>';
+        return s.link
+          ? '<a class="lg-item" href="' + s.link + '" target="_blank" rel="noopener">' + inner + '</a>'
+          : '<div class="lg-item">' + inner + '</div>';
+      }).join('');
+    },
     wall: function (items, p) {
       return items.map(function (s, i) {
         var img = '<img src="images/sponsors/' + s.slug + '.png" alt="' + s.name + '" onerror="this.parentElement.classList.add(\'nologo\')">' +

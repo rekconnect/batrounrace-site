@@ -414,6 +414,28 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo-sec.edit-empty .promo::after{content:"Event banner — upload a poster in /admin → Photos";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.78rem;color:var(--text-dim);letter-spacing:.06em}
 @media (prefers-reduced-motion:reduce){a.promo:hover{transform:none}}
 
+
+/* ---------- one race's logo strips ---------- */
+.lg-group{margin-bottom:34px}
+.lg-group:last-of-type{margin-bottom:0}
+.lg-label{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-bottom:16px}
+.lg-strip{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(18px,3vw,42px);
+  background:var(--white);border:1px solid var(--line);border-radius:20px;
+  padding:clamp(20px,3vw,34px) clamp(16px,3vw,34px)}
+.lg-item{display:flex;align-items:center;justify-content:center;height:64px;text-decoration:none;
+  transition:transform .2s ease-out}
+.lg-item:hover{transform:translateY(-4px)}
+.lg-item img{max-height:64px;max-width:150px;object-fit:contain}
+.lg-item .name{display:none;font-family:var(--mono);font-size:.78rem;color:var(--text-dim)}
+.lg-item.nologo{height:auto;border:1px dashed var(--line);border-radius:999px;padding:9px 18px}
+.lg-item.nologo img{display:none}
+.lg-item.nologo .name{display:block}
+@media(max-width:600px){
+  .lg-item{height:46px}
+  .lg-item img{max-height:46px;max-width:112px}
+}
+@media (prefers-reduced-motion:reduce){.lg-item:hover{transform:none}}
 /* ---------- sections ---------- */
 section{padding:96px 0}
 .sec-head{max-width:640px;margin-bottom:48px}
@@ -673,33 +695,20 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="spon-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="home.sponsors.kicker">Partners</span>
-      <h2 data-cms="home.sponsors.h2">Powered by brands that show up.</h2>
-      <p data-cms="home.sponsors.p">Real visibility, real trust — on the route, at the finish, and in every photo after.</p>
+      <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>
+      <h2 data-cms="sponsors.race.h2">The people behind this race.</h2>
+      <p data-cms="sponsors.race.p">Every logo here is backing the 13 September race in Tannourine.</p>
     </div>
-    <div class="spon-row reveal" data-cms-list="chips:home.sponsors.chips">
-      <span class="spon-chip">Mike Sport</span>
-      <span class="spon-chip">Sports Experts</span>
-      <span class="spon-chip">Aquafina</span>
-      <span class="spon-chip">Gatorade</span>
-      <span class="spon-chip">Joseph E Saba</span>
-      <span class="spon-chip">Saint Bernard</span>
-      <span class="spon-chip">TAQA</span>
-      <span class="spon-chip">San Stephano Resort</span>
-      <span class="spon-chip">Whish Money</span>
-      <span class="spon-chip">Marsati</span>
-      <span class="spon-chip">Batrouniyat</span>
-      <span class="spon-chip">Hang Loose</span>
-      <span class="spon-chip">Batroun Municipality</span>
-      <span class="spon-chip">BluBay</span>
-      <span class="spon-chip">XXL Energy</span>
-      <span class="spon-chip">Tropical Energy</span>
-      <span class="spon-chip">MOOD</span>
-      <span class="spon-chip">Routes</span>
-      <span class="spon-chip">Studio Jammal</span>
-      <span class="spon-chip">Footlab</span>
-      <span class="spon-chip">Ride Sports Events</span>
-      <span class="spon-chip">Caritas Lebanon</span>
+    <!-- This race's own roster: organisers, then sponsors, everyone at one
+         size. Driven by sponsors.race in the content, so a new edition is a
+         new list and a new folder — no markup to touch. -->
+    <div class="lg-group reveal">
+      <span class="lg-label" data-cms="sponsors.race.organised_label">Organised by</span>
+      <div class="lg-strip" data-cms-list="logos:sponsors.race.organised"></div>
+    </div>
+    <div class="lg-group reveal">
+      <span class="lg-label" data-cms="sponsors.race.sponsored_label">Sponsored by</span>
+      <div class="lg-strip" data-cms-list="logos:sponsors.race.sponsors"></div>
     </div>
     <div class="spon-cta reveal" data-cms-list="btns:home.sponsors.ctas">
       <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
