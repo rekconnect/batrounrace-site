@@ -182,7 +182,10 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .race-switch button .tag{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-top:2px}
 .race-day-line{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
 .race-day-line:empty{display:none}
-.race-day-line span,.race-day-line a{white-space:nowrap;font-family:var(--mono);font-size:.74rem;color:var(--text-inv);
+/* these were one-liners like "Roads close 7:30 AM" when nowrap was safe;
+   the pickup and bus lines are sentences, so they wrap instead of running
+   off the side of a phone */
+.race-day-line span,.race-day-line a{white-space:normal;max-width:100%;font-family:var(--mono);font-size:.74rem;color:var(--text-inv);
   border:1px solid var(--line-light);border-radius:999px;padding:5px 13px;text-decoration:none}
 .race-day-line a:hover{border-color:var(--coral)}
 
