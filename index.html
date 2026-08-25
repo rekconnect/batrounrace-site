@@ -334,10 +334,13 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
   transition:border-color .2s ease-out,background .2s ease-out}
 .pi-list a:hover,.pi-list a:focus-visible{border-color:var(--coral);background:rgba(255,255,255,.1)}
 .pi-list:empty{display:none}
+/* A short, wide screen has no room for a single column of facts — and the
+   list grows as the race gets closer. Two columns there, so the panel keeps
+   fitting however many rows the race picks up. */
 @media(max-height:520px){
   .pi-km{margin-bottom:10px}
-  .pi-list{gap:6px}
-  .pi-list span,.pi-list a{padding:9px 14px;font-size:.78rem}
+  .pi-list{grid-template-columns:1fr 1fr;gap:6px 10px}
+  .pi-list span,.pi-list a{padding:8px 12px;font-size:.74rem}
 }
 /* the invitation to scroll — says so in words, with the arrow beneath. Sits
    in the foot column so it can never land on the button, and bows out as one

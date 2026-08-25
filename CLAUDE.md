@@ -67,8 +67,9 @@ if duplication becomes painful we can add a tiny JS include later — keep it si
 - Registration links ALWAYS → https://register.batrounrace.com/
 - 2026 results → https://register.batrounrace.com/results
 - Contact: Batrounrace@gmail.com · WhatsApp wa.me/message/IJ45O3ILIUGMF1 ·
-  Instagram @batrounrace · Phone: ⚠️ TWO numbers found on old site (81 300 625 vs
-  70 544 217) — ASK RAED which before publishing contact page.
+  Instagram @batrounrace · Phone: 81 300 625 — settled: it is the number on the
+  official Cedar Race transport poster, and it matches global.whatsapp_number_url.
+  (The old Shopify site also showed 70 544 217; that one is not in use here.)
 - Contact form: old Shopify form is dead. Options: WhatsApp deep-link (simplest),
   mailto, or Firebase (Raed has it). Ask before implementing.
 - Sponsor-packages page: old page exposed internal sales playbook (CPA benchmarks,
