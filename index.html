@@ -276,15 +276,28 @@ body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-
    3 DWELL — it sits there, still, long enough to actually be read
    4 CLIMB — the site itself comes up over the banner like a curtain
    The runway is that scroll distance made of real height, one element per
-   stage, so js/cms.js can measure them instead of re-deriving the lengths. */
-:root{--banner:calc(100vh - 64px);--hold:min(40vh,360px);--info:min(64vh,560px);--dwell:min(45vh,380px)}
+   stage, so js/cms.js can measure them instead of re-deriving the lengths.
+   Kept to two flicks of the thumb: HOLD+INFO is well under one screen, so a
+   single scroll lands with the panel up rather than stranding it half-dealt;
+   DWELL+CLIMB is the second. The panel stays fully up through both DWELL and
+   CLIMB — p is clamped at 1 — so it is readable far longer than DWELL alone. */
+:root{--banner:calc(100vh - 64px);--hold:min(32vh,280px);--info:min(20vh,175px);--dwell:min(20vh,170px)}
 @supports (height:100svh){:root{--banner:calc(100svh - 64px)}}
-@media(max-height:520px){:root{--hold:min(30vh,140px);--info:min(70vh,300px);--dwell:min(40vh,180px)}}
+@media(max-height:520px){:root{--hold:min(24vh,110px);--info:min(40vh,190px);--dwell:min(24vh,110px)}}
 .cd-runway i{display:block}
 .cd-stage-hold{height:var(--hold)}
 .cd-stage-info{height:var(--info)}
 .cd-stage-dwell{height:var(--dwell)}   /* the panel sits still and readable */
 .cd-stage-climb{height:var(--banner)}
+/* Scroll fast and you should land on a whole state, never between two. Two
+   snap points only — panel fully up, and the site at the top — so the rest of
+   the page scrolls normally. "proximity" never traps: land far from either
+   point and nothing pulls. */
+@media (prefers-reduced-motion:no-preference){
+  html:has(body.has-banner){scroll-snap-type:y proximity}
+  .cd-stage-dwell{scroll-snap-align:start}
+  body.has-banner .page-body>section:first-of-type{scroll-snap-align:start;scroll-margin-top:64px}
+}
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:var(--banner)}
 .promo-top .promo picture img{width:100%;height:100%;object-fit:cover;object-position:0 30%}
 /* portrait crops favour the top: phones show the full height anyway, and on
@@ -440,15 +453,6 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 }
 @media (prefers-reduced-motion:reduce){.lg-item:hover{transform:none}}
 
-/* ---------- race day, permanently on the page ---------- */
-.rd-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(max-width:760px){.rd-list{grid-template-columns:1fr}}
-.rd-list span,.rd-list a{display:block;font-family:var(--mono);font-size:.9rem;line-height:1.5;color:var(--text);
-  background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;
-  transition:border-color .2s ease-out,transform .2s ease-out}
-.rd-list a:hover,.rd-list a:focus-visible{border-color:var(--coral);transform:translateY(-2px)}
-.rd-list:empty{display:none}
-@media (prefers-reduced-motion:reduce){.rd-list a:hover{transform:none}}
 /* ---------- sections ---------- */
 section{padding:96px 0}
 .sec-head{max-width:640px;margin-bottom:48px}
@@ -645,23 +649,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
-
-<!-- KM 0.5 · RACE MORNING — the logistics, permanently.
-     The panel over the banner shows the same facts but slides away as the page
-     climbs; 89% of visitors never leave this page, so what they need on race
-     morning has to be somewhere they can scroll back to. -->
-<section class="rd-sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="home.raceinfo.kicker">KM 0.5 · Race morning</span>
-      <h2 data-cms="home.raceinfo.h2">Everything you need on the day.</h2>
-      <p data-cms="home.raceinfo.p">Bib pickup windows, the buses up, and the start-line timings.</p>
-    </div>
-    <div class="rd-list reveal" id="raceDayList">
-      <span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href="https://maps.app.goo.gl/AbMonjwwZCu21Cjz6" target="_blank" rel="noopener">📍 Race location ↗</a><span>🎽 Bib pickup · Beirut By Bike — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routeslb Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span><span>🚌 Bus from Beirut By Bike — leaves 5:00–5:15 AM</span><span>🚌 Bus from Routeslb Batroun — leaves 6:00 AM</span>
-    </div>
-  </div>
-</section>
 
 <!-- KM 1 · WHY -->
 <section>
