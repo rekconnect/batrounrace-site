@@ -277,13 +277,17 @@ body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-
    4 CLIMB — the site itself comes up over the banner like a curtain
    The runway is that scroll distance made of real height, one element per
    stage, so js/cms.js can measure them instead of re-deriving the lengths.
-   Kept to two flicks of the thumb: HOLD+INFO is well under one screen, so a
-   single scroll lands with the panel up rather than stranding it half-dealt;
-   DWELL+CLIMB is the second. The panel stays fully up through both DWELL and
-   CLIMB — p is clamped at 1 — so it is readable far longer than DWELL alone. */
-:root{--banner:calc(100vh - 64px);--hold:min(32vh,280px);--info:min(20vh,175px);--dwell:min(20vh,170px)}
+   Two flicks of the thumb, and the two lengths do different jobs. HOLD is
+   long — most of a screen — because the poster is the first page and must
+   not be snatched away by the first nudge of a thumb. INFO is short, so once
+   the panel does start it finishes inside the same flick instead of parking
+   half-dealt over the artwork. Together they stay under one screen: one
+   scroll lands the panel up, a second lands the site. The panel stays fully
+   up through DWELL and CLIMB both — p is clamped at 1 — so it is readable far
+   longer than DWELL alone. */
+:root{--banner:calc(100vh - 64px);--hold:min(62vh,560px);--info:min(20vh,175px);--dwell:min(18vh,150px)}
 @supports (height:100svh){:root{--banner:calc(100svh - 64px)}}
-@media(max-height:520px){:root{--hold:min(24vh,110px);--info:min(40vh,190px);--dwell:min(24vh,110px)}}
+@media(max-height:520px){:root{--hold:min(46vh,220px);--info:min(30vh,150px);--dwell:min(20vh,100px)}}
 .cd-runway i{display:block}
 .cd-stage-hold{height:var(--hold)}
 .cd-stage-info{height:var(--info)}
