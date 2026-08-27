@@ -330,6 +330,16 @@
       // panel that rises over it — one source, so they can never disagree
       var panelList = sec.querySelector('.promo-info .pi-list');
       if (panelList) panelList.innerHTML = race.info || '';
+      // the same facts again, in a section of the page that does not slide
+      // away — one field, so the two can never disagree
+      var pageList = i === 0 ? document.getElementById('raceDayList') : null;
+      if (pageList) {
+        pageList.innerHTML = race.info || '';
+        // heading and all: clearing the info field in /admin takes the whole
+        // section away rather than leaving a title over nothing
+        var pageSec = pageList.closest('.rd-sec');
+        if (pageSec) pageSec.style.display = race.info ? '' : 'none';
+      }
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
