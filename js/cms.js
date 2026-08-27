@@ -330,16 +330,6 @@
       // panel that rises over it — one source, so they can never disagree
       var panelList = sec.querySelector('.promo-info .pi-list');
       if (panelList) panelList.innerHTML = race.info || '';
-      // the same facts again, in a section of the page that does not slide
-      // away — one field, so the two can never disagree
-      var pageList = i === 0 ? document.getElementById('raceDayList') : null;
-      if (pageList) {
-        pageList.innerHTML = race.info || '';
-        // heading and all: clearing the info field in /admin takes the whole
-        // section away rather than leaving a title over nothing
-        var pageSec = pageList.closest('.rd-sec');
-        if (pageSec) pageSec.style.display = race.info ? '' : 'none';
-      }
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
@@ -422,6 +412,8 @@
     var panel = sec.querySelector('.promo-info');
     var holdEl = sec.querySelector('.cd-stage-hold');
     var infoEl = sec.querySelector('.cd-stage-info');
+    var dwellEl = sec.querySelector('.cd-stage-dwell');
+    var climbEl = sec.querySelector('.cd-stage-climb');
     var cue = sec.querySelector('.promo-cue');
     if (!panel || !holdEl || !infoEl) return;
     if (/[?&]edit=1/.test(location.search)) return;   // the editor shows a still banner
@@ -435,9 +427,16 @@
       panel.classList.toggle('on', p > 0.02);
       panel.setAttribute('aria-hidden', p > 0.5 ? 'false' : 'true');
       if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 4));
-      // the social rail belongs to the site, not to the poster: it waits
-      // until the banner has had its say and the panel is fully up
-      document.body.classList.toggle('rail-off', p < 1);
+      // The social rail belongs to the site, not to the poster: it waits until
+      // the banner has had its say. Measured against the end of the dwell —
+      // the moment the site starts climbing — not against p, because the panel
+      // now reaches the top of its travel inside the first scroll, and a rail
+      // of icons landing on the panel clips the ends of the race-day rows.
+      // once the site has climbed over half the banner, the poster is no
+      // longer what you are looking at and the rail is the site's again
+      var railAt = holdEl.offsetHeight + infoEl.offsetHeight +
+        (dwellEl ? dwellEl.offsetHeight : 0) + (climbEl ? climbEl.offsetHeight * 0.5 : 0);
+      document.body.classList.toggle('rail-off', scrolled < railAt);
     }
     window.addEventListener('scroll', function () {
       if (!ticking) { ticking = true; requestAnimationFrame(frame); }
