@@ -277,17 +277,21 @@ body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-
    4 CLIMB — the site itself comes up over the banner like a curtain
    The runway is that scroll distance made of real height, one element per
    stage, so js/cms.js can measure them instead of re-deriving the lengths.
-   Two flicks of the thumb, and the two lengths do different jobs. HOLD is
-   long — most of a screen — because the poster is the first page and must
-   not be snatched away by the first nudge of a thumb. INFO is short, so once
-   the panel does start it finishes inside the same flick instead of parking
-   half-dealt over the artwork. Together they stay under one screen: one
-   scroll lands the panel up, a second lands the site. The panel stays fully
-   up through DWELL and CLIMB both — p is clamped at 1 — so it is readable far
-   longer than DWELL alone. */
-:root{--banner:calc(100vh - 64px);--hold:min(62vh,560px);--info:min(20vh,175px);--dwell:min(18vh,150px)}
+   HOLD and INFO both need length, for different reasons. HOLD is the poster's
+   own screen — it must not be snatched away by the first nudge of a thumb.
+   INFO is the distance the panel travels, and it is what the change *feels*
+   like: deal it over too short a run and the poster does not rise into the
+   panel, it jumps, however late the jump starts. Lengthening HOLD cannot buy
+   that back — the two are not interchangeable.
+   DWELL is short on purpose: the panel stays fully up through CLIMB as well,
+   p being clamped at 1, so it is readable for far longer than DWELL alone. */
+:root{--banner:calc(100vh - 64px);--hold:min(58vh,520px);--info:min(52vh,470px);--dwell:min(12vh,100px)}
 @supports (height:100svh){:root{--banner:calc(100svh - 64px)}}
-@media(max-height:520px){:root{--hold:min(46vh,220px);--info:min(30vh,150px);--dwell:min(20vh,100px)}}
+/* CLIMB is deliberately not shortened anywhere: the page body is pulled up by
+   exactly --banner and sits above the poster, so a CLIMB shorter than the
+   banner would let the site show through the bottom of the screen during the
+   dwell, before the curtain is meant to start. */
+@media(max-height:520px){:root{--hold:min(40vh,190px);--info:min(46vh,230px);--dwell:min(14vh,70px)}}
 .cd-runway i{display:block}
 .cd-stage-hold{height:var(--hold)}
 .cd-stage-info{height:var(--info)}
