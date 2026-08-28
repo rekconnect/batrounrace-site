@@ -342,10 +342,9 @@
       if (panel.classList.contains('open')) { bubble.classList.remove('brc-away'); return; }
       stage = stage || document.querySelector('.promo-top');
       if (!stage) { bubble.classList.remove('brc-away'); return; }
-      // It arrives with the race-day panel on the first scroll, rather than
-      // once the banner is nearly gone. The panel's own .on class would be a
-      // race — two scroll handlers, no guaranteed order — so this measures
-      // the same thing cms.js does: past the hold stage, the panel is rising.
+      // It arrives as soon as the poster's hold runs out and the site starts
+      // climbing — the same measurement cms.js makes, taken independently
+      // because two scroll handlers have no guaranteed order between them.
       var hold = document.querySelector('.cd-stage-hold');
       var scrolled = Math.max(0, -stage.getBoundingClientRect().top);
       var shown = hold && hold.offsetHeight

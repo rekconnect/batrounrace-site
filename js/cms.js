@@ -326,10 +326,16 @@
       var cd = sec.querySelector('.race-next');
       var info = sec.querySelector('.race-info');
       if (info) info.innerHTML = race.info || '';
-      // the same four facts, once as pills on the artwork and once as the
-      // panel that rises over it — one source, so they can never disagree
-      var panelList = sec.querySelector('.promo-info .pi-list');
-      if (panelList) panelList.innerHTML = race.info || '';
+      // The same facts again, in the section the site opens with. One field
+      // feeds the pills on the artwork and that section, so the two can never
+      // disagree; clearing it in /admin takes the section away rather than
+      // leaving a heading over nothing.
+      var pageList = i === 0 ? document.getElementById('raceDayList') : null;
+      if (pageList) {
+        pageList.innerHTML = race.info || '';
+        var pageSec = pageList.closest('.rd-sec');
+        if (pageSec) pageSec.style.display = race.info ? '' : 'none';
+      }
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
@@ -401,41 +407,31 @@
     show(start > -1 ? start : 0);
   }
 
-  /* Stage 2 of the banner: the race-day panel is dealt up over the artwork as
-     you scroll, and back down if you scroll up. Tied to scroll position
-     rather than played as an animation, so it follows the finger instead of
-     running off on its own — and the stage lengths are measured off the
-     runway's own spacers, so CSS stays the single source of those numbers. */
+  /* The banner is two states: the poster, then the site climbing over it.
+     Nothing is dealt over the artwork any more, so all this does is fade the
+     scroll cue out as the hold runs down and hand the social rail back to the
+     site. Stage lengths are measured off the runway's own spacers, so CSS
+     stays the single source of those numbers. */
   function initBannerStages() {
     var sec = document.querySelector('.promo-top');
     if (!sec) return;
-    var panel = sec.querySelector('.promo-info');
     var holdEl = sec.querySelector('.cd-stage-hold');
-    var infoEl = sec.querySelector('.cd-stage-info');
-    var dwellEl = sec.querySelector('.cd-stage-dwell');
     var climbEl = sec.querySelector('.cd-stage-climb');
     var cue = sec.querySelector('.promo-cue');
-    if (!panel || !holdEl || !infoEl) return;
+    if (!holdEl) return;
     if (/[?&]edit=1/.test(location.search)) return;   // the editor shows a still banner
     var ticking = false;
     function frame() {
       ticking = false;
       var scrolled = Math.max(0, -sec.getBoundingClientRect().top);
-      var p = (scrolled - holdEl.offsetHeight) / (infoEl.offsetHeight || 1);
+      // the cue has done its job the moment the hold starts running out
+      var p = scrolled / (holdEl.offsetHeight || 1);
       p = p < 0 ? 0 : p > 1 ? 1 : p;
-      panel.style.transform = 'translateY(' + ((1 - p) * 100) + '%)';
-      panel.classList.toggle('on', p > 0.02);
-      panel.setAttribute('aria-hidden', p > 0.5 ? 'false' : 'true');
-      if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 4));
-      // The social rail belongs to the site, not to the poster: it waits until
-      // the banner has had its say. Measured against the end of the dwell —
-      // the moment the site starts climbing — not against p, because the panel
-      // now reaches the top of its travel inside the first scroll, and a rail
-      // of icons landing on the panel clips the ends of the race-day rows.
-      // once the site has climbed over half the banner, the poster is no
-      // longer what you are looking at and the rail is the site's again
-      var railAt = holdEl.offsetHeight + infoEl.offsetHeight +
-        (dwellEl ? dwellEl.offsetHeight : 0) + (climbEl ? climbEl.offsetHeight * 0.5 : 0);
+      if (cue) cue.style.opacity = String(Math.max(0, 1 - p * 1.6));
+      // The rail is a second column of icons over the poster. It belongs to
+      // the site, so it waits until the site has climbed over half the banner
+      // and the poster is no longer what you are looking at.
+      var railAt = holdEl.offsetHeight + (climbEl ? climbEl.offsetHeight * 0.5 : 0);
       document.body.classList.toggle('rail-off', scrolled < railAt);
     }
     window.addEventListener('scroll', function () {
