@@ -285,6 +285,11 @@
           "href": "results-2025.html"
         }
       ]
+    },
+    "raceinfo": {
+      "kicker": "Race morning",
+      "h2": "Everything you need on the day.",
+      "p": "Bib pickup windows, the buses up, and the start-line timings — everything for race morning, in one place."
     }
   },
   "about": {

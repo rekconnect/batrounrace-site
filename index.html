@@ -119,8 +119,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 @media(max-height:520px){.social-rail{display:none}}
 /* The rail is a second column of icons over the poster — it competes with the
    artwork and crowds the register button. While the banner holds it stays
-   out; js/cms.js drops body.rail-off once the race-day panel is fully up, so
-   the rail arrives with the second scroll, along with the site itself. */
+   out; js/cms.js drops body.rail-off once the site has climbed over half the
+   banner, so the rail arrives with the site rather than over the poster. */
 body.has-banner.rail-off .social-rail{opacity:0;pointer-events:none;
   transform:translateY(-50%) translateX(26px);transition:opacity .3s ease-out,transform .3s ease-out}
 body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-out}
@@ -277,33 +277,23 @@ body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-
    4 CLIMB — the site itself comes up over the banner like a curtain
    The runway is that scroll distance made of real height, one element per
    stage, so js/cms.js can measure them instead of re-deriving the lengths.
-   HOLD and INFO both need length, for different reasons. HOLD is the poster's
-   own screen — it must not be snatched away by the first nudge of a thumb.
-   INFO is the distance the panel travels, and it is what the change *feels*
-   like: deal it over too short a run and the poster does not rise into the
-   panel, it jumps, however late the jump starts. Lengthening HOLD cannot buy
-   that back — the two are not interchangeable.
-   DWELL is short on purpose: the panel stays fully up through CLIMB as well,
-   p being clamped at 1, so it is readable for far longer than DWELL alone. */
-:root{--banner:calc(100vh - 64px);--hold:min(58vh,520px);--info:min(52vh,470px);--dwell:min(12vh,100px)}
-@supports (height:100svh){:root{--banner:calc(100svh - 64px)}}
-/* CLIMB is deliberately not shortened anywhere: the page body is pulled up by
-   exactly --banner and sits above the poster, so a CLIMB shorter than the
-   banner would let the site show through the bottom of the screen during the
-   dwell, before the curtain is meant to start. */
-@media(max-height:520px){:root{--hold:min(40vh,190px);--info:min(46vh,230px);--dwell:min(14vh,70px)}}
+   The banner is two states now, not three, and HOLD is what separates them.
+   It is a whole viewport: a first flick of the thumb travels the poster and
+   ends there, so the site cannot start arriving inside the same gesture that
+   was meant to show the artwork. The second flick brings the site up.
+   CLIMB stays exactly --banner: the page body is pulled up by that much and
+   sits above the poster, so a shorter climb would let the site show through
+   the bottom of the screen before the curtain is meant to start. */
+:root{--banner:calc(100vh - 64px);--hold:100vh}
+@supports (height:100svh){:root{--banner:calc(100svh - 64px);--hold:100svh}}
 .cd-runway i{display:block}
 .cd-stage-hold{height:var(--hold)}
-.cd-stage-info{height:var(--info)}
-.cd-stage-dwell{height:var(--dwell)}   /* the panel sits still and readable */
 .cd-stage-climb{height:var(--banner)}
-/* Scroll fast and you should land on a whole state, never between two. Two
-   snap points only — panel fully up, and the site at the top — so the rest of
-   the page scrolls normally. "proximity" never traps: land far from either
-   point and nothing pulls. */
+/* Scroll fast and you should land on a whole state, never between two. One
+   snap point — the site at the top — so the rest of the page scrolls
+   normally. "proximity" never traps: land far from it and nothing pulls. */
 @media (prefers-reduced-motion:no-preference){
   html:has(body.has-banner){scroll-snap-type:y proximity}
-  .cd-stage-dwell{scroll-snap-align:start}
   body.has-banner .page-body>section:first-of-type{scroll-snap-align:start;scroll-margin-top:64px}
 }
 .promo-top .promo{position:sticky;top:64px;border-radius:0;box-shadow:none;height:var(--banner)}
@@ -337,32 +327,6 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 .promo picture img{display:block;width:100%;height:auto}
 .promo-label{position:absolute;top:16px;left:16px;background:var(--coral);color:#fff;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:999px;box-shadow:0 4px 14px rgba(3,15,43,.25)}
 .promo-label:empty{display:none}
-/* ---- stage 2: race day, dealt up over the artwork ----
-   Driven by scroll position rather than a timed animation, so it tracks the
-   finger and reverses when you scroll back. */
-.promo-info{position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(180deg,rgba(3,15,43,.74),rgba(3,15,43,.93));backdrop-filter:blur(7px);
-  transform:translateY(100%);pointer-events:none;will-change:transform}
-.promo-info.on{pointer-events:auto}
-.pi-inner{width:min(660px,86%)}
-.pi-km{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);
-  display:flex;align-items:center;gap:10px;margin-bottom:20px}
-.pi-km::before{content:"";width:26px;height:2px;background:var(--coral)}
-.pi-list{display:grid;gap:10px}
-.pi-list span,.pi-list a{display:block;font-family:var(--mono);color:#fff;text-decoration:none;
-  font-size:clamp(.82rem,1.5vw,1.05rem);padding:15px 18px;border-radius:14px;
-  border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);
-  transition:border-color .2s ease-out,background .2s ease-out}
-.pi-list a:hover,.pi-list a:focus-visible{border-color:var(--coral);background:rgba(255,255,255,.1)}
-.pi-list:empty{display:none}
-/* A short, wide screen has no room for a single column of facts — and the
-   list grows as the race gets closer. Two columns there, so the panel keeps
-   fitting however many rows the race picks up. */
-@media(max-height:520px){
-  .pi-km{margin-bottom:10px}
-  .pi-list{grid-template-columns:1fr 1fr;gap:6px 10px}
-  .pi-list span,.pi-list a{padding:8px 12px;font-size:.74rem}
-}
 /* the invitation to scroll — says so in words, with the arrow beneath. Sits
    in the foot column so it can never land on the button, and bows out as one
    piece as the panel comes up */
@@ -461,6 +425,22 @@ a.promo:hover{transform:translateY(-4px);box-shadow:0 16px 44px rgba(3,15,43,.22
 }
 @media (prefers-reduced-motion:reduce){.lg-item:hover{transform:none}}
 
+/* ---------- race morning: what the poster used to hide behind a scroll ----
+   The first thing in the site body, because it is the first thing a runner
+   needs and the one page 89% of visitors ever see. A plain section, so it can
+   be scrolled back to, linked to and read at any speed. */
+.rd-sec{padding:64px 0 56px;background:var(--white);border-bottom:1px solid var(--line)}
+.rd-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.rd-list{grid-template-columns:1fr}}
+.rd-list span,.rd-list a{display:block;font-family:var(--mono);font-size:.9rem;line-height:1.5;color:var(--text);
+  background:var(--foam);border:1px solid var(--line);border-radius:14px;padding:16px 18px;text-decoration:none;
+  transition:border-color .2s ease-out,transform .2s ease-out}
+.rd-list a:hover,.rd-list a:focus-visible{border-color:var(--coral);transform:translateY(-2px)}
+.rd-list:empty{display:none}
+/* the fixed social rail sits over the right edge of a phone screen, and these
+   rows are long enough to run under it — hold the text clear of it */
+@media(max-width:768px){.rd-list span,.rd-list a{padding-right:46px}}
+@media (prefers-reduced-motion:reduce){.rd-list a:hover{transform:none}}
 /* ---------- sections ---------- */
 section{padding:96px 0}
 .sec-head{max-width:640px;margin-bottom:48px}
@@ -607,14 +587,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div class="cd-in">
         <div class="race-next" hidden></div>
       </div>
-      <!-- Race day, one scroll up over the artwork. Filled from the same
-           content as the pills — same four facts, room to read them. -->
-      <div class="promo-info" aria-hidden="true">
-        <div class="pi-inner">
-          <span class="pi-km">Race day</span>
-          <div class="pi-list"></div>
-        </div>
-      </div>
       <!-- The bottom band: the button and the organisers' lockup are one row,
            so they are level and equally inset by construction, on any screen. -->
       <a class="promo-btn" href="/">Click to register</a>
@@ -622,16 +594,33 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <span class="promo-cue" aria-hidden="true"><span class="cue-text">Scroll for more info</span><span class="cue-ring"></span></span>
       </div>
     </div>
-    <!-- The three scroll stages, as real height. js/cms.js measures these
+    <!-- The two scroll stages, as real height. js/cms.js measures these
          rather than re-deriving the CSS lengths in JavaScript. -->
     <div class="cd-runway" aria-hidden="true">
-      <i class="cd-stage-hold"></i><i class="cd-stage-info"></i><i class="cd-stage-dwell"></i><i class="cd-stage-climb"></i>
+      <i class="cd-stage-hold"></i><i class="cd-stage-climb"></i>
     </div>
   </section>
 </template>
 <div id="promoSec"></div>
 
 <div class="page-body">
+
+<!-- RACE MORNING — the first thing the second scroll lands on.
+     Filled by js/cms.js from the same global.race.info the race guide reads,
+     so there is one copy of these facts, not two that can disagree. The
+     static rows below are the pre-hydration fallback. -->
+<section class="rd-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km" data-cms="home.raceinfo.kicker">Race morning</span>
+      <h2 data-cms="home.raceinfo.h2">Everything you need on the day.</h2>
+      <p data-cms="home.raceinfo.p">Bib pickup windows, the buses up, and the start-line timings.</p>
+    </div>
+    <div class="rd-list reveal" id="raceDayList">
+      <span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href="https://maps.app.goo.gl/AbMonjwwZCu21Cjz6" target="_blank" rel="noopener">📍 Race location ↗</a><span>🎽 Bib pickup · Beirut By Bike — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routeslb Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span><span>🚌 Bus from Beirut By Bike — leaves 5:00–5:15 AM</span><span>🚌 Bus from Routeslb Batroun — leaves 6:00 AM</span>
+    </div>
+  </div>
+</section>
 
 <!-- KM 0 · START -->
 <section class="hero" style="padding:0">
