@@ -334,7 +334,13 @@
       if (pageList) {
         pageList.innerHTML = race.info || '';
         var pageSec = pageList.closest('.rd-sec');
-        if (pageSec) pageSec.style.display = race.info ? '' : 'none';
+        if (pageSec) {
+          pageSec.style.display = race.info ? '' : 'none';
+          // the same artwork the banner shows, blurred behind the scrim, so
+          // the section reads as the poster's own panel rather than a slab
+          var art = promo.img || promo.img_portrait;   // a wide band wants the wide crop
+          if (art) pageSec.style.setProperty('--rd-art', 'url("' + art + '")');
+        }
       }
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
