@@ -212,6 +212,7 @@
      hands back when registration opens. */
   function srcFor(a) {
     if (a.classList.contains('promo-btn')) return 'banner';
+    if (a.classList.contains('rd-cta')) return 'race-info';
     if (a.classList.contains('mobile-register')) return 'mobile-bar';
     if (a.classList.contains('nav-cta')) return 'nav';
     if (a.classList.contains('bib')) return 'bib';
