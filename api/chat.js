@@ -96,7 +96,16 @@ function factSheet(c, now) {
   // the site greys out every registration link, and so must the assistant
   const regAt = race && race.reg_open ? new Date(race.reg_open) : null;
   const waiting = !!(regAt && !isNaN(regAt) && regAt > now);
-  const open = !!(promo && promo.label && promo.href) && !past && !waiting;
+  // …and its own closing moment before the race: after it, the site's
+  // registration buttons are greyed out again, this time for good
+  const regEndAt = race && race.reg_close ? new Date(race.reg_close) : null;
+  const closed = !!(regEndAt && !isNaN(regEndAt) && regEndAt <= now);
+  const open = !!(promo && promo.label && promo.href) && !past && !waiting && !closed;
+  if (closed) {
+    lines.push('Registration is CLOSED — the deadline has passed and no more entries can be taken for this race. ' +
+      'Every registration button on the site is greyed out and says so. Do NOT send anyone to the registration ' +
+      'link and do not suggest late entries exist; if someone insists, point them at WhatsApp to ask the organisers directly.');
+  }
   if (waiting) {
     lines.push('Registration has NOT opened yet. The homepage banner is counting down to the moment it does, ' +
       'and every registration link on the site is greyed out until then. Do NOT send anyone to the ' +
@@ -107,10 +116,12 @@ function factSheet(c, now) {
     lines.push('The site still shows a registration button, but it belongs to that finished race — ' +
       'tell visitors to check with the organisers before signing up.');
   }
-  lines.push(open
-    ? 'Registration is OPEN: the site shows a "' + stripTags(promo.label) + '" button pointing to ' + promo.href +
-      '. Send people there to sign up and pay.'
-    : 'Registration is NOT open yet on the site. Do not promise an opening date; offer to be notified via WhatsApp or Instagram instead.');
+  if (open) {
+    lines.push('Registration is OPEN: the site shows a "' + stripTags(promo.label) + '" button pointing to ' + promo.href +
+      '. Send people there to sign up and pay.');
+  } else if (!closed) {
+    lines.push('Registration is NOT open yet on the site. Do not promise an opening date; offer to be notified via WhatsApp or Instagram instead.');
+  }
 
   lines.push('Contacts — WhatsApp: ' + (g.whatsapp_url || '') +
     ' · email: ' + (g.email || '') +

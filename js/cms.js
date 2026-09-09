@@ -196,6 +196,15 @@
     return at && !isNaN(at) ? at : null;
   }
 
+  /* …and it closes again at race.reg_close — the deadline before race day
+     after which no more runners can be taken. Empty means it never closes. */
+  function regCloseMoment() {
+    var promos = promoList();
+    var race = (promos[0] && promos[0].race) || get(C, 'global.race') || {};
+    var at = race.reg_close ? new Date(race.reg_close) : null;
+    return at && !isNaN(at) ? at : null;
+  }
+
   function regLinks() {
     return [].slice.call(document.querySelectorAll('a[href],a[data-reg-href]')).filter(function (a) {
       var h = a.getAttribute('href') || a.getAttribute('data-reg-href') || '';
@@ -232,9 +241,9 @@
     });
   }
 
-  function initRegLock() {
-    var at = regMoment();
-    if (!at || at <= new Date()) { unlockRegistration(); return; }
+  var REG_CLOSED_NOTE = 'Registration is closed';
+
+  function lockRegistration(note, label) {
     if (!document.getElementById('reg-lock-css')) {
       var s = document.createElement('style');
       s.id = 'reg-lock-css';
@@ -249,14 +258,40 @@
       a.removeAttribute('href');            // an anchor with no href is not a link
       a.classList.add('reg-locked');
       a.setAttribute('aria-disabled', 'true');
-      a.setAttribute('title', REG_NOTE);
+      a.setAttribute('title', note);
+      // Closing is not opening: before opening the clock above the button says
+      // what is coming, so the wording stays put. After closing the clock
+      // counts to race day, so a dead "Register now" would just look broken —
+      // plain text buttons say why instead. Composed ones (the bib card) keep
+      // their structure and rely on the grey and the title.
+      if (label && !a.children.length) {
+        if (!a.hasAttribute('data-reg-label')) a.setAttribute('data-reg-label', a.textContent);
+        a.textContent = label;
+      }
     });
-    // the label stays as it is. The clock right above it already says what is
-    // happening, and keeping the wording means nothing but the colour changes
-    // when it opens — the button the visitor was looking at simply lights up
-    var ms = at - new Date();
+  }
+
+  /* One state machine, re-run at every boundary it schedules itself for:
+     closed (reg_close passed) → every link dead and saying so;
+     waiting (reg_open ahead)  → every link dead, the countdown explains;
+     open                      → links live, with the close moment armed. */
+  function initRegLock() {
+    var openAt = regMoment(), closeAt = regCloseMoment(), now = new Date();
     clearTimeout(initRegLock._t);
-    if (ms > 0 && ms < 2147483647) initRegLock._t = setTimeout(unlockRegistration, ms + 500);
+    var next = null;
+    if (closeAt && closeAt <= now) {
+      lockRegistration(REG_CLOSED_NOTE, 'Registration closed');
+    } else if (openAt && openAt > now) {
+      lockRegistration(REG_NOTE, null);
+      next = openAt;
+    } else {
+      unlockRegistration();
+      next = closeAt;   // may be null: registration that never closes
+    }
+    if (next) {
+      var ms = next - now;
+      if (ms > 0 && ms < 2147483647) initRegLock._t = setTimeout(initRegLock, ms + 500);
+    }
   }
 
   function unlockRegistration() {
@@ -264,7 +299,11 @@
       a.setAttribute('href', a.getAttribute('data-reg-href'));
       a.removeAttribute('data-reg-href');
       a.removeAttribute('aria-disabled');
-      if (a.getAttribute('title') === REG_NOTE) a.removeAttribute('title');
+      if (a.getAttribute('title') === REG_NOTE || a.getAttribute('title') === REG_CLOSED_NOTE) a.removeAttribute('title');
+      if (a.hasAttribute('data-reg-label')) {
+        a.textContent = a.getAttribute('data-reg-label');
+        a.removeAttribute('data-reg-label');
+      }
       a.classList.remove('reg-locked');
     });
   }
