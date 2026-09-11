@@ -252,10 +252,10 @@
       "items": [
         {
           "upcoming": true,
-          "status": "Registration open",
+          "status": "",
           "name": "Lebanon Cedar Race 2026",
           "meta": "Tannourine · 13 September 2026",
-          "p": "The next stop: up the mountain to Tannourine for a 5KM through the cedars. Registration is open — secure your spot online.",
+          "p": "The next stop: up the mountain to Tannourine for a 5KM through the cedars.",
           "label": "Register now →",
           "href": "https://register.batrounrace.com/"
         },
