@@ -264,7 +264,10 @@
       // counts to race day, so a dead "Register now" would just look broken —
       // plain text buttons say why instead. Composed ones (the bib card) keep
       // their structure and rely on the grey and the title.
-      if (label && !a.children.length) {
+      // …and only buttons that had words to begin with: the mobile bottom bar
+      // is deliberately empty (and therefore hidden) when register_bar_label
+      // is blank — writing a label into it would summon it out of hiding
+      if (label && !a.children.length && a.textContent.trim()) {
         if (!a.hasAttribute('data-reg-label')) a.setAttribute('data-reg-label', a.textContent);
         a.textContent = label;
       }

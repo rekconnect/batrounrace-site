@@ -519,6 +519,7 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .ev-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.08)}
 .ev-card.hot{border:2px solid var(--coral)}
 .ev-badge{align-self:flex-start;font-family:var(--mono);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:4px 12px;background:var(--foam);border:1px solid var(--line);color:var(--text-dim)}
+.ev-badge:empty{display:none}   /* no status = no pill, not an empty pill */
 .ev-card.hot .ev-badge{background:var(--coral);color:#fff;border-color:var(--coral)}
 .ev-card h3{font-family:var(--display);font-weight:600;font-size:1.3rem;margin:14px 0 6px}
 .ev-meta{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;color:var(--sea);margin-bottom:10px}
@@ -773,11 +774,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <h2 class="reveal" data-cms="home.finish.h2">The coast is waiting.</h2>
     <a class="bib reveal" href="/" data-cms-href="global.nav_cta_url">
       <span class="small" data-cms="home.finish.bib_top">Lebanon Cedar Race · Tannourine</span>
-      <div class="num" data-cms="home.finish.bib_num">OPEN</div>
+      <div class="num" data-cms="home.finish.bib_num">SEP 13</div>
       <span class="small" data-cms="home.finish.bib_bottom">5KM · 13 September 2026</span>
-      <div class="cta-line" data-cms="home.finish.bib_cta">Register now →</div>
+      <div class="cta-line" data-cms="home.finish.bib_cta">See you at the start line</div>
     </a>
-    <p class="note" data-cms="home.finish.note">Registration is open — sign up online, or message us on WhatsApp if you get stuck</p>
+    <p class="note" data-cms="home.finish.note">Registration is closed — see you in Tannourine on race morning, or message us on WhatsApp for any question</p>
   </div>
 </section>
 
