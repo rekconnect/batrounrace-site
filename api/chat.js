@@ -103,8 +103,10 @@ function factSheet(c, now) {
   const open = !!(promo && promo.label && promo.href) && !past && !waiting && !closed;
   if (closed) {
     lines.push('Registration is CLOSED — the deadline has passed and no more entries can be taken for this race. ' +
-      'Every registration button on the site is greyed out and says so. Do NOT send anyone to the registration ' +
-      'link and do not suggest late entries exist; if someone insists, point them at WhatsApp to ask the organisers directly.');
+      'Do NOT send anyone to the registration link and do not suggest late entries exist; if someone insists, ' +
+      'point them at WhatsApp to ask the organisers directly. The site\'s buttons now read "Results" but are ' +
+      'greyed out: results for this race are NOT published yet, so do not invent any result, winner or time — ' +
+      'say results are being prepared and the buttons will light up the moment they are out.');
   }
   if (waiting) {
     lines.push('Registration has NOT opened yet. The homepage banner is counting down to the moment it does, ' +
