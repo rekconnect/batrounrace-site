@@ -250,7 +250,12 @@
       // grayscale rather than a fixed grey: works the same on the coral button,
       // the ghost buttons and the bib card without hardcoding any of them
       s.textContent = '.reg-locked{filter:grayscale(1);opacity:.6;cursor:not-allowed;box-shadow:none!important}' +
-        '.reg-locked:hover,.reg-locked:focus-visible{transform:none!important;filter:grayscale(1)}';
+        // no transform override here: the banner button is CENTRED by its
+        // transform on phones, so cancelling it on tap flung the button half
+        // its width to the right. Every hover rule keeps its own positional
+        // part anyway — a dead button lifting 3px is fine; one that jumps
+        // across the poster is not.
+        '.reg-locked:hover,.reg-locked:focus-visible{filter:grayscale(1)}';
       document.head.appendChild(s);
     }
     regLinks().forEach(function (a) {
