@@ -241,7 +241,7 @@
     });
   }
 
-  var REG_CLOSED_NOTE = 'Registration is closed';
+  var REG_CLOSED_NOTE = 'Results coming soon';
 
   function lockRegistration(note, label) {
     if (!document.getElementById('reg-lock-css')) {
@@ -283,7 +283,11 @@
     clearTimeout(initRegLock._t);
     var next = null;
     if (closeAt && closeAt <= now) {
-      lockRegistration(REG_CLOSED_NOTE, 'Registration closed');
+      // Registration is over, so the same dead buttons now promise what comes
+      // next instead of repeating what ended: they read Results, still grey
+      // and still going nowhere, until the results actually exist and the
+      // links are pointed at them.
+      lockRegistration(REG_CLOSED_NOTE, 'Results');
     } else if (openAt && openAt > now) {
       lockRegistration(REG_NOTE, null);
       next = openAt;
