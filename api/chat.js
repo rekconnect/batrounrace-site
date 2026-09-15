@@ -101,7 +101,14 @@ function factSheet(c, now) {
   const regEndAt = race && race.reg_close ? new Date(race.reg_close) : null;
   const closed = !!(regEndAt && !isNaN(regEndAt) && regEndAt <= now);
   const open = !!(promo && promo.label && promo.href) && !past && !waiting && !closed;
-  if (closed) {
+  // the promo link doubling as a /results link is the signal that the race
+  // has been run and its results are published — content decides, not code
+  const resultsLive = !!(promo && promo.href && promo.href.indexOf('/results') > -1);
+  if (closed && resultsLive) {
+    lines.push('The race has been run and registration is closed for it. RESULTS ARE PUBLISHED: every Results ' +
+      'button on the site points to ' + promo.href + ' — send anyone asking for results, times or rankings there. ' +
+      'Do NOT quote specific winners, names or times from memory; the results page is the only source.');
+  } else if (closed) {
     lines.push('Registration is CLOSED — the deadline has passed and no more entries can be taken for this race. ' +
       'Do NOT send anyone to the registration link and do not suggest late entries exist; if someone insists, ' +
       'point them at WhatsApp to ask the organisers directly. The site\'s buttons now read "Results" but are ' +
@@ -114,7 +121,7 @@ function factSheet(c, now) {
       'registration link and do not state the opening date — point them at the countdown on the homepage, ' +
       'and offer WhatsApp or Instagram if they want to be told when it opens.');
   }
-  if (past) {
+  if (past && !resultsLive) {
     lines.push('The site still shows a registration button, but it belongs to that finished race — ' +
       'tell visitors to check with the organisers before signing up.');
   }

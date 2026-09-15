@@ -378,22 +378,6 @@
       var cd = sec.querySelector('.race-next');
       var info = sec.querySelector('.race-info');
       if (info) info.innerHTML = race.info || '';
-      // The same facts again, in the section the site opens with. One field
-      // feeds the pills on the artwork and that section, so the two can never
-      // disagree; clearing it in /admin takes the section away rather than
-      // leaving a heading over nothing.
-      var pageList = i === 0 ? document.getElementById('raceDayList') : null;
-      if (pageList) {
-        pageList.innerHTML = race.info || '';
-        var pageSec = pageList.closest('.rd-sec');
-        if (pageSec) {
-          pageSec.style.display = race.info ? '' : 'none';
-          // the same artwork the banner shows, blurred behind the scrim, so
-          // the section reads as the poster's own panel rather than a slab
-          var art = promo.img || promo.img_portrait;   // a wide band wants the wide crop
-          if (art) pageSec.style.setProperty('--rd-art', 'url("' + art + '")');
-        }
-      }
       renderCountdown(cd, race, i === 0);
       // the runway is the scroll room the sticky banner travels through while
       // the countdown writes itself in — pointless without a banner
