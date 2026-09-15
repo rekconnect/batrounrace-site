@@ -10,6 +10,7 @@
     "email_href": "mailto:Batrounrace@gmail.com",
     "register_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
     "results2026_url": "https://register.batrounrace.com/results",
+    "results_tannourine_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
@@ -63,7 +64,7 @@
         },
         {
           "b": "Tannourine",
-          "label": "Next stop"
+          "label": "Mountain race"
         },
         {
           "b": "600+",
