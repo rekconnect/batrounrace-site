@@ -307,12 +307,7 @@
     },
     "finish": {
       "kicker": "Finish line · Your turn",
-      "h2": "The coast is waiting.",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "SEP 13",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "See the results →",
-      "note": "The race is run — results are out. Tap the bib for every runner and category."
+      "h2": "The coast is waiting."
     },
     "races": {
       "kicker": "KM 3 · Our races",
@@ -528,12 +523,7 @@
     },
     "finish": {
       "kicker": "Finish line · Join the movement",
-      "h2": "Want to join the movement?",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "OPEN",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "Register now →",
-      "note": "Registration is open — sign up online, or message us on WhatsApp if you get stuck"
+      "h2": "Want to join the movement?"
     }
   },
   "contact": {
@@ -1599,8 +1589,7 @@
           "href": "https://wa.me/message/IJ45O3ILIUGMF1",
           "style": "wa"
         }
-      ],
-      "note": "Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there"
+      ]
     },
     "races": [
       {
