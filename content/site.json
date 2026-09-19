@@ -9,7 +9,7 @@
     "facebook_url": "https://www.facebook.com/profile.php?id=61573060961107",
     "email_href": "mailto:Batrounrace@gmail.com",
     "register_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
-    "results2026_url": "https://register.batrounrace.com/results",
+    "results2026_url": "https://register.batrounrace.com/results.html?comp=batroun-race-2026",
     "results_tannourine_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
     "races_menu": [
       {
@@ -60,7 +60,7 @@
           },
           {
             "label": "Results",
-            "href": "https://register.batrounrace.com/results"
+            "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
           },
           {
             "label": "Gallery",
@@ -155,8 +155,8 @@
       ],
       "ctas": [
         {
-          "label": "2026 results",
-          "href": "https://register.batrounrace.com/results",
+          "label": "Batroun 2026 results",
+          "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026",
           "style": "ghost"
         },
         {
@@ -349,7 +349,7 @@
           "meta": "Batroun · July 2026 · 2nd edition",
           "p": "The coastal classic grew to 600+ runners — full results and live timing for every runner and category.",
           "label": "View 2026 results →",
-          "href": "https://register.batrounrace.com/results"
+          "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
         },
         {
           "upcoming": false,
@@ -1518,7 +1518,7 @@
           ]
         }
       ],
-      "note": "Looking for the second edition? Full 2026 results with live timing → <a href=\"https://register.batrounrace.com/results\" style=\"color:var(--sea)\">register.batrounrace.com/results</a>"
+      "note": "Looking for the second edition? Full 2026 results with live timing → <a href=\"https://register.batrounrace.com/results.html?comp=batroun-race-2026\" style=\"color:var(--sea)\">Batroun Race 2026 results</a>"
     },
     "finish": {
       "kicker": "Finish line · Your name here",
@@ -1611,7 +1611,7 @@
         },
         {
           "q": "Where can I see results?",
-          "a": "Full 2026 results with live timing are at <a href=\"https://register.batrounrace.com/results\">register.batrounrace.com/results</a>. The 2025 first-edition podium is on our <a href=\"results-2025.html\">Results 2025</a> page."
+          "a": "Full results with live timing: <a href=\"https://register.batrounrace.com/results.html?comp=batroun-race-2026\">Batroun Race 2026</a> and <a href=\"https://register.batrounrace.com/results.html?comp=tannourine-2026\">Lebanon Cedar Race 2026</a>. The 2025 first-edition podium is on our <a href=\"results-2025.html\">Results 2025</a> page."
         },
         {
           "q": "How can I volunteer?",
