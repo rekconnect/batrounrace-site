@@ -9,8 +9,106 @@
     "facebook_url": "https://www.facebook.com/profile.php?id=61573060961107",
     "email_href": "mailto:Batrounrace@gmail.com",
     "register_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
-    "results2026_url": "https://register.batrounrace.com/results",
+    "results2026_url": "https://register.batrounrace.com/results.html?comp=batroun-race-2026",
     "results_tannourine_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
+    "races_menu": [
+      {
+        "name": "Lebanon Cedar Race 2026",
+        "href": "guide-cedar-2026.html",
+        "links": [
+          {
+            "label": "Race info",
+            "href": "guide-cedar-2026.html"
+          },
+          {
+            "label": "Age categories",
+            "href": "guide-cedar-2026.html#cats"
+          },
+          {
+            "label": "Bib pickup",
+            "href": "guide-cedar-2026.html#pickup"
+          },
+          {
+            "label": "Race location",
+            "href": "guide-cedar-2026.html#map"
+          },
+          {
+            "label": "Sponsors",
+            "href": "sponsors-cedar-2026.html"
+          },
+          {
+            "label": "Results",
+            "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery-cedar-2026.html"
+          }
+        ]
+      },
+      {
+        "name": "Batroun Race 2026",
+        "href": "guide-batroun-2026.html",
+        "links": [
+          {
+            "label": "Race info",
+            "href": "guide-batroun-2026.html"
+          },
+          {
+            "label": "Age categories",
+            "href": "guide-batroun-2026.html#cats"
+          },
+          {
+            "label": "Bib pickup",
+            "href": "guide-batroun-2026.html#pickup"
+          },
+          {
+            "label": "Race location",
+            "href": "guide-batroun-2026.html#map"
+          },
+          {
+            "label": "Sponsors",
+            "href": "sponsors-batroun-2026.html"
+          },
+          {
+            "label": "Results",
+            "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery-batroun-2026.html"
+          }
+        ]
+      },
+      {
+        "name": "Batroun Race 2025",
+        "href": "results-2025.html",
+        "links": [
+          {
+            "label": "Results",
+            "href": "results-2025.html"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery-batroun-2025.html"
+          },
+          {
+            "label": "Sponsors",
+            "href": "sponsors-batroun-2025.html"
+          }
+        ]
+      },
+      {
+        "name": "Christmas Race 2025",
+        "href": "https://www.instagram.com/batrounrace",
+        "links": [
+          {
+            "label": "See the moments",
+            "href": "https://www.instagram.com/batrounrace"
+          }
+        ]
+      }
+    ],
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
@@ -29,26 +127,7 @@
     "nav_cta_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
   },
   "home": {
-    "promos": [
-      {
-        "img": "images/banners/lebanon-cedar-race-2026-poster-wide.jpg",
-        "img_portrait": "images/banners/lebanon-cedar-race-2026-poster-tall.jpg",
-        "alt": "Lebanon Cedar Race — 13 September 2026, Tannourine, 5K. Runners on a mountain trail under the peaks.",
-        "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
-        "label": "Results",
-        "race": {
-          "edition_label": "Next race · Lebanon Cedar Race",
-          "date": "2026-09-13",
-          "time": "08:00",
-          "reg_open": "2026-08-13T23:59+03:00",
-          "reg_close": "2026-09-10T00:00+03:00",
-          "reg_label": "Registration opening soon",
-          "location": "Tannourine, Lebanon",
-          "tba_text": "",
-          "info": ""
-        }
-      }
-    ],
+    "promos": [],
     "hero": {
       "kicker": "KM 0 · Start line",
       "h1": "Run Batroun,<br>coast to <span class=\"accent\">mountain.</span>",
@@ -64,25 +143,14 @@
         },
         {
           "b": "Tannourine",
-          "label": "Mountain race"
+          "label": "Cedar Race"
         },
         {
           "b": "600+",
           "label": "Runners in 2026"
         }
       ],
-      "ctas": [
-        {
-          "label": "2026 results",
-          "href": "https://register.batrounrace.com/results",
-          "style": "ghost"
-        },
-        {
-          "label": "2025 results",
-          "href": "results-2025.html",
-          "style": "ghost"
-        }
-      ],
+      "ctas": [],
       "slides": [
         {
           "img": "images/slides/whatsapp-image-2026-07-21-at-12-13-48-pm.jpg",
@@ -170,7 +238,7 @@
       "more": "Read our full story →"
     },
     "raceday": {
-      "kicker": "KM 2.5 · Race day",
+      "kicker": "KM 2 · Race day",
       "h2": "A town-wide celebration.",
       "p": "Streets filled with runners instead of cars. Music on the route, families at the finish.",
       "steps": [
@@ -239,15 +307,10 @@
     },
     "finish": {
       "kicker": "Finish line · Your turn",
-      "h2": "The coast is waiting.",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "SEP 13",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "See the results →",
-      "note": "The race is run — results are out. Tap the bib for every runner and category."
+      "h2": "The coast is waiting."
     },
     "races": {
-      "kicker": "KM 4 · Our races",
+      "kicker": "KM 3 · Our races",
       "h2": "One community, many races.",
       "p": "Races and community events — each with its own town, its own route, and the same spirit.",
       "items": [
@@ -267,7 +330,7 @@
           "meta": "Batroun · July 2026 · 2nd edition",
           "p": "The coastal classic grew to 600+ runners — full results and live timing for every runner and category.",
           "label": "View 2026 results →",
-          "href": "https://register.batrounrace.com/results"
+          "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
         },
         {
           "upcoming": false,
@@ -460,12 +523,7 @@
     },
     "finish": {
       "kicker": "Finish line · Join the movement",
-      "h2": "Want to join the movement?",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "OPEN",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "Register now →",
-      "note": "Registration is open — sign up online, or message us on WhatsApp if you get stuck"
+      "h2": "Want to join the movement?"
     }
   },
   "contact": {
@@ -622,20 +680,10 @@
       ]
     },
     "partners": {
-      "kicker": "KM 1 · Our partners",
+      "kicker": "KM 1 · Batroun Race 2026",
       "h2": "Brands that showed up.",
       "p": "Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.",
       "wall": [
-        {
-          "name": "Tannourine",
-          "slug": "tannourine",
-          "link": ""
-        },
-        {
-          "name": "Tannourine emblem",
-          "slug": "tannourine-emblem",
-          "link": ""
-        },
         {
           "name": "Mike Sport",
           "slug": "mike-sport",
@@ -722,11 +770,6 @@
           "link": ""
         },
         {
-          "name": "Routes",
-          "slug": "routes",
-          "link": ""
-        },
-        {
           "name": "Studio Jammal",
           "slug": "studio-jammal",
           "link": ""
@@ -757,7 +800,7 @@
       ]
     },
     "roi": {
-      "kicker": "KM 2 · ROI framework",
+      "kicker": "KM 1 · ROI framework",
       "h2": "How sponsor value is created.",
       "p": "Five drivers used by CMOs and finance teams to evaluate event sponsorship.",
       "steps": [
@@ -789,7 +832,7 @@
       ]
     },
     "deliverables": {
-      "kicker": "KM 3 · Deliverables",
+      "kicker": "KM 2 · Deliverables",
       "h2": "What sponsors receive.",
       "cards": [
         {
@@ -1166,11 +1209,6 @@
           "label": "Jump to podium",
           "href": "#podium",
           "style": "coral"
-        },
-        {
-          "label": "2026 full results",
-          "href": "https://register.batrounrace.com/results",
-          "style": "ghost"
         }
       ]
     },
@@ -1441,16 +1479,11 @@
           ]
         }
       ],
-      "note": "Looking for the second edition? Full 2026 results with live timing → <a href=\"https://register.batrounrace.com/results\" style=\"color:var(--sea)\">register.batrounrace.com/results</a>"
+      "note": "Looking for the second edition? Full 2026 results with live timing → <a href=\"https://register.batrounrace.com/results.html?comp=batroun-race-2026\" style=\"color:var(--sea)\">Batroun Race 2026 results</a>"
     },
     "finish": {
       "kicker": "Finish line · Your name here",
-      "h2": "Next podium could be yours.",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "OPEN",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "Register now →",
-      "note": "Registration is open — sign up online, or message us on WhatsApp if you get stuck"
+      "h2": "Next podium could be yours."
     }
   },
   "guide": {
@@ -1500,7 +1533,7 @@
       ]
     },
     "faq": {
-      "kicker": "KM 2 · Questions",
+      "kicker": "KM 4 · Questions",
       "h2": "Quick answers.",
       "p": "Tap a question to open it.",
       "items": [
@@ -1534,7 +1567,7 @@
         },
         {
           "q": "Where can I see results?",
-          "a": "Full 2026 results with live timing are at <a href=\"https://register.batrounrace.com/results\">register.batrounrace.com/results</a>. The 2025 first-edition podium is on our <a href=\"results-2025.html\">Results 2025</a> page."
+          "a": "Full results with live timing: <a href=\"https://register.batrounrace.com/results.html?comp=batroun-race-2026\">Batroun Race 2026</a> and <a href=\"https://register.batrounrace.com/results.html?comp=tannourine-2026\">Lebanon Cedar Race 2026</a>. The 2025 first-edition podium is on our <a href=\"results-2025.html\">Results 2025</a> page."
         },
         {
           "q": "How can I volunteer?",
@@ -1556,20 +1589,19 @@
           "href": "https://wa.me/message/IJ45O3ILIUGMF1",
           "style": "wa"
         }
-      ],
-      "note": "Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there"
+      ]
     },
     "races": [
       {
         "id": "cedar",
         "name": "Lebanon Cedar Race",
         "town": "Tannourine",
-        "status": "Registration open",
+        "status": "Completed",
         "meta": "5KM · 13 September 2026 · Start 8:00 AM",
         "h2": "Up in the cedars of Tannourine.",
         "p": "One 5KM through Tannourine's cedar country — mountain air instead of sea salt, and a course that earns its views. Bring a layer for before the start: mornings up there are cooler than the coast.",
         "map_url": "https://www.google.com/maps?q=Tannourine,+Lebanon&output=embed",
-        "day": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a><span>🎽 Bib pickup · By Bike Biel (Waterfront) — Sun 6 to Tue 8 Sept, 8:00 AM–2:00 PM</span><span>🎽 Bib pickup · Routeslb Batroun — Wed 9 &amp; Thu 10 Sept, 9:00 AM–7:00 PM</span><span>🚌 Bus from Beirut By Bike — leaves 5:00–5:15 AM</span><span>🚌 Bus from Routeslb Batroun — leaves 6:00 AM</span>",
+        "day": "<span>🚧 Roads close 7:30 AM</span><span>🎤 Briefing 7:40 AM</span><span>🏁 Race start 8:00 AM</span><a href=\"https://maps.app.goo.gl/AbMonjwwZCu21Cjz6\" target=\"_blank\" rel=\"noopener\">📍 Race location ↗</a><span>🚌 Bus from Beirut By Bike — leaves 5:00–5:15 AM</span><span>🚌 Bus from Routeslb Batroun — leaves 6:00 AM</span>",
         "kms": [
           {
             "t": "Start",
@@ -1591,6 +1623,34 @@
             "h3": "Finish in Tannourine",
             "p": "Medals, photos and the town square to celebrate in. Stay a while — Tannourine deserves it."
           }
+        ],
+        "pickup": [
+          {
+            "t": "Stop 1",
+            "h3": "By Bike Biel (Waterfront)",
+            "p": "Sun 6 – Tue 8 September · 7:30 AM – 2:00 PM"
+          },
+          {
+            "t": "Stop 2",
+            "h3": "Routeslb Batroun",
+            "p": "Wed 9 & Thu 10 September · 9:00 AM – 7:00 PM"
+          }
+        ],
+        "cats": [
+          {
+            "t": "5 KM",
+            "h3": "Ages 14–74 · start 8:00 AM",
+            "p": "Age groups: 14-15 · 16-17 · 18-19 · 20-34 · 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70-74"
+          }
+        ],
+        "included": [
+          "Race registration",
+          "Trophies for overall & age category",
+          "Finisher medal",
+          "Breakfast",
+          "BIB-tag & T-shirt",
+          "Photoshooting",
+          "LAF fees"
         ]
       },
       {
@@ -1602,7 +1662,7 @@
         "h2": "Sea on one side, Batroun stone on the other.",
         "p": "5KM and 10KM along the Batroun coast — seaside roads, the old souks, and a Mediterranean finish.",
         "map_url": "https://www.google.com/maps?q=Batroun,+Lebanon&output=embed",
-        "day": "",
+        "day": "<span>🏁 10 KM &amp; Team Relay · start 7:00 AM</span><span>🏁 5 KM · start 7:10 AM</span><span>📅 Ran Sunday 12 July 2026</span>",
         "kms": [
           {
             "t": "Start",
@@ -1624,6 +1684,43 @@
             "h3": "Mediterranean finish",
             "p": "Podiums, food, swimming, and a full day by the sea."
           }
+        ],
+        "pickup": [
+          {
+            "t": "Stop 1",
+            "h3": "Sports Experts, Dbayyeh",
+            "p": "Mon 6 – Wed 8 July · 10:00 AM – 8:00 PM"
+          },
+          {
+            "t": "Stop 2",
+            "h3": "Hangloose, Batroun",
+            "p": "Thu 9 – Sat 11 July · 10:00 AM – 7:00 PM"
+          }
+        ],
+        "cats": [
+          {
+            "t": "10 KM",
+            "h3": "Ages 18+ · start 7:00 AM",
+            "p": "Age groups: U20 (2007-2008) · Seniors 20-34 · Masters 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70+"
+          },
+          {
+            "t": "5 KM",
+            "h3": "Ages 16+ · start 7:10 AM",
+            "p": "Age groups: U18 (2009-2010) · U20 (2007-2008) · Seniors 20-34 · Masters 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70+"
+          },
+          {
+            "t": "Relay",
+            "h3": "10 KM Team Relay · start 7:00 AM",
+            "p": "Teams of two, ages 16+ — Runner 1 runs 5 KM, Runner 2 runs 5 KM."
+          }
+        ],
+        "included": [
+          "Race registration",
+          "BIB & tag",
+          "Finisher medal",
+          "Finish time certificate",
+          "LAF fees",
+          "Small breakfast & Bluebay Beach entrance"
         ]
       }
     ]
@@ -1632,7 +1729,7 @@
     "hero": {
       "kicker": "KM 0 · Gallery",
       "h1": "Race day <span class=\"accent\">moments.</span>",
-      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Photos are managed in the admin's Slider photos tab.",
+      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Pick a race below.",
       "ctas": [
         {
           "label": "View results →",
@@ -1662,6 +1759,58 @@
         }
       ],
       "note": "Tag @batrounrace to be featured"
+    },
+    "batroun2026": {
+      "kicker": "KM 1 · Batroun Race 2026",
+      "h2": "The 2026 edition."
+    },
+    "batroun2025": {
+      "kicker": "KM 2 · Batroun Race 2025",
+      "h2": "The first edition.",
+      "photos": [
+        {
+          "img": "images/podium.jpg",
+          "alt": "Winners on the podium at the Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_20_34.jpg",
+          "alt": "Women 20–34 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_14_16.jpg",
+          "alt": "Girls 14–16 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_14_16.jpg",
+          "alt": "Boys 14–16 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_17_19.jpg",
+          "alt": "Women 17–19 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_40_44.jpg",
+          "alt": "Men 40–44 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_45_49.jpg",
+          "alt": "Women 45–49 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_55_59.jpg",
+          "alt": "Men 55–59 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_60_64.jpg",
+          "alt": "Women 60–64 podium winners, Batroun Race 2025"
+        }
+      ]
+    },
+    "cedar2026": {
+      "kicker": "KM 1 · Lebanon Cedar Race 2026",
+      "h2": "Up in the cedars.",
+      "note": "Photos from Tannourine are on their way — follow <a href=\"https://www.instagram.com/batrounrace\" target=\"_blank\" rel=\"noopener\">@batrounrace</a> in the meantime.",
+      "photos": []
     }
   }
 }

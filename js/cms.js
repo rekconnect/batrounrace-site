@@ -180,8 +180,34 @@
     initSliders();
     initLightbox();
     initGuideRaces();
+    renderRacesMenu();
     tagRegLinks();
     initRegLock();
+    // hydration grows content above a #hash target after the browser's own
+    // anchor jump, so land on it once more — once, and never in the editor
+    if (location.hash && !apply._anchored && !EDIT) {
+      apply._anchored = true;
+      var anchor = document.getElementById(location.hash.slice(1));
+      if (anchor) anchor.scrollIntoView();
+    }
+  }
+
+  /* The Races menu in the nav: one row per race, each flying out its own
+     links (results, race info, gallery…). Driven by global.races_menu, so
+     next year's race is a content edit in /admin, not eight nav markups. */
+  function renderRacesMenu() {
+    var races = get(C, 'global.races_menu');
+    if (!Array.isArray(races) || !races.length) return;
+    document.querySelectorAll('[data-races-menu]').forEach(function (host) {
+      host.innerHTML = races.map(function (r, i) {
+        var base = 'global.races_menu.' + i;
+        var links = (r.links || []).map(function (l, j) {
+          return '<a href="' + l.href + '" data-cms="' + base + '.links.' + j + '.label">' + l.label + '</a>';
+        }).join('');
+        return '<div class="nav-sub"><a href="' + (r.href || '#') + '" data-cms="' + base + '.name">' + r.name + '</a>' +
+          (links ? '<div class="nav-sub-menu">' + links + '</div>' : '') + '</div>';
+      }).join('');
+    });
   }
 
   /* Registration is not open until race.reg_open, and until then no link on the
@@ -400,21 +426,28 @@
      re-pointed on every switch, so the visual editor edits the race that is
      actually on screen. */
   function initGuideRaces() {
-    var host = document.getElementById('raceSwitch');
-    if (!host) return;
+    var h2 = document.getElementById('rgH2');
+    if (!h2) return;
     var races = get(C, 'guide.races');
     if (!Array.isArray(races) || !races.length) return;
 
-    function show(i) {
+    function show(i, sec) {
       var r = races[i];
       if (!r) return;
       var base = 'guide.races.' + i;
-      var h2 = document.getElementById('rgH2');
+      // the page belongs to this race: its name leads the hero and the tab
+      var kicker = document.querySelector('.hero .km');
+      if (kicker) {
+        kicker.textContent = (r.name || '') + (r.town ? ' · ' + r.town : '');
+        kicker.removeAttribute('data-cms');   // computed now, not a field
+      }
+      if (r.name) document.title = r.name + ' — Race Guide · Batroun Race';
       var p = document.getElementById('rgP');
       var day = document.getElementById('rgDay');
       var flow = document.getElementById('rgFlow');
       var map = document.getElementById('rgMap');
-      if (h2) { h2.innerHTML = r.h2 || ''; h2.setAttribute('data-cms', base + '.h2'); }
+      h2.innerHTML = r.h2 || '';
+      h2.setAttribute('data-cms', base + '.h2');
       if (p) { p.innerHTML = r.p || ''; p.setAttribute('data-cms', base + '.p'); }
       if (day) day.innerHTML = r.day || '';
       if (flow) {
@@ -426,27 +459,70 @@
         map.setAttribute('data-cms-src', base + '.map_url');
         map.setAttribute('title', (r.name || 'Race') + ' route area map');
       }
-      host.querySelectorAll('button').forEach(function (b, j) {
-        b.setAttribute('aria-selected', j === i ? 'true' : 'false');
+      // bib pickup + age categories are per-race too; a race without the
+      // data simply hides the section instead of showing an empty band
+      [['pickup', 'rgPickup', 'pickup'], ['cats', 'rgCats', 'cats']].forEach(function (m) {
+        var secEl = document.getElementById(m[0]);
+        var host = document.getElementById(m[1]);
+        var items = Array.isArray(r[m[2]]) ? r[m[2]] : [];
+        if (secEl) secEl.style.display = items.length ? '' : 'none';
+        if (host) {
+          host.setAttribute('data-cms-list', 'flow:' + base + '.' + m[2]);
+          host.innerHTML = renderers.flow(items, base + '.' + m[2]);
+        }
       });
-      // remember the pick in the URL without adding history entries
-      if (r.id) history.replaceState(null, '', '#' + r.id);
+      var inc = document.getElementById('rgIncluded');
+      if (inc) {
+        inc.innerHTML = (Array.isArray(r.included) ? r.included : []).map(function (x, j) {
+          return '<span>✓ <span data-cms="' + base + '.included.' + j + '">' + x + '</span></span>';
+        }).join('');
+      }
+      // remember the pick in the URL without adding history entries; a
+      // fixed-race page never carries the race in its hash, only the section
+      var fixed = document.body.getAttribute('data-race');
+      if (fixed) history.replaceState(null, '', location.pathname + (sec ? '#' + sec : ''));
+      else if (r.id) history.replaceState(null, '', '#' + r.id + (sec ? '-' + sec : ''));
+      // a deep link like #cedar-pickup scrolls to that section once dressed
+      if (sec) {
+        var target = document.getElementById(sec);
+        if (target) {
+          var smooth = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+          target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+        }
+      }
     }
 
-    host.innerHTML = races.map(function (r, i) {
-      return '<button type="button" role="tab" aria-selected="false">' +
-        (r.name || 'Race ' + (i + 1)) + ' · ' + (r.town || '') +
-        (r.status ? '<span class="tag">' + r.status + '</span>' : '') + '</button>';
-    }).join('');
-    host.querySelectorAll('button').forEach(function (b, i) {
-      b.addEventListener('click', function () { show(i); });
-    });
-
-    // open on the deep-linked race, else the first one (the upcoming race
-    // leads the list in content)
-    var want = location.hash.replace('#', '');
-    var start = races.findIndex(function (r) { return r.id === want; });
-    show(start > -1 ? start : 0);
+    // Which race is chosen by the nav's deep link (else the first, the
+    // upcoming race leading the list in content). The nav can re-link this
+    // same page to another race, which only changes the hash — so hash
+    // navigation re-dresses the page in place, no reload.
+    // a page carrying data-race belongs to one race for good — its hash
+    // only ever names a section (#cats, #pickup, #map)
+    var fixedRace = document.body.getAttribute('data-race');
+    function pick() {
+      var want = location.hash.replace('#', '');
+      var sec = '';
+      var i;
+      if (fixedRace) {
+        i = races.findIndex(function (r) { return r.id === fixedRace; });
+        sec = want;
+        // tolerate old-style #cedar-pickup links landing on the fixed page
+        if (sec.indexOf(fixedRace + '-') === 0) sec = sec.slice(fixedRace.length + 1);
+        if (sec && !document.getElementById(sec)) sec = '';
+        show(i > -1 ? i : 0, sec);
+        return;
+      }
+      i = races.findIndex(function (r) { return r.id === want; });
+      if (i < 0 && want.indexOf('-') > -1) {
+        // #cedar-pickup → the cedar page, scrolled to its pickup section
+        var race = want.slice(0, want.indexOf('-'));
+        i = races.findIndex(function (r) { return r.id === race; });
+        if (i > -1) sec = want.slice(want.indexOf('-') + 1);
+      }
+      show(i > -1 ? i : 0, sec);
+    }
+    window.addEventListener('hashchange', pick);
+    pick();
   }
 
   /* The banner is two states: the poster, then the site climbing over it.
@@ -498,24 +574,31 @@
 
   function initLightbox() {
     var lb = document.getElementById('lightbox');
-    var grid = document.querySelector('.gallery-grid');
-    if (!lb || !grid || /[?&]edit=1/.test(location.search)) return;
+    var grids = document.querySelectorAll('.gallery-grid');
+    if (!lb || !grids.length || /[?&]edit=1/.test(location.search)) return;
     var img = lb.querySelector('img');
     var cur = 0;
-    function imgs() { return Array.prototype.map.call(grid.querySelectorAll('.g-item img'), function (im) { return im.getAttribute('src'); }); }
+    // each race has its own grid; the arrows page through the grid clicked
+    var active = grids[0];
+    function imgs() { return Array.prototype.map.call(active.querySelectorAll('.g-item img'), function (im) { return im.getAttribute('src'); }); }
     function open(i) {
       var list = imgs();
       cur = (i + list.length) % list.length;
       img.src = list[cur];
       lb.classList.add('open');
     }
-    if (!grid._lbBound) {
+    grids.forEach(function (grid) {
+      if (grid._lbBound) return;
       grid._lbBound = true;
       grid.addEventListener('click', function (e) {
         var item = e.target.closest('.g-item');
         if (!item) return;
+        active = grid;
         open(Array.prototype.indexOf.call(grid.children, item));
       });
+    });
+    if (!lb._lbBound) {
+      lb._lbBound = true;
       lb.addEventListener('click', function (e) {
         var b = e.target.closest('button');
         if (b) {
@@ -686,6 +769,17 @@
         btn.setAttribute('aria-expanded', 'false');
       }
     });
+  });
+
+  // On phones each race row folds shut; tapping the race name unfolds its
+  // links instead of navigating (the row's own links still navigate).
+  // Delegated, because renderRacesMenu rebuilds the rows on every hydration.
+  document.addEventListener('click', function (e) {
+    if (!matchMedia('(max-width: 768px)').matches) return;
+    var a = e.target.closest('.nav-sub > a');
+    if (!a || !a.parentElement.querySelector('.nav-sub-menu')) return;
+    e.preventDefault();
+    a.parentElement.classList.toggle('open');
   });
 
   var EDIT = /[?&]edit=1/.test(location.search);

@@ -77,13 +77,36 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav-drop{position:relative}
 .nav-drop-btn{background:none;border:0;padding:0;font:inherit;font-size:.9rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:color .2s}
 .nav-drop-btn:hover,.nav-drop-btn:focus-visible{color:var(--ink)}
-.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--foam);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:160px;display:none;flex-direction:column;box-shadow:0 12px 30px rgba(3,15,43,.14);z-index:60}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:250px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18);z-index:60}
 .nav-drop.open .nav-drop-menu{display:flex}
-.nav-drop-menu a{padding:9px 12px;border-radius:8px;white-space:nowrap}
-.nav-drop-menu a:hover{background:rgba(6,104,205,.08)}
+/* mouse users get the menu on hover — the click toggle stays for touch. The
+   ::before bridges the 14px gap under the button, so the pointer can travel
+   into the menu without it snapping shut on the way. */
+@media(hover:hover) and (min-width:769px){
+  .nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{display:flex}
+  .nav-drop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+}
+.nav-drop-menu a{font-family:var(--mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 16px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
+.nav-drop-menu a:hover{background:var(--coral);color:#fff}
+/* one row per race; hovering a row flies its own links out to the right */
+.nav-sub{position:relative}
+.nav-sub-menu{position:absolute;left:calc(100% - 8px);top:-14px;background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
+@media(hover:hover) and (min-width:769px){
+  .nav-sub:hover>.nav-sub-menu,.nav-sub:focus-within>.nav-sub-menu{display:flex}
+  /* bridge over the 4px gap between the row and its flyout */
+  .nav-sub-menu::before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px}
+}
 @media(max-width:768px){
-  .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
-  .nav-drop-btn{pointer-events:none}
+  .nav-sub-menu{position:static;display:none;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub.open>.nav-sub-menu{display:flex}
+  /* a small arrow closes each race name; it flips when the row is open */
+  .nav-sub>a::after{content:"\25BE";margin-left:8px;font-size:.8em;display:inline-block;transition:transform .2s ease-out}
+  .nav-sub.open>a::after{transform:rotate(180deg)}
+}
+@media(max-width:768px){
+  .nav-drop-menu{position:static;transform:none;display:none;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
 @media(max-width:768px){
@@ -172,14 +195,6 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-sec .sec-head p{color:var(--text-inv-dim)}
 /* the race switcher: every race as a pill, the picked one in coral. The rest
    of the section reads from the picked race, so one page carries them all. */
-.race-switch{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 22px}
-.race-switch:empty{display:none}
-.race-switch button{font:inherit;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;cursor:pointer;
-  color:var(--text-inv);background:rgba(255,255,255,.06);border:1px solid var(--line-light);
-  border-radius:999px;padding:9px 18px;transition:border-color .2s ease-out,background .2s ease-out,color .2s}
-.race-switch button:hover{border-color:rgba(255,255,255,.4)}
-.race-switch button[aria-selected="true"]{background:var(--coral);border-color:var(--coral);color:#fff;font-weight:700}
-.race-switch button .tag{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-top:2px}
 .race-day-line{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
 .race-day-line:empty{display:none}
 /* these were one-liners like "Roads close 7:30 AM" when nowrap was safe;
@@ -191,6 +206,12 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
 @media(max-width:860px){.flow{grid-template-columns:1fr}}
+/* pickup/categories hold 1–3 wider cards, not the route's 4 fixed lanes */
+.flow-fit{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+/* deep links from the Races menu land below the sticky header */
+#pickup,#cats,#map,#routes{scroll-margin-top:76px}
+/* the ✓ chips nest an editable span; only the outer one is the pill */
+#rgIncluded span span{border:0;padding:0}
 .flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
 @media(min-width:861px){.flow-step{border-bottom:none;border-right:1px solid var(--line-light);padding:34px 26px}}
 .flow-step:last-child{border-right:none}
@@ -276,20 +297,23 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About</a></li>
-      <li><a href="race-guide.html">Race Guide</a></li>
       <li class="nav-drop">
-        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Results ▾</button>
-        <div class="nav-drop-menu">
-          <a href="https://register.batrounrace.com/results.html?comp=tannourine-2026" data-cms-href="global.results_tannourine_url">Tannourine 2026</a>
-          <a href="https://register.batrounrace.com/results" data-cms-href="global.results2026_url">Batroun 2026</a>
-          <a href="results-2025.html">Batroun 2025</a>
+        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
+        <div class="nav-drop-menu" data-races-menu>
+          <div class="nav-sub"><a href="guide-cedar-2026.html">Lebanon Cedar Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-cedar-2026.html">Race info</a><a href="guide-cedar-2026.html#cats">Age categories</a><a href="guide-cedar-2026.html#pickup">Bib pickup</a><a href="guide-cedar-2026.html#map">Race location</a><a href="sponsors-cedar-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a><a href="gallery-cedar-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="guide-batroun-2026.html">Batroun Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-batroun-2026.html">Race info</a><a href="guide-batroun-2026.html#cats">Age categories</a><a href="guide-batroun-2026.html#pickup">Bib pickup</a><a href="guide-batroun-2026.html#map">Race location</a><a href="sponsors-batroun-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery-batroun-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery-batroun-2025.html">Gallery</a><a href="sponsors-batroun-2025.html">Sponsors</a></div></div>
+          <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
+            <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
       </li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="sponsors.html">Sponsors</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><button class="theme-btn" id="themeBtn" aria-label="Switch color theme">Theme: Coastal</button></li>
-      <li><a class="nav-cta" href="/" data-cms="global.nav_cta_label" data-cms-href="global.nav_cta_url">Register</a></li>
     </ul>
   </div>
 </header>
@@ -312,24 +336,47 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km" data-cms="guide.route.kicker">KM 1 · The route</span>
-      <!-- every race in one row; the guide below follows the picked one -->
-      <div class="race-switch" id="raceSwitch" role="tablist" aria-label="Pick a race"></div>
       <h2 id="rgH2" data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
       <p id="rgP" data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
       <p class="race-day-line" id="rgDay"></p>
     </div>
     <div class="flow" id="rgFlow" data-cms-list="flow:guide.route.kms"></div>
-    <div class="map-wrap reveal" style="margin-top:44px">
+    <div class="map-wrap reveal" id="map" style="margin-top:44px">
       <iframe id="rgMap" src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<!-- KM 2 · FAQ -->
+<!-- KM 2 · BIB PICKUP, per race -->
+<section class="flow-sec" id="pickup">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km">KM 2 · Bib pickup</span>
+      <h2>Pick up your bib.</h2>
+      <p>Bring your ticket — printed or on your phone.</p>
+    </div>
+    <div class="flow flow-fit" id="rgPickup"></div>
+  </div>
+</section>
+
+<!-- KM 3 · AGE CATEGORIES, per race -->
+<section class="flow-sec" id="cats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km">KM 3 · Age categories</span>
+      <h2>Who runs what.</h2>
+      <p>Age groups as raced in 2026 — and what every entry included.</p>
+    </div>
+    <div class="flow flow-fit" id="rgCats"></div>
+    <p class="race-day-line" id="rgIncluded"></p>
+  </div>
+</section>
+
+<!-- KM 4 · FAQ -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="guide.faq.kicker">KM 2 · Questions</span>
+      <span class="km" data-cms="guide.faq.kicker">KM 4 · Questions</span>
       <h2 data-cms="guide.faq.h2">Quick answers.</h2>
       <p data-cms="guide.faq.p">Tap a question to open it.</p>
     </div>
@@ -345,7 +392,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="finish-ctas reveal" data-cms-list="btns:guide.finish.ctas">
       <a class="btn btn-coral" href="/">Register to run</a>
     </div>
-    <p class="note" data-cms="guide.finish.note">Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there</p>
   </div>
 </section>
 
@@ -360,7 +406,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="cols">
       <ul>
         <li><a href="about.html">About</a></li>
-        <li><a href="race-guide.html">Race Guide</a></li>
+        <li><a href="guide-cedar-2026.html">Race Guide</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="results-2025.html">Results 2025</a></li>
         <li><a href="https://register.batrounrace.com/results">Results 2026</a></li>

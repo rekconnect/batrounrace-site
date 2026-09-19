@@ -77,13 +77,36 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav-drop{position:relative}
 .nav-drop-btn{background:none;border:0;padding:0;font:inherit;font-size:.9rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:color .2s}
 .nav-drop-btn:hover,.nav-drop-btn:focus-visible{color:var(--ink)}
-.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--foam);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:160px;display:none;flex-direction:column;box-shadow:0 12px 30px rgba(3,15,43,.14);z-index:60}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:250px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18);z-index:60}
 .nav-drop.open .nav-drop-menu{display:flex}
-.nav-drop-menu a{padding:9px 12px;border-radius:8px;white-space:nowrap}
-.nav-drop-menu a:hover{background:rgba(6,104,205,.08)}
+/* mouse users get the menu on hover — the click toggle stays for touch. The
+   ::before bridges the 14px gap under the button, so the pointer can travel
+   into the menu without it snapping shut on the way. */
+@media(hover:hover) and (min-width:769px){
+  .nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{display:flex}
+  .nav-drop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+}
+.nav-drop-menu a{font-family:var(--mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 16px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
+.nav-drop-menu a:hover{background:var(--coral);color:#fff}
+/* one row per race; hovering a row flies its own links out to the right */
+.nav-sub{position:relative}
+.nav-sub-menu{position:absolute;left:calc(100% - 8px);top:-14px;background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
+@media(hover:hover) and (min-width:769px){
+  .nav-sub:hover>.nav-sub-menu,.nav-sub:focus-within>.nav-sub-menu{display:flex}
+  /* bridge over the 4px gap between the row and its flyout */
+  .nav-sub-menu::before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px}
+}
 @media(max-width:768px){
-  .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
-  .nav-drop-btn{pointer-events:none}
+  .nav-sub-menu{position:static;display:none;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub.open>.nav-sub-menu{display:flex}
+  /* a small arrow closes each race name; it flips when the row is open */
+  .nav-sub>a::after{content:"\25BE";margin-left:8px;font-size:.8em;display:inline-block;transition:transform .2s ease-out}
+  .nav-sub.open>a::after{transform:rotate(180deg)}
+}
+@media(max-width:768px){
+  .nav-drop-menu{position:static;transform:none;display:none;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
 @media(max-width:768px){
@@ -148,6 +171,9 @@ body.has-banner .social-rail{transition:opacity .3s ease-out,transform .3s ease-
 .hero-meta{display:flex;gap:34px;flex-wrap:wrap;margin-top:34px;font-family:var(--mono);font-size:.82rem;color:var(--text-inv-dim)}
 .hero-meta b{display:block;color:var(--foam);font-size:1.05rem;font-weight:500}
 .hero-ctas{display:flex;gap:16px;margin-top:38px;flex-wrap:wrap;align-items:center}
+.hero-ctas:empty{display:none}
+/* the hero closes the section itself now that the photo strip is gone */
+.hero .wrap{padding-bottom:72px}
 /* next-race countdown — its own full screen between the banner and the site */
 /* the screen wears its own race banner — blurred into a backdrop so the photo
    carries over from the poster without its text competing with the countdown */
@@ -547,20 +573,23 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About</a></li>
-      <li><a href="race-guide.html">Race Guide</a></li>
       <li class="nav-drop">
-        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Results ▾</button>
-        <div class="nav-drop-menu">
-          <a href="https://register.batrounrace.com/results.html?comp=tannourine-2026" data-cms-href="global.results_tannourine_url">Tannourine 2026</a>
-          <a href="https://register.batrounrace.com/results" data-cms-href="global.results2026_url">Batroun 2026</a>
-          <a href="results-2025.html">Batroun 2025</a>
+        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
+        <div class="nav-drop-menu" data-races-menu>
+          <div class="nav-sub"><a href="guide-cedar-2026.html">Lebanon Cedar Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-cedar-2026.html">Race info</a><a href="guide-cedar-2026.html#cats">Age categories</a><a href="guide-cedar-2026.html#pickup">Bib pickup</a><a href="guide-cedar-2026.html#map">Race location</a><a href="sponsors-cedar-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a><a href="gallery-cedar-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="guide-batroun-2026.html">Batroun Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-batroun-2026.html">Race info</a><a href="guide-batroun-2026.html#cats">Age categories</a><a href="guide-batroun-2026.html#pickup">Bib pickup</a><a href="guide-batroun-2026.html#map">Race location</a><a href="sponsors-batroun-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery-batroun-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery-batroun-2025.html">Gallery</a><a href="sponsors-batroun-2025.html">Sponsors</a></div></div>
+          <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
+            <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
       </li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="sponsors.html">Sponsors</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><button class="theme-btn" id="themeBtn" aria-label="Switch color theme">Theme: Coastal</button></li>
-      <li><a class="nav-cta" href="/" data-cms="global.nav_cta_label" data-cms-href="global.nav_cta_url">Register</a></li>
     </ul>
   </div>
 </header>
@@ -608,15 +637,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <div><b>600+</b>Runners in 2026</div>
       <div><b>2 editions</b>2025 · 2026</div>
     </div>
-    <div class="hero-ctas" data-cms-list="btns:home.hero.ctas">
-      <a class="btn btn-ghost" href="https://register.batrounrace.com/results">2026 results</a>
-      <a class="btn btn-ghost" href="results-2025.html">2025 results</a>
-    </div>
-    <div class="hero-photo">
-      <div class="hero-slider" data-cms-list="slides:home.hero.slides">
-        <div class="slide on"><img class="bg" src="images/hero-race-crowd.jpg" alt="" aria-hidden="true" onerror="this.style.display='none'"><img class="fg" src="images/hero-race-crowd.jpg" alt="Runners and spectators at the Batroun Race start" onerror="this.style.display='none'" onload="if(this.naturalWidth/this.naturalHeight>1.35)this.classList.add('wide')"></div>
-      </div>
-    </div>
+    <div class="hero-ctas" data-cms-list="btns:home.hero.ctas"></div>
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
@@ -654,7 +675,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="home.raceday.kicker">KM 2.5 · Race day</span>
+      <span class="km" data-cms="home.raceday.kicker">KM 2 · Race day</span>
       <h2 data-cms="home.raceday.h2">A town-wide celebration.</h2>
       <p data-cms="home.raceday.p">Streets filled with runners instead of cars. Music on the route, families at the finish.</p>
     </div>
@@ -671,37 +692,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="home.races.kicker">KM 4 · Our races</span>
+      <span class="km" data-cms="home.races.kicker">KM 3 · Our races</span>
       <h2 data-cms="home.races.h2">One community, many races.</h2>
       <p data-cms="home.races.p">Races and community events — each with its own town, its own route, and the same spirit.</p>
     </div>
     <div class="ev-grid" data-cms-list="events:home.races.items"></div>
-  </div>
-</section>
-
-<!-- SPONSORS -->
-<section class="spon-sec">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>
-      <h2 data-cms="sponsors.race.h2">The people behind this race.</h2>
-      <p data-cms="sponsors.race.p">Every logo here is backing the 13 September race in Tannourine.</p>
-    </div>
-    <!-- This race's own roster: organisers, then sponsors, everyone at one
-         size. Driven by sponsors.race in the content, so a new edition is a
-         new list and a new folder — no markup to touch. -->
-    <div class="lg-group reveal">
-      <span class="lg-label" data-cms="sponsors.race.organised_label">Organised by</span>
-      <div class="lg-strip" data-cms-list="logos:sponsors.race.organised"></div>
-    </div>
-    <div class="lg-group reveal">
-      <span class="lg-label" data-cms="sponsors.race.sponsored_label">Sponsored by</span>
-      <div class="lg-strip" data-cms-list="logos:sponsors.race.sponsors"></div>
-    </div>
-    <div class="spon-cta reveal" data-cms-list="btns:home.sponsors.ctas">
-      <a class="btn btn-dark" href="sponsors.html">Become a sponsor</a>
-      <a class="btn btn-line" href="contact.html">Talk to the team</a>
-    </div>
   </div>
 </section>
 
@@ -710,13 +705,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap">
     <span class="km" data-cms="home.finish.kicker">Finish line · Your turn</span>
     <h2 class="reveal" data-cms="home.finish.h2">The coast is waiting.</h2>
-    <a class="bib reveal" href="/" data-cms-href="global.nav_cta_url">
-      <span class="small" data-cms="home.finish.bib_top">Lebanon Cedar Race · Tannourine</span>
-      <div class="num" data-cms="home.finish.bib_num">SEP 13</div>
-      <span class="small" data-cms="home.finish.bib_bottom">5KM · 13 September 2026</span>
-      <div class="cta-line" data-cms="home.finish.bib_cta">See the results →</div>
-    </a>
-    <p class="note" data-cms="home.finish.note">The race is run — results are out. Tap the bib for every runner and category.</p>
   </div>
 </section>
 
@@ -731,7 +719,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="cols">
       <ul>
         <li><a href="about.html">About</a></li>
-        <li><a href="race-guide.html">Race Guide</a></li>
+        <li><a href="guide-cedar-2026.html">Race Guide</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="results-2025.html">Results 2025</a></li>
         <li><a href="https://register.batrounrace.com/results">Results 2026</a></li>

@@ -77,13 +77,36 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav-drop{position:relative}
 .nav-drop-btn{background:none;border:0;padding:0;font:inherit;font-size:.9rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:color .2s}
 .nav-drop-btn:hover,.nav-drop-btn:focus-visible{color:var(--ink)}
-.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--foam);border:1px solid var(--line);border-radius:12px;padding:8px;min-width:160px;display:none;flex-direction:column;box-shadow:0 12px 30px rgba(3,15,43,.14);z-index:60}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:250px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18);z-index:60}
 .nav-drop.open .nav-drop-menu{display:flex}
-.nav-drop-menu a{padding:9px 12px;border-radius:8px;white-space:nowrap}
-.nav-drop-menu a:hover{background:rgba(6,104,205,.08)}
+/* mouse users get the menu on hover — the click toggle stays for touch. The
+   ::before bridges the 14px gap under the button, so the pointer can travel
+   into the menu without it snapping shut on the way. */
+@media(hover:hover) and (min-width:769px){
+  .nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{display:flex}
+  .nav-drop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+}
+.nav-drop-menu a{font-family:var(--mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
+  padding:13px 16px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
+.nav-drop-menu a:hover{background:var(--coral);color:#fff}
+/* one row per race; hovering a row flies its own links out to the right */
+.nav-sub{position:relative}
+.nav-sub-menu{position:absolute;left:calc(100% - 8px);top:-14px;background:var(--white);border:1px solid var(--line);
+  border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
+@media(hover:hover) and (min-width:769px){
+  .nav-sub:hover>.nav-sub-menu,.nav-sub:focus-within>.nav-sub-menu{display:flex}
+  /* bridge over the 4px gap between the row and its flyout */
+  .nav-sub-menu::before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px}
+}
 @media(max-width:768px){
-  .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
-  .nav-drop-btn{pointer-events:none}
+  .nav-sub-menu{position:static;display:none;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub.open>.nav-sub-menu{display:flex}
+  /* a small arrow closes each race name; it flips when the row is open */
+  .nav-sub>a::after{content:"\25BE";margin-left:8px;font-size:.8em;display:inline-block;transition:transform .2s ease-out}
+  .nav-sub.open>a::after{transform:rotate(180deg)}
+}
+@media(max-width:768px){
+  .nav-drop-menu{position:static;transform:none;display:none;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
 @media(max-width:768px){
@@ -232,6 +255,8 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
    shoulder, instead of two dozen separate boxes with air between them. Logos
    are capped on both axes so a wide wordmark and a square crest read as the
    same weight rather than the same height. */
+/* the Sponsors entries in the Races menu land below the sticky header */
+#batroun-2026,#cedar-2026{scroll-margin-top:76px}
 .logo-wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(16px,2.6vw,40px) clamp(20px,3.4vw,52px);
   background:var(--white);border:1px solid var(--line);border-radius:22px;
@@ -290,20 +315,23 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="about.html">About</a></li>
-      <li><a href="race-guide.html">Race Guide</a></li>
       <li class="nav-drop">
-        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Results ▾</button>
-        <div class="nav-drop-menu">
-          <a href="https://register.batrounrace.com/results.html?comp=tannourine-2026" data-cms-href="global.results_tannourine_url">Tannourine 2026</a>
-          <a href="https://register.batrounrace.com/results" data-cms-href="global.results2026_url">Batroun 2026</a>
-          <a href="results-2025.html">Batroun 2025</a>
+        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
+        <div class="nav-drop-menu" data-races-menu>
+          <div class="nav-sub"><a href="guide-cedar-2026.html">Lebanon Cedar Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-cedar-2026.html">Race info</a><a href="guide-cedar-2026.html#cats">Age categories</a><a href="guide-cedar-2026.html#pickup">Bib pickup</a><a href="guide-cedar-2026.html#map">Race location</a><a href="sponsors-cedar-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a><a href="gallery-cedar-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="guide-batroun-2026.html">Batroun Race 2026</a>
+            <div class="nav-sub-menu"><a href="guide-batroun-2026.html">Race info</a><a href="guide-batroun-2026.html#cats">Age categories</a><a href="guide-batroun-2026.html#pickup">Bib pickup</a><a href="guide-batroun-2026.html#map">Race location</a><a href="sponsors-batroun-2026.html">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery-batroun-2026.html">Gallery</a></div></div>
+          <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery-batroun-2025.html">Gallery</a><a href="sponsors-batroun-2025.html">Sponsors</a></div></div>
+          <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
+            <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
       </li>
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="sponsors.html">Sponsors</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><button class="theme-btn" id="themeBtn" aria-label="Switch color theme">Theme: Coastal</button></li>
-      <li><a class="nav-cta" href="/" data-cms="global.nav_cta_label" data-cms-href="global.nav_cta_url">Register</a></li>
     </ul>
   </div>
 </header>
@@ -327,136 +355,10 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · PARTNERS -->
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>
-      <h2 data-cms="sponsors.race.h2">The people behind this race.</h2>
-      <p data-cms="sponsors.race.p">Every logo here is backing the 13 September race in Tannourine.</p>
-    </div>
-    <!-- This race first: who is backing the Cedar Race, organisers then
-         sponsors, everyone at one size. The wall below stays the full roster
-         across every edition. -->
-    <div class="lg-group reveal">
-      <span class="lg-label" data-cms="sponsors.race.organised_label">Organised by</span>
-      <div class="lg-strip" data-cms-list="logos:sponsors.race.organised"></div>
-    </div>
-    <div class="lg-group reveal" style="margin-bottom:52px">
-      <span class="lg-label" data-cms="sponsors.race.sponsored_label">Sponsored by</span>
-      <div class="lg-strip" data-cms-list="logos:sponsors.race.sponsors"></div>
-    </div>
-    <span class="lg-label reveal" style="margin-bottom:16px">Every partner, all editions</span>
-    <div class="logo-wall reveal" data-cms-list="wall:sponsors.partners.wall">
-      <div class="logo-tile">
-        <img src="images/sponsors/tannourine.png" alt="Tannourine" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Tannourine</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/tannourine-emblem.png" alt="Tannourine emblem" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Tannourine emblem</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/mike-sport.png" alt="Mike Sport" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Mike Sport</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/sports-experts.png" alt="Sports Experts" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Sports Experts</span>
-      </div>
-      <a class="logo-tile" href="https://www.aquafina.com">
-        <img src="images/sponsors/aquafina.png" alt="Aquafina" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Aquafina</span>
-      </a>
-      <a class="logo-tile" href="https://www.gatorade.com">
-        <img src="images/sponsors/gatorade.png" alt="Gatorade" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Gatorade</span>
-      </a>
-      <div class="logo-tile">
-        <img src="images/sponsors/joseph-e-saba.png" alt="Joseph E Saba" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Joseph E Saba</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/saint-bernard.png" alt="Saint Bernard" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Saint Bernard</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/taqa.png" alt="TAQA" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">TAQA</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/san-stephano-resort.png" alt="San Stephano Resort" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">San Stephano Resort</span>
-      </div>
-      <a class="logo-tile" href="https://whishmoneylebanon.com">
-        <img src="images/sponsors/whish-money.png" alt="Whish Money" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Whish Money</span>
-      </a>
-      <div class="logo-tile">
-        <img src="images/sponsors/marsati.png" alt="Marsati" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Marsati</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/batrouniyat.png" alt="Batrouniyat" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Batrouniyat</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/hang-loose.png" alt="Hang Loose" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Hang Loose</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/batroun-municipality.png" alt="Batroun Municipality" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Batroun Municipality</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/blubay.png" alt="BluBay" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">BluBay</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/xxl-energy.png" alt="XXL Energy" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">XXL Energy</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/tropical-energy.png" alt="Tropical Energy" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Tropical Energy</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/mood.png" alt="MOOD" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">MOOD</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/routes.png" alt="Routes" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Routes</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/studio-jammal.png" alt="Studio Jammal" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Studio Jammal</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/footlab.png" alt="Footlab" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Footlab</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/ride-sports-events.png" alt="Ride Sports Events" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Ride Sports Events</span>
-      </div>
-      <div class="logo-tile">
-        <img src="images/sponsors/caritas-lebanon.png" alt="Caritas Lebanon" onerror="this.parentElement.classList.add('nologo')">
-        <span class="name">Caritas Lebanon</span>
-      </div>
-    </div>
-    <p class="logo-note reveal" data-cms="sponsors.partners.organizers_note">Organized with Selaata Sporting Club &amp; the Lebanese Athletics Federation.</p>
-    <div class="spon-cta reveal" data-cms-list="btns:sponsors.partners.ctas">
-      <a class="btn btn-dark" href="contact.html">Become a sponsor</a>
-    </div>
-  </div>
-</section>
-
-<!-- KM 2 · ROI FRAMEWORK -->
 <section class="flow-sec">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="sponsors.roi.kicker">KM 2 · ROI framework</span>
+      <span class="km" data-cms="sponsors.roi.kicker">KM 1 · ROI framework</span>
       <h2 data-cms="sponsors.roi.h2">How sponsor value is created.</h2>
       <p data-cms="sponsors.roi.p">Five drivers used by CMOs and finance teams to evaluate event sponsorship.</p>
     </div>
@@ -474,7 +376,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="sponsors.deliverables.kicker">KM 3 · Deliverables</span>
+      <span class="km" data-cms="sponsors.deliverables.kicker">KM 2 · Deliverables</span>
       <h2 data-cms="sponsors.deliverables.h2">What sponsors receive.</h2>
     </div>
     <div class="deliv" data-cms-list="cards:sponsors.deliverables.cards">
@@ -554,7 +456,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
     <div class="cols">
       <ul>
         <li><a href="about.html">About</a></li>
-        <li><a href="race-guide.html">Race Guide</a></li>
+        <li><a href="guide-cedar-2026.html">Race Guide</a></li>
         <li><a href="gallery.html">Gallery</a></li>
         <li><a href="results-2025.html">Results 2025</a></li>
         <li><a href="https://register.batrounrace.com/results">Results 2026</a></li>
