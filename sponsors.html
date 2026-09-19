@@ -77,7 +77,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 .nav-drop{position:relative}
 .nav-drop-btn{background:none;border:0;padding:0;font:inherit;font-size:.9rem;font-weight:500;color:var(--text-dim);cursor:pointer;transition:color .2s}
 .nav-drop-btn:hover,.nav-drop-btn:focus-visible{color:var(--ink)}
-.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:250px;display:none;flex-direction:column;gap:2px;box-shadow:0 18px 44px rgba(3,15,43,.18);z-index:60}
+.nav-drop-menu{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;min-width:250px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18);z-index:60}
 .nav-drop.open .nav-drop-menu{display:flex}
 /* mouse users get the menu on hover — the click toggle stays for touch. The
    ::before bridges the 14px gap under the button, so the pointer can travel
@@ -87,12 +87,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .nav-drop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
 }
 .nav-drop-menu a{font-family:var(--mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
-  padding:12px 14px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
+  padding:13px 16px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
 .nav-drop-menu a:hover{background:var(--coral);color:#fff}
 /* one row per race; hovering a row flies its own links out to the right */
 .nav-sub{position:relative}
 .nav-sub-menu{position:absolute;left:calc(100% - 8px);top:-14px;background:var(--white);border:1px solid var(--line);
-  border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:2px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
+  border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:9px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
 @media(hover:hover) and (min-width:769px){
   .nav-sub:hover>.nav-sub-menu,.nav-sub:focus-within>.nav-sub-menu{display:flex}
   /* bridge over the 4px gap between the row and its flyout */
