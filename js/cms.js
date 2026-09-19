@@ -477,8 +477,11 @@
           return '<span>✓ <span data-cms="' + base + '.included.' + j + '">' + x + '</span></span>';
         }).join('');
       }
-      // remember the pick in the URL without adding history entries
-      if (r.id) history.replaceState(null, '', '#' + r.id + (sec ? '-' + sec : ''));
+      // remember the pick in the URL without adding history entries; a
+      // fixed-race page never carries the race in its hash, only the section
+      var fixed = document.body.getAttribute('data-race');
+      if (fixed) history.replaceState(null, '', location.pathname + (sec ? '#' + sec : ''));
+      else if (r.id) history.replaceState(null, '', '#' + r.id + (sec ? '-' + sec : ''));
       // a deep link like #cedar-pickup scrolls to that section once dressed
       if (sec) {
         var target = document.getElementById(sec);
@@ -493,10 +496,23 @@
     // upcoming race leading the list in content). The nav can re-link this
     // same page to another race, which only changes the hash — so hash
     // navigation re-dresses the page in place, no reload.
+    // a page carrying data-race belongs to one race for good — its hash
+    // only ever names a section (#cats, #pickup, #map)
+    var fixedRace = document.body.getAttribute('data-race');
     function pick() {
       var want = location.hash.replace('#', '');
       var sec = '';
-      var i = races.findIndex(function (r) { return r.id === want; });
+      var i;
+      if (fixedRace) {
+        i = races.findIndex(function (r) { return r.id === fixedRace; });
+        sec = want;
+        // tolerate old-style #cedar-pickup links landing on the fixed page
+        if (sec.indexOf(fixedRace + '-') === 0) sec = sec.slice(fixedRace.length + 1);
+        if (sec && !document.getElementById(sec)) sec = '';
+        show(i > -1 ? i : 0, sec);
+        return;
+      }
+      i = races.findIndex(function (r) { return r.id === want; });
       if (i < 0 && want.indexOf('-') > -1) {
         // #cedar-pickup → the cedar page, scrolled to its pickup section
         var race = want.slice(0, want.indexOf('-'));

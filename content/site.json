@@ -14,23 +14,23 @@
     "races_menu": [
       {
         "name": "Lebanon Cedar Race 2026",
-        "href": "race-guide.html#cedar",
+        "href": "guide-cedar-2026.html",
         "links": [
           {
             "label": "Race info",
-            "href": "race-guide.html#cedar"
+            "href": "guide-cedar-2026.html"
           },
           {
             "label": "Age categories",
-            "href": "race-guide.html#cedar-cats"
+            "href": "guide-cedar-2026.html#cats"
           },
           {
             "label": "Bib pickup",
-            "href": "race-guide.html#cedar-pickup"
+            "href": "guide-cedar-2026.html#pickup"
           },
           {
             "label": "Race location",
-            "href": "race-guide.html#cedar-map"
+            "href": "guide-cedar-2026.html#map"
           },
           {
             "label": "Sponsors",
@@ -44,23 +44,23 @@
       },
       {
         "name": "Batroun Race 2026",
-        "href": "race-guide.html#batroun",
+        "href": "guide-batroun-2026.html",
         "links": [
           {
             "label": "Race info",
-            "href": "race-guide.html#batroun"
+            "href": "guide-batroun-2026.html"
           },
           {
             "label": "Age categories",
-            "href": "race-guide.html#batroun-cats"
+            "href": "guide-batroun-2026.html#cats"
           },
           {
             "label": "Bib pickup",
-            "href": "race-guide.html#batroun-pickup"
+            "href": "guide-batroun-2026.html#pickup"
           },
           {
             "label": "Race location",
-            "href": "race-guide.html#batroun-map"
+            "href": "guide-batroun-2026.html#map"
           },
           {
             "label": "Sponsors",
@@ -72,7 +72,7 @@
           },
           {
             "label": "Gallery",
-            "href": "gallery.html#g2026"
+            "href": "gallery-batroun-2026.html"
           }
         ]
       },
@@ -86,11 +86,11 @@
           },
           {
             "label": "Gallery",
-            "href": "gallery.html#g2025"
+            "href": "gallery-batroun-2025.html"
           },
           {
             "label": "Sponsors",
-            "href": "results-2025.html#partners"
+            "href": "sponsors-batroun-2025.html"
           }
         ]
       },
@@ -1736,7 +1736,7 @@
     "hero": {
       "kicker": "KM 0 · Gallery",
       "h1": "Race day <span class=\"accent\">moments.</span>",
-      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Photos are managed in the admin's Slider photos tab.",
+      "sub": "The start line, the coast, the podiums, the celebration — captured by the Batroun Race community. Pick a race below.",
       "ctas": [
         {
           "label": "View results →",
