@@ -118,9 +118,8 @@ textarea{min-height:74px;resize:vertical}
         <p class="hint"><b>Race banners</b> — each upcoming race gets its own full-screen banner on the homepage, <b>with its own countdown written over the artwork</b> as the visitor scrolls. They stack in the order shown here: first race on top. Add a wide image for desktop and, ideally, a tall one for phones.</p>
         <div id="bannerBox" style="margin-top:12px"></div>
       </div>
-      <p class="hint">Photos in the homepage slider. Upload new photos below (JPG/PNG) — each becomes a slide automatically. Drag order matters top-to-bottom; remove with ✕. Then <b>Save &amp; publish</b>.</p>
-      <p><input type="file" id="slideUpload" accept="image/png,image/jpeg,image/webp" multiple></p>
-      <div class="logos-grid" id="slideGrid" style="margin-top:14px"></div>
+      <p class="hint"><b>Race galleries</b> — every race with a gallery page has its own section below. Upload photos (JPG/PNG/WEBP) into the right race; each becomes a gallery photo automatically. Reorder with ↑↓, remove with ✕, then <b>Save &amp; publish</b>. The Batroun Race 2026 photos also power the homepage slider.</p>
+      <div id="galleryBox" style="margin-top:12px"></div>
     </div>
     <div id="raw" style="display:none">
       <p class="hint">Advanced: the full site content as JSON. Edit carefully, then press <b>Apply JSON</b> before saving.</p>
@@ -269,7 +268,7 @@ textarea{min-height:74px;resize:vertical}
       return;
     }
     if(name==='logos'){logos.style.display='block';renderLogos();return;}
-    if(name==='photos'){document.getElementById('photos').style.display='block';renderBanner();renderSlides();return;}
+    if(name==='photos'){document.getElementById('photos').style.display='block';renderBanner();renderGalleries();return;}
     if(name==='raw'){raw.style.display='block';document.getElementById('rawTa').value=JSON.stringify(content,null,2);return;}
     ed.style.display='block';ed.innerHTML='';
     buildInto(ed,content[name],name);
@@ -415,31 +414,79 @@ textarea{min-height:74px;resize:vertical}
     rd.readAsDataURL(f);
   }
 
-  function renderSlides(){
-    var grid=document.getElementById('slideGrid');grid.innerHTML='';
-    var slides=get(content,'home.hero.slides');
-    if(!Array.isArray(slides)){slides=[];set(content,'home.hero.slides',slides);}
-    slides.forEach(function(s,i){
-      var slot=document.createElement('div');slot.className='logo-slot';
-      var img=document.createElement('img');img.style.maxHeight='90px';
-      img.src=pendingLogos[s.img]?'data:image;base64,'+pendingLogos[s.img]:'/'+s.img;
-      img.onerror=function(){this.remove()};
-      slot.appendChild(img);
-      var f=document.createElement('div');f.className='file';f.textContent=(i+1)+' · '+s.img;slot.appendChild(f);
-      var alt=document.createElement('input');alt.type='text';alt.placeholder='Photo description (for accessibility)';alt.value=s.alt||'';
-      alt.style.marginBottom='8px';
-      alt.addEventListener('input',function(){s.alt=alt.value;status('unsaved changes');});
-      slot.appendChild(alt);
-      var tools=document.createElement('div');tools.style.display='flex';tools.style.gap='6px';
-      [['↑',function(){if(i>0){slides.splice(i-1,0,slides.splice(i,1)[0]);renderSlides();status('unsaved changes');}}],
-       ['↓',function(){if(i<slides.length-1){slides.splice(i+1,0,slides.splice(i,1)[0]);renderSlides();status('unsaved changes');}}],
-       ['✕ Remove',function(){if(confirm('Remove this photo from the slider?')){slides.splice(i,1);renderSlides();status('unsaved changes');}}]]
-      .forEach(function(bd){
-        var b=document.createElement('button');b.type='button';b.className='mini'+(bd[0].indexOf('✕')>-1?' del':'');b.textContent=bd[0];
-        b.addEventListener('click',bd[1]);tools.appendChild(b);
+  // One section per race gallery. A race appears here automatically as
+  // soon as its content has a gallery.<key>.photos list; the homepage
+  // slider (which is also the Batroun 2026 gallery) is always included.
+  function galleryDefs(){
+    var defs=[];
+    var g=get(content,'gallery')||{};
+    Object.keys(g).forEach(function(k){
+      if(g[k]&&Array.isArray(g[k].photos)){
+        var label=(g[k].kicker||k).replace(/^KM \d+ · /,'');
+        defs.push({label:label,path:'gallery.'+k+'.photos',dir:'images/gallery/'+k.replace(/(\d{4})$/,'-$1')+'/'});
+      }
+    });
+    defs.push({label:'Batroun Race 2026 — gallery & homepage slider',path:'home.hero.slides',dir:'images/slides/'});
+    return defs;
+  }
+
+  function renderGalleries(){
+    var box=document.getElementById('galleryBox');box.innerHTML='';
+    galleryDefs().forEach(function(def){
+      var sec=document.createElement('div');sec.style.marginBottom='30px';
+      var h=document.createElement('h3');h.textContent=def.label;h.style.margin='0 0 6px';sec.appendChild(h);
+      var up=document.createElement('input');up.type='file';up.accept='image/png,image/jpeg,image/webp';up.multiple=true;
+      sec.appendChild(up);
+      var grid=document.createElement('div');grid.className='logos-grid';grid.style.marginTop='12px';sec.appendChild(grid);
+      function listOf(){
+        var arr=get(content,def.path);
+        if(!Array.isArray(arr)){arr=[];set(content,def.path,arr);}
+        return arr;
+      }
+      function draw(){
+        grid.innerHTML='';
+        var photos=listOf();
+        photos.forEach(function(p,i){
+          var slot=document.createElement('div');slot.className='logo-slot';
+          var img=document.createElement('img');img.style.maxHeight='90px';
+          img.src=pendingLogos[p.img]?'data:image;base64,'+pendingLogos[p.img]:'/'+p.img;
+          img.onerror=function(){this.remove()};
+          slot.appendChild(img);
+          var f=document.createElement('div');f.className='file';f.textContent=(i+1)+' · '+p.img;slot.appendChild(f);
+          var alt=document.createElement('input');alt.type='text';alt.placeholder='Photo description (for accessibility)';alt.value=p.alt||'';
+          alt.style.marginBottom='8px';
+          alt.addEventListener('input',function(){p.alt=alt.value;status('unsaved changes');});
+          slot.appendChild(alt);
+          var tools=document.createElement('div');tools.style.display='flex';tools.style.gap='6px';
+          [['↑',function(){if(i>0){photos.splice(i-1,0,photos.splice(i,1)[0]);draw();status('unsaved changes');}}],
+           ['↓',function(){if(i<photos.length-1){photos.splice(i+1,0,photos.splice(i,1)[0]);draw();status('unsaved changes');}}],
+           ['✕ Remove',function(){if(confirm('Remove this photo from the gallery?')){photos.splice(i,1);draw();status('unsaved changes');}}]]
+          .forEach(function(bd){
+            var b=document.createElement('button');b.type='button';b.className='mini'+(bd[0].indexOf('✕')>-1?' del':'');b.textContent=bd[0];
+            b.addEventListener('click',bd[1]);tools.appendChild(b);
+          });
+          slot.appendChild(tools);
+          grid.appendChild(slot);
+        });
+      }
+      up.addEventListener('change',function(){
+        var files=Array.prototype.slice.call(up.files);
+        if(!files.length)return;
+        var photos=listOf();
+        var left=files.length;
+        files.forEach(function(f){
+          var rd=new FileReader();
+          rd.onload=function(){
+            var path=def.dir+slugifyFile(f.name);
+            pendingLogos[path]=rd.result.split(',')[1];
+            if(!photos.some(function(p){return p.img===path})) photos.push({img:path,alt:''});
+            if(--left===0){up.value='';draw();status('unsaved changes');show(files.length+' photo(s) added to '+def.label+' — press Save & publish to put them live.');}
+          };
+          rd.readAsDataURL(f);
+        });
       });
-      slot.appendChild(tools);
-      grid.appendChild(slot);
+      draw();
+      box.appendChild(sec);
     });
   }
 
@@ -502,23 +549,6 @@ textarea{min-height:74px;resize:vertical}
   document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('loginBtn').click()});
   document.getElementById('vpage').addEventListener('change',function(){
     document.getElementById('vframe').src='/'+this.value+'?edit=1';
-  });
-  document.getElementById('slideUpload').addEventListener('change',function(){
-    var files=Array.prototype.slice.call(this.files);
-    var input=this;
-    var slides=get(content,'home.hero.slides');
-    if(!Array.isArray(slides)){slides=[];set(content,'home.hero.slides',slides);}
-    var left=files.length;
-    files.forEach(function(f){
-      var rd=new FileReader();
-      rd.onload=function(){
-        var path='images/slides/'+slugifyFile(f.name);
-        pendingLogos[path]=rd.result.split(',')[1];
-        if(!slides.some(function(s){return s.img===path})) slides.push({img:path,alt:''});
-        if(--left===0){input.value='';renderSlides();status('unsaved changes');show(files.length+' photo(s) added — press Save & publish to put them live.');}
-      };
-      rd.readAsDataURL(f);
-    });
   });
   document.getElementById('saveBtn').addEventListener('click',save);
   document.getElementById('reloadBtn').addEventListener('click',function(){if(confirm('Discard unsaved changes and reload?'))load().then(function(){renderTab(activeTab||'global')})});

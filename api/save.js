@@ -14,6 +14,7 @@ function pathAllowed(p) {
   if (p === 'content/site.json') return true;
   if (/^images\/sponsors\/[a-z0-9-]+\.png$/.test(p)) return true;
   if (/^images\/banners\/[a-z0-9._-]+\.(png|jpe?g|webp)$/.test(p)) return true;
+  if (/^images\/gallery\/[a-z0-9-]+\/[a-z0-9._-]+\.(png|jpe?g|webp)$/.test(p)) return true;
   return /^images\/slides\/[a-z0-9._-]+\.(png|jpe?g|webp)$/.test(p);
 }
 
