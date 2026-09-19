@@ -1166,11 +1166,6 @@
           "label": "Jump to podium",
           "href": "#podium",
           "style": "coral"
-        },
-        {
-          "label": "2026 full results",
-          "href": "https://register.batrounrace.com/results",
-          "style": "ghost"
         }
       ]
     },
