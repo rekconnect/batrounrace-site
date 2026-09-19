@@ -34,7 +34,7 @@
           },
           {
             "label": "Sponsors",
-            "href": "sponsors.html#cedar-2026"
+            "href": "sponsors-cedar-2026.html"
           },
           {
             "label": "Results",
@@ -64,7 +64,7 @@
           },
           {
             "label": "Sponsors",
-            "href": "sponsors.html#batroun-2026"
+            "href": "sponsors-batroun-2026.html"
           },
           {
             "label": "Results",
@@ -806,7 +806,7 @@
       ]
     },
     "roi": {
-      "kicker": "KM 2 · ROI framework",
+      "kicker": "KM 1 · ROI framework",
       "h2": "How sponsor value is created.",
       "p": "Five drivers used by CMOs and finance teams to evaluate event sponsorship.",
       "steps": [
@@ -838,7 +838,7 @@
       ]
     },
     "deliverables": {
-      "kicker": "KM 3 · Deliverables",
+      "kicker": "KM 2 · Deliverables",
       "h2": "What sponsors receive.",
       "cards": [
         {
@@ -1489,12 +1489,7 @@
     },
     "finish": {
       "kicker": "Finish line · Your name here",
-      "h2": "Next podium could be yours.",
-      "bib_top": "Lebanon Cedar Race · Tannourine",
-      "bib_num": "OPEN",
-      "bib_bottom": "5KM · 13 September 2026",
-      "bib_cta": "Register now →",
-      "note": "Registration is open — sign up online, or message us on WhatsApp if you get stuck"
+      "h2": "Next podium could be yours."
     }
   },
   "guide": {
