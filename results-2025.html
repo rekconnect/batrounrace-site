@@ -87,12 +87,10 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .nav-drop-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
 }
 .nav-drop-menu a{font-family:var(--mono);font-size:.73rem;letter-spacing:.08em;text-transform:uppercase;
-  padding:12px 14px;border-radius:8px;white-space:nowrap}
-.nav-drop-menu a:hover{background:rgba(247,160,10,.1);color:var(--coral-deep)}
+  padding:12px 14px;border-radius:8px;white-space:nowrap;transition:background .15s ease-out,color .15s ease-out}
+.nav-drop-menu a:hover{background:var(--coral);color:#fff}
 /* one row per race; hovering a row flies its own links out to the right */
 .nav-sub{position:relative}
-.nav-sub>a{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.nav-sub>a::after{content:"▸";font-size:.72em;color:var(--text-dim)}
 .nav-sub-menu{position:absolute;left:calc(100% - 8px);top:-14px;background:var(--white);border:1px solid var(--line);
   border-radius:12px;padding:14px;min-width:230px;display:none;flex-direction:column;gap:2px;box-shadow:0 18px 44px rgba(3,15,43,.18)}
 @media(hover:hover) and (min-width:769px){
@@ -102,7 +100,6 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
 }
 @media(max-width:768px){
   .nav-sub-menu{position:static;display:flex;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
-  .nav-sub>a::after{display:none}
 }
 @media(max-width:768px){
   .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
@@ -286,14 +283,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
             <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html">Gallery</a></div></div>
           <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
             <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
-        </div>
-      </li>
-      <li class="nav-drop">
-        <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Results ▾</button>
-        <div class="nav-drop-menu">
-          <a href="https://register.batrounrace.com/results.html?comp=tannourine-2026" data-cms-href="global.results_tannourine_url">Tannourine 2026</a>
-          <a href="https://register.batrounrace.com/results" data-cms-href="global.results2026_url">Batroun 2026</a>
-          <a href="results-2025.html">Batroun 2025</a>
         </div>
       </li>
       <li><a href="gallery.html">Gallery</a></li>
