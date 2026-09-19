@@ -192,14 +192,6 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-sec .sec-head p{color:var(--text-inv-dim)}
 /* the race switcher: every race as a pill, the picked one in coral. The rest
    of the section reads from the picked race, so one page carries them all. */
-.race-switch{display:flex;flex-wrap:wrap;gap:10px;margin:2px 0 22px}
-.race-switch:empty{display:none}
-.race-switch button{font:inherit;font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;cursor:pointer;
-  color:var(--text-inv);background:rgba(255,255,255,.06);border:1px solid var(--line-light);
-  border-radius:999px;padding:9px 18px;transition:border-color .2s ease-out,background .2s ease-out,color .2s}
-.race-switch button:hover{border-color:rgba(255,255,255,.4)}
-.race-switch button[aria-selected="true"]{background:var(--coral);border-color:var(--coral);color:#fff;font-weight:700}
-.race-switch button .tag{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-top:2px}
 .race-day-line{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
 .race-day-line:empty{display:none}
 /* these were one-liners like "Roads close 7:30 AM" when nowrap was safe;
@@ -336,8 +328,6 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km" data-cms="guide.route.kicker">KM 1 · The route</span>
-      <!-- every race in one row; the guide below follows the picked one -->
-      <div class="race-switch" id="raceSwitch" role="tablist" aria-label="Pick a race"></div>
       <h2 id="rgH2" data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
       <p id="rgP" data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
       <p class="race-day-line" id="rgDay"></p>

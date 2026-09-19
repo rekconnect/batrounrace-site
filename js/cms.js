@@ -419,8 +419,8 @@
      re-pointed on every switch, so the visual editor edits the race that is
      actually on screen. */
   function initGuideRaces() {
-    var host = document.getElementById('raceSwitch');
-    if (!host) return;
+    var h2 = document.getElementById('rgH2');
+    if (!h2) return;
     var races = get(C, 'guide.races');
     if (!Array.isArray(races) || !races.length) return;
 
@@ -428,12 +428,19 @@
       var r = races[i];
       if (!r) return;
       var base = 'guide.races.' + i;
-      var h2 = document.getElementById('rgH2');
+      // the page belongs to this race: its name leads the hero and the tab
+      var kicker = document.querySelector('.hero .km');
+      if (kicker) {
+        kicker.textContent = (r.name || '') + (r.town ? ' · ' + r.town : '');
+        kicker.removeAttribute('data-cms');   // computed now, not a field
+      }
+      if (r.name) document.title = r.name + ' — Race Guide · Batroun Race';
       var p = document.getElementById('rgP');
       var day = document.getElementById('rgDay');
       var flow = document.getElementById('rgFlow');
       var map = document.getElementById('rgMap');
-      if (h2) { h2.innerHTML = r.h2 || ''; h2.setAttribute('data-cms', base + '.h2'); }
+      h2.innerHTML = r.h2 || '';
+      h2.setAttribute('data-cms', base + '.h2');
       if (p) { p.innerHTML = r.p || ''; p.setAttribute('data-cms', base + '.p'); }
       if (day) day.innerHTML = r.day || '';
       if (flow) {
@@ -445,27 +452,21 @@
         map.setAttribute('data-cms-src', base + '.map_url');
         map.setAttribute('title', (r.name || 'Race') + ' route area map');
       }
-      host.querySelectorAll('button').forEach(function (b, j) {
-        b.setAttribute('aria-selected', j === i ? 'true' : 'false');
-      });
       // remember the pick in the URL without adding history entries
       if (r.id) history.replaceState(null, '', '#' + r.id);
     }
 
-    host.innerHTML = races.map(function (r, i) {
-      return '<button type="button" role="tab" aria-selected="false">' +
-        (r.name || 'Race ' + (i + 1)) + ' · ' + (r.town || '') +
-        (r.status ? '<span class="tag">' + r.status + '</span>' : '') + '</button>';
-    }).join('');
-    host.querySelectorAll('button').forEach(function (b, i) {
-      b.addEventListener('click', function () { show(i); });
-    });
-
-    // open on the deep-linked race, else the first one (the upcoming race
-    // leads the list in content)
-    var want = location.hash.replace('#', '');
-    var start = races.findIndex(function (r) { return r.id === want; });
-    show(start > -1 ? start : 0);
+    // Which race is chosen by the nav's deep link (else the first, the
+    // upcoming race leading the list in content). The nav can re-link this
+    // same page to another race, which only changes the hash — so hash
+    // navigation re-dresses the page in place, no reload.
+    function pick() {
+      var want = location.hash.replace('#', '');
+      var i = races.findIndex(function (r) { return r.id === want; });
+      show(i > -1 ? i : 0);
+    }
+    window.addEventListener('hashchange', pick);
+    pick();
   }
 
   /* The banner is two states: the poster, then the site climbing over it.
