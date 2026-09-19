@@ -39,6 +39,10 @@
           {
             "label": "Results",
             "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery-cedar-2026.html"
           }
         ]
       },
@@ -1812,6 +1816,12 @@
           "alt": "Women 60–64 podium winners, Batroun Race 2025"
         }
       ]
+    },
+    "cedar2026": {
+      "kicker": "KM 1 · Lebanon Cedar Race 2026",
+      "h2": "Up in the cedars.",
+      "note": "Photos from Tannourine are on their way — follow <a href=\"https://www.instagram.com/batrounrace\" target=\"_blank\" rel=\"noopener\">@batrounrace</a> in the meantime.",
+      "photos": []
     }
   }
 }

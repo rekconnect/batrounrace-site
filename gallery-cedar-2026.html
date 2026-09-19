@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lebanon Cedar Race 2026 | Race Guide</title>
-<meta name="description" content="Everything for the Lebanon Cedar Race 2026 in Tannourine — route, race day, bib pickup, age categories and location.">
+<title>Lebanon Cedar Race 2026 Gallery | Batroun Race</title>
+<meta name="description" content="Photos from the Lebanon Cedar Race 2026 in Tannourine.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Batroun Race">
-<meta property="og:title" content="Lebanon Cedar Race 2026 | Race Guide">
-<meta property="og:description" content="Everything for the Lebanon Cedar Race 2026 in Tannourine — route, race day, bib pickup, age categories and location.">
-<meta property="og:url" content="https://batrounrace.com/guide-cedar-2026">
+<meta property="og:title" content="Lebanon Cedar Race 2026 Gallery | Batroun Race">
+<meta property="og:description" content="Photos from the Lebanon Cedar Race 2026 in Tannourine.">
+<meta property="og:url" content="https://batrounrace.com/gallery-cedar-2026">
 <meta property="og:image" content="https://batrounrace.com/images/hero-race-crowd.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -193,31 +193,30 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-sec{background:var(--ink);color:var(--foam)}
 .flow-sec h2{color:var(--foam)}
 .flow-sec .sec-head p{color:var(--text-inv-dim)}
-/* the race switcher: every race as a pill, the picked one in coral. The rest
-   of the section reads from the picked race, so one page carries them all. */
-.race-day-line{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:16px}
-.race-day-line:empty{display:none}
-/* these were one-liners like "Roads close 7:30 AM" when nowrap was safe;
-   the pickup and bus lines are sentences, so they wrap instead of running
-   off the side of a phone */
-.race-day-line span,.race-day-line a{white-space:normal;max-width:100%;font-family:var(--mono);font-size:.74rem;color:var(--text-inv);
-  border:1px solid var(--line-light);border-radius:999px;padding:5px 13px;text-decoration:none}
-.race-day-line a:hover{border-color:var(--coral)}
-
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
 @media(max-width:860px){.flow{grid-template-columns:1fr}}
-/* pickup/categories hold 1–3 wider cards, not the route's 4 fixed lanes */
-.flow-fit{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-/* deep links from the Races menu land below the sticky header */
-#pickup,#cats,#map,#routes{scroll-margin-top:76px}
-/* the ✓ chips nest an editable span; only the outer one is the pill */
-#rgIncluded span span{border:0;padding:0}
 .flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
 @media(min-width:861px){.flow-step{border-bottom:none;border-right:1px solid var(--line-light);padding:34px 26px}}
 .flow-step:last-child{border-right:none}
 .flow-step .t{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--coral);text-transform:uppercase}
 .flow-step h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin:12px 0 8px}
 .flow-step p{color:var(--text-inv-dim);font-size:.9rem}
+
+/* gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+/* deep links from the Races menu land below the sticky header */
+#g2026,#g2025{scroll-margin-top:76px}
+@media(max-width:860px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.gallery-grid{grid-template-columns:1fr}}
+.g-item{margin:0;border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line);cursor:zoom-in;transition:transform .2s ease-out,box-shadow .2s ease-out}
+.g-item:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(8,42,46,.12)}
+.g-item img{width:100%;height:260px;object-fit:cover;display:block}
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(3,15,43,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:30px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:10px}
+.lightbox .lb-tools{display:flex;gap:12px}
+.lightbox button{border:none;border-radius:50%;width:44px;height:44px;font-size:1.2rem;cursor:pointer;background:rgba(255,255,255,.15);color:#fff}
+.lightbox button:hover{background:var(--coral)}
 
 /* accordion */
 .acc{max-width:760px}
@@ -287,7 +286,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <script src="js/cms.js" defer></script>
 <script src="js/chat.js" defer></script>
 </head>
-<body data-race="cedar">
+<body>
 
 <div class="route" aria-hidden="true"><div class="track"></div><div class="fill" id="routeFill"></div></div>
 
@@ -322,78 +321,41 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <!-- KM 0 · GUIDE -->
 <section class="hero" style="padding:0">
   <div class="wrap" style="padding-bottom:84px">
-    <span class="km" data-cms="guide.hero.kicker">KM 0 · Race guide</span>
-    <h1 data-cms="guide.hero.h1">Everything you <span class="accent">need.</span></h1>
-    <p class="hero-sub" data-cms="guide.hero.sub">Distances, route, registration, and race-day answers — all in one place.</p>
-    <div class="hero-ctas" data-cms-list="btns:guide.hero.ctas">
-      <a class="btn btn-coral" href="/">Register to run</a>
-    </div>
+    <span class="km">KM 0 · Lebanon Cedar Race 2026 · Gallery</span>
+    <h1>Up in the <span class="accent">cedars.</span></h1>
+    <p class="hero-sub">The mountain edition in Tannourine — 13 September 2026.</p>
   </div>
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · ROUTES, one block per race -->
-<section class="flow-sec" id="routes">
+<!-- KM 1 · LEBANON CEDAR RACE 2026 -->
+<section id="gcedar" style="padding-top:72px">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="guide.route.kicker">KM 1 · The route</span>
-      <h2 id="rgH2" data-cms="guide.route.h2">Sea on one side, Batroun stone on the other.</h2>
-      <p id="rgP" data-cms="guide.route.p">5KM and 10KM along the Batroun coast.</p>
-      <p class="race-day-line" id="rgDay"></p>
+      <span class="km" data-cms="gallery.cedar2026.kicker">KM 1 · Lebanon Cedar Race 2026</span>
+      <h2 data-cms="gallery.cedar2026.h2">Up in the cedars.</h2>
+      <p data-cms="gallery.cedar2026.note">Photos from Tannourine are on their way.</p>
     </div>
-    <div class="flow" id="rgFlow" data-cms-list="flow:guide.route.kms"></div>
-    <div class="map-wrap reveal" id="map" style="margin-top:44px">
-      <iframe id="rgMap" src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-    </div>
+    <div class="gallery-grid" data-cms-list="gallery:gallery.cedar2026.photos"></div>
   </div>
 </section>
 
-<!-- KM 2 · BIB PICKUP, per race -->
-<section class="flow-sec" id="pickup">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km">KM 2 · Bib pickup</span>
-      <h2>Pick up your bib.</h2>
-      <p>Bring your ticket — printed or on your phone.</p>
-    </div>
-    <div class="flow flow-fit" id="rgPickup"></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
+  <img alt="">
+  <div class="lb-tools">
+    <button type="button" data-lb="prev" aria-label="Previous photo">‹</button>
+    <button type="button" data-lb="close" aria-label="Close">✕</button>
+    <button type="button" data-lb="next" aria-label="Next photo">›</button>
   </div>
-</section>
 
-<!-- KM 3 · AGE CATEGORIES, per race -->
-<section class="flow-sec" id="cats">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km">KM 3 · Age categories</span>
-      <h2>Who runs what.</h2>
-      <p>Age groups as raced in 2026 — and what every entry included.</p>
-    </div>
-    <div class="flow flow-fit" id="rgCats"></div>
-    <p class="race-day-line" id="rgIncluded"></p>
-  </div>
-</section>
-
-<!-- KM 4 · FAQ -->
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="km" data-cms="guide.faq.kicker">KM 4 · Questions</span>
-      <h2 data-cms="guide.faq.h2">Quick answers.</h2>
-      <p data-cms="guide.faq.p">Tap a question to open it.</p>
-    </div>
-    <div class="acc" data-cms-list="accordion:guide.faq.items"></div>
-  </div>
-</section>
-
-<!-- FINISH · READY -->
 <section class="finish">
   <div class="wrap">
-    <span class="km" data-cms="guide.finish.kicker">Finish line · Ready?</span>
-    <h2 class="reveal" data-cms="guide.finish.h2">See you at the start line.</h2>
-    <div class="finish-ctas reveal" data-cms-list="btns:guide.finish.ctas">
+    <span class="km" data-cms="gallery.finish.kicker">Finish line · Ready?</span>
+    <h2 class="reveal" data-cms="gallery.finish.h2">See you at the start line.</h2>
+    <div class="finish-ctas reveal" data-cms-list="btns:gallery.finish.ctas">
       <a class="btn btn-coral" href="/">Register to run</a>
     </div>
-    <p class="note" data-cms="guide.finish.note">Registration, payment &amp; results are online — the <strong>Register</strong> button on the homepage takes you there</p>
+    <p class="note" data-cms="gallery.finish.note">Tag @batrounrace to be featured</p>
   </div>
 </section>
 
