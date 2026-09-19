@@ -203,6 +203,12 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line-light)}
 @media(max-width:860px){.flow{grid-template-columns:1fr}}
+/* pickup/categories hold 1–3 wider cards, not the route's 4 fixed lanes */
+.flow-fit{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+/* deep links from the Races menu land below the sticky header */
+#pickup,#cats,#map,#routes{scroll-margin-top:76px}
+/* the ✓ chips nest an editable span; only the outer one is the pill */
+#rgIncluded span span{border:0;padding:0}
 .flow-step{padding:34px 26px 34px 0;border-bottom:1px solid var(--line-light);position:relative}
 @media(min-width:861px){.flow-step{border-bottom:none;border-right:1px solid var(--line-light);padding:34px 26px}}
 .flow-step:last-child{border-right:none}
@@ -292,9 +298,9 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
         <div class="nav-drop-menu" data-races-menu>
           <div class="nav-sub"><a href="race-guide.html#cedar">Lebanon Cedar Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
           <div class="nav-sub"><a href="race-guide.html#batroun">Batroun Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="https://register.batrounrace.com/results">Results</a><a href="gallery.html">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="https://register.batrounrace.com/results">Results</a><a href="gallery.html">Gallery</a></div></div>
           <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
             <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html">Gallery</a></div></div>
           <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
@@ -333,17 +339,42 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <p class="race-day-line" id="rgDay"></p>
     </div>
     <div class="flow" id="rgFlow" data-cms-list="flow:guide.route.kms"></div>
-    <div class="map-wrap reveal" style="margin-top:44px">
+    <div class="map-wrap reveal" id="map" style="margin-top:44px">
       <iframe id="rgMap" src="https://www.google.com/maps?q=Batroun,+Lebanon&output=embed" data-cms-src="guide.route.map_url" title="Race route area map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<!-- KM 2 · FAQ -->
+<!-- KM 2 · BIB PICKUP, per race -->
+<section class="flow-sec" id="pickup">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km">KM 2 · Bib pickup</span>
+      <h2>Pick up your bib.</h2>
+      <p>Bring your ticket — printed or on your phone.</p>
+    </div>
+    <div class="flow flow-fit" id="rgPickup"></div>
+  </div>
+</section>
+
+<!-- KM 3 · AGE CATEGORIES, per race -->
+<section class="flow-sec" id="cats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km">KM 3 · Age categories</span>
+      <h2>Who runs what.</h2>
+      <p>Age groups as raced in 2026 — and what every entry included.</p>
+    </div>
+    <div class="flow flow-fit" id="rgCats"></div>
+    <p class="race-day-line" id="rgIncluded"></p>
+  </div>
+</section>
+
+<!-- KM 4 · FAQ -->
 <section>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="km" data-cms="guide.faq.kicker">KM 2 · Questions</span>
+      <span class="km" data-cms="guide.faq.kicker">KM 4 · Questions</span>
       <h2 data-cms="guide.faq.h2">Quick answers.</h2>
       <p data-cms="guide.faq.p">Tap a question to open it.</p>
     </div>

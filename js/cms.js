@@ -424,7 +424,7 @@
     var races = get(C, 'guide.races');
     if (!Array.isArray(races) || !races.length) return;
 
-    function show(i) {
+    function show(i, sec) {
       var r = races[i];
       if (!r) return;
       var base = 'guide.races.' + i;
@@ -452,8 +452,34 @@
         map.setAttribute('data-cms-src', base + '.map_url');
         map.setAttribute('title', (r.name || 'Race') + ' route area map');
       }
+      // bib pickup + age categories are per-race too; a race without the
+      // data simply hides the section instead of showing an empty band
+      [['pickup', 'rgPickup', 'pickup'], ['cats', 'rgCats', 'cats']].forEach(function (m) {
+        var secEl = document.getElementById(m[0]);
+        var host = document.getElementById(m[1]);
+        var items = Array.isArray(r[m[2]]) ? r[m[2]] : [];
+        if (secEl) secEl.style.display = items.length ? '' : 'none';
+        if (host) {
+          host.setAttribute('data-cms-list', 'flow:' + base + '.' + m[2]);
+          host.innerHTML = renderers.flow(items, base + '.' + m[2]);
+        }
+      });
+      var inc = document.getElementById('rgIncluded');
+      if (inc) {
+        inc.innerHTML = (Array.isArray(r.included) ? r.included : []).map(function (x, j) {
+          return '<span>✓ <span data-cms="' + base + '.included.' + j + '">' + x + '</span></span>';
+        }).join('');
+      }
       // remember the pick in the URL without adding history entries
-      if (r.id) history.replaceState(null, '', '#' + r.id);
+      if (r.id) history.replaceState(null, '', '#' + r.id + (sec ? '-' + sec : ''));
+      // a deep link like #cedar-pickup scrolls to that section once dressed
+      if (sec) {
+        var target = document.getElementById(sec);
+        if (target) {
+          var smooth = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+          target.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+        }
+      }
     }
 
     // Which race is chosen by the nav's deep link (else the first, the
@@ -462,8 +488,15 @@
     // navigation re-dresses the page in place, no reload.
     function pick() {
       var want = location.hash.replace('#', '');
+      var sec = '';
       var i = races.findIndex(function (r) { return r.id === want; });
-      show(i > -1 ? i : 0);
+      if (i < 0 && want.indexOf('-') > -1) {
+        // #cedar-pickup → the cedar page, scrolled to its pickup section
+        var race = want.slice(0, want.indexOf('-'));
+        i = races.findIndex(function (r) { return r.id === race; });
+        if (i > -1) sec = want.slice(want.indexOf('-') + 1);
+      }
+      show(i > -1 ? i : 0, sec);
     }
     window.addEventListener('hashchange', pick);
     pick();

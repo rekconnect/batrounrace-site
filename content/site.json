@@ -21,6 +21,18 @@
             "href": "race-guide.html#cedar"
           },
           {
+            "label": "Age categories",
+            "href": "race-guide.html#cedar-cats"
+          },
+          {
+            "label": "Bib pickup",
+            "href": "race-guide.html#cedar-pickup"
+          },
+          {
+            "label": "Race location",
+            "href": "race-guide.html#cedar-map"
+          },
+          {
             "label": "Results",
             "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
           }
@@ -33,6 +45,18 @@
           {
             "label": "Race info",
             "href": "race-guide.html#batroun"
+          },
+          {
+            "label": "Age categories",
+            "href": "race-guide.html#batroun-cats"
+          },
+          {
+            "label": "Bib pickup",
+            "href": "race-guide.html#batroun-pickup"
+          },
+          {
+            "label": "Race location",
+            "href": "race-guide.html#batroun-map"
           },
           {
             "label": "Results",
@@ -1553,7 +1577,7 @@
       ]
     },
     "faq": {
-      "kicker": "KM 2 · Questions",
+      "kicker": "KM 4 · Questions",
       "h2": "Quick answers.",
       "p": "Tap a question to open it.",
       "items": [
@@ -1644,6 +1668,34 @@
             "h3": "Finish in Tannourine",
             "p": "Medals, photos and the town square to celebrate in. Stay a while — Tannourine deserves it."
           }
+        ],
+        "pickup": [
+          {
+            "t": "Stop 1",
+            "h3": "By Bike Biel (Waterfront)",
+            "p": "Sun 6 – Tue 8 September · 7:30 AM – 2:00 PM"
+          },
+          {
+            "t": "Stop 2",
+            "h3": "Routeslb Batroun",
+            "p": "Wed 9 & Thu 10 September · 9:00 AM – 7:00 PM"
+          }
+        ],
+        "cats": [
+          {
+            "t": "5 KM",
+            "h3": "Ages 14–74 · start 8:00 AM",
+            "p": "Age groups: 14-15 · 16-17 · 18-19 · 20-34 · 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70-74"
+          }
+        ],
+        "included": [
+          "Race registration",
+          "Trophies for overall & age category",
+          "Finisher medal",
+          "Breakfast",
+          "BIB-tag & T-shirt",
+          "Photoshooting",
+          "LAF fees"
         ]
       },
       {
@@ -1655,7 +1707,7 @@
         "h2": "Sea on one side, Batroun stone on the other.",
         "p": "5KM and 10KM along the Batroun coast — seaside roads, the old souks, and a Mediterranean finish.",
         "map_url": "https://www.google.com/maps?q=Batroun,+Lebanon&output=embed",
-        "day": "",
+        "day": "<span>🏁 10 KM &amp; Team Relay · start 7:00 AM</span><span>🏁 5 KM · start 7:10 AM</span><span>📅 Ran Sunday 12 July 2026</span>",
         "kms": [
           {
             "t": "Start",
@@ -1677,6 +1729,43 @@
             "h3": "Mediterranean finish",
             "p": "Podiums, food, swimming, and a full day by the sea."
           }
+        ],
+        "pickup": [
+          {
+            "t": "Stop 1",
+            "h3": "Sports Experts, Dbayyeh",
+            "p": "Mon 6 – Wed 8 July · 10:00 AM – 8:00 PM"
+          },
+          {
+            "t": "Stop 2",
+            "h3": "Hangloose, Batroun",
+            "p": "Thu 9 – Sat 11 July · 10:00 AM – 7:00 PM"
+          }
+        ],
+        "cats": [
+          {
+            "t": "10 KM",
+            "h3": "Ages 18+ · start 7:00 AM",
+            "p": "Age groups: U20 (2007-2008) · Seniors 20-34 · Masters 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70+"
+          },
+          {
+            "t": "5 KM",
+            "h3": "Ages 16+ · start 7:10 AM",
+            "p": "Age groups: U18 (2009-2010) · U20 (2007-2008) · Seniors 20-34 · Masters 35-39 · 40-44 · 45-49 · 50-54 · 55-59 · 60-64 · 65-69 · 70+"
+          },
+          {
+            "t": "Relay",
+            "h3": "10 KM Team Relay · start 7:00 AM",
+            "p": "Teams of two, ages 16+ — Runner 1 runs 5 KM, Runner 2 runs 5 KM."
+          }
+        ],
+        "included": [
+          "Race registration",
+          "BIB & tag",
+          "Finisher medal",
+          "Finish time certificate",
+          "LAF fees",
+          "Small breakfast & Bluebay Beach entrance"
         ]
       }
     ]
