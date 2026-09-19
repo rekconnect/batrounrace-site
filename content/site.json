@@ -11,6 +11,64 @@
     "register_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
     "results2026_url": "https://register.batrounrace.com/results",
     "results_tannourine_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
+    "races_menu": [
+      {
+        "name": "Lebanon Cedar Race 2026",
+        "href": "race-guide.html#cedar",
+        "links": [
+          {
+            "label": "Race info",
+            "href": "race-guide.html#cedar"
+          },
+          {
+            "label": "Results",
+            "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
+          }
+        ]
+      },
+      {
+        "name": "Batroun Race 2026",
+        "href": "race-guide.html#batroun",
+        "links": [
+          {
+            "label": "Race info",
+            "href": "race-guide.html#batroun"
+          },
+          {
+            "label": "Results",
+            "href": "https://register.batrounrace.com/results"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery.html"
+          }
+        ]
+      },
+      {
+        "name": "Batroun Race 2025",
+        "href": "results-2025.html",
+        "links": [
+          {
+            "label": "Results",
+            "href": "results-2025.html"
+          },
+          {
+            "label": "Gallery",
+            "href": "gallery.html"
+          }
+        ]
+      },
+      {
+        "name": "Christmas Race 2025",
+        "href": "https://www.instagram.com/batrounrace",
+        "links": [
+          {
+            "label": "See the moments",
+            "href": "https://www.instagram.com/batrounrace"
+          }
+        ]
+      }
+    ],
     "footer_tagline": "Lebanon's coastal running event. Health, tourism, and community — by the sea.",
     "copyright": "© 2026 Batroun Race · Batroun, Lebanon",
     "race": {
@@ -1559,7 +1617,7 @@
         "id": "cedar",
         "name": "Lebanon Cedar Race",
         "town": "Tannourine",
-        "status": "Registration open",
+        "status": "Completed",
         "meta": "5KM · 13 September 2026 · Start 8:00 AM",
         "h2": "Up in the cedars of Tannourine.",
         "p": "One 5KM through Tannourine's cedar country — mountain air instead of sea salt, and a course that earns its views. Bring a layer for before the start: mornings up there are cooler than the coast.",

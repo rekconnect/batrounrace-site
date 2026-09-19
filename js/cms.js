@@ -180,8 +180,27 @@
     initSliders();
     initLightbox();
     initGuideRaces();
+    renderRacesMenu();
     tagRegLinks();
     initRegLock();
+  }
+
+  /* The Races menu in the nav: one row per race, each flying out its own
+     links (results, race info, gallery…). Driven by global.races_menu, so
+     next year's race is a content edit in /admin, not eight nav markups. */
+  function renderRacesMenu() {
+    var races = get(C, 'global.races_menu');
+    if (!Array.isArray(races) || !races.length) return;
+    document.querySelectorAll('[data-races-menu]').forEach(function (host) {
+      host.innerHTML = races.map(function (r, i) {
+        var base = 'global.races_menu.' + i;
+        var links = (r.links || []).map(function (l, j) {
+          return '<a href="' + l.href + '" data-cms="' + base + '.links.' + j + '.label">' + l.label + '</a>';
+        }).join('');
+        return '<div class="nav-sub"><a href="' + (r.href || '#') + '" data-cms="' + base + '.name">' + r.name + '</a>' +
+          (links ? '<div class="nav-sub-menu">' + links + '</div>' : '') + '</div>';
+      }).join('');
+    });
   }
 
   /* Registration is not open until race.reg_open, and until then no link on the
