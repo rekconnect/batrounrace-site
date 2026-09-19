@@ -99,11 +99,14 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .nav-sub-menu::before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px}
 }
 @media(max-width:768px){
-  .nav-sub-menu{position:static;display:flex;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub-menu{position:static;display:none;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub.open>.nav-sub-menu{display:flex}
+  /* a small arrow closes each race name; it flips when the row is open */
+  .nav-sub>a::after{content:"\25BE";margin-left:8px;font-size:.8em;display:inline-block;transition:transform .2s ease-out}
+  .nav-sub.open>a::after{transform:rotate(180deg)}
 }
 @media(max-width:768px){
-  .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
-  .nav-drop-btn{pointer-events:none}
+  .nav-drop-menu{position:static;transform:none;display:none;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
 @media(max-width:768px){
@@ -200,7 +203,9 @@ h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,3rem);l
 .flow-step p{color:var(--text-inv-dim);font-size:.9rem}
 
 /* gallery */
-.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:34px}
+/* deep links from the Races menu land below the sticky header */
+#g2026,#g2025{scroll-margin-top:76px}
 @media(max-width:860px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.gallery-grid{grid-template-columns:1fr}}
 .g-item{margin:0;border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line);cursor:zoom-in;transition:transform .2s ease-out,box-shadow .2s ease-out}
@@ -295,11 +300,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
         <div class="nav-drop-menu" data-races-menu>
           <div class="nav-sub"><a href="race-guide.html#cedar">Lebanon Cedar Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
           <div class="nav-sub"><a href="race-guide.html#batroun">Batroun Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html#g2026">Gallery</a></div></div>
           <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
-            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html#g2025">Gallery</a><a href="sponsors.html#partners">Sponsors</a></div></div>
           <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
             <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
@@ -326,10 +331,25 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · PHOTOS -->
-<section style="padding-top:72px">
+<!-- KM 1 · BATROUN RACE 2026 -->
+<section id="g2026" style="padding-top:72px">
   <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km" data-cms="gallery.batroun2026.kicker">KM 1 · Batroun Race 2026</span>
+      <h2 data-cms="gallery.batroun2026.h2">The 2026 edition.</h2>
+    </div>
     <div class="gallery-grid" data-cms-list="gallery:home.hero.slides"></div>
+  </div>
+</section>
+
+<!-- KM 2 · BATROUN RACE 2025 -->
+<section id="g2025" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km" data-cms="gallery.batroun2025.kicker">KM 2 · Batroun Race 2025</span>
+      <h2 data-cms="gallery.batroun2025.h2">The first edition.</h2>
+    </div>
+    <div class="gallery-grid" data-cms-list="gallery:gallery.batroun2025.photos"></div>
   </div>
 </section>
 

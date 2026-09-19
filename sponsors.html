@@ -99,11 +99,14 @@ header{position:sticky;top:0;z-index:50;background:rgba(242,247,246,.85);backdro
   .nav-sub-menu::before{content:"";position:absolute;left:-8px;top:0;bottom:0;width:8px}
 }
 @media(max-width:768px){
-  .nav-sub-menu{position:static;display:flex;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub-menu{position:static;display:none;border:0;box-shadow:none;padding:0 0 0 16px;background:none;min-width:0}
+  .nav-sub.open>.nav-sub-menu{display:flex}
+  /* a small arrow closes each race name; it flips when the row is open */
+  .nav-sub>a::after{content:"\25BE";margin-left:8px;font-size:.8em;display:inline-block;transition:transform .2s ease-out}
+  .nav-sub.open>a::after{transform:rotate(180deg)}
 }
 @media(max-width:768px){
-  .nav-drop-menu{position:static;transform:none;display:flex;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
-  .nav-drop-btn{pointer-events:none}
+  .nav-drop-menu{position:static;transform:none;display:none;border:0;box-shadow:none;padding:2px 0 0 16px;min-width:0;background:none}
 }
 .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
 @media(max-width:768px){
@@ -252,6 +255,8 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
    shoulder, instead of two dozen separate boxes with air between them. Logos
    are capped on both axes so a wide wordmark and a square crest read as the
    same weight rather than the same height. */
+/* the Sponsors entries in the Races menu land below the sticky header */
+#partners{scroll-margin-top:76px}
 .logo-wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(16px,2.6vw,40px) clamp(20px,3.4vw,52px);
   background:var(--white);border:1px solid var(--line);border-radius:22px;
@@ -314,11 +319,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
         <div class="nav-drop-menu" data-races-menu>
           <div class="nav-sub"><a href="race-guide.html#cedar">Lebanon Cedar Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
           <div class="nav-sub"><a href="race-guide.html#batroun">Batroun Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html#g2026">Gallery</a></div></div>
           <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
-            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html#g2025">Gallery</a><a href="sponsors.html#partners">Sponsors</a></div></div>
           <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
             <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
@@ -352,7 +357,7 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 <div class="startline" aria-hidden="true"></div>
 
 <!-- KM 1 · PARTNERS -->
-<section>
+<section id="partners">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>

@@ -33,6 +33,10 @@
             "href": "race-guide.html#cedar-map"
           },
           {
+            "label": "Sponsors",
+            "href": "sponsors.html#partners"
+          },
+          {
             "label": "Results",
             "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
           }
@@ -59,12 +63,16 @@
             "href": "race-guide.html#batroun-map"
           },
           {
+            "label": "Sponsors",
+            "href": "sponsors.html#partners"
+          },
+          {
             "label": "Results",
             "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
           },
           {
             "label": "Gallery",
-            "href": "gallery.html"
+            "href": "gallery.html#g2026"
           }
         ]
       },
@@ -78,7 +86,11 @@
           },
           {
             "label": "Gallery",
-            "href": "gallery.html"
+            "href": "gallery.html#g2025"
+          },
+          {
+            "label": "Sponsors",
+            "href": "sponsors.html#partners"
           }
         ]
       },
@@ -111,26 +123,7 @@
     "nav_cta_url": "https://register.batrounrace.com/results.html?comp=tannourine-2026"
   },
   "home": {
-    "promos": [
-      {
-        "img": "images/banners/lebanon-cedar-race-2026-poster-wide.jpg",
-        "img_portrait": "images/banners/lebanon-cedar-race-2026-poster-tall.jpg",
-        "alt": "Lebanon Cedar Race — 13 September 2026, Tannourine, 5K. Runners on a mountain trail under the peaks.",
-        "href": "https://register.batrounrace.com/results.html?comp=tannourine-2026",
-        "label": "Results",
-        "race": {
-          "edition_label": "Next race · Lebanon Cedar Race",
-          "date": "2026-09-13",
-          "time": "08:00",
-          "reg_open": "2026-08-13T23:59+03:00",
-          "reg_close": "2026-09-10T00:00+03:00",
-          "reg_label": "Registration opening soon",
-          "location": "Tannourine, Lebanon",
-          "tba_text": "",
-          "info": ""
-        }
-      }
-    ],
+    "promos": [],
     "hero": {
       "kicker": "KM 0 · Start line",
       "h1": "Run Batroun,<br>coast to <span class=\"accent\">mountain.</span>",
@@ -153,18 +146,7 @@
           "label": "Runners in 2026"
         }
       ],
-      "ctas": [
-        {
-          "label": "Batroun 2026 results",
-          "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026",
-          "style": "ghost"
-        },
-        {
-          "label": "2025 results",
-          "href": "results-2025.html",
-          "style": "ghost"
-        }
-      ],
+      "ctas": [],
       "slides": [
         {
           "img": "images/slides/whatsapp-image-2026-07-21-at-12-13-48-pm.jpg",
@@ -252,7 +234,7 @@
       "more": "Read our full story →"
     },
     "raceday": {
-      "kicker": "KM 2.5 · Race day",
+      "kicker": "KM 2 · Race day",
       "h2": "A town-wide celebration.",
       "p": "Streets filled with runners instead of cars. Music on the route, families at the finish.",
       "steps": [
@@ -329,7 +311,7 @@
       "note": "The race is run — results are out. Tap the bib for every runner and category."
     },
     "races": {
-      "kicker": "KM 4 · Our races",
+      "kicker": "KM 3 · Our races",
       "h2": "One community, many races.",
       "p": "Races and community events — each with its own town, its own route, and the same spirit.",
       "items": [
@@ -1804,6 +1786,52 @@
         }
       ],
       "note": "Tag @batrounrace to be featured"
+    },
+    "batroun2026": {
+      "kicker": "KM 1 · Batroun Race 2026",
+      "h2": "The 2026 edition."
+    },
+    "batroun2025": {
+      "kicker": "KM 2 · Batroun Race 2025",
+      "h2": "The first edition.",
+      "photos": [
+        {
+          "img": "images/podium.jpg",
+          "alt": "Winners on the podium at the Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_20_34.jpg",
+          "alt": "Women 20–34 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_14_16.jpg",
+          "alt": "Girls 14–16 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_14_16.jpg",
+          "alt": "Boys 14–16 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_17_19.jpg",
+          "alt": "Women 17–19 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_40_44.jpg",
+          "alt": "Men 40–44 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_45_49.jpg",
+          "alt": "Women 45–49 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_man_55_59.jpg",
+          "alt": "Men 55–59 podium winners, Batroun Race 2025"
+        },
+        {
+          "img": "images/podium_women_60_64.jpg",
+          "alt": "Women 60–64 podium winners, Batroun Race 2025"
+        }
+      ]
     }
   }
 }

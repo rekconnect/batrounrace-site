@@ -183,6 +183,13 @@
     renderRacesMenu();
     tagRegLinks();
     initRegLock();
+    // hydration grows content above a #hash target after the browser's own
+    // anchor jump, so land on it once more — once, and never in the editor
+    if (location.hash && !apply._anchored && !EDIT) {
+      apply._anchored = true;
+      var anchor = document.getElementById(location.hash.slice(1));
+      if (anchor) anchor.scrollIntoView();
+    }
   }
 
   /* The Races menu in the nav: one row per race, each flying out its own
@@ -551,24 +558,31 @@
 
   function initLightbox() {
     var lb = document.getElementById('lightbox');
-    var grid = document.querySelector('.gallery-grid');
-    if (!lb || !grid || /[?&]edit=1/.test(location.search)) return;
+    var grids = document.querySelectorAll('.gallery-grid');
+    if (!lb || !grids.length || /[?&]edit=1/.test(location.search)) return;
     var img = lb.querySelector('img');
     var cur = 0;
-    function imgs() { return Array.prototype.map.call(grid.querySelectorAll('.g-item img'), function (im) { return im.getAttribute('src'); }); }
+    // each race has its own grid; the arrows page through the grid clicked
+    var active = grids[0];
+    function imgs() { return Array.prototype.map.call(active.querySelectorAll('.g-item img'), function (im) { return im.getAttribute('src'); }); }
     function open(i) {
       var list = imgs();
       cur = (i + list.length) % list.length;
       img.src = list[cur];
       lb.classList.add('open');
     }
-    if (!grid._lbBound) {
+    grids.forEach(function (grid) {
+      if (grid._lbBound) return;
       grid._lbBound = true;
       grid.addEventListener('click', function (e) {
         var item = e.target.closest('.g-item');
         if (!item) return;
+        active = grid;
         open(Array.prototype.indexOf.call(grid.children, item));
       });
+    });
+    if (!lb._lbBound) {
+      lb._lbBound = true;
       lb.addEventListener('click', function (e) {
         var b = e.target.closest('button');
         if (b) {
@@ -739,6 +753,17 @@
         btn.setAttribute('aria-expanded', 'false');
       }
     });
+  });
+
+  // On phones each race row folds shut; tapping the race name unfolds its
+  // links instead of navigating (the row's own links still navigate).
+  // Delegated, because renderRacesMenu rebuilds the rows on every hydration.
+  document.addEventListener('click', function (e) {
+    if (!matchMedia('(max-width: 768px)').matches) return;
+    var a = e.target.closest('.nav-sub > a');
+    if (!a || !a.parentElement.querySelector('.nav-sub-menu')) return;
+    e.preventDefault();
+    a.parentElement.classList.toggle('open');
   });
 
   var EDIT = /[?&]edit=1/.test(location.search);
