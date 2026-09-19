@@ -256,7 +256,7 @@ footer{background:var(--ink);color:var(--text-inv-dim);border-top:1px solid var(
    are capped on both axes so a wide wordmark and a square crest read as the
    same weight rather than the same height. */
 /* the Sponsors entries in the Races menu land below the sticky header */
-#partners{scroll-margin-top:76px}
+#partners,#cedar-2026{scroll-margin-top:76px}
 .logo-wall{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
   gap:clamp(16px,2.6vw,40px) clamp(20px,3.4vw,52px);
   background:var(--white);border:1px solid var(--line);border-radius:22px;
@@ -319,11 +319,11 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
         <button class="nav-drop-btn" aria-expanded="false" aria-haspopup="true">Races ▾</button>
         <div class="nav-drop-menu" data-races-menu>
           <div class="nav-sub"><a href="race-guide.html#cedar">Lebanon Cedar Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#cedar">Race info</a><a href="race-guide.html#cedar-cats">Age categories</a><a href="race-guide.html#cedar-pickup">Bib pickup</a><a href="race-guide.html#cedar-map">Race location</a><a href="sponsors.html#cedar-2026">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=tannourine-2026">Results</a></div></div>
           <div class="nav-sub"><a href="race-guide.html#batroun">Batroun Race 2026</a>
-            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="sponsors.html#partners">Sponsors</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html#g2026">Gallery</a></div></div>
+            <div class="nav-sub-menu"><a href="race-guide.html#batroun">Race info</a><a href="race-guide.html#batroun-cats">Age categories</a><a href="race-guide.html#batroun-pickup">Bib pickup</a><a href="race-guide.html#batroun-map">Race location</a><a href="https://register.batrounrace.com/results.html?comp=batroun-race-2026">Results</a><a href="gallery.html#g2026">Gallery</a></div></div>
           <div class="nav-sub"><a href="results-2025.html">Batroun Race 2025</a>
-            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html#g2025">Gallery</a><a href="sponsors.html#partners">Sponsors</a></div></div>
+            <div class="nav-sub-menu"><a href="results-2025.html">Results</a><a href="gallery.html#g2025">Gallery</a><a href="results-2025.html#partners">Sponsors</a></div></div>
           <div class="nav-sub"><a href="https://www.instagram.com/batrounrace">Christmas Race 2025</a>
             <div class="nav-sub-menu"><a href="https://www.instagram.com/batrounrace">See the moments</a></div></div>
         </div>
@@ -356,8 +356,8 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
 </section>
 <div class="startline" aria-hidden="true"></div>
 
-<!-- KM 1 · PARTNERS -->
-<section id="partners">
+<!-- LEBANON CEDAR RACE 2026 · ITS OWN ROSTER -->
+<section id="cedar-2026">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="km" data-cms="sponsors.race.kicker">Lebanon Cedar Race 2026</span>
@@ -371,9 +371,20 @@ try{if(localStorage.getItem('br-theme')==='coastal')document.documentElement.set
       <span class="lg-label" data-cms="sponsors.race.organised_label">Organised by</span>
       <div class="lg-strip" data-cms-list="logos:sponsors.race.organised"></div>
     </div>
-    <div class="lg-group reveal" style="margin-bottom:52px">
+    <div class="lg-group reveal">
       <span class="lg-label" data-cms="sponsors.race.sponsored_label">Sponsored by</span>
       <div class="lg-strip" data-cms-list="logos:sponsors.race.sponsors"></div>
+    </div>
+  </div>
+</section>
+
+<!-- KM 1 · PARTNERS, ALL EDITIONS -->
+<section id="partners">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="km" data-cms="sponsors.partners.kicker">KM 1 · Our partners</span>
+      <h2 data-cms="sponsors.partners.h2">Brands that showed up.</h2>
+      <p data-cms="sponsors.partners.p">Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.</p>
     </div>
     <span class="lg-label reveal" style="margin-bottom:16px">Every partner, all editions</span>
     <div class="logo-wall reveal" data-cms-list="wall:sponsors.partners.wall">
