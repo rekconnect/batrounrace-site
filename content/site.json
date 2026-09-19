@@ -63,6 +63,10 @@
             "href": "race-guide.html#batroun-map"
           },
           {
+            "label": "Sponsors",
+            "href": "sponsors.html#batroun-2026"
+          },
+          {
             "label": "Results",
             "href": "https://register.batrounrace.com/results.html?comp=batroun-race-2026"
           },
@@ -682,20 +686,10 @@
       ]
     },
     "partners": {
-      "kicker": "KM 1 · Our partners",
+      "kicker": "KM 1 · Batroun Race 2026",
       "h2": "Brands that showed up.",
       "p": "Clean social proof and quick trust — the partners powering the race on the route, at the stations, and at the finish.",
       "wall": [
-        {
-          "name": "Tannourine",
-          "slug": "tannourine",
-          "link": ""
-        },
-        {
-          "name": "Tannourine emblem",
-          "slug": "tannourine-emblem",
-          "link": ""
-        },
         {
           "name": "Mike Sport",
           "slug": "mike-sport",
@@ -779,11 +773,6 @@
         {
           "name": "MOOD",
           "slug": "mood",
-          "link": ""
-        },
-        {
-          "name": "Routes",
-          "slug": "routes",
           "link": ""
         },
         {
