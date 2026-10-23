@@ -357,6 +357,24 @@
       "h2": "Everything you need on race day.",
       "p": "Race day is 13 September. Bib pickup windows, the buses up to Tannourine, and the start-line timings.",
       "cta": "View results →"
+    },
+    "season": {
+      "kicker": "Season 2026 · Coast to mountain",
+      "h2": "Two races, one running family.",
+      "p": "Batroun Race on the coast in July, the Lebanon Cedar Race up in Tannourine in September — more than 800 runners crossed our finish lines this season.",
+      "img": "images/gallery/cedar-2026/cedar-001.jpg",
+      "ctas": [
+        {
+          "label": "Cedar Race photos →",
+          "href": "gallery-cedar-2026.html",
+          "style": "coral"
+        },
+        {
+          "label": "Batroun Race photos",
+          "href": "gallery-batroun-2026.html",
+          "style": "ghost"
+        }
+      ]
     }
   },
   "about": {
